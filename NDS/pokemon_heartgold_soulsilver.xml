@@ -159,7 +159,7 @@
 	<properties>
 		<player>
 			<property name="name" type="string" address="global_pointer + 0xD054" length="14" size="2" /> <!-- TODO: check this address -->
-			<!-- <property name="gender" type="int" address="global_pointer + 0xXXXX" /> --> <!-- TODO: obtain address -->
+			<property name="gender" type="int" address="global_pointer + 0xD06C" /> <!-- TODO: obtain address -->
 			<property name="player_id" type="int" address="global_pointer + 0xD064" length="2" />
 			<property name="secret_id" type="int" address="global_pointer + 0xD066" length="2" />
 			<property name="team_count" type="int" address="global_pointer + 0xD084" />
@@ -172,14 +172,22 @@
 				<class name="5" type="party_pokemon" var:memoryContainer="player_party_structure_5" />
 			</team>
 			<badges>
-				<property name="0" type="bit" address="global_pointer + 0xD06E" position="0" description="zephyrbadge" />
-                <property name="1" type="bit" address="global_pointer + 0xD06E" position="1" description="hivebadge" />
-                <property name="2" type="bit" address="global_pointer + 0xD06E" position="2" description="plainbadge" />
-                <property name="3" type="bit" address="global_pointer + 0xD06E" position="3" description="fogbadge" />
-                <property name="4" type="bit" address="global_pointer + 0xD06E" position="4" description="stormbadge" />
-                <property name="5" type="bit" address="global_pointer + 0xD06E" position="5" description="mineralbadge" />
-                <property name="6" type="bit" address="global_pointer + 0xD06E" position="6" description="glacierbadge" />
-                <property name="7" type="bit" address="global_pointer + 0xD06E" position="7" description="risingbadge" />
+				<property name="0"  type="bit" address="global_pointer + 0xD06E" position="0" description="zephyrbadge" />
+                <property name="1"  type="bit" address="global_pointer + 0xD06E" position="1" description="hivebadge" />
+                <property name="2"  type="bit" address="global_pointer + 0xD06E" position="2" description="plainbadge" />
+                <property name="3"  type="bit" address="global_pointer + 0xD06E" position="3" description="fogbadge" />
+                <property name="4"  type="bit" address="global_pointer + 0xD06E" position="4" description="stormbadge" />
+                <property name="5"  type="bit" address="global_pointer + 0xD06E" position="5" description="mineralbadge" />
+                <property name="6"  type="bit" address="global_pointer + 0xD06E" position="6" description="glacierbadge" />
+                <property name="7"  type="bit" address="global_pointer + 0xD06E" position="7" description="risingbadge" />
+				<property name="8"  type="bit" address="global_pointer + 0xD06E + 5" position="0" description="boulderbadge" />
+                <property name="9"  type="bit" address="global_pointer + 0xD06E + 5" position="1" description="cascadebadge" />
+                <property name="10" type="bit" address="global_pointer + 0xD06E + 5" position="2" description="thunderbadge" />
+                <property name="11" type="bit" address="global_pointer + 0xD06E + 5" position="3" description="rainbowbadge" />
+                <property name="12" type="bit" address="global_pointer + 0xD06E + 5" position="4" description="soulbadge" />
+                <property name="13" type="bit" address="global_pointer + 0xD06E + 5" position="5" description="marshbadge" />
+                <property name="14" type="bit" address="global_pointer + 0xD06E + 5" position="6" description="volcanobadge" />
+                <property name="15" type="bit" address="global_pointer + 0xD06E + 5" position="7" description="earthbadge" />
 			</badges>
 		</player>
 		<bag>

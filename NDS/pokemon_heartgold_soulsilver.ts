@@ -121,7 +121,7 @@ export function getEncounterRate(): number {
     // const super_rod = getValue("overworld.encounter_rates.super_rod");
     return walking;
 }
-
+//226F2A8
 // Preprocessor runs every loop (everytime gamehook updates)
 export function preprocessor() {
     // This is the same as the global_pointer, it is named "base_ptr" for consistency with the old C# code    
