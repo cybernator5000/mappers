@@ -96,6 +96,7 @@
             <property name="name"   type="string" address="0xD47D" length="11" />
             <property name="gender" type="int" address="0xD472" reference="gender" />
             <property name="player_id"  type="int" address="0xD47B" length="2" description="The active player ID" />
+            <property name="hall_of_fame_count" type="int" address="0xD95E" />
             <property name="team_count" type="int" address="0xDCD7" />
             <!-- TODO: dynamically assign these properies based on the game stats -->
             <!-- <active_pokemon>
@@ -277,6 +278,7 @@
             <property name="map_index" type="int" address="0xDCB6" />
             <property name="y"         type="int" address="0xDCB7" />
             <property name="x"         type="int" address="0xDCB8" />
+            <property name="movement_state" type="int" address="0xD95D" />
             <!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking vs surfing) to make this fully dynamic
 			-->
@@ -2005,6 +2007,13 @@
             <entry key="0x05" value="Friday" />
             <entry key="0x06" value="Saturday" />
         </day_names>
+        <movement_states>
+            <entry key="0x00" value="Walk" />
+            <entry key="0x01" value="Bike" />
+            <entry key="0x02" value="Skate" />
+            <entry key="0x03" value="Surf" />
+            <entry key="0x04" value="Surf-Pikachu" />
+        </movement_states>
         <time_of_day>
             <entry key="0x00" value="Morning" />
             <entry key="0x01" value="Day" />
