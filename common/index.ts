@@ -103,6 +103,12 @@ export function getProperty(path: string) {
     return property;
 }
 
+// export function getReferenceProperty(self: IProperty, reference: IProperty) {
+//     self.address = reference.address
+//     self.value = reference.value
+//     // etc
+// }
+
 export function BitRange(value: number, upperBounds: number, lowerBounds: number): number {
     // Validate the input bounds
     if (lowerBounds < 0 || upperBounds >= 32 || lowerBounds > upperBounds) {
