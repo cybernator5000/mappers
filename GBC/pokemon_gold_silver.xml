@@ -276,9 +276,9 @@
             <property name="map_name"  type="int" address="0xDA00" length="2" reference="maps" />
             <property name="map_group" type="int" address="0xDA00" reference="map_groups" />
             <property name="map_index" type="int" address="0xDA01" />
-            <property name="y"         type="int" address="0xDA02" />
-            <property name="x"         type="int" address="0xDA03" />
-            <property name="movement_state" type="int" address="0xD682" />
+            <property name="y" type="int" address="0xDA02" />
+            <property name="x" type="int" address="0xDA03" />
+            <property name="movement_state" type="int" address="0xD682" reference="movement_states" />
             <!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking vs surfing) to make this fully dynamic
 			-->
@@ -293,6 +293,42 @@
 
         <flags> <!-- TODO: test to ensure this works -->
             <property name="beat_champion" type="bit" position="1" address="0xd1db" />
+            <status_flags> <!-- TODO: test to ensure these work -->
+                <property name="STATUSFLAGS_POKEDEX_F" type="bit" address="0xd571" position="0" />
+                <property name="STATUSFLAGS_UNOWN_DEX_F" type="bit" address="0xd571" position="1" />
+                <property name="STATUSFLAGS_FLASH_F" type="bit" address="0xd571" position="2" />
+                <property name="STATUSFLAGS_CAUGHT_POKERUS_F" type="bit" address="0xd571" position="3" />
+                <property name="STATUSFLAGS_ROCKET_SIGNAL_F" type="bit" address="0xd571" position="4" />
+                <property name="STATUSFLAGS_NO_WILD_ENCOUNTERS_F" type="bit" address="0xd571" position="5" />
+                <property name="STATUSFLAGS_HALL_OF_FAME_F" type="bit" address="0xd571" position="6" />
+                <property name="STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F" type="bit" address="0xd571" position="7" />
+                <property name="STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F" type="bit" address="0xd572" position="0" />
+                <property name="STATUSFLAGS2_SAFARI_GAME_F" type="bit" address="0xd572" position="1" />
+                <property name="STATUSFLAGS2_BUG_CONTEST_TIMER_F" type="bit" address="0xd572" position="2" />
+                <property name="STATUSFLAGS2_UNUSED_3_F" type="bit" address="0xd572" position="3" />
+                <property name="STATUSFLAGS2_BIKE_SHOP_CALL_F" type="bit" address="0xd572" position="4" />
+                <property name="STATUSFLAGS2_UNUSED_5_F" type="bit" address="0xd572" position="5" />
+                <property name="STATUSFLAGS2_REACHED_GOLDENROD_F" type="bit" address="0xd572" position="6" />
+                <property name="STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F" type="bit" address="0xd572" position="7" />
+            </status_flags>
+            <daily_flags> <!-- TODO: test to ensure these work -->
+                <property name="DAILYFLAGS1_KURT_MAKING_BALLS_F" type="bit" address="0xd968" position="0" />
+                <property name="DAILYFLAGS1_BUG_CONTEST_F" type="bit" address="0xd968" position="1" />
+                <property name="DAILYFLAGS1_FISH_SWARM_F" type="bit" address="0xd968" position="2" />
+                <property name="DAILYFLAGS1_TIME_CAPSULE_F" type="bit" address="0xd968" position="3" />
+                <property name="DAILYFLAGS1_ALL_FRUIT_TREES_F" type="bit" address="0xd968" position="4" />
+                <property name="DAILYFLAGS1_GOT_SHUCKIE_TODAY_F" type="bit" address="0xd968" position="5" />
+                <property name="DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F" type="bit" address="0xd968" position="6" />
+                <property name="DAILYFLAGS1_TRAINER_HOUSE_F" type="bit" address="0xd968" position="7" />
+                <property name="DAILYFLAGS2_MT_MOON_SQUARE_CLEFAIRY_F" type="bit" address="0xd969" position="0" />
+                <property name="DAILYFLAGS2_UNION_CAVE_LAPRAS_F" type="bit" address="0xd969" position="1" />
+                <property name="DAILYFLAGS2_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F" type="bit" address="0xd969" position="2" />
+                <property name="DAILYFLAGS2_GOLDENROD_DEPT_STORE_TM27_RETURN_F" type="bit" address="0xd969" position="3" />
+                <property name="DAILYFLAGS2_DAISYS_GROOMING_F" type="bit" address="0xd969" position="4" />
+                <property name="DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F" type="bit" address="0xd969" position="5" />
+                <property name="DAILYFLAGS2_MOVE_TUTOR_F" type="bit" address="0xd969" position="6" />
+                <property name="DAILYFLAGS2_BUENAS_PASSWORD_F" type="bit" address="0xd969" position="7" />
+            </daily_flags>
         </flags>
         <event_flags>
             <property name="temporary_until_map_reload_1" type="bit" address="0xD7B7" position="0" />
@@ -1836,10 +1872,8 @@
         </screen>
 
         <options>
-            <!-- <property name="clockDay"         type="string" address="0xXXXX" length="5" /> -->
-            <!-- <property name="clockTime"        type="string" address="0xXXXX" length="5" /> -->
-            <property name="text_speed_2"      type="bit" address="0xD199" position="1" description="False+False = Fast, True+False = Mid, True+True = Slow" />
-            <property name="text_speed_3"      type="bit" address="0xD199" position="2" description="False+False = Fast, True+False = Mid, True+True = Slow" />
+            <property name="text_speed"        type="int" address="0xD199" after-read-value-expression="getBits(x, 0, 3)" reference="text_speeds" />
+            <property name="no_text_scroll"    type="bit" address="0xD199" position="4" /> <!-- TODO: Test effects of changing this flag -->
             <property name="sound"             type="bit" address="0xD199" position="5" description="Mono = False, Stereo = True" />
             <property name="battle_style"      type="bit" address="0xD199" position="6" description="Shift = False, Set = True" />
             <property name="battle_animations" type="bit" address="0xD199" position="7" description="On = False, Off = True" />
@@ -1901,6 +1935,12 @@
     </properties>
 
     <references>
+        <text_speeds>
+            <entry key="0x00" />
+            <entry key="0x01" value="Fast" />
+            <entry key="0x03" value="Mid" />
+            <entry key="0x05" value="Slow" />
+        </text_speeds>
         <day_names>
             <entry key="0x00" value="Sunday" />
             <entry key="0x01" value="Monday" />

@@ -3,10 +3,14 @@ import {
   hidden_powerPower,
   hidden_powerType,
   hpIv,
-  shiny
+  shiny,
 } from "../common/pokemon";
 
 const PARTY_SIZE: number = 6;
+
+export function getBits(a: number, b: number, d: number): number {
+  return (a >> b) & ((1 << d) - 1);
+}
 
 export function getMetaState(): string {
   const team_0_level: number = getValue('player.team.0.level')

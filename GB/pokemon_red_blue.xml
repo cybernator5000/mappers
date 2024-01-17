@@ -1103,13 +1103,11 @@
             </column_1>
         </screen>
         <options>
-            <property name="text_speed_1"      type="bit" address="0xD355" position="1" description="Fast text speed is set when both 1 and 2 are set to false" />
-            <property name="text_speed_2"      type="bit" address="0xD355" position="2" description="Fast text speed is set when both 1 and 2 are set to false" />
+            <property name="text_speed"        type="int" address="0xD354" after-read-value-expression="getBits(x, 0, 3)" reference="text_speeds"  />
             <property name="sound_1"           type="bit" address="0xD355" position="4" />
             <property name="sound_2"           type="bit" address="0xD355" position="5" />
             <property name="battle_style"      type="bit" address="0xD355" position="6" />
             <property name="battle_animations" type="bit" address="0xD355" position="7" />
-            <property name="solo_challenge"    type="int" address="0xD355" reference="options" />
         </options>
         <game_time>
             <property name="hours"   type="int" address="0xDA40" length="2" />
@@ -1137,6 +1135,12 @@
     </properties>
 
     <references>
+        <text_speeds>
+            <entry key="0x00" />
+            <entry key="0x01" value="Fast" />
+            <entry key="0x03" value="Mid" />
+            <entry key="0x05" value="Slow" />
+        </text_speeds>
         <battle_modes>
             <entry key="0x00" />
             <entry key="0x01" value="Wild" />
@@ -1227,10 +1231,6 @@
             <entry key="0x00" />
             <entry key="0x01" value="Badly Posioned" />
         </bad_poison>
-        <options>
-            <entry key="0xC1" value="Fast Text, No Animations, Battlestyle Set" />
-            <entry key="0x41" value="Champion Fight" />
-        </options>
         <final_team>
             <entry key="0x00" />
             <!-- actually the indices for Charmander, Squirtle, and Bulbasaur, respectively, but set to final evolution to remain 1:1 with pokemon_yellow.xml -->
