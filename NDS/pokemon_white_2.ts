@@ -141,11 +141,11 @@ export function preprocessor() {
 
     // Loop through various party-structures to decrypt the Pokemon data
     const partyStructures = [
-        //"struct1", "struct2", "struct3", "struct4", "struct5",
-        "static_player", "static_opponent",
+        "struct1", "struct2", "struct3", "struct4", "struct5",
+        // "static_player", "static_opponent",
         // "player", "static_wild",
         // "static_player", "static_opponent", "static_ally", "static_opponent_2",
-        "dynamic_player", "dynamic_opponent", "dynamic_ally", "dynamic_opponent_2",
+        // "dynamic_player", "dynamic_opponent", "dynamic_ally", "dynamic_opponent_2",
     ];
     for (let i = 0; i < partyStructures.length; i++) {
         let user = partyStructures[i];
@@ -155,12 +155,14 @@ export function preprocessor() {
         // team_count is always offset from the start of the team structure by -0x04 and it's a 1-byte value
         const offsets = {
             // An extremely long block of party structures starts at address 0x221BFB0
-            player: 0x22349B4,
+            player: 0x221E42C,
             // static_player: 0x22349B4,
             // static_opponent: 0x226ACF4,
-            // struct3: 0x226C274,
-            // struct4: 0x226B7B4,
-            // struct5: 0x2259DD8,
+            // struct1: 0x221E42C,
+            static_struct2: 0x2258874, // TODO: what does this party structure correspond to?
+            static_struct3: 0x2259DF4, // TODO: what does this party structure correspond to?
+            static_struct4: 0x2259334, // TODO: what does this party structure correspond to?
+            static_struct5: 0x224799C, // TODO: what does this party structure correspond to?
             // player: 0xD094,
             // static team structures
             // static_player: 0x35514,
@@ -169,12 +171,14 @@ export function preprocessor() {
             // static_ally: 0x7A0 + 0x5B0,
             // static_opponent_2: 0x7A0 + 0xB60,
             //dynamic team structures
-            dynamic_player: 0x226A794,
-            dynamic_opponent: 0x226ACF4, 
-            dynamic_ally: 0x226B254, // TODO: Requires testing
-            dynamic_opponent_2: 0x226B7B4, // TODO: Requires testing
-            unknown_1: 0x226BD14, // TODO: Requires testing
-            unknown_2: 0x226C274, // TODO: Requires testing
+            dynamic_player: 0x2258314, // Confirmed as White2 address (party structure length is 0x560)
+            dynamic_opponent: 0x2258874, // Confirmed as White2 address
+            dynamic_unknown_1: 0x2258DD4, // Confirmed as White2 address // TODO: what does this party structure correspond to?
+            dynamic_unknown_2: 0x2259334, // Confirmed as White2 address // TODO: what does this party structure correspond to?
+            dynamic_unknown_3: 0x2259894, // Confirmed as White2 address // TODO: what does this party structure correspond to?
+            dynamic_unknown_4: 0x2259DF4, // Confirmed as White2 address // TODO: what does this party structure correspond to?
+            dynamic_unknown_5: 0x225A354, // Confirmed as White2 address // TODO: what does this party structure correspond to?
+            dynamic_unknown_6: 0x225A8B4, // Confirmed as White2 address // TODO: what does this party structure correspond to?
         };
 
         // Loop through each party-slot within the given party-structure
@@ -235,7 +239,10 @@ export function preprocessor() {
                 }
 
             // Fills the memory contains for the mapper's class to interpret
+            // console.info(`Filling memory for ${user} / slot ${slotIndex}`)
+            // console.info(`${decryptedData.length}`)
             memory.fill(`${user}_party_structure_${slotIndex}`, 0x00, decryptedData)
+            // console.info("Done filling memory")
         }
     }
 }
