@@ -496,7 +496,7 @@
 				<property name="good_rod"  type="int" length="4" address="global_pointer + 0x31710" /> <!-- TODO: check if these are length 2, confirm addresses -->
 				<property name="super_rod" type="int" length="4" address="global_pointer + 0x3173C" /> <!-- TODO: check if these are length 2, confirm addresses -->
 			</encounter_rates>
-			<!-- TODO: find diamond and pearl offsets -->
+				<!-- TODO: find diamond and pearl offsets -->
 			<encounter_table>
 				<walking>
 					<class name="0"  type="wild_encounter" address="global_pointer + 0x315c0 + 4"  reference="species" />
