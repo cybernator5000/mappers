@@ -51,7 +51,91 @@
                 <property name="special" type="int" address="address + 25" length="2" description="Special EV (stat experience)" />
             </evs>
         </party_pokemon>
-
+        <player_active_pokemon>
+            <property name="species"    type="string" />
+            <property name="dex_number" type="int" />
+            <property name="nickname"   type="string" />
+            <property name="level"      type="int" />
+            <property name="exp"        type="int" />
+            <property name="type_1"     type="string"  />
+            <property name="type_2"     type="string"  />
+            <property name="ot_id"      type="int" />
+            <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="status_condition" type="string" />
+            <moves>
+                <class name="0" type="active_pokemon_move" />
+                <class name="1" type="active_pokemon_move" />
+                <class name="2" type="active_pokemon_move" />
+                <class name="3" type="active_pokemon_move" />
+            </moves>
+            <stats>
+                <property name="hp"      type="int" />
+                <property name="hp_max"  type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </stats>
+            <ivs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </ivs>
+            <evs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </evs>
+            <modifiers>
+                <property name="attack"   type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="defense"  type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="speed"    type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="special"  type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="accuracy" type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="evasion"  type="int" /> <!--same memory location across all Gen1 games-->
+            </modifiers>
+            <volatile_status_conditions>
+                <property name="confusion"  type="bool" />     
+                <property name="toxic"      type="bool" />
+                <property name="leech_seed" type="bool" />
+            </volatile_status_conditions>
+            <effects>
+                <property name="bide"            type="bool" />
+                <property name="thrash"          type="bool" />
+                <property name="multi_hit"       type="bool" />
+                <property name="flinch"          type="bool" />
+                <property name="charging"        type="bool" />
+                <property name="multi_turn"      type="bool" />
+                <property name="invulnerable"    type="bool" />
+                <property name="bypass_accuracy" type="bool" />
+                <property name="mist"            type="bool" />
+                <property name="focus_energy"    type="bool" />
+                <property name="substitute"      type="bool" />
+                <property name="recharge"        type="bool" />
+                <property name="rage"            type="bool" />
+                <property name="lightscreen"     type="bool" />
+                <property name="reflect"         type="bool" />
+                <property name="transformed"     type="bool" />
+            </effects>
+            <counters>
+                <property name="multi_hit" type="bool" />
+                <property name="confusion" type="bool" />
+                <property name="toxic"     type="bool" />
+                <property name="disable"   type="bool" />
+            </counters>
+            <last_move>
+                <property name="move"     type="int" />
+                <property name="effect"   type="int" />
+                <property name="power"    type="int" />
+                <property name="type"     type="int" />
+                <property name="accuracy" type="int" />
+                <property name="pp_max"   type="int" />
+            </last_move>
+        </player_active_pokemon>
         <pc_pokemon>
             <macro type="pokemon" />
             <property name="nickname" type="string" address="nickname_address" length="11" />
@@ -86,6 +170,12 @@
             </evs>
         </pc_pokemon>
 
+        <active_pokemon_move>
+            <property name="move"  type="int" address="moveAddress" reference="moves" />
+            <property name="pp"    type="int" address="moveAddress + 21" after-read-value-expression="x % 64" />
+            <property name="pp_up" type="int" address="moveAddress + 21" after-read-value-expression="Math.floor(x / 64)" />
+        </active_pokemon_move>
+
         <party_move>
             <property name="move"  type="int" address="moveAddress" reference="moves" />
             <property name="pp"    type="int" address="moveAddress + 21" after-read-value-expression="x % 64" />
@@ -114,11 +204,11 @@
     </classes>
 
     <properties>        
-        <property name="wWalkBikeSurfState" type="int" address="0xD699" />
         <player>
-            <property name="name"       type="string" address="0xD157" length="11" />
-            <property name="player_id"  type="int"    address="0xD358" length="2" />
-            <property name="team_count" type="int"    address="0xD162" />
+            <property name="name"        type="string" address="0xD157" length="11" />
+            <property name="player_id"   type="int"    address="0xD358" length="2" />
+            <property name="team_count"  type="int"    address="0xD162" />
+            <class name="active_pokemon" type="player_active_pokemon" />
             <team>
                 <class name="0" type="party_pokemon" var:address="0xD16A" var:nickname_address="0xD2B4" />
                 <class name="1" type="party_pokemon" var:address="0xD196" var:nickname_address="0xD2BF" />
