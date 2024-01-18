@@ -154,16 +154,12 @@
             <property name="item"     address="address" type="int" length="2" reference="items" />
             <property name="quantity" address="address + 2" type="int" length="2" />
         </player_item>
-		<grass_encounter>
-		    <property name="level"   type="int" address="address + 4" />
-            <property name="species" type="int" address="address" reference="species" />
-            <property name="dex_number" type="int" address="address" reference="dex_numbers" />
-		</grass_encounter>
-		<water_encounter>
-		    <property name="level"   type="int" address="address" />
-            <property name="species" type="int" address="address + 4" reference="species" />
-            <property name="dex_number" type="int" address="address + 4" reference="dex_numbers" />
-		</water_encounter>
+		<wild_encounter>
+		    <property name="level1"   type="int" address="address"/> <!-- this is the lowest/only level it can be -->
+		    <property name="level2"   type="int" address="address + 1"/> <!-- This is the highest level it can be. pokemon by fishing or surfing are a range and the game uses rng to decide it -->
+            <property name="species" type="int" address="address + 4" length="4" reference="species" />
+            <property name="dex_number" type="int" address="address + 4" length="4" reference="dex_numbers" />
+		</wild_encounter>
 	</classes>
 
 	<properties>
@@ -484,9 +480,9 @@
 		<overworld> <!-- TODO: All of these properties need Diamond and Pearl offets -->
             <property name="map_name"  type="int" length="2" address="global_pointer + 0xE274" reference="maps" />
             <property name="map_index" type="int" length="2" address="global_pointer + 0xE274" />
-			<property name="x" type="int" length="4" address="global_pointer + 0xE454" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
-            <property name="y" type="int" length="4" address="global_pointer + 0xE458" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
-            <property name="z" type="int" length="4" address="global_pointer + 0xE458" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+			<property name="x" type="int" length="4" address="global_pointer + 0xE27C" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+            <property name="y" type="int" length="4" address="global_pointer + 0xE280" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+            <!-- <property name="z" type="int" length="4" address="global_pointer + 0xE458" /> TODO: find platinum offsets; these are the HGSS offsets -->
             <!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking, surfing, fishing, etc.) and then
 				dynamically assign the encounter rate based on this
@@ -500,60 +496,61 @@
 				<property name="good_rod"  type="int" length="4" address="global_pointer + 0x31710" /> <!-- TODO: check if these are length 2, confirm addresses -->
 				<property name="super_rod" type="int" length="4" address="global_pointer + 0x3173C" /> <!-- TODO: check if these are length 2, confirm addresses -->
 			</encounter_rates>
-			<!-- TODO: find diamond and pearl offsets -->
+				<!-- TODO: find diamond and pearl offsets -->
 			<encounter_table>
 				<walking>
-					<class name="0"  type="grass_encounter" address="global_pointer + 0x315c0 + 8"   reference="species" />
-					<class name="1"  type="grass_encounter" address="global_pointer + 0x315c0 + 16"  reference="species" />
-					<class name="2"  type="grass_encounter" address="global_pointer + 0x315c0 + 24"  reference="species" />
-					<class name="3"  type="grass_encounter" address="global_pointer + 0x315c0 + 32"  reference="species" />
-					<class name="4"  type="grass_encounter" address="global_pointer + 0x315c0 + 40"  reference="species" />
-					<class name="5"  type="grass_encounter" address="global_pointer + 0x315c0 + 48"  reference="species" />
-					<class name="6"  type="grass_encounter" address="global_pointer + 0x315c0 + 56"  reference="species" />
-					<class name="7"  type="grass_encounter" address="global_pointer + 0x315c0 + 64"  reference="species" />
-					<class name="8"  type="grass_encounter" address="global_pointer + 0x315c0 + 72"  reference="species" />
-					<class name="9"  type="grass_encounter" address="global_pointer + 0x315c0 + 80"  reference="species" />
-					<class name="10" type="grass_encounter" address="global_pointer + 0x315c0 + 88"  reference="species" />
-					<class name="11" type="grass_encounter" address="global_pointer + 0x315c0 + 96"  reference="species" />
-					<class name="12" type="grass_encounter" address="global_pointer + 0x315c0 + 104" reference="species" />
-					<class name="13" type="grass_encounter" address="global_pointer + 0x315c0 + 112" reference="species" />
-					<class name="14" type="grass_encounter" address="global_pointer + 0x315c0 + 120" reference="species" />
-					<class name="15" type="grass_encounter" address="global_pointer + 0x315c0 + 128" reference="species" />
-					<class name="16" type="grass_encounter" address="global_pointer + 0x315c0 + 136" reference="species" />
-					<class name="17" type="grass_encounter" address="global_pointer + 0x315c0 + 144" reference="species" />
-					<class name="18" type="grass_encounter" address="global_pointer + 0x315c0 + 152" reference="species" />
-					<class name="19" type="grass_encounter" address="global_pointer + 0x315c0 + 160" reference="species" />
-					<class name="20" type="grass_encounter" address="global_pointer + 0x315c0 + 168" reference="species" />
-					<class name="21" type="grass_encounter" address="global_pointer + 0x315c0 + 176" reference="species" />
-					<class name="22" type="grass_encounter" address="global_pointer + 0x315c0 + 184" reference="species" />
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x315c0 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x315c0 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x315c0 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x315c0 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x315c0 + 36"  reference="species" />
+					<class name="5"  type="wild_encounter" address="global_pointer + 0x315c0 + 44"  reference="species" />
+					<class name="6"  type="wild_encounter" address="global_pointer + 0x315c0 + 52"  reference="species" />
+					<class name="7"  type="wild_encounter" address="global_pointer + 0x315c0 + 60"  reference="species" />
+					<class name="8"  type="wild_encounter" address="global_pointer + 0x315c0 + 68"  reference="species" />
+					<class name="9"  type="wild_encounter" address="global_pointer + 0x315c0 + 74"  reference="species" />
+					<class name="10"  type="wild_encounter" address="global_pointer + 0x315c0 + 82"  reference="species" />
+					<class name="11"  type="wild_encounter" address="global_pointer + 0x315c0 + 90"  reference="species" />
+					<class name="12"  type="wild_encounter" address="global_pointer + 0x315c0 + 98"  reference="species" />
+					<class name="13"  type="wild_encounter" address="global_pointer + 0x315c0 + 106"  reference="species" />
+					<class name="14"  type="wild_encounter" address="global_pointer + 0x315c0 + 114"  reference="species" />
+					<class name="15"  type="wild_encounter" address="global_pointer + 0x315c0 + 122"  reference="species" />
+					<class name="16"  type="wild_encounter" address="global_pointer + 0x315c0 + 130"  reference="species" />
+					<class name="17"  type="wild_encounter" address="global_pointer + 0x315c0 + 138"  reference="species" />
+					<class name="18"  type="wild_encounter" address="global_pointer + 0x315c0 + 146"  reference="species" />
+					<class name="19"  type="wild_encounter" address="global_pointer + 0x315c0 + 154"  reference="species" />
+					<class name="20"  type="wild_encounter" address="global_pointer + 0x315c0 + 160"  reference="species" />
+					<class name="21"  type="wild_encounter" address="global_pointer + 0x315c0 + 168"  reference="species" />
+					<class name="22"  type="wild_encounter" address="global_pointer + 0x315c0 + 176"  reference="species" />
+									<!-- ALL THE WILD POKEMON PAST 17 I DON'T UNDERSTAND THE FORMAT. -SPEED -->
 				</walking>
 				<surfing>
-					<class name="0" type="water_encounter" address="global_pointer + 0x3168c + 8"  reference="species" />
-					<class name="1" type="water_encounter" address="global_pointer + 0x3168c + 16" reference="species" />
-					<class name="2" type="water_encounter" address="global_pointer + 0x3168c + 24" reference="species" />
-					<class name="3" type="water_encounter" address="global_pointer + 0x3168c + 32" reference="species" />
-					<class name="4" type="water_encounter" address="global_pointer + 0x3168c + 40" reference="species" />
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x3168c + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x3168c + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x3168c + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x3168c + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x3168c + 36"  reference="species" />
 				</surfing>
 				<old_rod>
-					<class name="0" type="water_encounter" address="global_pointer + 0x316e4 + 8"  reference="species" />
-					<class name="1" type="water_encounter" address="global_pointer + 0x316e4 + 16" reference="species" />
-					<class name="2" type="water_encounter" address="global_pointer + 0x316e4 + 24" reference="species" />
-					<class name="3" type="water_encounter" address="global_pointer + 0x316e4 + 32" reference="species" />
-					<class name="4" type="water_encounter" address="global_pointer + 0x316e4 + 40" reference="species" />
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x316e4 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x316e4 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x316e4 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x316e4 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x316e4 + 36"  reference="species" />
 				</old_rod>
 				<good_rod>
-					<class name="0" type="water_encounter" address="global_pointer + 0x31710 + 8"  reference="species" />
-					<class name="1" type="water_encounter" address="global_pointer + 0x31710 + 16" reference="species" />
-					<class name="2" type="water_encounter" address="global_pointer + 0x31710 + 24" reference="species" />
-					<class name="3" type="water_encounter" address="global_pointer + 0x31710 + 32" reference="species" />
-					<class name="4" type="water_encounter" address="global_pointer + 0x31710 + 40" reference="species" />
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x31710 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x31710 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x31710 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x31710 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x31710 + 36"  reference="species" />
 				</good_rod>
 				<super_rod>
-					<class name="0" type="water_encounter" address="global_pointer + 0x3173c + 8"  reference="species" />
-					<class name="1" type="water_encounter" address="global_pointer + 0x3173c + 16" reference="species" />
-					<class name="2" type="water_encounter" address="global_pointer + 0x3173c + 24" reference="species" />
-					<class name="3" type="water_encounter" address="global_pointer + 0x3173c + 32" reference="species" />
-					<class name="4" type="water_encounter" address="global_pointer + 0x3173c + 40" reference="species" />
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x3173c + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x3173c + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x3173c + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x3173c + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x3173c + 36"  reference="species" />
 				</super_rod>
 			</encounter_table>
         </overworld>
