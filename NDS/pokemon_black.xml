@@ -8020,5 +8020,15 @@
             <entry key="64"  value="Hail" />
             <entry key="128" value="Fog" />
 		</weather>
+		<genders>
+			<entry key="0x0000" value="Male" />
+			<entry key="0x010E" value="Female" />
+		</genders>
+		<directions>
+			<entry key="0x00" value="Up" />
+			<entry key="0x40" value="Left" />
+			<entry key="0x80" value="Down" />
+			<entry key="0xC0" value="Right" />
+		</directions>
 	</references>
 </mapper>

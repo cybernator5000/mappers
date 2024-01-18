@@ -2,7 +2,8 @@
 // 0x22349B4 - likely the player's key items
 // 0x2234786 - medicine pocket starting address
 // 0x223CDAC - player money (4 bytes)
-// 0x226D790 - player battle structure (around here)
+// 0x225B310 - player battle
+// 0x226D790 - player battle structure (around here) (there are two copies)
 // 0x226D9B0 - opponent battle structure (around here)
 
 import { 
