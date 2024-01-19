@@ -1,4 +1,4 @@
-import { getValue, setValue } from "../common";
+import { copyProperties, getValue, setProperty, setValue } from "../common";
 import { hpIv } from "../common/pokemon";
 
 const PARTY_SIZE = 6;
@@ -7,7 +7,7 @@ export function getBits(a: number, b: number, d: number): number {
   return (a >> b) & ((1 << d) - 1);
 }
 
-export function getMetaState(): string {
+function getMetaState(): string {
   // FSM FOR GAMESTATE TRACKING
   // MAIN GAMESTATE: This tracks the three basic states the game can be in.
   // 1. "No Pokemon": cartridge reset; player has not received a Pokemon
@@ -25,10 +25,10 @@ export function getMetaState(): string {
   }
   else if (battle_mode == null) {
     return 'Overworld'
-  }	
+  }
   else if (battle_start == 0) {
     return 'To Battle'
-  }	
+  }
   else if (low_health_alarm == "Disabled" || outcome_flags > 0) {
     return 'From Battle'
   }
@@ -56,91 +56,21 @@ export function getBattleOutcome(): string | null {
   return null
 }
 
-export function set_active_pokemon() {
-  const state = getMetaState()
-  const properties_string: string[] = [
-    'species', 'nickname', 'type_1', 'type_2', 'status_condition',
-    'moves.0.move', 'moves.1.move', 'moves.2.move', 'moves.3.move',
-    'last_move.move', 'last_move.type', 
-  ]
-  const properties_number: string[] = [
-    'dex_number', 'level', 'exp', 'ot_id', 'catch_rate', 
-    'moves.0.pp', 'moves.0.pp_up', 'moves.1.pp', 'moves.1.pp_up', 'moves.2.pp', 'moves.2.pp_up', 'moves.3.pp', 'moves.3.pp_up',
-    'stats.hp', 'stats.hp_max', 'stats.attack', 'stats.defense', 'stats.speed', 'stats.special',
-    'ivs.hp', 'ivs.attack', 'ivs.defense', 'ivs.speed', 'ivs.special',
-    'evs.hp', 'evs.attack', 'evs.defense', 'evs.speed', 'evs.special',
-    'modifiers.attack', 'modifiers.defense', 'modifiers.speed', 'modifiers.special', 'modifiers.accuracy', 'modifiers.evasion',
-    'counters.multi_hit', 'counters.confusion', 'counters.toxic', 'counters.disable',
-  ]
-  const properties_boolean: string[] = [
-    'volatile_status_conditions.confusion', 'volatile_status_conditions.toxic', 'volatile_status_conditions.leech_seed',
-    'effects.bide', 'effects.thrash', 'effects.multi_hit', 'effects.flinch', 'effects.charging', 'effects.multi_turn',
-    'effects.invulnerable', 'effects.bypass_accuracy', 'effects.mist', 'effects.focus_energy', 'effects.substitute',
-    'effects.recharge', 'effects.rage', 'effects.lightscreen', 'effects.reflect', 'effects.transformed',
-    'last_move.effect', 'last_move.power', 'last_move.accuracy', 'last_move.pp_max'
-  ]
-  properties_string.forEach(property => {
-    let value: any = null;
-    if (state !== 'No Pokemon') {
-      if (state === 'Battle') {
-        value = getValue<typeof property>(`battle.player.active_pokemon.${property}`);
-      } else {
-        // Check if the property exists before trying to get its value
-        try {
-          value = getValue<typeof property>(`player.team.0.${property}`);
-        } catch (error) {
-          value = null;
-        }
-      }
-    }
-    setValue(`player.active_pokemon.${property}`, value);
-  });
-  properties_number.forEach(property => {
-    let value: any = 0;
-    if (state !== 'No Pokemon') {
-      if (state === 'Battle') {
-        try {
-          value = getValue<typeof property>(`battle.player.active_pokemon.${property}`);
-        } catch (error) { 
-          try {
-            value = getValue<typeof property>(`player.team.0.${property}`);
-          } catch (error) {
-          value = 0;
-          }
-        }
-      } else {
-        // Check if the property exists before trying to get its value
-        try {
-          value = getValue<typeof property>(`player.team.0.${property}`);
-        } catch (error) {
-          value = 0;
-        }
-      }
-    }
-    setValue(`player.active_pokemon.${property}`, value);
-  });
-  properties_boolean.forEach(property => {
-    let value: any = false;
-    if (state !== 'No Pokemon') {
-      if (state === 'Battle') {
-        value = getValue<typeof property>(`battle.player.active_pokemon.${property}`);
-      } else {
-        // Check if the property exists before trying to get its value
-        try {
-          value = getValue<typeof property>(`player.team.0.${property}`);
-        } catch (error) {
-          value = false;
-        }
-      }
-    }
-    setValue(`player.active_pokemon.${property}`, value);
-  });
-}
-
 export function postprocessor() {
-  setValue('meta.state', getMetaState())
+  const state = getMetaState()
+  setValue('meta.state', state)
   setValue('battle.outcome', getBattleOutcome())
-  set_active_pokemon()
+
+  if (state === 'Battle') {
+    // TODO: Maybe find the slot index of the current fighting Pokemon?
+    copyProperties('player.team.0', 'player.active_pokemon')
+    copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
+  } else {
+    setProperty('player.active_pokemon.modifiers.attack', { address: null, value: 0 })
+    // TODO: Write other bespoke properties that you need to finish filling in.
+
+    copyProperties('player.team.0', 'player.active_pokemon')
+  }
 
   for (let index = 0; index < PARTY_SIZE; index++) {
     const ivs = {
