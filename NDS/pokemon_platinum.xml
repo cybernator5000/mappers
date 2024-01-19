@@ -275,11 +275,9 @@
 			<property name="player_id" type="int" address="global_pointer + 0xD06C" length="2" />
 			<property name="secret_id" type="int" address="global_pointer + 0xD06E" length="2" />
 			<property name="team_count" type="int" address="global_pointer + 0xD090" />
+			<property name="starter" type="int" address="global_pointer + 0xDE00" length="2" reference="species" /> <!-- When the starter is picked global_pointer offset 0xE20C also is set to the starter's species index -->
 			<property name="party_position" type="int" />
             <class name="active_pokemon" type="player_active_pokemon" />
-			<!-- TODO: Find the address the player's starter selection is stored in: see HGSS for hints -->
-			<!-- <property name="starter" type="int" address="global_pointer + 0xDE34" reference="species" />  -->
-
 			<team>
 				<class name="0" type="party_pokemon" var:memoryContainer="player_party_structure_0" />
 				<class name="1" type="party_pokemon" var:memoryContainer="player_party_structure_1" />
@@ -301,8 +299,7 @@
 		</player>
 		<bag>
             <property name="money" type="int" address="global_pointer + 0xD070" length="4" />
-            <property name="coins" type="int" address="0xD07C" /> <!-- TODO: obtain address -->
-			<!-- 0x294 bytes between start of items and end of items. -->
+            <property name="coins" type="int" address="global_pointer + 0xD07C" /> <!-- TODO: obtain address -->
 			<items>
 				<class name="0"  type="player_item" var:address="global_pointer + 0xD624" />
 				<class name="1"  type="player_item" var:address="global_pointer + 0xD624 + 4" />
@@ -345,9 +342,8 @@
 				<class name="38" type="player_item" var:address="global_pointer + 0xD624 + 152" />
 				<class name="39" type="player_item" var:address="global_pointer + 0xD624 + 156" />
 				<class name="40" type="player_item" var:address="global_pointer + 0xD624 + 160" />
-				<!-- There are more item slots - I have left them out for runtime speed -->
+				<!-- There are more item slots -->
 			</items>
-			<!-- 104 medicine slots -->
 			<medicine>
 				<class name="0"  type="player_item" var:address="global_pointer + 0xDB40" />
 				<class name="1"  type="player_item" var:address="global_pointer + 0xDB40 + 4" />
@@ -370,7 +366,7 @@
 				<class name="18" type="player_item" var:address="global_pointer + 0xDB40 + 72" />
 				<class name="19" type="player_item" var:address="global_pointer + 0xDB40 + 76" />
 				<class name="20" type="player_item" var:address="global_pointer + 0xDB40 + 80" />
-				<!-- There are more item slots - I have left them out for runtime speed -->
+				<!-- There are more item slots -->
 			</medicine>
 			<balls>
 				<class name="0"  type="player_item" var:address="global_pointer + 0xDCE0" />
@@ -559,7 +555,6 @@
 				<class name="62" type="player_item" var:address="global_pointer + 0xDBE0 + 248" />
 				<class name="63" type="player_item" var:address="global_pointer + 0xDBE0 + 252" />
 			</berries>
-			<!-- TODO: find offsets -->
 			<battle_items>
 				<class name="0" type="player_item" var:address="global_pointer + 0xDD1C + 0" />
 				<class name="1" type="player_item" var:address="global_pointer + 0xDD1C + 4" />
@@ -573,25 +568,25 @@
 				<class name="9" type="player_item" var:address="global_pointer + 0xDD1C + 36" />
 			</battle_items>
 			<mail>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xDB00 + 0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xD800 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xD800 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xD800 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xD800 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xD800 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xD800 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xD800 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xD800 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xD800 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xD800 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xD800 + 44" />
+				<class name="0"  type="player_item" var:address="global_pointer + 0xDB10 + 0" />
+				<class name="1"  type="player_item" var:address="global_pointer + 0xD810 + 4" />
+				<class name="2"  type="player_item" var:address="global_pointer + 0xD810 + 8" />
+				<class name="3"  type="player_item" var:address="global_pointer + 0xD810 + 12" />
+				<class name="4"  type="player_item" var:address="global_pointer + 0xD810 + 16" />
+				<class name="5"  type="player_item" var:address="global_pointer + 0xD810 + 20" />
+				<class name="6"  type="player_item" var:address="global_pointer + 0xD810 + 24" />
+				<class name="7"  type="player_item" var:address="global_pointer + 0xD810 + 28" />
+				<class name="8"  type="player_item" var:address="global_pointer + 0xD810 + 32" />
+				<class name="9"  type="player_item" var:address="global_pointer + 0xD810 + 36" />
+				<class name="10" type="player_item" var:address="global_pointer + 0xD810 + 40" />
+				<class name="11" type="player_item" var:address="global_pointer + 0xD810 + 44" />
 			</mail>
 		</bag>
 		<overworld>
             <property name="map_name"  type="int" length="2" address="global_pointer + 0xE274" reference="maps" />
             <property name="map_index" type="int" length="2" address="global_pointer + 0xE274" />
-			<property name="x" type="int" length="4" address="global_pointer + 0xE27C" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
-            <property name="y" type="int" length="4" address="global_pointer + 0xE280" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+			<property name="x" type="int" length="4" address="global_pointer + 0xE27C" />
+            <property name="y" type="int" length="4" address="global_pointer + 0xE280" />
             <!-- <property name="z" type="int" length="4" address="global_pointer + 0xE458" /> TODO: find platinum offsets -->
 			<!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking, surfing, fishing, etc.) and then
@@ -599,44 +594,12 @@
 			-->
 			<property name="encounter_rate" type="int" />
             <encounter_rates>
-				<property name="walking"   type="int" length="4" address="global_pointer + 0x303C4" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="surfing"   type="int" length="4" address="global_pointer + 0x30490" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<!-- TODO: does the headbutt variable exist in platinum? -->
-				<property name="old_rod"   type="int" length="4" address="global_pointer + 0x304E8" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="good_rod"  type="int" length="4" address="global_pointer + 0x30514" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="super_rod" type="int" length="4" address="global_pointer + 0x30540" /> <!-- TODO: check if these are length 2, confirm addresses -->
+				<property name="walking"   type="int" length="4" address="global_pointer + 0x303C4" />
+				<property name="surfing"   type="int" length="4" address="global_pointer + 0x30490" />
+				<property name="old_rod"   type="int" length="4" address="global_pointer + 0x304E8" />
+				<property name="good_rod"  type="int" length="4" address="global_pointer + 0x30514" />
+				<property name="super_rod" type="int" length="4" address="global_pointer + 0x30540" />
 			</encounter_rates>
-			<!-- TODO: find platinum offsets -->
-			<encounters>
-				<walking>
-				<class name="0"  type="wild_encounter" address="global_pointer + 0x303C4 + 4"  reference="species" />
-				<class name="1"  type="wild_encounter" address="global_pointer + 0x303C4 + 12"  reference="species" />
-				<class name="2"  type="wild_encounter" address="global_pointer + 0x303C4 + 20"  reference="species" />
-				<class name="3"  type="wild_encounter" address="global_pointer + 0x303C4 + 28"  reference="species" />
-				<class name="4"  type="wild_encounter" address="global_pointer + 0x303C4 + 36"  reference="species" />
-				<class name="5"  type="wild_encounter" address="global_pointer + 0x303C4 + 44"  reference="species" />
-				<class name="6"  type="wild_encounter" address="global_pointer + 0x303C4 + 52"  reference="species" />
-				<class name="7"  type="wild_encounter" address="global_pointer + 0x303C4 + 60"  reference="species" />
-				<class name="8"  type="wild_encounter" address="global_pointer + 0x303C4 + 68"  reference="species" />
-				<class name="9"  type="wild_encounter" address="global_pointer + 0x303C4 + 76"  reference="species" />
-				<class name="10" type="wild_encounter" address="global_pointer + 0x303C4 + 84"  reference="species" />
-				<class name="11" type="wild_encounter" address="global_pointer + 0x303C4 + 92"  reference="species" />
-				<class name="12" type="wild_encounter" address="global_pointer + 0x303C4 + 100"  reference="species" />
-				<class name="13" type="wild_encounter" address="global_pointer + 0x303C4 + 108"  reference="species" />
-				<class name="14" type="wild_encounter" address="global_pointer + 0x303C4 + 116"  reference="species" />
-				<class name="15" type="wild_encounter" address="global_pointer + 0x303C4 + 124"  reference="species" />
-				<class name="16" type="wild_encounter" address="global_pointer + 0x303C4 + 130"  reference="species" />
-				<class name="17" type="wild_encounter" address="global_pointer + 0x303C4 + 138"  reference="species" />
-				<class name="18" type="wild_encounter" address="global_pointer + 0x303C4 + 146"  reference="species" />
-				<class name="19" type="wild_encounter" address="global_pointer + 0x303C4 + 154"  reference="species" />
-				<class name="20" type="wild_encounter" address="global_pointer + 0x303C4 + 162"  reference="species" />
-				<class name="21" type="wild_encounter" address="global_pointer + 0x303C4 + 170"  reference="species" />
-				<class name="22" type="wild_encounter" address="global_pointer + 0x303C4 + 178"  reference="species" />
-				<class name="23" type="wild_encounter" address="global_pointer + 0x303C4 + 186"  reference="species" />
-				<class name="24" type="wild_encounter" address="global_pointer + 0x303C4 + 194"  reference="species" />
-				<!-- ALL THE WILD POKEMON PAST 17 I DON'T UNDERSTAND THE FORMAT. -SPEED -->
-				</walking>
-			</encounters>
 			<encounter_table>
 				<surfing>
 					<class name="0"  type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
@@ -670,9 +633,116 @@
         </overworld>
 		<flags>
 			<!--
-				It appears the diamond and pearl flags are stored around global_pointer + 0xDFB0
-				Where are the platinum flags located?
+				The diamond and pearl flags are stored around:
+					global_pointer + 0xDFB0
+				The platinum bit flags are stored in the same region
+				This is the area of ram roughly following the key item pocket
 			-->
+			<property name="new_game_1" type="bit" address="global_pointer + 0xE10C" position="0" /> <!-- This flag is set to when the game is restarted; it is unknown what it actually controls -->
+			<property name="new_game_2" type="bit" address="global_pointer + 0xE155" position="0" /> <!-- This flag is set to when the game is restarted; it is unknown what it actually controls -->
+			<property name="new_game_3" type="bit" address="global_pointer + 0xE157" position="0" /> <!-- This flag is set to when the game is restarted; it is unknown what it actually controls -->
+			<property name="new_game_overworld_rendered_1" type="bit" address="global_pointer + 0xE06A" position="2" /> <!-- This flag is set to when the player spawns in the overworld; it is unknown what it actually controls -->
+			<property name="new_game_overworld_rendered_2" type="bit" address="global_pointer + 0xE07C" position="4" /> <!-- This flag is set to when the player spawns in the overworld; it is unknown what it actually controls -->
+			<property name="player_room_talked_to_barry" type="bit" address="global_pointer + 0xDEEA" position="0" /> <!-- This flag is set to when the player finishes talking to Barry in their room -->
+			<property name="player_house_talked_to_mom" type="int" address="global_pointer + 0xDEE8" /> 
+				<!-- This value is incremented when:
+						the player finishes talking to Mom downstairs in their house, 
+						2x after leaving room, 1x after barry1, 
+						1x after getting running shoes, 
+						1x after leaving the player house 
+						1x after saying your going on an adventure;
+						1x after leaving the house
+				-->
+			<property name="bumped_into_barry" type="bit" address="global_pointer + 0xDF6C" position="0" /> <!-- This flag is set when Barry bumps into the player outside his house -->
+			<property name="barry_room_talked_to_barry" type="bit" address="global_pointer + 0xDF06" position="0" /> <!-- This flag is set after you talk to Barry in his room; several other flags are set at the same time -->
+			<property name="choosing_starter" type="int" address="global_pointer + 0xDEAC" /> 
+				<!-- This is incremented when: (barry finishes interacting with the player)
+						the player regains control in order to interact with the briefcase with the 3 starters; 
+						when barry1 is defeated;
+						when barry follows the player (going to the lake);
+						when barry leaves at the lake;
+				-->
+			<property name="beat_barry_1a" type="bit" address="global_pointer + 0xDE3A" position="0" /> <!-- These flags are set after defeating Barry1 -->
+			<property name="beat_barry_1b" type="bit" address="global_pointer + 0xDE3A" position="2" /> <!-- These flags are set after defeating Barry1 -->
+			<property name="got_running_shoes" type="bit" address="global_pointer + 0xE302" position="0" /> <!-- This flag is set after obtaining the running shoes -->
+			<property name="barry_follows_1" type="bit" address="global_pointer + 0xE10C" position="1" /> <!-- This flag is set when barry starts following the player to the Lake -->
+			<property name="going_to_lake_valor" type="bit" address="global_pointer + 0xE10C" position="5" /> <!-- This flag is set when barry starts following the player to the Lake; it clears when the player moves -->
+			<property name="lake_valor_cyrus_scene_finished" type="bit" address="global_pointer + 0xDECA" position="0" /> <!-- This flag is set when barry leaves the lake -->
+			<property name="route_201_mart_employee_potion" type="bit" address="global_pointer + 0xDFED" position="4" />
+			<property name="got_pokedex" type="bit" address="global_pointer + 0xDFF2" position="0" />
+			<property name="lab_scene_ended" type="bit" address="global_pointer + 0xDEEC" position="0" />
+			<property name="got_tm27_return" type="bit" address="global_pointer + 0xE038" position="4" />
+			<property name="got_tour" type="int" address="global_pointer + 0xDE82" /> <!-- This value increments when Lucas finishes giving you a tour; might count Prof Aid interacts -->
+			<property name="mom_healed" type="bit" address="global_pointer + 0xDFE0" position="2" /> <!-- This flag is set when the Mom heals the player after return home from the tour -->
+			<property name="got_journal" type="bit" address="global_pointer + 0xE10C" position="3" />
+			<property name="got_parcel" type="bit" address="global_pointer + 0xDFF1" position="7" />
+			<property name="learned_to_catch_pokemon" type="bit" address="global_pointer + 0xDEAE" position="0" />
+			<property name="beat_youngster_tristan" type="bit" address="global_pointer + 0xE08A" position="1" />
+			<property name="beat_lass_natalie" type="bit" address="global_pointer + 0xE08A" position="3" />
+			<property name="beat_youngster_logan" type="bit" address="global_pointer + 0xE08A" position="2" />
+			<property name="got_vs_recorder" type="bit" address="global_pointer + 0xDE8E" position="0" />
+			<property name="got_town_map" type="bit" address="global_pointer + 0xDFFE" position="0" /> <!-- One of these events controls delivery of the parcel -->
+			<property name="jubilife_city_events" type="int" address="global_pointer + 0xDF6E" /> 
+				<!-- 
+					0x01: delivered parcel
+					0x02: started searching for clowns
+
+					One of these events controls delivery of the parcel, I believe it is this one as it is further away from the other key item flags 
+				-->
+			<property name="poketch_coupon_1" type="bit" address="global_pointer + 0xDFFD" position="5" /> 
+			<property name="poketch_coupon_2" type="bit" address="global_pointer + 0xDFFD" position="6" /> 
+			<property name="poketch_coupon_3" type="bit" address="global_pointer + 0xDFFD" position="7" /> 
+			<property name="got_poketch" type="bit" address="global_pointer + 0xDFFE" position="3" /> 
+			<!-- Route 204 -->
+			<property name="beat_lass_sarah" type="bit" address="global_pointer + 0xE08B" position="4" /> 
+			<property name="beat_youngster_tyler" type="bit" address="global_pointer + 0xE08B" position="2" /> 
+			<property name="beat_lass_samantha" type="bit" address="global_pointer + 0xE08B" position="3" /> 
+			<property name="beat_barry_2" type="bit" address="global_pointer + 0xDEB0" position="0" /> 
+			<property name="beat_youngster_dallas" type="bit" address="global_pointer + 0xE0B6" position="3" /> 
+			<property name="beat_youngster_sebastian" type="bit" address="global_pointer + 0xE0B6" position="4" />
+			<!-- Oreburgh Gate --> 
+			<property name="beat_lass_kaitlin" type="bit" address="global_pointer + 0xE0B2" position="3" /> 
+			<property name="beat_picknicker_diana" type="bit" address="global_pointer + 0xE0B3" position="1" /> 
+			<!-- Oreburgh City -->
+			<property name="walked_to_gym" type="bit" address="global_pointer + 0xDE92" position="0" /> 
+			<!-- Oreburgh Mine -->
+			<property name="oreburgh_mine_hidden_heart_scale" type="bit" address="global_pointer + 0xE05B" position="3" /> 
+			<property name="oreburgh_mine_dire_hit" type="bit" address="global_pointer + 0xE07F" position="2" /> 
+			<property name="oreburgh_mine_yellow_shard" type="bit" address="global_pointer + 0xE07F" position="3" /> 
+			<property name="oreburgh_mine_poke_ball" type="bit" address="global_pointer + 0xE07C" position="1" /> 
+			<property name="oreburgh_mine_escape_rope" type="bit" address="global_pointer + 0xE05F" position="5" /> 
+			<property name="oreburgh_mine_potion" type="bit" address="global_pointer + 0xE05F" position="6" /> 
+			<property name="beat_worker_colin" type="bit" address="global_pointer + 0xE0A2" position="3" /> 
+			<property name="beat_worker_mason" type="bit" address="global_pointer + 0xE0A2" position="4" /> 
+			<property name="talked_to_roark" type="bit" address="global_pointer + 0xDFEF" position="0" /> 
+			<property name="got_rock_smash" type="bit" address="global_pointer + 0xDFE4" position="2" /> 
+			<!-- Oreburgh Gym -->
+			<property name="beat_youngster_jonathon" type="bit" address="global_pointer + 0xE0A8" position="4" /> 
+			<property name="beat_youngster_darius" type="bit" address="global_pointer + 0xE0A8" position="5" /> 
+			<property name="got_tm76_stealth_rock" type="bit" address="global_pointer + 0xDFEE" position="5" /> 
+
+			<!-- 
+				Bit Values 
+					position 0: 0x01
+					position 1: 0x02
+					position 2: 0x04
+					position 3: 0x08
+					position 4: 0x10
+					position 5: 0x20
+					position 6: 0x40
+					position 7: 0x80
+			-->
+			<!-- TODO: Continue mapping event flags from here, I stopped just after exiting Oreburgh City -->
+			<!-- global_pointer address: 0x22711EC-->
+			<property name="got_quick_claw" type="bit" address="global_pointer + 0xDF97" position="7" />
+			<property name="got_old_rod" type="bit" address="global_pointer + 0xDF90" position="4" />
+			<property name="route_202_potion" type="bit" address="global_pointer + 0xDFFE" position="6" />
+			<property name="route_204_paralyze_heal" type="bit" address="global_pointer + 0xE009" position="0" />
+			<property name="beat_youngster_michael" type="bit" address="global_pointer + 0xE02A" position="4" />
+			<property name="beat_lass_madeline" type="bit" address="global_pointer + 0xE0B2" position="2" />
+			<property name="route_203_poke_ball" type="bit" address="global_pointer + 0xDFFF" position="0" />
+			<property name="route_203_repel" type="bit" address="global_pointer + 0xDFFE" position="7" />
+			<property name="route_203_x_defend" type="bit" address="global_pointer + 0xE01E" position="6" />
 		</flags>
 		<battle>
             <property name="mode"    type="string" />

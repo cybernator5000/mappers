@@ -275,9 +275,9 @@
 			<property name="player_id" type="int" address="global_pointer + 0xD064" length="2" />
 			<property name="secret_id" type="int" address="global_pointer + 0xD066" length="2" />
 			<property name="team_count" type="int" address="global_pointer + 0xD084" />
+			<property name="starter" type="int" address="global_pointer + 0xDE34" length="2" reference="species" /> 
 			<property name="party_position" type="int" />
             <class name="active_pokemon" type="player_active_pokemon" />
-			<property name="starter" type="int" address="global_pointer + 0xDE34" reference="species" /> 
 			<!-- 226F2A8 -->
 			<!-- 227D0D0 -->
 			<team>

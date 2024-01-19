@@ -276,6 +276,8 @@
 			<property name="player_id" type="int" address="global_pointer + 0xD288" length="2" />
 			<property name="secret_id" type="int" address="global_pointer + 0xD28A" length="2" />
 			<property name="team_count" type="int" address="global_pointer + 0xD2A8" />
+			<!-- TODO: find address in platinum, offset provided here is for Diamond, it is likely further into the RAM by approx. 0x0200-->
+			<!-- <property name="starter" type="int" address="global_pointer + 0xDE34" length="2" reference="species" />  -->
 			<property name="party_position" type="int" />
             <class name="active_pokemon" type="player_active_pokemon" />
 			<team>

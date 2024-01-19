@@ -164,11 +164,11 @@ export function preprocessor() {
     setValue('battle.mode', getBattleMode(gamestate, opponentTrainer))
     setValue('meta.state_enemy', getMetaEnemyState(gamestate, battle_outcomes, enemyBarSyncedHp))
     setValue('overworld.encounter_rate', getEncounterRate())
+    setValue('player.party_position', getPlayerPartyPosition())
 
     //Set player.active_pokemon properties
     const party_position_overworld = getPlayerPartyPosition()
     const party_position_battle = getValue('battle.player.party_position')
-    setValue('player.party_position', getPlayerPartyPosition())
     if (gamestate === 'Battle') {
         copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
         copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
