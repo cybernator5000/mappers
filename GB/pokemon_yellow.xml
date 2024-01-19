@@ -14,7 +14,7 @@
     <classes>
         <party_pokemon>
             <macro type="pokemon" />
-            <property name="nickname"   type="string" address="nickname_address" length="11" />
+            <property name="nickname"   type="string" address="nicknameAddress" length="11" />
             <property name="level"      type="int" address="address + 33" />
             <property name="exp"        type="int" address="address + 14" length="3" />
             <property name="type_1"     type="int" address="address + 5"  reference="pokemon_types" />
@@ -57,8 +57,8 @@
             <property name="nickname"   type="string" />
             <property name="level"      type="int" />
             <property name="exp"        type="int" />
-            <property name="type_1"     type="string"  />
-            <property name="type_2"     type="string"  />
+            <property name="type_1"     type="string" />
+            <property name="type_2"     type="string" />
             <property name="ot_id"      type="int" />
             <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
             <property name="status_condition" type="string" />
@@ -138,7 +138,7 @@
         </player_active_pokemon>
         <pc_pokemon>
             <macro type="pokemon" />
-            <property name="nickname" type="string" address="nickname_address" length="11" />
+            <property name="nickname" type="string" address="nicknameAddress" length="11" />
             <property name="level"    type="int"    address="address + 3" />
             <property name="exp"      type="int"    address="address + 14" length="3" />
             <property name="type_1"   type="int"    address="address + 5"  reference="pokemon_types" />
@@ -171,9 +171,9 @@
         </pc_pokemon>
 
         <active_pokemon_move>
-            <property name="move"  type="int" address="moveAddress" reference="moves" />
-            <property name="pp"    type="int" address="moveAddress + 21" after-read-value-expression="x % 64" />
-            <property name="pp_up" type="int" address="moveAddress + 21" after-read-value-expression="Math.floor(x / 64)" />
+            <property name="move"  type="int" />
+            <property name="pp"    type="int" />
+            <property name="pp_up" type="int" />
         </active_pokemon_move>
 
         <party_move>
@@ -208,14 +208,15 @@
             <property name="name"        type="string" address="0xD157" length="11" />
             <property name="player_id"   type="int"    address="0xD358" length="2" />
             <property name="team_count"  type="int"    address="0xD162" />
+            <property name="party_position" type="int" />
             <class name="active_pokemon" type="player_active_pokemon" />
             <team>
-                <class name="0" type="party_pokemon" var:address="0xD16A" var:nickname_address="0xD2B4" />
-                <class name="1" type="party_pokemon" var:address="0xD196" var:nickname_address="0xD2BF" />
-                <class name="2" type="party_pokemon" var:address="0xD1C2" var:nickname_address="0xD2CA" />
-                <class name="3" type="party_pokemon" var:address="0xD1EE" var:nickname_address="0xD2D5" />
-                <class name="4" type="party_pokemon" var:address="0xD21A" var:nickname_address="0xD2E0" />
-                <class name="5" type="party_pokemon" var:address="0xD246" var:nickname_address="0xD2EB" />
+                <class name="0" type="party_pokemon" var:address="0xD16A" var:nicknameAddress="0xD2B4" />
+                <class name="1" type="party_pokemon" var:address="0xD196" var:nicknameAddress="0xD2BF" />
+                <class name="2" type="party_pokemon" var:address="0xD1C2" var:nicknameAddress="0xD2CA" />
+                <class name="3" type="party_pokemon" var:address="0xD1EE" var:nicknameAddress="0xD2D5" />
+                <class name="4" type="party_pokemon" var:address="0xD21A" var:nicknameAddress="0xD2E0" />
+                <class name="5" type="party_pokemon" var:address="0xD246" var:nicknameAddress="0xD2EB" />
             </team>
             <badges>
                 <property name="0" type="bit" address="0xD355" position="0" description="boulderbadge" />
@@ -931,12 +932,12 @@
                 </active_pokemon>
                 <!-- These are likely stored at another location, but for cross-gen mapper parallelism I have provided the same addreses as the party structure above. -->
                 <team>
-                    <class name="0" type="party_pokemon" var:address="0xD16A" var:nickname_address="0xD2B4" />
-                    <class name="1" type="party_pokemon" var:address="0xD196" var:nickname_address="0xD2BF" />
-                    <class name="2" type="party_pokemon" var:address="0xD1C2" var:nickname_address="0xD2CA" />
-                    <class name="3" type="party_pokemon" var:address="0xD1EE" var:nickname_address="0xD2D5" />
-                    <class name="4" type="party_pokemon" var:address="0xD21A" var:nickname_address="0xD2E0" />
-                    <class name="5" type="party_pokemon" var:address="0xD246" var:nickname_address="0xD2EB" />
+                    <class name="0" type="party_pokemon" var:address="0xD16A" var:nicknameAddress="0xD2B4" />
+                    <class name="1" type="party_pokemon" var:address="0xD196" var:nicknameAddress="0xD2BF" />
+                    <class name="2" type="party_pokemon" var:address="0xD1C2" var:nicknameAddress="0xD2CA" />
+                    <class name="3" type="party_pokemon" var:address="0xD1EE" var:nicknameAddress="0xD2D5" />
+                    <class name="4" type="party_pokemon" var:address="0xD21A" var:nicknameAddress="0xD2E0" />
+                    <class name="5" type="party_pokemon" var:address="0xD246" var:nicknameAddress="0xD2EB" />
                 </team>
             </player>
             <opponent>
@@ -1026,12 +1027,12 @@
                     </last_move>
                 </active_pokemon>
                 <team>
-                    <class name="0" type="party_pokemon" var:address="0xD8A3" var:nickname_address="0xD9ED"/>
-                    <class name="1" type="party_pokemon" var:address="0xD8CF" var:nickname_address="0xD9F8"/>
-                    <class name="2" type="party_pokemon" var:address="0xD8FB" var:nickname_address="0xDA03"/>
-                    <class name="3" type="party_pokemon" var:address="0xD927" var:nickname_address="0xDA0E"/>
-                    <class name="4" type="party_pokemon" var:address="0xD953" var:nickname_address="0xDA19"/>
-                    <class name="5" type="party_pokemon" var:address="0xD97F" var:nickname_address="0xDA24"/>
+                    <class name="0" type="party_pokemon" var:address="0xD8A3" var:nicknameAddress="0xD9ED"/>
+                    <class name="1" type="party_pokemon" var:address="0xD8CF" var:nicknameAddress="0xD9F8"/>
+                    <class name="2" type="party_pokemon" var:address="0xD8FB" var:nicknameAddress="0xDA03"/>
+                    <class name="3" type="party_pokemon" var:address="0xD927" var:nicknameAddress="0xDA0E"/>
+                    <class name="4" type="party_pokemon" var:address="0xD953" var:nicknameAddress="0xDA19"/>
+                    <class name="5" type="party_pokemon" var:address="0xD97F" var:nicknameAddress="0xDA24"/>
                 </team>
             </opponent>
             <other>
@@ -1103,26 +1104,26 @@
             <pokemon_storage>
                 <property name="current_box_count" type="int" address="0xDA7F" />
                 <current_box>
-                    <class name="0"  type="pc_pokemon" var:address="0xDA95" var:nickname_address="0xDE05"/>
-                    <class name="1"  type="pc_pokemon" var:address="0xDAB6" var:nickname_address="0xDE10"/>
-                    <class name="2"  type="pc_pokemon" var:address="0xDAD7" var:nickname_address="0xDE1B"/>
-                    <class name="3"  type="pc_pokemon" var:address="0xDAF8" var:nickname_address="0xDE26"/>
-                    <class name="4"  type="pc_pokemon" var:address="0xDB19" var:nickname_address="0xDE31"/>
-                    <class name="5"  type="pc_pokemon" var:address="0xDB3A" var:nickname_address="0xDE3C"/>
-                    <class name="6"  type="pc_pokemon" var:address="0xDB5B" var:nickname_address="0xDE47"/>
-                    <class name="7"  type="pc_pokemon" var:address="0xDB7C" var:nickname_address="0xDE52"/>
-                    <class name="8"  type="pc_pokemon" var:address="0xDB9D" var:nickname_address="0xDE5D"/>
-                    <class name="9"  type="pc_pokemon" var:address="0xDBBE" var:nickname_address="0xDE68"/>
-                    <class name="10" type="pc_pokemon" var:address="0xDBDF" var:nickname_address="0xDE73"/>
-                    <class name="11" type="pc_pokemon" var:address="0xDC00" var:nickname_address="0xDE7E"/>
-                    <class name="12" type="pc_pokemon" var:address="0xDC21" var:nickname_address="0xDE89"/>
-                    <class name="13" type="pc_pokemon" var:address="0xDC42" var:nickname_address="0xDE94"/>
-                    <class name="14" type="pc_pokemon" var:address="0xDC63" var:nickname_address="0xDE9F"/>
-                    <class name="15" type="pc_pokemon" var:address="0xDC84" var:nickname_address="0xDEAA"/>
-                    <class name="16" type="pc_pokemon" var:address="0xDCA5" var:nickname_address="0xDEB5"/>
-                    <class name="17" type="pc_pokemon" var:address="0xDCC6" var:nickname_address="0xDEC0"/>
-                    <class name="18" type="pc_pokemon" var:address="0xDCE7" var:nickname_address="0xDECB"/>
-                    <class name="19" type="pc_pokemon" var:address="0xDD08" var:nickname_address="0xDED6"/>
+                    <class name="0"  type="pc_pokemon" var:address="0xDA95" var:nicknameAddress="0xDE05"/>
+                    <class name="1"  type="pc_pokemon" var:address="0xDAB6" var:nicknameAddress="0xDE10"/>
+                    <class name="2"  type="pc_pokemon" var:address="0xDAD7" var:nicknameAddress="0xDE1B"/>
+                    <class name="3"  type="pc_pokemon" var:address="0xDAF8" var:nicknameAddress="0xDE26"/>
+                    <class name="4"  type="pc_pokemon" var:address="0xDB19" var:nicknameAddress="0xDE31"/>
+                    <class name="5"  type="pc_pokemon" var:address="0xDB3A" var:nicknameAddress="0xDE3C"/>
+                    <class name="6"  type="pc_pokemon" var:address="0xDB5B" var:nicknameAddress="0xDE47"/>
+                    <class name="7"  type="pc_pokemon" var:address="0xDB7C" var:nicknameAddress="0xDE52"/>
+                    <class name="8"  type="pc_pokemon" var:address="0xDB9D" var:nicknameAddress="0xDE5D"/>
+                    <class name="9"  type="pc_pokemon" var:address="0xDBBE" var:nicknameAddress="0xDE68"/>
+                    <class name="10" type="pc_pokemon" var:address="0xDBDF" var:nicknameAddress="0xDE73"/>
+                    <class name="11" type="pc_pokemon" var:address="0xDC00" var:nicknameAddress="0xDE7E"/>
+                    <class name="12" type="pc_pokemon" var:address="0xDC21" var:nicknameAddress="0xDE89"/>
+                    <class name="13" type="pc_pokemon" var:address="0xDC42" var:nicknameAddress="0xDE94"/>
+                    <class name="14" type="pc_pokemon" var:address="0xDC63" var:nicknameAddress="0xDE9F"/>
+                    <class name="15" type="pc_pokemon" var:address="0xDC84" var:nicknameAddress="0xDEAA"/>
+                    <class name="16" type="pc_pokemon" var:address="0xDCA5" var:nicknameAddress="0xDEB5"/>
+                    <class name="17" type="pc_pokemon" var:address="0xDCC6" var:nicknameAddress="0xDEC0"/>
+                    <class name="18" type="pc_pokemon" var:address="0xDCE7" var:nicknameAddress="0xDECB"/>
+                    <class name="19" type="pc_pokemon" var:address="0xDD08" var:nicknameAddress="0xDED6"/>
                 </current_box>
             </pokemon_storage>
             <item_storage>

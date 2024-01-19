@@ -14,7 +14,7 @@
     <classes>
         <party_pokemon>
             <macro type="pokemon" />
-            <property name="nickname"   type="string" address="nickname_address" length="11" />
+            <property name="nickname"   type="string" address="nicknameAddress" length="11" />
             <property name="level"      type="int" address="address + 31" />
             <property name="exp"        type="int" address="address + 8" length="3" />
             <property name="ot_id"      type="int" address="address + 6" length="2" />
@@ -57,6 +57,106 @@
                 <property name="power" type="int" description="Calculated from the IVs; not actually stored in memory" />
             </hidden_power>
         </party_pokemon>
+        <player_active_pokemon>
+            <property name="species"    type="string" />
+            <property name="dex_number" type="int" />
+            <property name="nickname"   type="string" />
+            <property name="level"      type="int" />
+            <property name="exp"        type="int" />
+            <property name="type_1"     type="string"  />
+            <property name="type_2"     type="string"  />
+            <property name="ot_id"      type="int" />
+            <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="status_condition" type="string" />
+            <moves>
+                <class name="0" type="active_pokemon_move" />
+                <class name="1" type="active_pokemon_move" />
+                <class name="2" type="active_pokemon_move" />
+                <class name="3" type="active_pokemon_move" />
+            </moves>
+            <stats>
+                <property name="hp"              type="int" />
+                <property name="hp_max"          type="int" />
+                <property name="attack"          type="int" />
+                <property name="defense"         type="int" />
+                <property name="speed"           type="int" />
+                <property name="special_attack"  type="int" />
+                <property name="special_defense" type="int" />
+            </stats>
+            <ivs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </ivs>
+            <evs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </evs>
+            <modifiers>
+                <property name="attack"          type="int" /> 
+                <property name="defense"         type="int" /> 
+                <property name="speed"           type="int" /> 
+                <property name="special_attack"  type="int" />
+                <property name="special_defense" type="int" />
+                <property name="accuracy"        type="int" /> 
+                <property name="evasion"         type="int" /> 
+            </modifiers>
+            <volatile_status_conditions>
+                <property name="confused"   type="int" />
+                <property name="toxic"      type="int" />
+                <property name="leech_seed" type="int" />
+                <property name="curse"      type="int" />
+                <property name="in_love"    type="int" />
+                <property name="nightmare"  type="int" />
+            </volatile_status_conditions>
+            <effects>
+                <property name="protect"         type="int" />
+                <property name="identified"      type="int" />
+                <property name="perish"          type="int" />
+                <property name="endure"          type="int" />
+                <property name="rollout"         type="int" />
+                <property name="curled"          type="int" />
+                <property name="bide"            type="int" />
+                <property name="rampage"         type="int" />
+                <property name="in_loop"         type="int" />
+                <property name="flinched"        type="int" />
+                <property name="charged"         type="int" />
+                <property name="underground"     type="int" />
+                <property name="flying"          type="int" />
+                <property name="bypass_accuracy" type="int" />
+                <property name="mist"            type="int" />
+                <property name="focus_energy"    type="int" />
+                <property name="substitute"      type="int" />
+                <property name="recharge"        type="int" />
+                <property name="rage"            type="int" />
+                <property name="transformed"     type="int" />
+                <property name="encored"         type="int" />
+                <property name="lock_on"         type="int" />
+                <property name="destiny_bond"    type="int" />
+                <property name="cant_run"        type="int" />
+            </effects>
+            <counters>
+                <property name="rollout"     type="int" />
+                <property name="confuse"     type="int" />
+                <property name="toxic"       type="int" />
+                <property name="disable"     type="int" />
+                <property name="encore"      type="int" />
+                <property name="perish"      type="int" />
+                <property name="fury_cutter" type="int" />
+                <property name="protect"     type="int" />
+            </counters>
+        </player_active_pokemon>
+
+        <active_pokemon_move>
+            <property name="move"  type="int" />
+            <property name="pp"    type="int" />
+            <property name="pp_up" type="int" />
+        </active_pokemon_move>
 
         <party_move>
             <property name="move"  type="int" address="moveAddress" reference="moves" />
@@ -98,16 +198,15 @@
             <property name="player_id"  type="int" address="0xD1A1" length="2" description="The active player ID" />
             <property name="hall_of_fame_count" type="int" address="0xD683" />
             <property name="team_count" type="int" address="0xDA22" />
-            <!-- TODO: dynamically assign these properies based on the game stats -->
-            <!-- <active_pokemon> 
-            </active_pokemon> -->
+            <property name="party_position" type="int" />
+            <class name="active_pokemon" type="player_active_pokemon" />
             <team>
-                <class name="0" type="party_pokemon" var:address="0xDA2A" var:nickname_address="0xDB8C" />
-                <class name="1" type="party_pokemon" var:address="0xDA5A" var:nickname_address="0xDB97" />
-                <class name="2" type="party_pokemon" var:address="0xDA8A" var:nickname_address="0xDBA2" />
-                <class name="3" type="party_pokemon" var:address="0xDABA" var:nickname_address="0xDBAD" />
-                <class name="4" type="party_pokemon" var:address="0xDAEA" var:nickname_address="0xDBB8" />
-                <class name="5" type="party_pokemon" var:address="0xDB1A" var:nickname_address="0xDBC3" />
+                <class name="0" type="party_pokemon" var:address="0xDA2A" var:nicknameAddress="0xDB8C" />
+                <class name="1" type="party_pokemon" var:address="0xDA5A" var:nicknameAddress="0xDB97" />
+                <class name="2" type="party_pokemon" var:address="0xDA8A" var:nicknameAddress="0xDBA2" />
+                <class name="3" type="party_pokemon" var:address="0xDABA" var:nicknameAddress="0xDBAD" />
+                <class name="4" type="party_pokemon" var:address="0xDAEA" var:nicknameAddress="0xDBB8" />
+                <class name="5" type="party_pokemon" var:address="0xDB1A" var:nicknameAddress="0xDBC3" />
             </team>
             <badges>
                 <property name="0"  type="bit" address="0xD57C" position="0" description="zephyrBadge" />
@@ -1583,8 +1682,8 @@
             <property name="outcome"     type="int" />
             <property name="type"        type="int"    address="0xD119" reference="battle_types" />
             <player>
+                <property name="party_position" type="int" address="0xCFC6" />
                 <active_pokemon>
-                    <property name="party_position" type="int" address="0xCFC6" />
                     <property name="held_item"      type="int" address="0xcb0d" reference="items" />
                     <property name="species"        type="int" address="0xCB0C" reference="species"  />
                     <property name="dex_number"     type="int" address="0xCB0C" reference="dex_numbers"  />
@@ -1760,12 +1859,12 @@
                     </counters>
                 </active_pokemon>
                 <team>
-                    <class name="0" type="party_pokemon" var:address="0xDD5D" var:nickname_address="0xDEBF" />
-                    <class name="1" type="party_pokemon" var:address="0xDD8D" var:nickname_address="0xDECA" />
-                    <class name="2" type="party_pokemon" var:address="0xDDBD" var:nickname_address="0xDED5" />
-                    <class name="3" type="party_pokemon" var:address="0xDDED" var:nickname_address="0xDEE0" />
-                    <class name="4" type="party_pokemon" var:address="0xDE1D" var:nickname_address="0xDEEB" />
-                    <class name="5" type="party_pokemon" var:address="0xDE4D" var:nickname_address="0xDEF6" />
+                    <class name="0" type="party_pokemon" var:address="0xDD5D" var:nicknameAddress="0xDEBF" />
+                    <class name="1" type="party_pokemon" var:address="0xDD8D" var:nicknameAddress="0xDECA" />
+                    <class name="2" type="party_pokemon" var:address="0xDDBD" var:nicknameAddress="0xDED5" />
+                    <class name="3" type="party_pokemon" var:address="0xDDED" var:nicknameAddress="0xDEE0" />
+                    <class name="4" type="party_pokemon" var:address="0xDE1D" var:nicknameAddress="0xDEEB" />
+                    <class name="5" type="party_pokemon" var:address="0xDE4D" var:nicknameAddress="0xDEF6" />
                 </team>
             </opponent>
             <field>

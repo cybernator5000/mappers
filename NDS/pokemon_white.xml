@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mapper id="03df12cd-aa9f-422a-bc99-58593841b1ef" name="Pokemon Platinum" platform="NDS"
+<mapper id="d85071bb-6151-44a0-b15e-f593f2d17e17" name="Pokemon White" platform="NDS"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://schemas.gamehook.io/mapper https://schemas.gamehook.io/mapper.xsd"
     xmlns:var="https://schemas.gamehook.io/attributes/var">
@@ -61,7 +61,7 @@
 			<internals>
 				<property name="personality_value" address="0"  type="uint" memoryContainer="memoryContainer" length="4" />
 				<property name="checksum"          address="6"  type="uint" memoryContainer="memoryContainer" length="2" />
-				<property name="secret_id"         address="0"  type="int"  memoryContainer="memoryContainer" length="2" />
+				<!-- <property name="secret_id"         address="0"  type="int"  memoryContainer="memoryContainer" length="2" /> -->
 				<property name="language"          address="23" type="int"  memoryContainer="memoryContainer" reference="language" />
 			</internals>
 			<misc>
@@ -91,121 +91,16 @@
 				</ribbons>
 			</misc>
 		</party_pokemon>
-		<player_active_pokemon>
-			<property name="species"    type="int" />
-			<property name="dex_number" type="int" />
-			<property name="nickname"   type="string" />
-			<property name="level"      type="int" />
-			<property name="type_1"     type="string" />
-			<property name="type_2"     type="string" />
-			<property name="exp"        type="int" />
-			<property name="ot_name"    type="string" />
-			<property name="ot_id"      type="int" />
-			<property name="ability"    type="int" />
-			<property name="nature"     type="uint" />
-			<property name="held_item"  type="int" />
-			<property name="friendship" type="int" />
-			<property name="pokerus"    type="int" />
-			<property name="status_condition" type="int" />
-			<moves>
-				<class name="0" type="pokemon_moves" />
-				<class name="1" type="pokemon_moves" />
-				<class name="2" type="pokemon_moves" />
-				<class name="3" type="pokemon_moves" />
-			</moves>
-			<stats>
-				<property name="hp"              type="int" />
-				<property name="hp_max"          type="int" />
-				<property name="attack"          type="int" />
-				<property name="defense"         type="int" />
-				<property name="speed"           type="int" />
-				<property name="special_attack"  type="int" />
-				<property name="special_defense" type="int" />
-			</stats>
-			<modifiers>
-				<property name="attack"          type="int" />
-				<property name="defense"         type="int" />
-				<property name="speed"           type="int" />
-				<property name="special_attack"  type="int" />
-				<property name="special_defense" type="int" />
-				<property name="accuracy"        type="int" />
-				<property name="evasion"         type="int" />
-			</modifiers>
-			<ivs>
-				<property name="hp"              type="int" />
-				<property name="attack"          type="int" />
-				<property name="defense"         type="int" />
-				<property name="speed"           type="int" />
-				<property name="special_attack"  type="int" />
-				<property name="special_defense" type="int" />
-			</ivs>
-			<evs>
-				<property name="hp"              type="int" />
-				<property name="attack"          type="int" />
-				<property name="defense"         type="int" />
-				<property name="speed"           type="int" />
-				<property name="special_attack"  type="int" />
-				<property name="special_defense" type="int" />
-			</evs>
-			<flags>
-				<property name="is_egg"          type="int" />
-				<property name="is_nicknamed"    type="int" />
-				<property name="skip_checksum_1" type="int" />
-				<property name="skip_checksum_2" type="int" />
-				<property name="is_bad_egg"      type="int" />
-			</flags>
-			<internals>
-				<property name="personality_value" type="uint" />
-				<property name="checksum"          type="uint" />
-				<property name="secret_id"         type="int"  />
-				<property name="language"          type="int"  />
-			</internals>
-			<misc>
-				<property name="markings"    type="int" />
-				<property name="sheen"       type="int" />
-				<property name="hgss_ball"   type="int" />
-				<property name="performance" type="int" />
-				<met_info>
-					<property name="date_egg_received" type="int" />
-					<property name="date_met"          type="int" />
-					<property name="dp_egg_location"   type="int" />
-					<property name="dp_met_location"   type="int" />
-					<property name="pokeball"          type="int" />
-					<property name="met_level"         type="int" />
-					<property name="female_ot_gender"  type="int" />
-					<property name="encounter_type"    type="int" />
-				</met_info>
-				<contest>
-					<property name="contest_cool"   type="int" />
-					<property name="contest_beauty" type="int" />
-					<property name="contest_cute"   type="int" />
-					<property name="contest_smart"  type="int" />
-					<property name="contest_tough"  type="int" />
-				</contest>
-				<ribbons>
-					<property name="ribbons_sinnoh_set_1" type="int" />
-				</ribbons>
-			</misc>
-		</player_active_pokemon>
-
-		<active_pokemon_move>
-            <property name="move"  type="int" />
-            <property name="pp"    type="int" />
-            <property name="pp_up" type="int" />
-        </active_pokemon_move>
-
 		<pokemon_moves>
 			<property name="move"  type="int" address="moveNumberOffset"  memoryContainer="memoryContainer" reference="moves" length="2" />
 			<property name="pp"    type="int" address="ppOffset" memoryContainer="memoryContainer" after-read-value-expression="x % 64" />
 			<property name="pp_up" type="int" address="ppUpOffset" memoryContainer="memoryContainer" after-read-value-expression="Math.floor(x / 64)" />
 		</pokemon_moves>
-
 		<battle_move>
 			<property name="move"  type="int" address="address + moveNumberOffset"  reference="moves" length="2" />
 			<property name="pp"    type="int" address="address + ppOffset" after-read-value-expression="x % 64" />
 			<property name="pp_up" type="int" value="null" />
 		</battle_move>
-
 		<battle_structure>
 			<property name="species"          address="address + 0"    type="int"    length="2"  reference="species" />
 			<property name="nickname"         address="address + 54"   type="string" length="22" size="2" characterMap="defaultCharacterMap" />
@@ -255,492 +150,455 @@
 				<property name="personality_value" address="address + 104" type="uint" length="4"/>
 			</internals>
 		</battle_structure>
-
 		<player_item>
             <property name="item"     address="address" type="int" length="2" reference="items" />
             <property name="quantity" address="address + 2" type="int" length="2" />
         </player_item>
-
-		<wild_encounter>
-		    <property name="level"   type="int" address="address" />
-            <property name="species" type="int" address="address + 4" reference="species" />
-            <property name="dex_number" type="int" address="address + 4" reference="dex_numbers" />
-		</wild_encounter>
 	</classes>
 
 	<properties>
+		<being_tested>
+			<struct1>
+				<class name="0" type="party_pokemon" var:memoryContainer="struct1_party_structure_0" />
+				<class name="1" type="party_pokemon" var:memoryContainer="struct1_party_structure_1" />
+				<class name="2" type="party_pokemon" var:memoryContainer="struct1_party_structure_2" />
+				<class name="3" type="party_pokemon" var:memoryContainer="struct1_party_structure_3" />
+				<class name="4" type="party_pokemon" var:memoryContainer="struct1_party_structure_4" />
+				<class name="5" type="party_pokemon" var:memoryContainer="struct1_party_structure_5" />
+			</struct1>
+			<struct2>
+				<class name="0" type="party_pokemon" var:memoryContainer="struct2_party_structure_0" />
+				<class name="1" type="party_pokemon" var:memoryContainer="struct2_party_structure_1" />
+				<class name="2" type="party_pokemon" var:memoryContainer="struct2_party_structure_2" />
+				<class name="3" type="party_pokemon" var:memoryContainer="struct2_party_structure_3" />
+				<class name="4" type="party_pokemon" var:memoryContainer="struct2_party_structure_4" />
+				<class name="5" type="party_pokemon" var:memoryContainer="struct2_party_structure_5" />
+			</struct2>
+			<struct3>
+				<class name="0" type="party_pokemon" var:memoryContainer="struct3_party_structure_0" />
+				<class name="1" type="party_pokemon" var:memoryContainer="struct3_party_structure_1" />
+				<class name="2" type="party_pokemon" var:memoryContainer="struct3_party_structure_2" />
+				<class name="3" type="party_pokemon" var:memoryContainer="struct3_party_structure_3" />
+				<class name="4" type="party_pokemon" var:memoryContainer="struct3_party_structure_4" />
+				<class name="5" type="party_pokemon" var:memoryContainer="struct3_party_structure_5" />
+			</struct3>
+			<struct4>
+				<class name="0" type="party_pokemon" var:memoryContainer="struct4_party_structure_0" />
+				<class name="1" type="party_pokemon" var:memoryContainer="struct4_party_structure_1" />
+				<class name="2" type="party_pokemon" var:memoryContainer="struct4_party_structure_2" />
+				<class name="3" type="party_pokemon" var:memoryContainer="struct4_party_structure_3" />
+				<class name="4" type="party_pokemon" var:memoryContainer="struct4_party_structure_4" />
+				<class name="5" type="party_pokemon" var:memoryContainer="struct4_party_structure_5" />
+			</struct4>
+			<struct5>
+				<class name="0" type="party_pokemon" var:memoryContainer="struct5_party_structure_0" />
+				<class name="1" type="party_pokemon" var:memoryContainer="struct5_party_structure_1" />
+				<class name="2" type="party_pokemon" var:memoryContainer="struct5_party_structure_2" />
+				<class name="3" type="party_pokemon" var:memoryContainer="struct5_party_structure_3" />
+				<class name="4" type="party_pokemon" var:memoryContainer="struct5_party_structure_4" />
+				<class name="5" type="party_pokemon" var:memoryContainer="struct5_party_structure_5" />
+			</struct5>
+		</being_tested>
 		<player>
-			<property name="name" type="string" address="global_pointer + 0xD05C" length="14" size="2" />
-			<property name="gender" type="int" address="global_pointer + 0xD074" />
-			<property name="player_id" type="int" address="global_pointer + 0xD06C" length="2" />
-			<property name="secret_id" type="int" address="global_pointer + 0xD06E" length="2" />
-			<property name="team_count" type="int" address="global_pointer + 0xD090" />
-			<property name="party_position" type="int" />
-            <class name="active_pokemon" type="player_active_pokemon" />
-			<team>
+			<!-- <property name="name" type="string" address="global_pointer + 0xD05C" length="14" size="2" /> -->
+			<!-- <property name="gender" type="int" address="global_pointer + 0xXXXX" /> -->
+			<!-- <property name="player_id" type="int" address="global_pointer + 0xD06C" length="2" /> -->
+			<!-- <property name="secret_id" type="int" address="global_pointer + 0xD06E" length="2" /> -->
+			<!-- <property name="team_count" type="int" address="global_pointer + 0xD090" /> -->
+			<!-- <team>
 				<class name="0" type="party_pokemon" var:memoryContainer="player_party_structure_0" />
 				<class name="1" type="party_pokemon" var:memoryContainer="player_party_structure_1" />
 				<class name="2" type="party_pokemon" var:memoryContainer="player_party_structure_2" />
 				<class name="3" type="party_pokemon" var:memoryContainer="player_party_structure_3" />
 				<class name="4" type="party_pokemon" var:memoryContainer="player_party_structure_4" />
 				<class name="5" type="party_pokemon" var:memoryContainer="player_party_structure_5" />
-			</team>
-			<badges>
-				<property name="0" type="bit" address="global_pointer + 0xD076" position="0" description="coalbadge" />
-                <property name="1" type="bit" address="global_pointer + 0xD076" position="1" description="forestbadge" />
-                <property name="2" type="bit" address="global_pointer + 0xD076" position="2" description="cobblebadge" />
-                <property name="3" type="bit" address="global_pointer + 0xD076" position="3" description="fenbadge" />
-                <property name="4" type="bit" address="global_pointer + 0xD076" position="4" description="relicbadge" />
-                <property name="5" type="bit" address="global_pointer + 0xD076" position="5" description="minebadge" />
-                <property name="6" type="bit" address="global_pointer + 0xD076" position="6" description="iciclebadge" />
-                <property name="7" type="bit" address="global_pointer + 0xD076" position="7" description="beaconbadge" />
-			</badges>
+			</team> -->
+			<!-- <badges>
+				<property name="0" type="bit" address="0x223CDB0" position="0" description="triobadge" />
+                <property name="1" type="bit" address="0x223CDB0" position="1" description="basicbadge" />
+                <property name="2" type="bit" address="0x223CDB0" position="2" description="insectbadge" />
+                <property name="3" type="bit" address="0x223CDB0" position="3" description="boltbadge" />
+                <property name="4" type="bit" address="0x223CDB0" position="4" description="quakebadge" />
+                <property name="5" type="bit" address="0x223CDB0" position="5" description="jetbadge" />
+                <property name="6" type="bit" address="0x223CDB0" position="6" description="freezebadge" />
+                <property name="7" type="bit" address="0x223CDB0" position="7" description="legendbadge" />
+			</badges> -->
 		</player>
 		<bag>
-            <property name="money" type="int" address="global_pointer + 0xD070" length="4" />
-            <property name="coins" type="int" address="0xD07C" /> <!-- TODO: obtain address -->
+            <!-- <property name="money" type="int" address="global_pointer + 0xD070" length="4" /> -->
+            <!-- <property name="coins" type="int" address="0xXXXX" /> --> <!-- TODO: obtain address -->
 			<!-- 0x294 bytes between start of items and end of items. -->
 			<items>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xD624" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xD624 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xD624 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xD624 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xD624 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xD624 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xD624 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xD624 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xD624 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xD624 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xD624 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xD624 + 44" />
-				<class name="12" type="player_item" var:address="global_pointer + 0xD624 + 48" />
-				<class name="13" type="player_item" var:address="global_pointer + 0xD624 + 52" />
-				<class name="14" type="player_item" var:address="global_pointer + 0xD624 + 56" />
-				<class name="15" type="player_item" var:address="global_pointer + 0xD624 + 60" />
-				<class name="16" type="player_item" var:address="global_pointer + 0xD624 + 64" />
-				<class name="17" type="player_item" var:address="global_pointer + 0xD624 + 68" />
-				<class name="18" type="player_item" var:address="global_pointer + 0xD624 + 72" />
-				<class name="19" type="player_item" var:address="global_pointer + 0xD624 + 76" />
-				<class name="20" type="player_item" var:address="global_pointer + 0xD624 + 80" />
-				<class name="21" type="player_item" var:address="global_pointer + 0xD624 + 84" />
-				<class name="22" type="player_item" var:address="global_pointer + 0xD624 + 88" />
-				<class name="23" type="player_item" var:address="global_pointer + 0xD624 + 92" />
-				<class name="24" type="player_item" var:address="global_pointer + 0xD624 + 96" />
-				<class name="25" type="player_item" var:address="global_pointer + 0xD624 + 100" />
-				<class name="26" type="player_item" var:address="global_pointer + 0xD624 + 104" />
-				<class name="27" type="player_item" var:address="global_pointer + 0xD624 + 108" />
-				<class name="28" type="player_item" var:address="global_pointer + 0xD624 + 112" />
-				<class name="29" type="player_item" var:address="global_pointer + 0xD624 + 116" />
-				<class name="30" type="player_item" var:address="global_pointer + 0xD624 + 120" />
-				<class name="31" type="player_item" var:address="global_pointer + 0xD624 + 124" />
-				<class name="32" type="player_item" var:address="global_pointer + 0xD624 + 128" />
-				<class name="33" type="player_item" var:address="global_pointer + 0xD624 + 132" />
-				<class name="34" type="player_item" var:address="global_pointer + 0xD624 + 136" />
-				<class name="35" type="player_item" var:address="global_pointer + 0xD624 + 140" />
-				<class name="36" type="player_item" var:address="global_pointer + 0xD624 + 144" />
-				<class name="37" type="player_item" var:address="global_pointer + 0xD624 + 148" />
-				<class name="38" type="player_item" var:address="global_pointer + 0xD624 + 152" />
-				<class name="39" type="player_item" var:address="global_pointer + 0xD624 + 156" />
-				<class name="40" type="player_item" var:address="global_pointer + 0xD624 + 160" />
+				<!-- <class name="0"  type="player_item" var:address="0x2233FAE + 0" />
+				<class name="1"  type="player_item" var:address="0x2233FAE + 4" />
+				<class name="2"  type="player_item" var:address="0x2233FAE + 8" />
+				<class name="3"  type="player_item" var:address="0x2233FAE + 12" />
+				<class name="4"  type="player_item" var:address="0x2233FAE + 16" />
+				<class name="5"  type="player_item" var:address="0x2233FAE + 20" />
+				<class name="6"  type="player_item" var:address="0x2233FAE + 24" />
+				<class name="7"  type="player_item" var:address="0x2233FAE + 28" />
+				<class name="8"  type="player_item" var:address="0x2233FAE + 32" />
+				<class name="9"  type="player_item" var:address="0x2233FAE + 36" />
+				<class name="10" type="player_item" var:address="0x2233FAE + 40" />
+				<class name="11" type="player_item" var:address="0x2233FAE + 44" />
+				<class name="12" type="player_item" var:address="0x2233FAE + 48" />
+				<class name="13" type="player_item" var:address="0x2233FAE + 52" />
+				<class name="14" type="player_item" var:address="0x2233FAE + 56" />
+				<class name="15" type="player_item" var:address="0x2233FAE + 60" />
+				<class name="16" type="player_item" var:address="0x2233FAE + 64" />
+				<class name="17" type="player_item" var:address="0x2233FAE + 68" />
+				<class name="18" type="player_item" var:address="0x2233FAE + 72" />
+				<class name="19" type="player_item" var:address="0x2233FAE + 76" />
+				<class name="20" type="player_item" var:address="0x2233FAE + 80" />
+				<class name="21" type="player_item" var:address="0x2233FAE + 84" />
+				<class name="22" type="player_item" var:address="0x2233FAE + 88" />
+				<class name="23" type="player_item" var:address="0x2233FAE + 92" />
+				<class name="24" type="player_item" var:address="0x2233FAE + 96" />
+				<class name="25" type="player_item" var:address="0x2233FAE + 100" />
+				<class name="26" type="player_item" var:address="0x2233FAE + 104" />
+				<class name="27" type="player_item" var:address="0x2233FAE + 108" />
+				<class name="28" type="player_item" var:address="0x2233FAE + 112" />
+				<class name="29" type="player_item" var:address="0x2233FAE + 116" />
+				<class name="30" type="player_item" var:address="0x2233FAE + 120" />
+				<class name="31" type="player_item" var:address="0x2233FAE + 124" />
+				<class name="32" type="player_item" var:address="0x2233FAE + 128" />
+				<class name="33" type="player_item" var:address="0x2233FAE + 132" />
+				<class name="34" type="player_item" var:address="0x2233FAE + 136" />
+				<class name="35" type="player_item" var:address="0x2233FAE + 140" />
+				<class name="36" type="player_item" var:address="0x2233FAE + 144" />
+				<class name="37" type="player_item" var:address="0x2233FAE + 148" />
+				<class name="38" type="player_item" var:address="0x2233FAE + 152" />
+				<class name="39" type="player_item" var:address="0x2233FAE + 156" /> -->
 				<!-- There are more item slots - I have left them out for runtime speed -->
 			</items>
 			<!-- 104 medicine slots -->
 			<medicine>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xDB40" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xDB40 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xDB40 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xDB40 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xDB40 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xDB40 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xDB40 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xDB40 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xDB40 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xDB40 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xDB40 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xDB40 + 44" />
-				<class name="12" type="player_item" var:address="global_pointer + 0xDB40 + 48" />
-				<class name="13" type="player_item" var:address="global_pointer + 0xDB40 + 52" />
-				<class name="14" type="player_item" var:address="global_pointer + 0xDB40 + 56" />
-				<class name="15" type="player_item" var:address="global_pointer + 0xDB40 + 60" />
-				<class name="16" type="player_item" var:address="global_pointer + 0xDB40 + 64" />
-				<class name="17" type="player_item" var:address="global_pointer + 0xDB40 + 68" />
-				<class name="18" type="player_item" var:address="global_pointer + 0xDB40 + 72" />
-				<class name="19" type="player_item" var:address="global_pointer + 0xDB40 + 76" />
-				<class name="20" type="player_item" var:address="global_pointer + 0xDB40 + 80" />
+				<!-- <class name="0"  type="player_item" var:address="0x2234784 + 0" />
+				<class name="1"  type="player_item" var:address="0x2234784 + 4" />
+				<class name="2"  type="player_item" var:address="0x2234784 + 8" />
+				<class name="3"  type="player_item" var:address="0x2234784 + 12" />
+				<class name="4"  type="player_item" var:address="0x2234784 + 16" />
+				<class name="5"  type="player_item" var:address="0x2234784 + 20" />
+				<class name="6"  type="player_item" var:address="0x2234784 + 24" />
+				<class name="7"  type="player_item" var:address="0x2234784 + 28" />
+				<class name="8"  type="player_item" var:address="0x2234784 + 32" />
+				<class name="9"  type="player_item" var:address="0x2234784 + 36" />
+				<class name="10" type="player_item" var:address="0x2234784 + 40" />
+				<class name="11" type="player_item" var:address="0x2234784 + 44" />
+				<class name="12" type="player_item" var:address="0x2234784 + 48" />
+				<class name="13" type="player_item" var:address="0x2234784 + 52" />
+				<class name="14" type="player_item" var:address="0x2234784 + 56" />
+				<class name="15" type="player_item" var:address="0x2234784 + 60" />
+				<class name="16" type="player_item" var:address="0x2234784 + 64" />
+				<class name="17" type="player_item" var:address="0x2234784 + 68" />
+				<class name="18" type="player_item" var:address="0x2234784 + 72" />
+				<class name="19" type="player_item" var:address="0x2234784 + 76" />
+				<class name="20" type="player_item" var:address="0x2234784 + 80" />
+				<class name="21" type="player_item" var:address="0x2234784 + 80" />
+				<class name="22" type="player_item" var:address="0x2234784 + 80" />
+				<class name="23" type="player_item" var:address="0x2234784 + 80" />
+				<class name="24" type="player_item" var:address="0x2234784 + 80" />
+				<class name="25" type="player_item" var:address="0x2234784 + 80" />
+				<class name="26" type="player_item" var:address="0x2234784 + 80" />
+				<class name="27" type="player_item" var:address="0x2234784 + 80" />
+				<class name="28" type="player_item" var:address="0x2234784 + 80" />
+				<class name="29" type="player_item" var:address="0x2234784 + 80" />
+				<class name="30" type="player_item" var:address="0x2234784 + 80" />
+				<class name="31" type="player_item" var:address="0x2234784 + 80" />
+				<class name="32" type="player_item" var:address="0x2234784 + 80" />
+				<class name="33" type="player_item" var:address="0x2234784 + 80" />
+				<class name="34" type="player_item" var:address="0x2234784 + 80" />
+				<class name="35" type="player_item" var:address="0x2234784 + 80" />
+				<class name="36" type="player_item" var:address="0x2234784 + 80" />
+				<class name="37" type="player_item" var:address="0x2234784 + 80" />
+				<class name="38" type="player_item" var:address="0x2234784 + 80" />
+				<class name="39" type="player_item" var:address="0x2234784 + 80" />
+				<class name="40" type="player_item" var:address="0x2234784 + 80" />
+				<class name="41" type="player_item" var:address="0x2234784 + 80" />
+				<class name="42" type="player_item" var:address="0x2234784 + 80" />
+				<class name="43" type="player_item" var:address="0x2234784 + 80" />
+				<class name="44" type="player_item" var:address="0x2234784 + 80" />
+				<class name="45" type="player_item" var:address="0x2234784 + 80" />
+				<class name="46" type="player_item" var:address="0x2234784 + 80" />
+				<class name="47" type="player_item" var:address="0x2234784 + 80" /> -->
 				<!-- There are more item slots - I have left them out for runtime speed -->
 			</medicine>
-			<balls>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xDCE0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xDCE0 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xDCE0 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xDCE0 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xDCE0 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xDCE0 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xDCE0 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xDCE0 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xDCE0 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xDCE0 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xDCE0 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xDCE0 + 44" />
-				<class name="12" type="player_item" var:address="global_pointer + 0xDCE0 + 48" />
-				<class name="13" type="player_item" var:address="global_pointer + 0xDCE0 + 52" />
-				<class name="14" type="player_item" var:address="global_pointer + 0xDCE0 + 56" />
-				<class name="15" type="player_item" var:address="global_pointer + 0xDCE0 + 60" />
-				<class name="16" type="player_item" var:address="global_pointer + 0xDCE0 + 64" />
-			</balls>
+			<key_items> <!-- There are a total of 14 key items -->
+				<!-- <class name="0"  type="player_item" var:address="0x2234484 + 0" />
+				<class name="1"  type="player_item" var:address="0x2234484 + 4" />
+				<class name="2"  type="player_item" var:address="0x2234484 + 8" />
+				<class name="3"  type="player_item" var:address="0x2234484 + 12" />
+				<class name="4"  type="player_item" var:address="0x2234484 + 16" />
+				<class name="5"  type="player_item" var:address="0x2234484 + 20" />
+				<class name="6"  type="player_item" var:address="0x2234484 + 24" />
+				<class name="7"  type="player_item" var:address="0x2234484 + 28" />
+				<class name="8"  type="player_item" var:address="0x2234484 + 32" />
+				<class name="9"  type="player_item" var:address="0x2234484 + 36" />
+				<class name="10"  type="player_item" var:address="0x2234484 + 40" />
+				<class name="11"  type="player_item" var:address="0x2234484 + 44" />
+				<class name="12"  type="player_item" var:address="0x2234484 + 48" />
+				<class name="13"  type="player_item" var:address="0x2234484 + 52" /> -->
+			</key_items>
 			<tmhm>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xD980 + 0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xD980 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xD980 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xD980 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xD980 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xD980 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xD980 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xD980 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xD980 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xD980 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xD980 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xD980 + 44" />
-				<class name="12" type="player_item" var:address="global_pointer + 0xD980 + 48" />
-				<class name="13" type="player_item" var:address="global_pointer + 0xD980 + 52" />
-				<class name="14" type="player_item" var:address="global_pointer + 0xD980 + 56" />
-				<class name="15" type="player_item" var:address="global_pointer + 0xD980 + 60" />
-				<class name="16" type="player_item" var:address="global_pointer + 0xD980 + 64" />
-				<class name="17" type="player_item" var:address="global_pointer + 0xD980 + 68" />
-				<class name="18" type="player_item" var:address="global_pointer + 0xD980 + 72" />
-				<class name="19" type="player_item" var:address="global_pointer + 0xD980 + 76" />
-				<class name="20" type="player_item" var:address="global_pointer + 0xD980 + 80" />
-				<class name="21" type="player_item" var:address="global_pointer + 0xD980 + 84" />
-				<class name="22" type="player_item" var:address="global_pointer + 0xD980 + 88" />
-				<class name="23" type="player_item" var:address="global_pointer + 0xD980 + 92" />
-				<class name="24" type="player_item" var:address="global_pointer + 0xD980 + 96" />
-				<class name="25" type="player_item" var:address="global_pointer + 0xD980 + 100" />
-				<class name="26" type="player_item" var:address="global_pointer + 0xD980 + 104" />
-				<class name="27" type="player_item" var:address="global_pointer + 0xD980 + 108" />
-				<class name="28" type="player_item" var:address="global_pointer + 0xD980 + 112" />
-				<class name="29" type="player_item" var:address="global_pointer + 0xD980 + 116" />
-				<class name="30" type="player_item" var:address="global_pointer + 0xD980 + 120" />
-				<class name="31" type="player_item" var:address="global_pointer + 0xD980 + 124" />
-				<class name="32" type="player_item" var:address="global_pointer + 0xD980 + 128" />
-				<class name="33" type="player_item" var:address="global_pointer + 0xD980 + 132" />
-				<class name="34" type="player_item" var:address="global_pointer + 0xD980 + 136" />
-				<class name="35" type="player_item" var:address="global_pointer + 0xD980 + 140" />
-				<class name="36" type="player_item" var:address="global_pointer + 0xD980 + 144" />
-				<class name="37" type="player_item" var:address="global_pointer + 0xD980 + 148" />
-				<class name="38" type="player_item" var:address="global_pointer + 0xD980 + 152" />
-				<class name="39" type="player_item" var:address="global_pointer + 0xD980 + 156" />
-				<class name="40" type="player_item" var:address="global_pointer + 0xD980 + 160" />
-				<class name="41" type="player_item" var:address="global_pointer + 0xD980 + 164" />
-				<class name="42" type="player_item" var:address="global_pointer + 0xD980 + 168" />
-				<class name="43" type="player_item" var:address="global_pointer + 0xD980 + 172" />
-				<class name="44" type="player_item" var:address="global_pointer + 0xD980 + 176" />
-				<class name="45" type="player_item" var:address="global_pointer + 0xD980 + 180" />
-				<class name="46" type="player_item" var:address="global_pointer + 0xD980 + 184" />
-				<class name="47" type="player_item" var:address="global_pointer + 0xD980 + 188" />
-				<class name="48" type="player_item" var:address="global_pointer + 0xD980 + 192" />
-				<class name="49" type="player_item" var:address="global_pointer + 0xD980 + 196" />
-				<class name="50" type="player_item" var:address="global_pointer + 0xD980 + 200" />
-				<class name="51" type="player_item" var:address="global_pointer + 0xD980 + 204" />
-				<class name="52" type="player_item" var:address="global_pointer + 0xD980 + 208" />
-				<class name="53" type="player_item" var:address="global_pointer + 0xD980 + 212" />
-				<class name="54" type="player_item" var:address="global_pointer + 0xD980 + 216" />
-				<class name="55" type="player_item" var:address="global_pointer + 0xD980 + 220" />
-				<class name="56" type="player_item" var:address="global_pointer + 0xD980 + 224" />
-				<class name="57" type="player_item" var:address="global_pointer + 0xD980 + 228" />
-				<class name="58" type="player_item" var:address="global_pointer + 0xD980 + 232" />
-				<class name="59" type="player_item" var:address="global_pointer + 0xD980 + 236" />
-				<class name="60" type="player_item" var:address="global_pointer + 0xD980 + 240" />
-				<class name="61" type="player_item" var:address="global_pointer + 0xD980 + 244" />
-				<class name="62" type="player_item" var:address="global_pointer + 0xD980 + 248" />
-				<class name="63" type="player_item" var:address="global_pointer + 0xD980 + 252" />
-				<class name="64" type="player_item" var:address="global_pointer + 0xD980 + 256" />
-				<class name="65" type="player_item" var:address="global_pointer + 0xD980 + 260" />
-				<class name="66" type="player_item" var:address="global_pointer + 0xD980 + 264" />
-				<class name="67" type="player_item" var:address="global_pointer + 0xD980 + 268" />
-				<class name="68" type="player_item" var:address="global_pointer + 0xD980 + 272" />
-				<class name="69" type="player_item" var:address="global_pointer + 0xD980 + 276" />
-				<class name="70" type="player_item" var:address="global_pointer + 0xD980 + 280" />
-				<class name="71" type="player_item" var:address="global_pointer + 0xD980 + 284" />
-				<class name="72" type="player_item" var:address="global_pointer + 0xD980 + 288" />
-				<class name="73" type="player_item" var:address="global_pointer + 0xD980 + 292" />
-				<class name="74" type="player_item" var:address="global_pointer + 0xD980 + 296" />
-				<class name="75" type="player_item" var:address="global_pointer + 0xD980 + 300" />
-				<class name="76" type="player_item" var:address="global_pointer + 0xD980 + 304" />
-				<class name="77" type="player_item" var:address="global_pointer + 0xD980 + 308" />
-				<class name="78" type="player_item" var:address="global_pointer + 0xD980 + 312" />
-				<class name="79" type="player_item" var:address="global_pointer + 0xD980 + 316" />
-				<class name="80" type="player_item" var:address="global_pointer + 0xD980 + 320" />
-				<class name="81" type="player_item" var:address="global_pointer + 0xD980 + 324" />
-				<class name="82" type="player_item" var:address="global_pointer + 0xD980 + 328" />
-				<class name="83" type="player_item" var:address="global_pointer + 0xD980 + 332" />
-				<class name="84" type="player_item" var:address="global_pointer + 0xD980 + 336" />
-				<class name="85" type="player_item" var:address="global_pointer + 0xD980 + 340" />
-				<class name="86" type="player_item" var:address="global_pointer + 0xD980 + 344" />
-				<class name="87" type="player_item" var:address="global_pointer + 0xD980 + 348" />
-				<class name="88" type="player_item" var:address="global_pointer + 0xD980 + 352" />
-				<class name="89" type="player_item" var:address="global_pointer + 0xD980 + 356" />
-				<class name="90" type="player_item" var:address="global_pointer + 0xD980 + 360" />
-				<class name="91" type="player_item" var:address="global_pointer + 0xD980 + 364" />
-				<class name="92" type="player_item" var:address="global_pointer + 0xD980 + 368" />
-				<class name="93" type="player_item" var:address="global_pointer + 0xD980 + 372" />
-				<class name="94" type="player_item" var:address="global_pointer + 0xD980 + 376" />
-				<class name="95" type="player_item" var:address="global_pointer + 0xD980 + 380" />
-				<class name="96" type="player_item" var:address="global_pointer + 0xD980 + 384" />
-				<class name="97" type="player_item" var:address="global_pointer + 0xD980 + 388" />
-				<class name="98" type="player_item" var:address="global_pointer + 0xD980 + 392" />
-				<class name="99" type="player_item" var:address="global_pointer + 0xD980 + 396" />
+				<!-- <class name="0"  type="player_item" var:address="0x22345D0 + 0" />
+				<class name="1"  type="player_item" var:address="0x22345D0 + 4" />
+				<class name="2"  type="player_item" var:address="0x22345D0 + 8" />
+				<class name="3"  type="player_item" var:address="0x22345D0 + 12" />
+				<class name="4"  type="player_item" var:address="0x22345D0 + 16" />
+				<class name="5"  type="player_item" var:address="0x22345D0 + 20" />
+				<class name="6"  type="player_item" var:address="0x22345D0 + 24" />
+				<class name="7"  type="player_item" var:address="0x22345D0 + 28" />
+				<class name="8"  type="player_item" var:address="0x22345D0 + 32" />
+				<class name="9"  type="player_item" var:address="0x22345D0 + 36" />
+				<class name="10" type="player_item" var:address="0x22345D0 + 40" />
+				<class name="11" type="player_item" var:address="0x22345D0 + 44" />
+				<class name="12" type="player_item" var:address="0x22345D0 + 48" />
+				<class name="13" type="player_item" var:address="0x22345D0 + 52" />
+				<class name="14" type="player_item" var:address="0x22345D0 + 56" />
+				<class name="15" type="player_item" var:address="0x22345D0 + 60" />
+				<class name="16" type="player_item" var:address="0x22345D0 + 64" />
+				<class name="17" type="player_item" var:address="0x22345D0 + 68" />
+				<class name="18" type="player_item" var:address="0x22345D0 + 72" />
+				<class name="19" type="player_item" var:address="0x22345D0 + 76" />
+				<class name="20" type="player_item" var:address="0x22345D0 + 80" />
+				<class name="21" type="player_item" var:address="0x22345D0 + 84" />
+				<class name="22" type="player_item" var:address="0x22345D0 + 88" />
+				<class name="23" type="player_item" var:address="0x22345D0 + 92" />
+				<class name="24" type="player_item" var:address="0x22345D0 + 96" />
+				<class name="25" type="player_item" var:address="0x22345D0 + 100" />
+				<class name="26" type="player_item" var:address="0x22345D0 + 104" />
+				<class name="27" type="player_item" var:address="0x22345D0 + 108" />
+				<class name="28" type="player_item" var:address="0x22345D0 + 112" />
+				<class name="29" type="player_item" var:address="0x22345D0 + 116" />
+				<class name="30" type="player_item" var:address="0x22345D0 + 120" />
+				<class name="31" type="player_item" var:address="0x22345D0 + 124" />
+				<class name="32" type="player_item" var:address="0x22345D0 + 128" />
+				<class name="33" type="player_item" var:address="0x22345D0 + 132" />
+				<class name="34" type="player_item" var:address="0x22345D0 + 136" />
+				<class name="35" type="player_item" var:address="0x22345D0 + 140" />
+				<class name="36" type="player_item" var:address="0x22345D0 + 144" />
+				<class name="37" type="player_item" var:address="0x22345D0 + 148" />
+				<class name="38" type="player_item" var:address="0x22345D0 + 152" />
+				<class name="39" type="player_item" var:address="0x22345D0 + 156" />
+				<class name="40" type="player_item" var:address="0x22345D0 + 160" />
+				<class name="41" type="player_item" var:address="0x22345D0 + 164" />
+				<class name="42" type="player_item" var:address="0x22345D0 + 168" />
+				<class name="43" type="player_item" var:address="0x22345D0 + 172" />
+				<class name="44" type="player_item" var:address="0x22345D0 + 176" />
+				<class name="45" type="player_item" var:address="0x22345D0 + 180" />
+				<class name="46" type="player_item" var:address="0x22345D0 + 184" />
+				<class name="47" type="player_item" var:address="0x22345D0 + 188" />
+				<class name="48" type="player_item" var:address="0x22345D0 + 192" />
+				<class name="49" type="player_item" var:address="0x22345D0 + 196" />
+				<class name="50" type="player_item" var:address="0x22345D0 + 200" />
+				<class name="51" type="player_item" var:address="0x22345D0 + 204" />
+				<class name="52" type="player_item" var:address="0x22345D0 + 208" />
+				<class name="53" type="player_item" var:address="0x22345D0 + 212" />
+				<class name="54" type="player_item" var:address="0x22345D0 + 216" />
+				<class name="55" type="player_item" var:address="0x22345D0 + 220" />
+				<class name="56" type="player_item" var:address="0x22345D0 + 224" />
+				<class name="57" type="player_item" var:address="0x22345D0 + 228" />
+				<class name="58" type="player_item" var:address="0x22345D0 + 232" />
+				<class name="59" type="player_item" var:address="0x22345D0 + 236" />
+				<class name="60" type="player_item" var:address="0x22345D0 + 240" />
+				<class name="61" type="player_item" var:address="0x22345D0 + 244" />
+				<class name="62" type="player_item" var:address="0x22345D0 + 248" />
+				<class name="63" type="player_item" var:address="0x22345D0 + 252" />
+				<class name="64" type="player_item" var:address="0x22345D0 + 256" />
+				<class name="65" type="player_item" var:address="0x22345D0 + 260" />
+				<class name="66" type="player_item" var:address="0x22345D0 + 264" />
+				<class name="67" type="player_item" var:address="0x22345D0 + 268" />
+				<class name="68" type="player_item" var:address="0x22345D0 + 272" />
+				<class name="69" type="player_item" var:address="0x22345D0 + 276" />
+				<class name="70" type="player_item" var:address="0x22345D0 + 280" />
+				<class name="71" type="player_item" var:address="0x22345D0 + 284" />
+				<class name="72" type="player_item" var:address="0x22345D0 + 288" />
+				<class name="73" type="player_item" var:address="0x22345D0 + 292" />
+				<class name="74" type="player_item" var:address="0x22345D0 + 296" />
+				<class name="75" type="player_item" var:address="0x22345D0 + 300" />
+				<class name="76" type="player_item" var:address="0x22345D0 + 304" />
+				<class name="77" type="player_item" var:address="0x22345D0 + 308" />
+				<class name="78" type="player_item" var:address="0x22345D0 + 312" />
+				<class name="79" type="player_item" var:address="0x22345D0 + 316" />
+				<class name="80" type="player_item" var:address="0x22345D0 + 320" />
+				<class name="81" type="player_item" var:address="0x22345D0 + 324" />
+				<class name="82" type="player_item" var:address="0x22345D0 + 328" />
+				<class name="83" type="player_item" var:address="0x22345D0 + 332" />
+				<class name="84" type="player_item" var:address="0x22345D0 + 336" />
+				<class name="85" type="player_item" var:address="0x22345D0 + 340" />
+				<class name="86" type="player_item" var:address="0x22345D0 + 344" />
+				<class name="87" type="player_item" var:address="0x22345D0 + 348" />
+				<class name="88" type="player_item" var:address="0x22345D0 + 352" />
+				<class name="89" type="player_item" var:address="0x22345D0 + 356" />
+				<class name="90" type="player_item" var:address="0x22345D0 + 360" />
+				<class name="91" type="player_item" var:address="0x22345D0 + 364" />
+				<class name="92" type="player_item" var:address="0x22345D0 + 368" />
+				<class name="93" type="player_item" var:address="0x22345D0 + 372" />
+				<class name="94" type="player_item" var:address="0x22345D0 + 376" />
+				<class name="95" type="player_item" var:address="0x22345D0 + 380" />
+				<class name="96" type="player_item" var:address="0x22345D0 + 384" />
+				<class name="97" type="player_item" var:address="0x22345D0 + 388" />
+				<class name="98" type="player_item" var:address="0x22345D0 + 392" />
+				<class name="99" type="player_item" var:address="0x22345D0 + 396" />
+				<class name="100" type="player_item" var:address="0x22345D0  + 400" />
+				<class name="101" type="player_item" var:address="0x22345D0  + 404" /> -->
 			</tmhm>
 			<berries>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xDBE0 + 0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xDBE0 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xDBE0 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xDBE0 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xDBE0 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xDBE0 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xDBE0 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xDBE0 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xDBE0 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xDBE0 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xDBE0 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xDBE0 + 44" />
-				<class name="12" type="player_item" var:address="global_pointer + 0xDBE0 + 48" />
-				<class name="13" type="player_item" var:address="global_pointer + 0xDBE0 + 52" />
-				<class name="14" type="player_item" var:address="global_pointer + 0xDBE0 + 56" />
-				<class name="15" type="player_item" var:address="global_pointer + 0xDBE0 + 60" />
-				<class name="16" type="player_item" var:address="global_pointer + 0xDBE0 + 64" />
-				<class name="17" type="player_item" var:address="global_pointer + 0xDBE0 + 68" />
-				<class name="18" type="player_item" var:address="global_pointer + 0xDBE0 + 72" />
-				<class name="19" type="player_item" var:address="global_pointer + 0xDBE0 + 76" />
-				<class name="20" type="player_item" var:address="global_pointer + 0xDBE0 + 80" />
-				<class name="21" type="player_item" var:address="global_pointer + 0xDBE0 + 84" />
-				<class name="22" type="player_item" var:address="global_pointer + 0xDBE0 + 88" />
-				<class name="23" type="player_item" var:address="global_pointer + 0xDBE0 + 92" />
-				<class name="24" type="player_item" var:address="global_pointer + 0xDBE0 + 96" />
-				<class name="25" type="player_item" var:address="global_pointer + 0xDBE0 + 100" />
-				<class name="26" type="player_item" var:address="global_pointer + 0xDBE0 + 104" />
-				<class name="27" type="player_item" var:address="global_pointer + 0xDBE0 + 108" />
-				<class name="28" type="player_item" var:address="global_pointer + 0xDBE0 + 112" />
-				<class name="29" type="player_item" var:address="global_pointer + 0xDBE0 + 116" />
-				<class name="30" type="player_item" var:address="global_pointer + 0xDBE0 + 120" />
-				<class name="31" type="player_item" var:address="global_pointer + 0xDBE0 + 124" />
-				<class name="32" type="player_item" var:address="global_pointer + 0xDBE0 + 128" />
-				<class name="33" type="player_item" var:address="global_pointer + 0xDBE0 + 132" />
-				<class name="34" type="player_item" var:address="global_pointer + 0xDBE0 + 136" />
-				<class name="35" type="player_item" var:address="global_pointer + 0xDBE0 + 140" />
-				<class name="36" type="player_item" var:address="global_pointer + 0xDBE0 + 144" />
-				<class name="37" type="player_item" var:address="global_pointer + 0xDBE0 + 148" />
-				<class name="38" type="player_item" var:address="global_pointer + 0xDBE0 + 152" />
-				<class name="39" type="player_item" var:address="global_pointer + 0xDBE0 + 156" />
-				<class name="40" type="player_item" var:address="global_pointer + 0xDBE0 + 160" />
-				<class name="41" type="player_item" var:address="global_pointer + 0xDBE0 + 164" />
-				<class name="42" type="player_item" var:address="global_pointer + 0xDBE0 + 168" />
-				<class name="43" type="player_item" var:address="global_pointer + 0xDBE0 + 172" />
-				<class name="44" type="player_item" var:address="global_pointer + 0xDBE0 + 176" />
-				<class name="45" type="player_item" var:address="global_pointer + 0xDBE0 + 180" />
-				<class name="46" type="player_item" var:address="global_pointer + 0xDBE0 + 184" />
-				<class name="47" type="player_item" var:address="global_pointer + 0xDBE0 + 188" />
-				<class name="48" type="player_item" var:address="global_pointer + 0xDBE0 + 192" />
-				<class name="49" type="player_item" var:address="global_pointer + 0xDBE0 + 196" />
-				<class name="50" type="player_item" var:address="global_pointer + 0xDBE0 + 200" />
-				<class name="51" type="player_item" var:address="global_pointer + 0xDBE0 + 204" />
-				<class name="52" type="player_item" var:address="global_pointer + 0xDBE0 + 208" />
-				<class name="53" type="player_item" var:address="global_pointer + 0xDBE0 + 212" />
-				<class name="54" type="player_item" var:address="global_pointer + 0xDBE0 + 216" />
-				<class name="55" type="player_item" var:address="global_pointer + 0xDBE0 + 220" />
-				<class name="56" type="player_item" var:address="global_pointer + 0xDBE0 + 224" />
-				<class name="57" type="player_item" var:address="global_pointer + 0xDBE0 + 228" />
-				<class name="58" type="player_item" var:address="global_pointer + 0xDBE0 + 232" />
-				<class name="59" type="player_item" var:address="global_pointer + 0xDBE0 + 236" />
-				<class name="60" type="player_item" var:address="global_pointer + 0xDBE0 + 240" />
-				<class name="61" type="player_item" var:address="global_pointer + 0xDBE0 + 244" />
-				<class name="62" type="player_item" var:address="global_pointer + 0xDBE0 + 248" />
-				<class name="63" type="player_item" var:address="global_pointer + 0xDBE0 + 252" />
+				<!-- <class name="0"  type="player_item" var:address="0x2234844 + 0" />
+				<class name="1"  type="player_item" var:address="0x2234844 + 4" />
+				<class name="2"  type="player_item" var:address="0x2234844 + 8" />
+				<class name="3"  type="player_item" var:address="0x2234844 + 12" />
+				<class name="4"  type="player_item" var:address="0x2234844 + 16" />
+				<class name="5"  type="player_item" var:address="0x2234844 + 20" />
+				<class name="6"  type="player_item" var:address="0x2234844 + 24" />
+				<class name="7"  type="player_item" var:address="0x2234844 + 28" />
+				<class name="8"  type="player_item" var:address="0x2234844 + 32" />
+				<class name="9"  type="player_item" var:address="0x2234844 + 36" />
+				<class name="10" type="player_item" var:address="0x2234844 + 40" />
+				<class name="11" type="player_item" var:address="0x2234844 + 44" />
+				<class name="12" type="player_item" var:address="0x2234844 + 48" />
+				<class name="13" type="player_item" var:address="0x2234844 + 52" />
+				<class name="14" type="player_item" var:address="0x2234844 + 56" />
+				<class name="15" type="player_item" var:address="0x2234844 + 60" />
+				<class name="16" type="player_item" var:address="0x2234844 + 64" />
+				<class name="17" type="player_item" var:address="0x2234844 + 68" />
+				<class name="18" type="player_item" var:address="0x2234844 + 72" />
+				<class name="19" type="player_item" var:address="0x2234844 + 76" />
+				<class name="20" type="player_item" var:address="0x2234844 + 80" />
+				<class name="21" type="player_item" var:address="0x2234844 + 84" />
+				<class name="22" type="player_item" var:address="0x2234844 + 88" />
+				<class name="23" type="player_item" var:address="0x2234844 + 92" />
+				<class name="24" type="player_item" var:address="0x2234844 + 96" />
+				<class name="25" type="player_item" var:address="0x2234844 + 100" />
+				<class name="26" type="player_item" var:address="0x2234844 + 104" />
+				<class name="27" type="player_item" var:address="0x2234844 + 108" />
+				<class name="28" type="player_item" var:address="0x2234844 + 112" />
+				<class name="29" type="player_item" var:address="0x2234844 + 116" /> -->
 			</berries>
-			<!-- TODO: find offsets -->
-			<battle_items>
-				<class name="0" type="player_item" var:address="global_pointer + 0xDD1C + 0" />
-				<class name="1" type="player_item" var:address="global_pointer + 0xDD1C + 4" />
-				<class name="2" type="player_item" var:address="global_pointer + 0xDD1C + 8" />
-				<class name="3" type="player_item" var:address="global_pointer + 0xDD1C + 12" />
-				<class name="4" type="player_item" var:address="global_pointer + 0xDD1C + 16" />
-				<class name="5" type="player_item" var:address="global_pointer + 0xDD1C + 20" />
-				<class name="6" type="player_item" var:address="global_pointer + 0xDD1C + 24" />
-				<class name="7" type="player_item" var:address="global_pointer + 0xDD1C + 28" />
-				<class name="8" type="player_item" var:address="global_pointer + 0xDD1C + 32" />
-				<class name="9" type="player_item" var:address="global_pointer + 0xDD1C + 36" />
-			</battle_items>
-			<mail>
-				<class name="0"  type="player_item" var:address="global_pointer + 0xDB00 + 0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0XD800 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0XD800 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0XD800 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0XD800 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0XD800 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0XD800 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0XD800 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0XD800 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0XD800 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0XD800 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0XD800 + 44" />
-			</mail>
 		</bag>
 		<overworld>
-            <property name="map_name"  type="int" length="2" address="global_pointer + 0xE274" reference="maps" />
-            <property name="map_index" type="int" length="2" address="global_pointer + 0xE274" />
-			<property name="x" type="int" length="4" address="global_pointer + 0xE27C" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
-            <property name="y" type="int" length="4" address="global_pointer + 0xE280" /> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+            <!-- <property name="map_name"  type="int" length="2" address="global_pointer + 0xE274" reference="maps" /> -->
+            <!-- <property name="map_index" type="int" length="2" address="global_pointer + 0xE274" /> -->
+			<!-- <property name="x" type="int" length="4" address="global_pointer + 0xE22C" /> --> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
+            <!-- <property name="y" type="int" length="4" address="global_pointer + 0xE230" /> --> <!-- TODO: find platinum offsets; these are the HGSS offsets -->
             <!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking, surfing, fishing, etc.) and then
 				dynamically assign the encounter rate based on this
 			-->
-			<property name="encounter_rate" type="int" />
-            <encounter_rates>
-				<property name="walking"   type="int" length="4" address="global_pointer + 0x303C4" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="surfing"   type="int" length="4" address="global_pointer + 0x30490" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<!-- TODO: does the headbutt variable exist in platinum? -->
-				<property name="old_rod"   type="int" length="4" address="global_pointer + 0x304E8" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="good_rod"  type="int" length="4" address="global_pointer + 0x30514" /> <!-- TODO: check if these are length 2, confirm addresses -->
-				<property name="super_rod" type="int" length="4" address="global_pointer + 0x30540" /> <!-- TODO: check if these are length 2, confirm addresses -->
-			</encounter_rates>
-			<!-- TODO: find platinum offsets -->
-			<encounters>
-				<walking>
-				<class name="0"  type="wild_encounter" address="global_pointer + 0x303C4 + 4"  reference="species" />
-				<class name="1"  type="wild_encounter" address="global_pointer + 0x303C4 + 12"  reference="species" />
-				<class name="2"  type="wild_encounter" address="global_pointer + 0x303C4 + 20"  reference="species" />
-				<class name="3"  type="wild_encounter" address="global_pointer + 0x303C4 + 28"  reference="species" />
-				<class name="4"  type="wild_encounter" address="global_pointer + 0x303C4 + 36"  reference="species" />
-				<class name="5"  type="wild_encounter" address="global_pointer + 0x303C4 + 44"  reference="species" />
-				<class name="6"  type="wild_encounter" address="global_pointer + 0x303C4 + 52"  reference="species" />
-				<class name="7"  type="wild_encounter" address="global_pointer + 0x303C4 + 60"  reference="species" />
-				<class name="8"  type="wild_encounter" address="global_pointer + 0x303C4 + 68"  reference="species" />
-				<class name="9"  type="wild_encounter" address="global_pointer + 0x303C4 + 76"  reference="species" />
-				<class name="10"  type="wild_encounter" address="global_pointer + 0x303C4 + 84"  reference="species" />
-				<class name="11"  type="wild_encounter" address="global_pointer + 0x303C4 + 92"  reference="species" />
-				<class name="12"  type="wild_encounter" address="global_pointer + 0x303C4 + 100"  reference="species" />
-				<class name="13"  type="wild_encounter" address="global_pointer + 0x303C4 + 108"  reference="species" />
-				<class name="14"  type="wild_encounter" address="global_pointer + 0x303C4 + 116"  reference="species" />
-				<class name="15"  type="wild_encounter" address="global_pointer + 0x303C4 + 124"  reference="species" />
-				<class name="16"  type="wild_encounter" address="global_pointer + 0x303C4 + 130"  reference="species" />
-				<class name="17"  type="wild_encounter" address="global_pointer + 0x303C4 + 138"  reference="species" />
-				<class name="18"  type="wild_encounter" address="global_pointer + 0x303C4 + 146"  reference="species" />
-				<class name="19"  type="wild_encounter" address="global_pointer + 0x303C4 + 154"  reference="species" />
-				<class name="20"  type="wild_encounter" address="global_pointer + 0x303C4 + 162"  reference="species" />
-				<class name="21"  type="wild_encounter" address="global_pointer + 0x303C4 + 170"  reference="species" />
-				<class name="22"  type="wild_encounter" address="global_pointer + 0x303C4 + 178"  reference="species" />
-				<class name="23"  type="wild_encounter" address="global_pointer + 0x303C4 + 186"  reference="species" />
-				<class name="24"  type="wild_encounter" address="global_pointer + 0x303C4 + 194"  reference="species" />
-				<!-- ALL THE WILD POKEMON PAST 17 I DON'T UNDERSTAND THE FORMAT. -SPEED -->
-				</walking>
-			</encounters>
-				<surfing>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30490 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30490 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30490 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30490 + 36"  reference="species" />
-				</surfing>
-				<old_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x304E8 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x304E8 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x304E8 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x304E8 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x304E8 + 36"  reference="species" />
-				</old_rod>
-				<good_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30514 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30514 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30514 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30514 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30514 + 36"  reference="species" />
-				</good_rod>
-				<super_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30540 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30540 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30540 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30540 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30540 + 36"  reference="species" />
-				</super_rod>
+			<!-- <property name="encounter_rate" type="int" /> -->
+            <!-- <encounter_rates>
+				<property name="walking"   type="int" length="2" address="global_pointer + 0x303C4" />
+				<property name="surfing"   type="int" length="2" address="global_pointer + 0x30490" />
+				<property name="old_rod"   type="int" length="2" address="global_pointer + 0x304E8" />
+				<property name="good_rod"  type="int" length="2" address="global_pointer + 0x30514" />
+				<property name="super_rod" type="int" length="2" address="global_pointer + 0x30540" />
+			</encounter_rates> -->
+			<!-- <encounters>
+				<property name="0"  type="int" address="global_pointer + 0x32A48 + 0"  reference="species" />
+				<property name="1"  type="int" address="global_pointer + 0x32A48 + 2"  reference="species" />
+				<property name="2"  type="int" address="global_pointer + 0x32A48 + 4"  reference="species" />
+				<property name="3"  type="int" address="global_pointer + 0x32A48 + 6"  reference="species" />
+				<property name="4"  type="int" address="global_pointer + 0x32A48 + 8"  reference="species" />
+				<property name="5"  type="int" address="global_pointer + 0x32A48 + 10" reference="species" />
+				<property name="6"  type="int" address="global_pointer + 0x32A48 + 12" reference="species" />
+				<property name="7"  type="int" address="global_pointer + 0x32A48 + 14" reference="species" />
+				<property name="8"  type="int" address="global_pointer + 0x32A48 + 16" reference="species" />
+				<property name="9"  type="int" address="global_pointer + 0x32A48 + 18" reference="species" />
+				<property name="10" type="int" address="global_pointer + 0x32A48 + 20" reference="species" />
+				<property name="11" type="int" address="global_pointer + 0x32A48 + 22" reference="species" />
+				<property name="12" type="int" address="global_pointer + 0x32A48 + 24" reference="species" />
+				<property name="13" type="int" address="global_pointer + 0x32A48 + 26" reference="species" />
+				<property name="14" type="int" address="global_pointer + 0x32A48 + 28" reference="species" />
+				<property name="15" type="int" address="global_pointer + 0x32A48 + 30" reference="species" />
+				<property name="16" type="int" address="global_pointer + 0x32A48 + 32" reference="species" />
+				<property name="17" type="int" address="global_pointer + 0x32A48 + 34" reference="species" />
+				<property name="18" type="int" address="global_pointer + 0x32A48 + 36" reference="species" />
+				<property name="19" type="int" address="global_pointer + 0x32A48 + 38" reference="species" />
+				<property name="20" type="int" address="global_pointer + 0x32A48 + 40" reference="species" />
+				<property name="21" type="int" address="global_pointer + 0x32A48 + 42" reference="species" />
+				<property name="22" type="int" address="global_pointer + 0x32A48 + 44" reference="species" />
+				<property name="23" type="int" address="global_pointer + 0x32A48 + 46" reference="species" />
+			</encounters> -->
         </overworld>
-		<battle>
-            <property name="mode"    type="string" />
-            <property name="outcome" type="string" />
+		<battle> <!--In Pokemon Black: your battle structures are 0226D7A0 & 0226D8E8. the enemy structures are 0226D9C4 & 0226DE0C. They are stored twice for some reason. -speed -->
+            <!-- <property name="mode"    type="string" /> -->
+            <!-- <property name="outcome" type="string" /> -->
 			<player>
-				<property name="party_position"   type="int" address="global_pointer + 0x54598 + 0x3EC"/>
-				<property name="party_position_2" type="int" address="global_pointer + 0x54598 + 0x3F8"/>
-				<property name="team_count"       type="int" address="global_pointer + 0xD090" />
-				<class name="active_pokemon"      type="battle_structure" var:address="global_pointer + 0x54598" />
-				<class name="active_pokemon_2"    type="battle_structure" var:address="global_pointer + 0x54598 + 384" />
-				<team>
+				<!-- <property name="party_position"   type="int" address="global_pointer + 0x54598 + 0x3EC"/> -->
+				<!-- <property name="party_position_2" type="int" address="global_pointer + 0x54598 + 0x3F8"/> -->
+				<!-- <property name="team_count"       type="int" address="0x22349B4 - 4" /> -->
+				<!-- <class name="active_pokemon"      type="battle_structure" var:address="global_pointer + 0x54598" /> -->
+				<!-- <class name="active_pokemon_2"    type="battle_structure" var:address="global_pointer + 0x54598 + 384" /> -->
+				<!-- <team>
 					<class name="0" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_0" />
 					<class name="1" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_1" />
 					<class name="2" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_2" />
 					<class name="3" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_3" />
 					<class name="4" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_4" />
 					<class name="5" type="party_pokemon" var:memoryContainer="dynamic_player_party_structure_5" />
-				</team>
+				</team> -->
 			</player>
-			<wild>
+			<!-- <wild>
 				<class name="0" type="party_pokemon" var:memoryContainer="static_wild_party_structure_0" />
 				<class name="1" type="party_pokemon" var:memoryContainer="static_wild_party_structure_1" />
-			</wild>
+			</wild> -->
 			<ally>
-				<property name="name"    type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" />
-				<property name="trainer" type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" />
-				<property name="id"      type="int" address="global_pointer + 0x4E880" length="2" />
-				<property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3F8"/>
-				<class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 384" />
-				<team>
+				<!-- <property name="name"    type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" /> -->
+				<!-- <property name="trainer" type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" /> -->
+				<!-- <property name="id"      type="int" address="global_pointer + 0x4E880" length="2" /> -->
+				<!-- <property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3F8"/> -->
+				<!-- <class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 384" /> -->
+				<!-- <team>
 					<class name="0" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_0" />
 					<class name="1" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_1" />
 					<class name="2" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_2" />
 					<class name="3" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_3" />
 					<class name="4" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_4" />
 					<class name="5" type="party_pokemon" var:memoryContainer="dynamic_ally_party_structure_5" />
-				</team>
+				</team> -->
 			</ally>
 			<opponent>
-				<property name="name"    type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> <!-- May be best to filter this property so it is only the name. -->
-				<property name="trainer" type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> <!-- May be best to filter this property so it is only the name. -->
-				<property name="id"      type="int" address="global_pointer + 0x4E87E" length="2" /> <!-- Trainer ID contains Name, class, and ID unlike Gen1 & 2 -->
-				<property name="enemy_bar_synced_hp" type="int" address="global_pointer + 0x546A4" length="2" />
-				<property name="team_count"          type="int" address="global_pointer + 0x54598 + 0x48A0" />
-				<property name="party_position"      type="int" address="global_pointer + 0x54598 + 0x3F2"/>
-				<class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 192" />
-				<team>
+				<!-- <property name="name"    type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> May be best to filter this property so it is only the name. -->
+				<!-- <property name="trainer" type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> May be best to filter this property so it is only the name. -->
+				<!-- <property name="id"      type="int" address="global_pointer + 0x4E87E" length="2" /> Trainer ID contains Name, class, and ID unlike Gen1 & 2 -->
+				<!-- <property name="enemy_bar_synced_hp" type="int" address="global_pointer + 0x546A4" length="2" /> -->
+				<!-- <property name="team_count"          type="int" address="0x226ACF4 - 4" /> -->
+				<!-- <property name="party_position"      type="int" address="global_pointer + 0x54598 + 0x3F2"/> -->
+				<!-- <class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 192" /> -->
+				<!-- <team>
 					<class name="0" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_0" />
 					<class name="1" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_1" />
 					<class name="2" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_2" />
 					<class name="3" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_3" />
 					<class name="4" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_4" />
 					<class name="5" type="party_pokemon" var:memoryContainer="dynamic_opponent_party_structure_5" />
-				</team>
+				</team> -->
 			</opponent>
 			<opponent_2>
-				<property name="trainer" type="int" address="global_pointer + 0x4E882" length="2" reference="trainers" />
-				<property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3FE"/>
-				<property name="team_count" type="int" address="global_pointer + 0x54598 + 0x4E50" />
-				<class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 576" />
-				<team>
+				<!-- <property name="trainer" type="int" address="global_pointer + 0x4E882" length="2" reference="trainers" /> -->
+				<!-- <property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3FE"/> -->
+				<!-- <property name="team_count" type="int" address="global_pointer + 0x54598 + 0x4E50" /> -->
+				<!-- <class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 576" /> -->
+				<!-- <team>
 					<class name="0" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_0" />
 					<class name="1" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_1" />
 					<class name="2" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_2" />
 					<class name="3" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_3" />
 					<class name="4" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_4" />
 					<class name="5" type="party_pokemon" var:memoryContainer="dynamic_opponent_2_party_structure_5" />
-				</team>
+				</team> -->
 			</opponent_2>
-            <field>
+            <!-- <field>
                 <property name="weather" type="int" address="global_pointer + 0x519DC - 3" length="2" reference="weather" />
                 <property name="weather_count" type="int" address="global_pointer + 0x519DC" />
-            </field>
-			<other>
+            </field> -->
+			<!-- <other>
             	<property name="outcome_flags" type="int" address="global_pointer + 0x54977" />
-			</other>
+			</other> -->
 		</battle>
-		<rival>
+		<!-- <rival>
 			<property name="name" type="string" address="global_pointer + 0xF7DC" length="14" size="2" />
-		</rival>
+		</rival> -->
 		<screen>
 			<menu>
 				<!--
@@ -761,27 +619,27 @@
 					scene       0x62cbf   0x6326f
 				-->
 				<!-- TODO: We need to locate variables to determine if the player has opened the bag, or Pokemon summary screen to dynamically assign the address-->
-				<property name="scene"   type="int" address="global_pointer + 0x62cbf" />
+				<!-- <property name="scene"   type="int" address="global_pointer + 0x62cbf" /> -->
 				<cursor>
-					<property name="flag" type="int" address="global_pointer + 0x62d10" />
-					<property name="x"    type="int" address="global_pointer + 0x62d12" />
-					<property name="y"    type="int" address="global_pointer + 0x62d11" />
+					<!-- <property name="flag" type="int" address="global_pointer + 0x62d10" /> -->
+					<!-- <property name="x"    type="int" address="global_pointer + 0x62d12" /> -->
+					<!-- <property name="y"    type="int" address="global_pointer + 0x62d11" /> -->
 				</cursor>
 			</menu>
 		</screen>
-		<game_time>
+		<!-- <game_time>
 			<property name="hours"   type="int" address="global_pointer + 0xD07E" length="2" />
 			<property name="minutes" type="int" address="global_pointer + 0xD080" />
 			<property name="seconds" type="int" address="global_pointer + 0xD081" />
-		</game_time>
+		</game_time> -->
 		<meta>
-			<property name="generation"     type="int" value="4" />
-			<property name="game_name"      type="int" value="Platinum" />
-			<property name="game_type"      type="int" value="Third Version" />
+			<property name="generation"     type="int" value="5" />
+			<property name="game_name"      type="int" value="White" />
+			<property name="game_type"      type="int" value="Originals" />
 			<property name="state"          type="string" />
 			<property name="state_enemy"    type="string" />
-			<property name="global_pointer" type="int" address="0x2101D2C" length="4"/>
-			<property name="enemy_pointer"  type="int" address="global_pointer + 0x352F4" length="4"/>
+			<!-- <property name="global_pointer" type="int" address="0x2101D2C" length="4"/> -->
+			<!-- <property name="enemy_pointer"  type="int" address="global_pointer + 0x352F4" length="4"/> -->
 		</meta>
 	</properties>
 
@@ -7189,20 +7047,162 @@
 			<entry key="0x01EB" value="Darkrai"/>
 			<entry key="0x01EC" value="Shaymin"/>
 			<entry key="0x01ED" value="Arceus"/>
-			<entry key="0x01EE" value="Pokémon Egg"/>
-			<entry key="0x01EF" value="Manaphy Egg"/>
-			<entry key="0x01F0" value="Deoxys"/>
-			<entry key="0x01F1" value="Deoxys"/>
-			<entry key="0x01F2" value="Deoxys"/>
-			<entry key="0x01F3" value="Wormadam"/>
-			<entry key="0x01F4" value="Wormadam"/>
-			<entry key="0x01F5" value="Giratina"/>
-			<entry key="0x01F6" value="Shaymin"/>
-			<entry key="0x01F7" value="Rotom"/>
-			<entry key="0x01F8" value="Rotom"/>
-			<entry key="0x01F9" value="Rotom"/>
-			<entry key="0x01FA" value="Rotom"/>
-			<entry key="0x01FB" value="Rotom"/>
+			<entry key="0x01EE" value="Victini"/>
+			<entry key="0x01EF" value="Snivy"/>
+			<entry key="0x01F0" value="Servine"/>
+			<entry key="0x01F1" value="Serperior"/>
+			<entry key="0x01F2" value="Tepig"/>
+			<entry key="0x01F3" value="Pignite"/>
+			<entry key="0x01F4" value="Emboar"/>
+			<entry key="0x01F5" value="Oshawott"/>
+			<entry key="0x01F6" value="Dewott"/>
+			<entry key="0x01F7" value="Samurott"/>
+			<entry key="0x01F8" value="Patrat"/>
+			<entry key="0x01F9" value="Watchog"/>
+			<entry key="0x01FA" value="Lillipup"/>
+			<entry key="0x01FB" value="Herdier"/>
+			<entry key="0x01FC" value="Stoutland"/>
+			<entry key="0x01FD" value="Purrloin"/>
+			<entry key="0x01FE" value="Liepard"/>
+			<entry key="0x01FF" value="Pansage"/>
+			<entry key="0x0200" value="Simisage"/>
+			<entry key="0x0201" value="Pansear"/>
+			<entry key="0x0202" value="Simisear"/>
+			<entry key="0x0203" value="Panpour"/>
+			<entry key="0x0204" value="Simipour"/>
+			<entry key="0x0205" value="Munna"/>
+			<entry key="0x0206" value="Musharna"/>
+			<entry key="0x0207" value="Pidove"/>
+			<entry key="0x0208" value="Tranquill"/>
+			<entry key="0x0209" value="Unfezant"/>
+			<entry key="0x020A" value="Blitzle"/>
+			<entry key="0x020B" value="Zebstrika"/>
+			<entry key="0x020C" value="Roggenrola"/>
+			<entry key="0x020D" value="Boldore"/>
+			<entry key="0x020E" value="Gigalith"/>
+			<entry key="0x020F" value="Woobat"/>
+			<entry key="0x0210" value="Swoobat"/>
+			<entry key="0x0211" value="Drilbur"/>
+			<entry key="0x0212" value="Excadrill"/>
+			<entry key="0x0213" value="Audino"/>
+			<entry key="0x0214" value="Timburr"/>
+			<entry key="0x0215" value="Gurdurr"/>
+			<entry key="0x0216" value="Conkeldurr"/>
+			<entry key="0x0217" value="Tympole"/>
+			<entry key="0x0218" value="Palpitoad"/>
+			<entry key="0x0219" value="Seismitoad"/>
+			<entry key="0x021A" value="Throh"/>
+			<entry key="0x021B" value="Sawk"/>
+			<entry key="0x021C" value="Sewaddle"/>
+			<entry key="0x021D" value="Swadloon"/>
+			<entry key="0x021E" value="Leavanny"/>
+			<entry key="0x021F" value="Venipede"/>
+			<entry key="0x0220" value="Whirlipede"/>
+			<entry key="0x0221" value="Scolipede"/>
+			<entry key="0x0222" value="Cottonee"/>
+			<entry key="0x0223" value="Whimsicott"/>
+			<entry key="0x0224" value="Petilil"/>
+			<entry key="0x0225" value="Lilligant"/>
+			<entry key="0x0226" value="Basculin"/>
+			<entry key="0x0227" value="Sandile"/>
+			<entry key="0x0228" value="Krokorok"/>
+			<entry key="0x0229" value="Krookodile"/>
+			<entry key="0x022A" value="Darumaka"/>
+			<entry key="0x022B" value="Darmanitan"/>
+			<entry key="0x022C" value="Maractus"/>
+			<entry key="0x022D" value="Dwebble"/>
+			<entry key="0x022E" value="Crustle"/>
+			<entry key="0x022F" value="Scraggy"/>
+			<entry key="0x0230" value="Scrafty"/>
+			<entry key="0x0231" value="Sigilyph"/>
+			<entry key="0x0232" value="Yamask"/>
+			<entry key="0x0233" value="Cofagrigus"/>
+			<entry key="0x0234" value="Tirtouga"/>
+			<entry key="0x0235" value="Carracosta"/>
+			<entry key="0x0236" value="Archen"/>
+			<entry key="0x0237" value="Archeops"/>
+			<entry key="0x0238" value="Trubbish"/>
+			<entry key="0x0239" value="Garbodor"/>
+			<entry key="0x023A" value="Zorua"/>
+			<entry key="0x023B" value="Zoroark"/>
+			<entry key="0x023C" value="Minccino"/>
+			<entry key="0x023D" value="Cinccino"/>
+			<entry key="0x023E" value="Gothita"/>
+			<entry key="0x023F" value="Gothorita"/>
+			<entry key="0x0240" value="Gothitelle"/>
+			<entry key="0x0241" value="Solosis"/>
+			<entry key="0x0242" value="Duosion"/>
+			<entry key="0x0243" value="Reuniclus"/>
+			<entry key="0x0244" value="Ducklett"/>
+			<entry key="0x0245" value="Swanna"/>
+			<entry key="0x0246" value="Vanillite"/>
+			<entry key="0x0247" value="Vanillish"/>
+			<entry key="0x0248" value="Vanilluxe"/>
+			<entry key="0x0249" value="Deerling"/>
+			<entry key="0x024A" value="Sawsbuck"/>
+			<entry key="0x024B" value="Emolga"/>
+			<entry key="0x024C" value="Karrablast"/>
+			<entry key="0x024D" value="Escavalier"/>
+			<entry key="0x024E" value="Foongus"/>
+			<entry key="0x024F" value="Amoonguss"/>
+			<entry key="0x0250" value="Frillish"/>
+			<entry key="0x0251" value="Jellicent"/>
+			<entry key="0x0252" value="Alomomola"/>
+			<entry key="0x0253" value="Joltik"/>
+			<entry key="0x0254" value="Galvantula"/>
+			<entry key="0x0255" value="Ferroseed"/>
+			<entry key="0x0256" value="Ferrothorn"/>
+			<entry key="0x0257" value="Klink"/>
+			<entry key="0x0258" value="Klang"/>
+			<entry key="0x0259" value="Klinklang"/>
+			<entry key="0x025A" value="Tynamo"/>
+			<entry key="0x025B" value="Eelektrik"/>
+			<entry key="0x025C" value="Eelektross"/>
+			<entry key="0x025D" value="Elgyem"/>
+			<entry key="0x025E" value="Beheeyem"/>
+			<entry key="0x025F" value="Litwick"/>
+			<entry key="0x0260" value="Lampent"/>
+			<entry key="0x0261" value="Chandelure"/>
+			<entry key="0x0262" value="Axew"/>
+			<entry key="0x0263" value="Fraxure"/>
+			<entry key="0x0264" value="Haxorus"/>
+			<entry key="0x0265" value="Cubchoo"/>
+			<entry key="0x0266" value="Beartic"/>
+			<entry key="0x0267" value="Cryogonal"/>
+			<entry key="0x0268" value="Shelmet"/>
+			<entry key="0x0269" value="Accelgor"/>
+			<entry key="0x026A" value="Stunfisk"/>
+			<entry key="0x026B" value="Mienfoo"/>
+			<entry key="0x026C" value="Mienshao"/>
+			<entry key="0x026D" value="Druddigon"/>
+			<entry key="0x026E" value="Golett"/>
+			<entry key="0x026F" value="Golurk"/>
+			<entry key="0x0270" value="Pawniard"/>
+			<entry key="0x0271" value="Bisharp"/>
+			<entry key="0x0272" value="Bouffalant"/>
+			<entry key="0x0273" value="Rufflet"/>
+			<entry key="0x0274" value="Braviary"/>
+			<entry key="0x0275" value="Vullaby"/>
+			<entry key="0x0276" value="Mandibuzz"/>
+			<entry key="0x0277" value="Heatmor"/>
+			<entry key="0x0278" value="Durant"/>
+			<entry key="0x0279" value="Deino"/>
+			<entry key="0x027A" value="Zweilous"/>
+			<entry key="0x027B" value="Hydreigon"/>
+			<entry key="0x027C" value="Larvesta"/>
+			<entry key="0x027D" value="Volcarona"/>
+			<entry key="0x027E" value="Cobalion"/>
+			<entry key="0x027F" value="Terrakion"/>
+			<entry key="0x0280" value="Virizion"/>
+			<entry key="0x0281" value="Tornadus"/>
+			<entry key="0x0282" value="Thundurus"/>
+			<entry key="0x0283" value="Reshiram"/>
+			<entry key="0x0284" value="Zekrom"/>
+			<entry key="0x0285" value="Landorus"/>
+			<entry key="0x0286" value="Kyurem"/>
+			<entry key="0x0287" value="Keldeo"/>
+			<entry key="0x0288" value="Meloetta"/>
+			<entry key="0x0289" value="Genesect"/>
 		</species>
 		<moves>
 			<entry key="0" />
@@ -7673,8 +7673,101 @@
 			<entry key="465" value="Seed Flare" />
 			<entry key="466" value="Ominous Wind" />
 			<entry key="467" value="Shadow Force" />
+			<!-- TODO: check these orders -->
+			<entry key="468" value="Hone Claws" />
+			<entry key="469" value="Wide Guard" />
+			<entry key="470" value="Guard Split" />
+			<entry key="471" value="Power Split" />
+			<entry key="472" value="Wonder Room" />
+			<entry key="473" value="Psyshock" />
+			<entry key="474" value="Venoshock" />
+			<entry key="475" value="Autotomize" />
+			<entry key="476" value="Rage Powder" />
+			<entry key="477" value="Telekinesis" />
+			<entry key="478" value="Magic Room" />
+			<entry key="479" value="Smack Down" />
+			<entry key="480" value="Storm Throw" />
+			<entry key="481" value="Flame Burst" />
+			<entry key="482" value="Sludge Wave" />
+			<entry key="483" value="Quiver Dance" />
+			<entry key="484" value="Heavy Slam" />
+			<entry key="485" value="Synchronoise" />
+			<entry key="486" value="Electro Ball" />
+			<entry key="487" value="Soak" />
+			<entry key="488" value="Flame Charge" />
+			<entry key="489" value="Coil" />
+			<entry key="490" value="Low Sweep" />
+			<entry key="491" value="Acid Spray" />
+			<entry key="492" value="Foul Play" />
+			<entry key="493" value="Simple Beam" />
+			<entry key="494" value="Entrainment" />
+			<entry key="495" value="After You" />
+			<entry key="496" value="Round" />
+			<entry key="497" value="Echoed Voice" />
+			<entry key="498" value="Chip Away" />
+			<entry key="499" value="Clear Smog" />
+			<entry key="500" value="Stored Power" />
+			<entry key="501" value="Quick Guard" />
+			<entry key="502" value="Ally Switch" />
+			<entry key="503" value="Scald" />
+			<entry key="504" value="Shell Smash" />
+			<entry key="505" value="Heal Pulse" />
+			<entry key="506" value="Hex" />
+			<entry key="507" value="Sky Drop" />
+			<entry key="508" value="Shift Gear" />
+			<entry key="509" value="Circle Throw" />
+			<entry key="510" value="Incinerate" />
+			<entry key="511" value="Quash" />
+			<entry key="512" value="Acrobatics" />
+			<entry key="513" value="Reflect Type" />
+			<entry key="514" value="Retaliate" />
+			<entry key="515" value="Final Gambit" />
+			<entry key="516" value="Bestow" />
+			<entry key="517" value="Inferno" />
+			<entry key="518" value="Water Pledge" />
+			<entry key="519" value="Fire Pledge" />
+			<entry key="520" value="Grass Pledge" />
+			<entry key="521" value="Volt Switch" />
+			<entry key="522" value="Struggle Bug" />
+			<entry key="523" value="Bulldoze" />
+			<entry key="524" value="Frost Breath" />
+			<entry key="525" value="Dragon Tail" />
+			<entry key="526" value="Work Up" />
+			<entry key="527" value="Electroweb" />
+			<entry key="528" value="Wild Charge" />
+			<entry key="529" value="Drill Run" />
+			<entry key="530" value="Dual Chop" />
+			<entry key="531" value="Heart Stamp" />
+			<entry key="532" value="Horn Leech" />
+			<entry key="533" value="Sacred Sword" />
+			<entry key="534" value="Razor Shell" />
+			<entry key="535" value="Heat Crash" />
+			<entry key="536" value="Leaf Tornado" />
+			<entry key="537" value="Steamroller" />
+			<entry key="538" value="Cotton Guard" />
+			<entry key="539" value="Night Daze" />
+			<entry key="540" value="Psystrike" />
+			<entry key="541" value="Tail Slap" />
+			<entry key="542" value="Hurricane" />
+			<entry key="543" value="Head Charge" />
+			<entry key="544" value="Gear Grind" />
+			<entry key="545" value="Searing Shot" />
+			<entry key="546" value="Techno Blast" />
+			<entry key="547" value="Relic Song" />
+			<entry key="548" value="Secret Sword" />
+			<entry key="549" value="Glaciate" />
+			<entry key="550" value="Bolt Strike" />
+			<entry key="551" value="Blue Flare" />
+			<entry key="552" value="Fiery Dance" />
+			<entry key="553" value="Freeze Shock" />
+			<entry key="554" value="Ice Burn" />
+			<entry key="555" value="Snarl" />
+			<entry key="556" value="Icicle Crash" />
+			<entry key="557" value="V-create" />
+			<entry key="558" value="Fusion Flare" />
+			<entry key="559" value="Fusion Bolt" />
 		</moves>
-		<pokemon_types>
+		<pokemon_types> <!-- TODO: confirm that types fire-dark are correct -->
 			<entry key="0x00" value="Normal" />
 			<entry key="0x01" value="Fighting" />
 			<entry key="0x02" value="Flying" />
@@ -7684,17 +7777,16 @@
 			<entry key="0x06" value="Bug" />
 			<entry key="0x07" value="Ghost" />
 			<entry key="0x08" value="Steel" />
-			<entry key="0x09" value="Mystery" />
-			<entry key="0x0A" value="Fire" />
-			<entry key="0x0B" value="Water" />
-			<entry key="0x0C" value="Grass" />
-			<entry key="0x0D" value="Electric" />
-			<entry key="0x0E" value="Psychic" />
-			<entry key="0x0F" value="Ice" />
-			<entry key="0x10" value="Dragon" />
-			<entry key="0x11" value="Dark" />
+			<entry key="0x09" value="Fire" />
+			<entry key="0x0A" value="Water" />
+			<entry key="0x0B" value="Grass" />
+			<entry key="0x0C" value="Electric" />
+			<entry key="0x0D" value="Psychic" />
+			<entry key="0x0E" value="Ice" />
+			<entry key="0x0F" value="Dragon" />
+			<entry key="0x10" value="Dark" />
 		</pokemon_types>
-		<abilities>
+		<abilities> <!-- TODO: add gen5 abilties -->
 			<entry key="0" />
 			<entry key="1" value="Stench" />
 			<entry key="2" value="Drizzle" />
@@ -7819,6 +7911,34 @@
 			<entry key="121" value="Multitype" />
 			<entry key="122" value="Flower Gift" />
 			<entry key="123" value="Bad Dreams" />
+			<entry key="124" value="Pickpocket" />
+			<!-- TODO: check these abilities, order may not be correct, there are likely more -->
+			<entry key="125" value="Sheer Force" />
+			<entry key="126" value="Contrary" />
+			<entry key="127" value="Unnerve" />
+			<entry key="128" value="Defiant" />
+			<entry key="129" value="Defeatist" />
+			<entry key="130" value="Cursed Body" />
+			<entry key="131" value="Healer" />
+			<entry key="132" value="Friend Guard" />
+			<entry key="133" value="Weak Armor" />
+			<entry key="134" value="Heavy Metal" />
+			<entry key="135" value="Light Metal" />
+			<entry key="136" value="Multiscale" />
+			<entry key="137" value="Toxic Boost" />
+			<entry key="138" value="Flare Boost" />
+			<entry key="139" value="Harvest" />
+			<entry key="140" value="Telepathy" />
+			<entry key="141" value="Moody" />
+			<entry key="142" value="Overcoat" />
+			<entry key="143" value="Poison Touch" />
+			<entry key="144" value="Regenerator" />
+			<entry key="145" value="Big Pecks" />
+			<entry key="146" value="Sand Rush" />
+			<entry key="147" value="Wonder Skin" />
+			<entry key="148" value="Analytic" />
+			<entry key="149" value="Illusion" />
+			<entry key="150" value="Imposter" />
 		</abilities>
 		<stage_modifiers type="number">
 			<entry key="0x00" value="-6" />
@@ -7871,5 +7991,15 @@
             <entry key="64"  value="Hail" />
             <entry key="128" value="Fog" />
 		</weather>
+		<genders>
+			<entry key="0x0000" value="Male" />
+			<entry key="0x010E" value="Female" />
+		</genders>
+		<directions>
+			<entry key="0x00" value="Up" />
+			<entry key="0x40" value="Left" />
+			<entry key="0x80" value="Down" />
+			<entry key="0xC0" value="Right" />
+		</directions>
 	</references>
 </mapper>
