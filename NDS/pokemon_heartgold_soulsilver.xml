@@ -72,8 +72,8 @@
 				<met_info>
 					<property name="date_egg_received" type="int" address="120" memoryContainer="memoryContainer" length="3" />
 					<property name="date_met"          type="int" address="123" memoryContainer="memoryContainer" length="3" />
-					<property name="dp_egg_location"   type="int" address="126" memoryContainer="memoryContainer" length="2" />
-					<property name="dp_met_location"   type="int" address="128" memoryContainer="memoryContainer" length="2" />
+					<property name="egg_location"      type="int" address="126" memoryContainer="memoryContainer" length="2" />
+					<property name="met_location"      type="int" address="128" memoryContainer="memoryContainer" length="2" />
 					<property name="pokeball"          type="int" address="131" memoryContainer="memoryContainer" />
 					<property name="met_level"         type="int" address="132" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 6, 0)" />
 					<property name="female_ot_gender"  type="bit" address="132" memoryContainer="memoryContainer" position="7" />
@@ -600,7 +600,8 @@
             <property name="map_index" type="int" length="2" address="global_pointer + 0xE224" /> <!-- TODO: verify address -->
             <property name="x" type="int" length="4" address="global_pointer + 0xE22C" />
             <property name="y" type="int" length="4" address="global_pointer + 0xE230" />
-            <!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
+            <!-- <property name="z" type="int" length="4" address="global_pointer + 0xE458" /> TODO: find HGSS offsets -->
+			<!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking, surfing, fishing, etc.) and then
 				dynamically assign the encounter rate based on this
 			-->
@@ -639,6 +640,36 @@
 				<property name="22" type="int" address="global_pointer + 0x32A48 + 44" reference="species" />
 				<property name="23" type="int" address="global_pointer + 0x32A48 + 46" reference="species" />
 			</encounters>
+			<!-- <encounter_table>
+				<surfing>
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x30490 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x30490 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x30490 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x30490 + 36"  reference="species" />
+				</surfing>
+				<old_rod>
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x304E8 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x304E8 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x304E8 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x304E8 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x304E8 + 36"  reference="species" />
+				</old_rod>
+				<good_rod>
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x30514 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x30514 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x30514 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x30514 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x30514 + 36"  reference="species" />
+				</good_rod>
+				<super_rod>
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x30540 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x30540 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x30540 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x30540 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x30540 + 36"  reference="species" />
+				</super_rod>
+			</encounter_table> -->
         </overworld>
 		<flag>
 			<property name="farfetchd_guy" type="bool" address="global_pointer + 0xDFB8" />

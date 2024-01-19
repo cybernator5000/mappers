@@ -4,13 +4,16 @@
 // 0x223CDAC - player money (4 bytes)
 // 0x226D790 - player battle structure (around here)
 // 0x226D9B0 - opponent battle structure (around here)
+// 0x24400 - Box offset (likely not in primary RAM)
 
 import { 
     // variables, 
     memory, 
     // console,
     // setValue, 
-    getValue 
+    getValue,
+    // copyProperties, 
+    // setProperty, 
 } from "../common";
 
 export function getBits(a: number, b: number, d: number): number {
@@ -127,6 +130,25 @@ export function getEncounterRate(): number {
     return walking;
 }
 
+// function getPlayerPartyPosition(): number {
+//     const state: string = getMetaState()
+//     switch (state) {
+//         case 'Battle':
+//             return getValue('battle.player.party_position')
+//         case 'From Battle':
+//             return getValue('battle.player.party_position')
+//         default: {
+//             const team: number[] = [0, 1, 2, 3, 4, 5]
+//             for (let i = 0; i < team.length; i++) {
+//                 if (getValue<number>(`player.team.${i}.stats.hp`) > 0) {
+//                     return i
+//                 }
+//             }
+//             return 0
+//         }
+//     }
+// }
+
 // Preprocessor runs every loop (everytime gamehook updates)
 export function preprocessor() {
     // // Set property values
@@ -138,6 +160,25 @@ export function preprocessor() {
     // setValue('battle.mode', getBattleMode(metaState, opponentTrainer))
     // setValue('meta.state_enemy', getMetaEnemyState(metaState, battle_outcomes, enemyBarSyncedHp))
     // setValue('overworld.encounter_rate', getEncounterRate())
+    
+    // //Set player.active_pokemon properties
+    // const party_position_overworld = getPlayerPartyPosition()
+    // const party_position_battle = getValue('battle.player.party_position')
+    // setValue('player.party_position', getPlayerPartyPosition())
+    // if (gamestate === 'Battle') {
+    //     copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
+    //     copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
+    // } else {
+    //     setProperty('player.active_pokemon.modifiers.attack', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.defense', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.speed', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.special_attack', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.special_defense', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.accuracy', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.evasion', { address: null, value: 0 })
+        
+    //     copyProperties(`player.team.${party_position_overworld}`, 'player.active_pokemon')
+    // }
 
     // Loop through various party-structures to decrypt the Pokemon data
     const partyStructures = [
@@ -175,6 +216,7 @@ export function preprocessor() {
             dynamic_opponent_2: 0x226B7B4, // TODO: Requires testing
             unknown_1: 0x226BD14, // TODO: Requires testing
             unknown_2: 0x226C274, // TODO: Requires testing
+            // TODO: Check to see if there are more party structures
         };
 
         // Loop through each party-slot within the given party-structure
