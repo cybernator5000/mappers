@@ -2,7 +2,7 @@ import {
   copyProperties, 
   getValue, 
   setProperty, 
-  setValue 
+  setValue,
 } from "../common";
 import { hpIv } from "../common/pokemon";
 
@@ -12,7 +12,7 @@ export function getBits(a: number, b: number, d: number): number {
   return (a >> b) & ((1 << d) - 1);
 }
 
-export function getMetaState(): string {
+function getMetaState(): string {
   // FSM FOR GAMESTATE TRACKING
   // MAIN GAMESTATE: This tracks the three basic states the game can be in.
   // 1. "No Pokemon": cartridge reset; player has not received a Pokemon
@@ -42,7 +42,7 @@ export function getMetaState(): string {
   }
 }
 
-export function getBattleOutcome(): string | null {
+function getBattleOutcome(): string | null {
   const outcome_flags: number = getValue('battle.other.outcome_flags')
   const state: string = getMetaState()
   switch (state) {
@@ -81,14 +81,15 @@ function getPlayerPartyPosition(): number {
 }
 
 export function postprocessor() {
-  const state = getMetaState()
-  const party_position_overworld = getPlayerPartyPosition()
-  const party_position_battle = getValue('battle.player.party_position')
-  setValue('meta.state', state)
+  const gamestate = getMetaState()
+  setValue('meta.state', gamestate)
   setValue('battle.outcome', getBattleOutcome())
   setValue('player.party_position', getPlayerPartyPosition())
 
-  if (state === 'Battle') {
+  //Set player.active_pokemon properties
+  const party_position_overworld = getPlayerPartyPosition()
+  const party_position_battle = getValue('battle.player.party_position')
+  if (gamestate === 'Battle') {
     copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
     copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
   } else {

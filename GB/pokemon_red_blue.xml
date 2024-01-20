@@ -57,8 +57,8 @@
             <property name="nickname"   type="string" />
             <property name="level"      type="int" />
             <property name="exp"        type="int" />
-            <property name="type_1"     type="string"  />
-            <property name="type_2"     type="string"  />
+            <property name="type_1"     type="string" />
+            <property name="type_2"     type="string" />
             <property name="ot_id"      type="int" />
             <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
             <property name="status_condition" type="string" />
@@ -305,7 +305,7 @@
                 <property name="height"   type="int" address="0xD368" />
                 <property name="width"    type="int" address="0xD369" />
                 <property name="palette"  type="int" address="0xD35D" /><!-- 0:default, 6:dark cave -->
-                <property name="last_map" type="int" address="0xD364" reference="maps" /> <!-- This needs to update address dynamically -->
+                <property name="last_map" type="int" address="0xD364" reference="maps" /> 
             </map_data>
         </overworld>
         <events>
@@ -852,8 +852,8 @@
                     <property name="type_1"     type="int" address="0xD019" reference="pokemon_types" />
                     <property name="type_2"     type="int" address="0xD01A" reference="pokemon_types" />
                     <property name="level"      type="int" address="0xD022" />
-                    <property name="catch_rate" type="int" address="0xD172" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
-                    <property name="status_condition" type="int" address="0xD018" reference="status_conditions" /> <!--Yellow has 2 values, I only found 1-->
+                    <property name="catch_rate" type="int" address="0xD01B" />
+                    <property name="status_condition" type="int" address="0xD018" reference="status_conditions" />
                     <moves>
                         <class name="0" type="battle_move" var:moveAddress="0xD01C" />
                         <class name="1" type="battle_move" var:moveAddress="0xD01D" />
@@ -914,7 +914,6 @@
                         <property name="pp_max"   type="int" address="0xCFD7" />
                     </last_move>
                 </active_pokemon>
-                <!-- These are likely stored at another location, but for cross-gen mapper parallelism I have provided the same addreses as the party structure above. -->
                 <team>
                     <class name="0" type="party_pokemon" var:address="0xD16B" var:nicknameAddress="0xD2B5" />
                     <class name="1" type="party_pokemon" var:address="0xD197" var:nicknameAddress="0xD2C0" />
@@ -972,7 +971,7 @@
                         <property name="defense" type="int" address="0xD004" after-read-value-expression="x % 16" />
                         <property name="speed"   type="int" address="0xD005" after-read-value-expression="x % 16" />
                         <property name="special" type="int" address="0xD006" after-read-value-expression="x % 16" />
-                        <!-- <property name="exp"     type="int" address="0xD008" after-read-value-expression="x % 16" /> -->
+                        <property name="exp"     type="int" address="0xD008" after-read-value-expression="x % 16" />
                     </base_stats>
                     <effects>
                         <property name="bide"            type="bit" address="0xD067" position="0" />
@@ -1021,12 +1020,11 @@
             </opponent>
             <other>
                 <property name="battle_start"       type="int" address="0xCCF5" description="When 0 battle is starting, when >=1 battle has begun" />
-                <property name="next_attack_damage" type="int" address="0xD0D8" />
                 <property name="battle_result"      type="int" address="0xCCF6" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="outcome_flags"      type="int" address="0xcf0b" description="wBattleResult: win=0 lose=1 draw=2 (flee)" />
                 <property name="low_health_alarm"   type="int" address="0xCCF6" reference="low_health_alarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="animation_turn"     type="int" address="0xFFF4" reference="battle_turn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" />
-                <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> <!--duplicate property-->
+                <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." />
             </other>
         </battle>
 
@@ -1228,7 +1226,7 @@
 
     <references>
         <text_speeds>
-            <entry key="0x00" />
+            <entry key="0x00" value="Instant" />
             <entry key="0x01" value="Fast" />
             <entry key="0x03" value="Mid" />
             <entry key="0x05" value="Slow" />
@@ -1325,7 +1323,6 @@
         </bad_poison>
         <final_team>
             <entry key="0x00" />
-            <!-- actually the indices for Charmander, Squirtle, and Bulbasaur, respectively, but set to final evolution to remain 1:1 with pokemon_yellow.xml -->
             <entry key="0xB0" value="Charizard" />
             <entry key="0xB1" value="Blastoise" />
             <entry key="0x99" value="Venusaur" />

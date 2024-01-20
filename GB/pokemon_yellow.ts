@@ -2,7 +2,7 @@ import {
   copyProperties, 
   getValue, 
   setProperty, 
-  setValue 
+  setValue,
 } from "../common";
 import { hpIv } from "../common/pokemon";
 
@@ -81,15 +81,15 @@ function getPlayerPartyPosition(): number {
 }
 
 export function postprocessor() {
-  const state = getMetaState()
-  setValue('meta.state', state)
+  const gamestate = getMetaState()
+  setValue('meta.state', gamestate)
   setValue('battle.outcome', getBattleOutcome())
+  setValue('player.party_position', getPlayerPartyPosition())
   
   //Set player.active_pokemon properties
   const party_position_overworld = getPlayerPartyPosition()
   const party_position_battle = getValue('battle.player.party_position')
-  setValue('player.party_position', getPlayerPartyPosition())
-  if (state === 'Battle') {
+  if (gamestate === 'Battle') {
     copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
     copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
   } else {

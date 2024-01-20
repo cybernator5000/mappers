@@ -50,6 +50,11 @@ export function getEncounterRate(): number {
   const morning: number = getValue("overworld.encounter_rates.morning");
   const day: number = getValue("overworld.encounter_rates.day");
   const night: number = getValue("overworld.encounter_rates.night");
+  const water: number = getValue("overworld.encounter_rates.water");
+  const movement_state: string = getValue("overworld.movement_state");
+  if (movement_state == "Surfing") {
+    return water;
+  }
   switch (time_of_day) {
     case "Morning":
       return morning;

@@ -66,7 +66,7 @@
             <property name="type_1"     type="string"  />
             <property name="type_2"     type="string"  />
             <property name="ot_id"      type="int" />
-            <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="catch_rate" type="int" />
             <property name="status_condition" type="string" />
             <moves>
                 <class name="0" type="active_pokemon_move" />
@@ -391,49 +391,49 @@
         </overworld>
 
         <flags> <!-- TODO: test to ensure this works -->
-            <property name="beat_champion" type="bit" position="1" address="0xd4b5" />
+            <property name="beat_champion" type="bit" position="1" address="0xD4B5" />
             <status_flags> <!-- TODO: test to ensure these work -->
-                <property name="STATUSFLAGS_POKEDEX_F" type="bit" address="0xD84C" position="0" />
-                <property name="STATUSFLAGS_UNOWN_DEX_F" type="bit" address="0xD84C" position="1" />
-                <property name="STATUSFLAGS_FLASH_F" type="bit" address="0xD84C" position="2" />
-                <property name="STATUSFLAGS_CAUGHT_POKERUS_F" type="bit" address="0xD84C" position="3" />
-                <property name="STATUSFLAGS_ROCKET_SIGNAL_F" type="bit" address="0xD84C" position="4" />
-                <property name="STATUSFLAGS_NO_WILD_ENCOUNTERS_F" type="bit" address="0xD84C" position="5" />
-                <property name="STATUSFLAGS_HALL_OF_FAME_F" type="bit" address="0xD84C" position="6" />
-                <property name="STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F" type="bit" address="0xD84C" position="7" />
-                <property name="STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F" type="bit" address="0xD84D" position="0" />
-                <property name="STATUSFLAGS2_SAFARI_GAME_F" type="bit" address="0xD84D" position="1" />
-                <property name="STATUSFLAGS2_BUG_CONTEST_TIMER_F" type="bit" address="0xD84D" position="2" />
-                <property name="STATUSFLAGS2_UNUSED_3_F" type="bit" address="0xD84D" position="3" />
-                <property name="STATUSFLAGS2_BIKE_SHOP_CALL_F" type="bit" address="0xD84D" position="4" />
-                <property name="STATUSFLAGS2_UNUSED_5_F" type="bit" address="0xD84D" position="5" />
-                <property name="STATUSFLAGS2_REACHED_GOLDENROD_F" type="bit" address="0xD84D" position="6" />
-                <property name="STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F" type="bit" address="0xD84D" position="7" />
+                <property name="pokedex" type="bit" address="0xD84C" position="0" />
+                <property name="unown_dex" type="bit" address="0xD84C" position="1" />
+                <property name="flash" type="bit" address="0xD84C" position="2" />
+                <property name="caught_pokerus" type="bit" address="0xD84C" position="3" />
+                <property name="rocket_signal" type="bit" address="0xD84C" position="4" />
+                <property name="no_wild_encounters" type="bit" address="0xD84C" position="5" />
+                <property name="hall_of_fame" type="bit" address="0xD84C" position="6" />
+                <property name="main_menu_mobile_choices" type="bit" address="0xD84C" position="7" />
+                <property name="rockets_in_radio_tower" type="bit" address="0xD84D" position="0" />
+                <property name="safari_game" type="bit" address="0xD84D" position="1" />
+                <property name="bug_contest_timer" type="bit" address="0xD84D" position="2" />
+                <property name="unused_3" type="bit" address="0xD84D" position="3" />
+                <property name="bike_shop_call" type="bit" address="0xD84D" position="4" />
+                <property name="unused_5" type="bit" address="0xD84D" position="5" />
+                <property name="reached_goldenrod" type="bit" address="0xD84D" position="6" />
+                <property name="rockets_in_mahogany" type="bit" address="0xD84D" position="7" />
             </status_flags>
             <daily_flags> <!-- TODO: test to ensure these work -->
-                <property name="DAILYFLAGS1_KURT_MAKING_BALLS_F" type="bit" address="0xDC1F" position="0" />
-                <property name="DAILYFLAGS1_BUG_CONTEST_F" type="bit" address="0xDC1F" position="1" />
-                <property name="DAILYFLAGS1_FISH_SWARM_F" type="bit" address="0xDC1F" position="2" />
-                <property name="DAILYFLAGS1_TIME_CAPSULE_F" type="bit" address="0xDC1F" position="3" />
-                <property name="DAILYFLAGS1_ALL_FRUIT_TREES_F" type="bit" address="0xDC1F" position="4" />
-                <property name="DAILYFLAGS1_GOT_SHUCKIE_TODAY_F" type="bit" address="0xDC1F" position="5" />
-                <property name="DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F" type="bit" address="0xDC1F" position="6" />
-                <property name="DAILYFLAGS1_TRAINER_HOUSE_F" type="bit" address="0xDC1F" position="7" />
-                <property name="DAILYFLAGS2_MT_MOON_SQUARE_CLEFAIRY_F" type="bit" address="0xDC20" position="0" />
-                <property name="DAILYFLAGS2_UNION_CAVE_LAPRAS_F" type="bit" address="0xDC20" position="1" />
-                <property name="DAILYFLAGS2_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F" type="bit" address="0xDC20" position="2" />
-                <property name="DAILYFLAGS2_GOLDENROD_DEPT_STORE_TM27_RETURN_F" type="bit" address="0xDC20" position="3" />
-                <property name="DAILYFLAGS2_DAISYS_GROOMING_F" type="bit" address="0xDC20" position="4" />
-                <property name="DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F" type="bit" address="0xDC20" position="5" />
-                <property name="DAILYFLAGS2_MOVE_TUTOR_F" type="bit" address="0xDC20" position="6" />
-                <property name="DAILYFLAGS2_BUENAS_PASSWORD_F" type="bit" address="0xDC20" position="7" />
+                <property name="kurt_making_balls" type="bit" address="0xDC1F" position="0" />
+                <property name="bug_contest" type="bit" address="0xDC1F" position="1" />
+                <property name="fish_swarm" type="bit" address="0xDC1F" position="2" />
+                <property name="time_capsule" type="bit" address="0xDC1F" position="3" />
+                <property name="all_fruit_trees" type="bit" address="0xDC1F" position="4" />
+                <property name="got_shuckie_today" type="bit" address="0xDC1F" position="5" />
+                <property name="goldenrod_underground_bargain" type="bit" address="0xDC1F" position="6" />
+                <property name="trainer_house" type="bit" address="0xDC1F" position="7" />
+                <property name="mt_moon_square_clefairy" type="bit" address="0xDC20" position="0" />
+                <property name="union_cave_lapras" type="bit" address="0xDC20" position="1" />
+                <property name="goldenrod_underground_got_haircut" type="bit" address="0xDC20" position="2" />
+                <property name="goldenrod_dept_store_tm27_return" type="bit" address="0xDC20" position="3" />
+                <property name="daisys_grooming" type="bit" address="0xDC20" position="4" />
+                <property name="indigo_plateau_rival_fight" type="bit" address="0xDC20" position="5" />
+                <property name="move_tutor" type="bit" address="0xDC20" position="6" />
+                <property name="buenas_password" type="bit" address="0xDC20" position="7" />
             </daily_flags>
             <swarm_flags> <!-- TODO: test to ensure these work -->
-                <property name="SWARMFLAGS_BUENAS_PASSWORD_F" type="bit" address="0xDC1F" position="0" />
-                <property name="SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F" type="bit" address="0xDC1F" position="1" />
-                <property name="SWARMFLAGS_DUNSPARCE_SWARM_F" type="bit" address="0xDC1F" position="2" />
-                <property name="SWARMFLAGS_YANMA_SWARM_F" type="bit" address="0xDC1F" position="3" />
-                <property name="SWARMFLAGS_MOBILE_4_F" type="bit" address="0xDC1F" position="4" />
+                <property name="buenas_password" type="bit" address="0xDC1F" position="0" />
+                <property name="goldenrod_dept_store_sale" type="bit" address="0xDC1F" position="1" />
+                <property name="dunsparce_swarm" type="bit" address="0xDC1F" position="2" />
+                <property name="yanma_swarm" type="bit" address="0xDC1F" position="3" />
+                <property name="mobile_4" type="bit" address="0xDC1F" position="4" />
             </swarm_flags>
         </flags>
         <event_flags> <!-- TODO: test to ensure these work -->
@@ -1772,10 +1772,10 @@
         </event_flags>
 
         <roamers>
-            <property name="roamers_current_map_index" type="int" address="0xdfe4" />
-            <property name="roamers_currnet_map_group" type="int" address="0xdfe5" reference="map_groups" />
-            <property name="roamers_last_map_number" type="int" address="0xdfe6" />
-            <property name="roamers_last_map_group" type="int" address="0xdfe7" reference="map_groups" />
+            <property name="roamers_current_map_index" type="int" address="0xDFE4" />
+            <property name="roamers_currnet_map_group" type="int" address="0xDFE5" reference="map_groups" />
+            <property name="roamers_last_map_number" type="int" address="0xDFE6" />
+            <property name="roamers_last_map_group" type="int" address="0xDFE7" reference="map_groups" />
             <class name="0" type="roamer" var:address="0xDFCF" />
             <class name="1" type="roamer" var:address="0xDFD6" />
             <class name="2" type="roamer" var:address="0xDFDD" />
@@ -1788,7 +1788,7 @@
             <player>
                 <property name="party_position" type="int" address="0xD0D4" />
                 <active_pokemon>
-                    <property name="held_item"      type="int" address="0xc62d" reference="items" />
+                    <property name="held_item"      type="int" address="0xC62D" reference="items" />
                     <property name="species"        type="int" address="0xC62C" reference="species"  />
                     <property name="dex_number"     type="int" address="0xC62C" reference="dex_numbers"  />
                     <property name="type_1"         type="int" address="0xC64A" reference="types"  />
@@ -1819,38 +1819,38 @@
                         <class name="3" type="battle_moves" var:moveAddress="0xC631" />
                     </moves>
                     <volatile_status_conditions>
-                        <property name="confused"        type="bit" address="0xc66a" position="7" />
-                        <property name="toxic"           type="bit" address="0xc66c" position="0" />
-                        <property name="leech_seed"      type="bit" address="0xc66b" position="7" />
-                        <property name="curse"           type="bit" address="0xc668" position="1" />
-                        <property name="in_love"         type="bit" address="0xc668" position="7" />
-                        <property name="nightmare"       type="bit" address="0xc668" position="0" />
+                        <property name="confused"        type="bit" address="0xC66A" position="7" />
+                        <property name="toxic"           type="bit" address="0xC66C" position="0" />
+                        <property name="leech_seed"      type="bit" address="0xC66B" position="7" />
+                        <property name="curse"           type="bit" address="0xC668" position="1" />
+                        <property name="in_love"         type="bit" address="0xC668" position="7" />
+                        <property name="nightmare"       type="bit" address="0xC668" position="0" />
                     </volatile_status_conditions>
                     <effects>
-                        <property name="protect"         type="bit" address="0xc668" position="2" />
-                        <property name="identified"      type="bit" address="0xc668" position="3" />
-                        <property name="perish"          type="bit" address="0xc668" position="4" />
-                        <property name="endure"          type="bit" address="0xc668" position="5" />
-                        <property name="rollout"         type="bit" address="0xc668" position="6" />
-                        <property name="curled"          type="bit" address="0xc669" position="0" />
-                        <property name="bide"            type="bit" address="0xc66a" position="0" />
-                        <property name="rampage"         type="bit" address="0xc66a" position="1" />
-                        <property name="in_loop"         type="bit" address="0xc66a" position="2" />
-                        <property name="flinched"        type="bit" address="0xc66a" position="3" />
-                        <property name="charged"         type="bit" address="0xc66a" position="4" />
-                        <property name="underground"     type="bit" address="0xc66a" position="5" />
-                        <property name="flying"          type="bit" address="0xc66a" position="6" />
-                        <property name="bypass_accuracy" type="bit" address="0xc66b" position="0" />
-                        <property name="mist"            type="bit" address="0xc66b" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xc66b" position="2" />
-                        <property name="substitute"      type="bit" address="0xc66b" position="4" />
-                        <property name="recharge"        type="bit" address="0xc66b" position="5" />
-                        <property name="rage"            type="bit" address="0xc66b" position="6" />
-                        <property name="transformed"     type="bit" address="0xc66c" position="3" />
-                        <property name="encored"         type="bit" address="0xc66c" position="4" />
-                        <property name="lock_on"         type="bit" address="0xc66c" position="5" />
-                        <property name="destiny_bond"    type="bit" address="0xc66c" position="6" />
-                        <property name="cant_run"        type="bit" address="0xc66c" position="7" />
+                        <property name="protect"         type="bit" address="0xC668" position="2" />
+                        <property name="identified"      type="bit" address="0xC668" position="3" />
+                        <property name="perish"          type="bit" address="0xC668" position="4" />
+                        <property name="endure"          type="bit" address="0xC668" position="5" />
+                        <property name="rollout"         type="bit" address="0xC668" position="6" />
+                        <property name="curled"          type="bit" address="0xC669" position="0" />
+                        <property name="bide"            type="bit" address="0xC66A" position="0" />
+                        <property name="rampage"         type="bit" address="0xC66A" position="1" />
+                        <property name="in_loop"         type="bit" address="0xC66A" position="2" />
+                        <property name="flinched"        type="bit" address="0xC66A" position="3" />
+                        <property name="charged"         type="bit" address="0xC66A" position="4" />
+                        <property name="underground"     type="bit" address="0xC66A" position="5" />
+                        <property name="flying"          type="bit" address="0xC66A" position="6" />
+                        <property name="bypass_accuracy" type="bit" address="0xC66B" position="0" />
+                        <property name="mist"            type="bit" address="0xC66B" position="1" />
+                        <property name="focus_energy"    type="bit" address="0xC66B" position="2" />
+                        <property name="substitute"      type="bit" address="0xC66B" position="4" />
+                        <property name="recharge"        type="bit" address="0xC66B" position="5" />
+                        <property name="rage"            type="bit" address="0xC66B" position="6" />
+                        <property name="transformed"     type="bit" address="0xC66C" position="3" />
+                        <property name="encored"         type="bit" address="0xC66C" position="4" />
+                        <property name="lock_on"         type="bit" address="0xC66C" position="5" />
+                        <property name="destiny_bond"    type="bit" address="0xC66C" position="6" />
+                        <property name="cant_run"        type="bit" address="0xC66C" position="7" />
                     </effects>
                     <counters>
                         <property name="rollout"     type="int" address="0xC672" />
@@ -1885,81 +1885,81 @@
                         <class name="3" type="battle_moves" var:moveAddress="0xD20B" />
                     </moves>
                     <stats>
-                        <property name="hp"      type="int" address="0xd216" length="2" />
-                        <property name="hp_max"  type="int" address="0xd218" length="2" />
-                        <property name="attack"  type="int" address="0xd21a" length="2" />
-                        <property name="defense" type="int" address="0xd21c" length="2" />
-                        <property name="special_attack"  type="int" address="0xd220" length="2" />
-                        <property name="special_defense" type="int" address="0xd222" length="2" />
-                        <property name="speed" type="int" address="0xd21e" length="2" />
+                        <property name="hp"      type="int" address="0xD216" length="2" />
+                        <property name="hp_max"  type="int" address="0xD218" length="2" />
+                        <property name="attack"  type="int" address="0xD21a" length="2" />
+                        <property name="defense" type="int" address="0xD21c" length="2" />
+                        <property name="special_attack"  type="int" address="0xD220" length="2" />
+                        <property name="special_defense" type="int" address="0xD222" length="2" />
+                        <property name="speed" type="int" address="0xD21E" length="2" />
                     </stats>
                     <modifiers>
-                        <property name="attack"  type="int" address="0xc6d4" reference="stage_modifiers" />
-                        <property name="defense" type="int" address="0xc6d5" reference="stage_modifiers" />
-                        <property name="speed"   type="int" address="0xc6d6" reference="stage_modifiers" />
-                        <property name="special_attack"  type="int" address="0xc6d7" reference="stage_modifiers" />
-                        <property name="special_defense" type="int" address="0xc6d8" reference="stage_modifiers" />
-                        <property name="accuracy" type="int" address="0xc6d9" reference="stage_modifiers" />
-                        <property name="evasion"  type="int" address="0xc6da" reference="stage_modifiers" />
+                        <property name="attack"  type="int" address="0xC6D4" reference="stage_modifiers" />
+                        <property name="defense" type="int" address="0xC6D5" reference="stage_modifiers" />
+                        <property name="speed"   type="int" address="0xC6D6" reference="stage_modifiers" />
+                        <property name="special_attack"  type="int" address="0xC6D7" reference="stage_modifiers" />
+                        <property name="special_defense" type="int" address="0xC6D8" reference="stage_modifiers" />
+                        <property name="accuracy" type="int" address="0xC6D9" reference="stage_modifiers" />
+                        <property name="evasion"  type="int" address="0xC6DA" reference="stage_modifiers" />
                     </modifiers>
-                    <property name="enemy_mon_end" type="int" address="0xd22d" />
-                    <!-- <base_stats>
-                        <property name="hp"              type="int" address="0xd226" length="2" />
-                        <property name="attack"          type="int" address="0xd228" length="2" />
-                        <property name="defense"         type="int" address="0xd22a" length="2" />
-                        <property name="special_attack"  type="int" address="0xd22c" length="2" />
-                        <property name="special_defense" type="int" address="0xd22e" length="2" />
-                        <property name="speed"           type="int" address="0xd230" length="2" />
-                    </base_stats> -->
+                    <property name="enemy_mon_end" type="int" address="0xD22D" />
+                    <base_stats>
+                        <property name="hp"              type="int" address="0xD226" length="2" />
+                        <property name="attack"          type="int" address="0xD228" length="2" />
+                        <property name="defense"         type="int" address="0xD22A" length="2" />
+                        <property name="speed"           type="int" address="0xD22C" length="2" />
+                        <property name="special_attack"  type="int" address="0xD22E" length="2" />
+                        <property name="special_defense" type="int" address="0xD230" length="2" />
+                    </base_stats>
                     <ivs>
-                        <property name="attack"  type="nibble" address="0xd20c" position="0" />
-                        <property name="defense" type="nibble" address="0xd20c" position="1" />
-                        <property name="speed"   type="nibble" address="0xd20d" position="0" />
-                        <property name="special" type="nibble" address="0xd20d" position="1" />
+                        <property name="attack"  type="nibble" address="0xD20C" position="0" />
+                        <property name="defense" type="nibble" address="0xD20C" position="1" />
+                        <property name="speed"   type="nibble" address="0xD20D" position="0" />
+                        <property name="special" type="nibble" address="0xD20D" position="1" />
                     </ivs>
                     <volatile_status_conditions>
-                        <property name="confused"        type="bit" address="0xc66f" position="7" />
-                        <property name="toxic"           type="bit" address="0xc671" position="0" />
-                        <property name="leech_seed"      type="bit" address="0xc670" position="7" />
-                        <property name="curse"           type="bit" address="0xc66d" position="1" />
-                        <property name="in_love"         type="bit" address="0xc66d" position="7" />
-                        <property name="nightmare"       type="bit" address="0xc66d" position="0" />
+                        <property name="confused"        type="bit" address="0xC66F" position="7" />
+                        <property name="toxic"           type="bit" address="0xC671" position="0" />
+                        <property name="leech_seed"      type="bit" address="0xC670" position="7" />
+                        <property name="curse"           type="bit" address="0xC66D" position="1" />
+                        <property name="in_love"         type="bit" address="0xC66D" position="7" />
+                        <property name="nightmare"       type="bit" address="0xC66D" position="0" />
                     </volatile_status_conditions>
                     <effects>
-                        <property name="protect"         type="bit" address="0xc66d" position="2" />
-                        <property name="identified"      type="bit" address="0xc66d" position="3" />
-                        <property name="perish"          type="bit" address="0xc66d" position="4" />
-                        <property name="endure"          type="bit" address="0xc66d" position="5" />
-                        <property name="rollout"         type="bit" address="0xc66d" position="6" />
-                        <property name="curled"          type="bit" address="0xc66e" position="0" />
-                        <property name="bide"            type="bit" address="0xc66f" position="0" />
-                        <property name="rampage"         type="bit" address="0xc66f" position="1" />
-                        <property name="in_loop"         type="bit" address="0xc66f" position="2" />
-                        <property name="flinched"        type="bit" address="0xc66f" position="3" />
-                        <property name="charged"         type="bit" address="0xc66f" position="4" />
-                        <property name="underground"     type="bit" address="0xc66f" position="5" />
-                        <property name="flying"          type="bit" address="0xc66f" position="6" />
-                        <property name="bypass_accuracy" type="bit" address="0xc670" position="0" />
-                        <property name="mist"            type="bit" address="0xc670" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xc670" position="2" />
-                        <property name="substitute"      type="bit" address="0xc670" position="4" />
-                        <property name="recharge"        type="bit" address="0xc670" position="5" />
-                        <property name="rage"            type="bit" address="0xc670" position="6" />
-                        <property name="transformed"     type="bit" address="0xc671" position="3" />
-                        <property name="encored"         type="bit" address="0xc671" position="4" />
-                        <property name="lock_on"         type="bit" address="0xc671" position="5" />
-                        <property name="destiny_bond"    type="bit" address="0xc671" position="6" />
-                        <property name="cant_run"        type="bit" address="0xc671" position="7" />
+                        <property name="protect"         type="bit" address="0xC66D" position="2" />
+                        <property name="identified"      type="bit" address="0xC66D" position="3" />
+                        <property name="perish"          type="bit" address="0xC66D" position="4" />
+                        <property name="endure"          type="bit" address="0xC66D" position="5" />
+                        <property name="rollout"         type="bit" address="0xC66D" position="6" />
+                        <property name="curled"          type="bit" address="0xC66E" position="0" />
+                        <property name="bide"            type="bit" address="0xC66F" position="0" />
+                        <property name="rampage"         type="bit" address="0xC66F" position="1" />
+                        <property name="in_loop"         type="bit" address="0xC66F" position="2" />
+                        <property name="flinched"        type="bit" address="0xC66F" position="3" />
+                        <property name="charged"         type="bit" address="0xC66F" position="4" />
+                        <property name="underground"     type="bit" address="0xC66F" position="5" />
+                        <property name="flying"          type="bit" address="0xC66F" position="6" />
+                        <property name="bypass_accuracy" type="bit" address="0xC670" position="0" />
+                        <property name="mist"            type="bit" address="0xC670" position="1" />
+                        <property name="focus_energy"    type="bit" address="0xC670" position="2" />
+                        <property name="substitute"      type="bit" address="0xC670" position="4" />
+                        <property name="recharge"        type="bit" address="0xC670" position="5" />
+                        <property name="rage"            type="bit" address="0xC670" position="6" />
+                        <property name="transformed"     type="bit" address="0xC671" position="3" />
+                        <property name="encored"         type="bit" address="0xC671" position="4" />
+                        <property name="lock_on"         type="bit" address="0xC671" position="5" />
+                        <property name="destiny_bond"    type="bit" address="0xC671" position="6" />
+                        <property name="cant_run"        type="bit" address="0xC671" position="7" />
                     </effects>
                     <counters>
-                        <property name="rollout"     type="int" address="0xc67a" />
-                        <property name="confuse"     type="int" address="0xc67b" />
-                        <property name="toxic"       type="int" address="0xc67c" />
-                        <property name="disable"     type="int" address="0xc67d" />
-                        <property name="encore"      type="int" address="0xc67e" />
-                        <property name="perish"      type="int" address="0xc67f" />
-                        <property name="fury_cutter" type="int" address="0xc680" />
-                        <property name="protect"     type="int" address="0xc681" />
+                        <property name="rollout"     type="int" address="0xC67A" />
+                        <property name="confuse"     type="int" address="0xC67B" />
+                        <property name="toxic"       type="int" address="0xC67C" />
+                        <property name="disable"     type="int" address="0xC67D" />
+                        <property name="encore"      type="int" address="0xC67E" />
+                        <property name="perish"      type="int" address="0xC67F" />
+                        <property name="fury_cutter" type="int" address="0xC680" />
+                        <property name="protect"     type="int" address="0xC681" />
                     </counters>
                 </active_pokemon>
                 <team>
@@ -1988,11 +1988,11 @@
                     <property name="lightscreen_count" type="int" address="0xCBE4" />
                     <property name="reflect_count"     type="int" address="0xCBE5" />
                 </opponent>
-                <property name="weather"       type="int" address="0xc70a" reference="weather" />
-                <property name="weather_count" type="int" address="0xc70b" />
+                <property name="weather"       type="int" address="0xC70a" reference="weather" />
+                <property name="weather_count" type="int" address="0xC70b" />
             </field>
             <other>
-                <property name="current_damage"    type="int" address="0xd256" length="2" />
+                <property name="current_damage"    type="int" address="0xD256" length="2" />
                 <property name="low_health_alarm"  type="int" address="0xC6FD" reference="low_health_alarm" />
                 <property name="miss"              type="int" address="0xc667" length="1" />
                 <property name="turn_ended"        type="int" address="0xc6b4" length="1" />
@@ -2006,16 +2006,13 @@
                     ; Backed up if the enemy switches.
                     ; All bits cleared if the enemy faints.
                 -->
-                <property name="wBattleParticipantsNotFainted_slot0" type="bit" address="0xc664" position="0"/>
-                <property name="wBattleParticipantsNotFainted_slot1" type="bit" address="0xc664" position="1"/>
-                <property name="wBattleParticipantsNotFainted_slot2" type="bit" address="0xc664" position="2"/>
-                <property name="wBattleParticipantsNotFainted_slot3" type="bit" address="0xc664" position="3"/>
-                <property name="wBattleParticipantsNotFainted_slot4" type="bit" address="0xc664" position="4"/>
-                <property name="wBattleParticipantsNotFainted_slot5" type="bit" address="0xc664" position="5"/>
-                <property name="wBattleHasJustStarted" type="int" address="0xd264" />
+                <property name="battle_participants_not_fainted_slot_0" type="bit" address="0xC664" position="0"/>
+                <property name="battle_participants_not_fainted_slot_1" type="bit" address="0xC664" position="1"/>
+                <property name="battle_participants_not_fainted_slot_2" type="bit" address="0xC664" position="2"/>
+                <property name="battle_participants_not_fainted_slot_3" type="bit" address="0xC664" position="3"/>
+                <property name="battle_participants_not_fainted_slot_4" type="bit" address="0xC664" position="4"/>
+                <property name="battle_participants_not_fainted_slot_5" type="bit" address="0xC664" position="5"/>
                 <property name="outcome_flags" type="int" address="0xD0EE" />
-                <property name="wBattleEnded" type="int" address="0xc734" />
-                <property name="wBattleEnd" type="int" address="0xc741" />
                 <property name="text_buffer" type="string" address="0xD073" length="11" />
             </other>
         </battle>
@@ -2076,7 +2073,7 @@
 
         <options>
             <property name="text_speed"        type="int" address="0xCFCC" after-read-value-expression="getBits(x, 0, 3)" reference="text_speeds" />
-            <property name="no_text_scroll"    type="bit" address="0xCFCC" position="4" /> <!-- TODO: Test effects of changing this flag -->
+            <property name="no_text_scroll"    type="bit" address="0xCFCC" position="4" />
             <property name="sound"             type="bit" address="0xCFCC" position="5" description="Mono = False, Stereo = True" />
             <property name="battle_style"      type="bit" address="0xCFCC" position="6" description="Shift = False, Set = True" />
             <property name="battle_animations" type="bit" address="0xCFCC" position="7" description="On = False, Off = True" />
@@ -2089,7 +2086,6 @@
             <property name="frames"  type="int" address="0xD4C8" />
         </game_time>
 
-        <!-- TODO: consider refactoring these properties to make them easier to understand for end-users -->
         <time>
             <current>
                 <property name="day"         type="int" address="0xd4cb" reference="day_names" after-read-value-expression="x % 7" />
@@ -2113,9 +2109,9 @@
                 <property name="day_hi" type="int" address="0xff8d" />
                 <property name="day_lo" type="int" address="0xff8e" />
             </rtc>
-            <gameClock>
+            <game_clock>
                 <property name="day" type="int" address="0xD4B6" reference="day_names" />
-            </gameClock>
+            </game_clock>
         </time>
         <input>
             <property name="a" type="bit" address="0xffa4" position="0"/>
@@ -2139,7 +2135,7 @@
 
     <references>
         <text_speeds>
-            <entry key="0x00" />
+            <entry key="0x00" value="Instant" />
             <entry key="0x01" value="Fast" />
             <entry key="0x03" value="Mid" />
             <entry key="0x05" value="Slow" />

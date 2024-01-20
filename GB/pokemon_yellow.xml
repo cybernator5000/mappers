@@ -205,9 +205,9 @@
 
     <properties>        
         <player>
-            <property name="name"        type="string" address="0xD157" length="11" />
-            <property name="player_id"   type="int"    address="0xD358" length="2" />
-            <property name="team_count"  type="int"    address="0xD162" />
+            <property name="name"       type="string" address="0xD157" length="11" />
+            <property name="player_id"  type="int"    address="0xD358" length="2" />
+            <property name="team_count" type="int"    address="0xD162" />
             <property name="party_position" type="int" />
             <class name="active_pokemon" type="player_active_pokemon" />
             <team>
@@ -857,7 +857,7 @@
         <battle>
             <property name="mode"    type="int" address="0xD056" reference="battle_modes" />
             <property name="type"    type="int" address="0xD059" reference="battle_types" />
-            <property name="outcome" type="int" />
+            <property name="outcome" type="string" />
             <player>
                 <property name="party_position" type="int" address="0xCC2F" />
                 <property name="team_count" type="int" address="0xD162" />
@@ -868,8 +868,8 @@
                     <property name="type_1"     type="int" address="0xD018" reference="pokemon_types" />
                     <property name="type_2"     type="int" address="0xD019" reference="pokemon_types" />
                     <property name="level"      type="int" address="0xD021" />
-                    <property name="catch_rate" type="int" address="0xD032" />
-                    <property name="status_condition" type="int" address="0xd017" reference="status_conditions" />
+                    <property name="catch_rate" type="int" address="0xD01A" />
+                    <property name="status_condition" type="int" address="0xD017" reference="status_conditions" />
                     <moves>
                         <class name="0" type="battle_move" var:moveAddress="0xD01B" />
                         <class name="1" type="battle_move" var:moveAddress="0xD01C" />
@@ -930,7 +930,6 @@
                         <property name="pp_max"   type="int" address="0xCFD6" />
                     </last_move>
                 </active_pokemon>
-                <!-- These are likely stored at another location, but for cross-gen mapper parallelism I have provided the same addreses as the party structure above. -->
                 <team>
                     <class name="0" type="party_pokemon" var:address="0xD16A" var:nicknameAddress="0xD2B4" />
                     <class name="1" type="party_pokemon" var:address="0xD196" var:nicknameAddress="0xD2BF" />
@@ -988,7 +987,7 @@
                         <property name="defense" type="int" address="0xD003" after-read-value-expression="x % 16" />
                         <property name="speed"   type="int" address="0xD004" after-read-value-expression="x % 16" />
                         <property name="special" type="int" address="0xD005" after-read-value-expression="x % 16" />
-                        <!-- <property name="exp"     type="int" address="0xD007" after-read-value-expression="x % 16" /> -->
+                        <property name="exp"     type="int" address="0xD007" after-read-value-expression="x % 16" />
                     </base_stats>
                     <effects>
                         <property name="bide"            type="bit" address="0xD066" position="0" />
@@ -1037,12 +1036,11 @@
             </opponent>
             <other>
                 <property name="battle_start"       type="int" address="0xCCF5" description="When 0 battle is starting, when >=1 battle has begun" />
-                <property name="next_attack_damage" type="int" address="0xD0D7" />
                 <property name="battle_result"      type="int" address="0xCCF6" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="outcome_flags"      type="int" address="0xcf0b" description="wBattleResult: win=0 lose=1 draw=2 (flee)" />
                 <property name="low_health_alarm"   type="int" address="0xCCF6" reference="low_health_alarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="animation_turn"     type="int" address="0xFFF3" reference="battle_turn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" />
-                <property name="attack_damage"      type="int" address="0xD0D7" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> <!--duplicate property-->
+                <property name="attack_damage"      type="int" address="0xD0D7" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." />
             </other>
         </battle>
 
@@ -1244,7 +1242,7 @@
 
     <references>
         <text_speeds>
-            <entry key="0x00" />
+            <entry key="0x00" value="Instant" />
             <entry key="0x01" value="Fast" />
             <entry key="0x03" value="Mid" />
             <entry key="0x05" value="Slow" />
@@ -1339,10 +1337,6 @@
             <entry key="0x00" />
             <entry key="0x01" value="Badly Posioned" />
         </bad_poison>
-        <options>
-            <entry key="0xC1" value="Fast Text, No Animations, Battlestyle Set" />
-            <entry key="0x41" value="Champion Fight" />
-        </options>
         <final_team>
             <entry key="0x00" />
             <entry key="0x01" value="Jolteon" />
