@@ -602,32 +602,32 @@
 			</encounter_rates>
 			<encounter_table>
 				<surfing>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30490 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30490 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30490 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30490 + 36"  reference="species" />
+					<class name="0" type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
+					<class name="1" type="wild_encounter" address="global_pointer + 0x30490 + 12" reference="species" />
+					<class name="2" type="wild_encounter" address="global_pointer + 0x30490 + 20" reference="species" />
+					<class name="3" type="wild_encounter" address="global_pointer + 0x30490 + 28" reference="species" />
+					<class name="4" type="wild_encounter" address="global_pointer + 0x30490 + 36" reference="species" />
 				</surfing>
 				<old_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x304E8 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x304E8 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x304E8 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x304E8 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x304E8 + 36"  reference="species" />
+					<class name="0" type="wild_encounter" address="global_pointer + 0x304E8 + 4"  reference="species" />
+					<class name="1" type="wild_encounter" address="global_pointer + 0x304E8 + 12" reference="species" />
+					<class name="2" type="wild_encounter" address="global_pointer + 0x304E8 + 20" reference="species" />
+					<class name="3" type="wild_encounter" address="global_pointer + 0x304E8 + 28" reference="species" />
+					<class name="4" type="wild_encounter" address="global_pointer + 0x304E8 + 36" reference="species" />
 				</old_rod>
 				<good_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30514 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30514 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30514 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30514 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30514 + 36"  reference="species" />
+					<class name="0" type="wild_encounter" address="global_pointer + 0x30514 + 4"  reference="species" />
+					<class name="1" type="wild_encounter" address="global_pointer + 0x30514 + 12" reference="species" />
+					<class name="2" type="wild_encounter" address="global_pointer + 0x30514 + 20" reference="species" />
+					<class name="3" type="wild_encounter" address="global_pointer + 0x30514 + 28" reference="species" />
+					<class name="4" type="wild_encounter" address="global_pointer + 0x30514 + 36" reference="species" />
 				</good_rod>
 				<super_rod>
-					<class name="0"  type="wild_encounter" address="global_pointer + 0x30540 + 4"  reference="species" />
-					<class name="1"  type="wild_encounter" address="global_pointer + 0x30540 + 12"  reference="species" />
-					<class name="2"  type="wild_encounter" address="global_pointer + 0x30540 + 20"  reference="species" />
-					<class name="3"  type="wild_encounter" address="global_pointer + 0x30540 + 28"  reference="species" />
-					<class name="4"  type="wild_encounter" address="global_pointer + 0x30540 + 36"  reference="species" />
+					<class name="0" type="wild_encounter" address="global_pointer + 0x30540 + 4"  reference="species" />
+					<class name="1" type="wild_encounter" address="global_pointer + 0x30540 + 12" reference="species" />
+					<class name="2" type="wild_encounter" address="global_pointer + 0x30540 + 20" reference="species" />
+					<class name="3" type="wild_encounter" address="global_pointer + 0x30540 + 28" reference="species" />
+					<class name="4" type="wild_encounter" address="global_pointer + 0x30540 + 36" reference="species" />
 				</super_rod>
 			</encounter_table>
         </overworld>
@@ -680,7 +680,12 @@
 			<property name="beat_youngster_tristan" type="bit" address="global_pointer + 0xE08A" position="1" />
 			<property name="beat_lass_natalie" type="bit" address="global_pointer + 0xE08A" position="3" />
 			<property name="beat_youngster_logan" type="bit" address="global_pointer + 0xE08A" position="2" />
-			<property name="got_vs_recorder" type="bit" address="global_pointer + 0xDE8E" position="0" />
+			<property name="got_vs_recorder" type="bit" address="global_pointer + 0xDE8E" position="0" /> <!-- Likely the Jubilife City Counter-->
+				<!-- 
+					increments when the vs recorder is received
+					increments when the rockets are defeated after returning from Oreburgh
+
+				-->
 			<property name="got_town_map" type="bit" address="global_pointer + 0xDFFE" position="0" /> <!-- One of these events controls delivery of the parcel -->
 			<property name="jubilife_city_events" type="int" address="global_pointer + 0xDF6E" /> 
 				<!-- 
@@ -720,6 +725,15 @@
 			<property name="beat_youngster_jonathon" type="bit" address="global_pointer + 0xE0A8" position="4" /> 
 			<property name="beat_youngster_darius" type="bit" address="global_pointer + 0xE0A8" position="5" /> 
 			<property name="got_tm76_stealth_rock" type="bit" address="global_pointer + 0xDFEE" position="5" /> 
+			<!-- Jubilife City (maybe?)-->
+			<property name="jubilife_city_event_counter" type="bit" address="global_pointer + 0xDE8C" position="5" /> 
+			<property name="got_fashion_case" type="bit" address="global_pointer + 0xDFFE" position="2" /> 
+			<property name="got_tm39_rock_tomb" type="bit" address="global_pointer + 0xE060" position="1" /> 
+			<property name="ravaged_path_potion" type="bit" address="global_pointer + 0xE07E" position="1" /> 
+			<property name="beat_aroma_laby_taylor" type="bit" address="global_pointer + 0xE08B" position="6" /> 
+			<property name="route_204_awakening" type="bit" address="global_pointer + 0xE07E" position="4" /> 
+			<property name="bug_catcher_brandon" type="bit" address="global_pointer + 0xE08B" position="5" /> 
+
 
 			<!-- 
 				Bit Values 
@@ -732,7 +746,7 @@
 					position 6: 0x40
 					position 7: 0x80
 			-->
-			<!-- TODO: Continue mapping event flags from here, I stopped just after exiting Oreburgh City -->
+			<!-- TODO: Continue mapping event flags from here, I stopped just before Floroma Town -->
 			<!-- global_pointer address: 0x22711EC-->
 			<property name="got_quick_claw" type="bit" address="global_pointer + 0xDF97" position="7" />
 			<property name="got_old_rod" type="bit" address="global_pointer + 0xDF90" position="4" />
@@ -818,6 +832,7 @@
             </field>
 			<other>
             	<property name="outcome_flags" type="int" address="global_pointer + 0x54977" />
+            	<property name="to_battle_flag" type="int" address="global_pointer + 0x50bda" />
 			</other>
 		</battle>
 		<rival>

@@ -141,7 +141,7 @@ function getPlayerPartyPosition(): number {
     }
 }
 
-// Preprocessor runs every loop (everytime gamehook updates)
+// Preprocessor runs every loop (everytime gamehook updates)    22711EC
 export function preprocessor() {
     // This is the same as the global_pointer, it is named "base_ptr" for consistency with the old C# code    
     const base_ptr: number = memory.defaultNamespace.get_uint32_le(0x2101D2C) // Platinum pointer
