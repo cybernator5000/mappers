@@ -251,7 +251,7 @@
                     <property name="type_2"     type="int" address="0xD001" reference="pokemon_types" />
                     <property name="level"      type="int" address="0xD009" />
                     <property name="catch_rate" type="int" address="0xD002" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
-                    <!-- <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" /> Yellow has 2 values, I only found 1 -->
+                    <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" /> Yellow has 2 values, I only found 1
                     <moves>
                         <class name="0" type="battle_move" var:moveAddress="0xD003" />
                         <class name="1" type="battle_move" var:moveAddress="0xD004" />
@@ -418,13 +418,13 @@
                 </team>
             </opponent>
             <other>
-                <!-- <property name="battle_start"       type="int" address="0xCCF5" description="When 0 battle is starting, when >=1 battle has begun" /> -->
-                <!-- <property name="next_attack_damage" type="int" address="0xD0D8" /> -->
-                <!-- <property name="battle_result"      type="int" address="0xCCF6" description="This is set to 0 at the start of battle and 1 when the opponent has lost" /> -->
-                <!-- <property name="outcome_flags"      type="int" address="0xcf0b" description="wBattleResult: win=0 lose=1 draw=2 (flee)" /> -->
-                <!-- <property name="low_health_alarm"   type="int" address="0xCCF6" reference="low_health_alarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" /> -->
-                <!-- <property name="animation_turn"     type="int" address="0xFFF4" reference="battle_turn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" /> -->
-                <!-- <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> duplicate property -->
+                <property name="battle_start"       type="int" address="0xCCF5" description="When 0 battle is starting, when >=1 battle has begun" />
+                <property name="next_attack_damage" type="int" address="0xD0D8" />
+                <property name="battle_result"      type="int" address="0xCCF6" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
+                <property name="outcome_flags"      type="int" address="0xcf0b" description="wBattleResult: win=0 lose=1 draw=2 (flee)" />
+                <property name="low_health_alarm"   type="int" address="0xCCF6" reference="low_health_alarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
+                <property name="animation_turn"     type="int" address="0xFFF4" reference="battle_turn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" />
+                <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> duplicate property
             </other>
         </battle>
 
