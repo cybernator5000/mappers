@@ -167,24 +167,24 @@ export function preprocessor() {
     setValue('meta.state_enemy', getMetaEnemyState(gamestate, battle_outcomes, enemyBarSyncedHp))
     setValue('overworld.encounter_rate', getEncounterRate())
     
-    //Set player.active_pokemon properties
-    const party_position_overworld = getPlayerPartyPosition()
-    const party_position_battle = getValue('battle.player.party_position')
-    setValue('player.party_position', getPlayerPartyPosition())
-    if (gamestate === 'Battle') {
-        copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
-        copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
-    } else {
-        setProperty('player.active_pokemon.modifiers.attack', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.defense', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.speed', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.special_attack', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.special_defense', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.accuracy', { address: null, value: 0 })
-        setProperty('player.active_pokemon.modifiers.evasion', { address: null, value: 0 })
+    // //Set player.active_pokemon properties
+    // const party_position_overworld = getPlayerPartyPosition()
+    // const party_position_battle = getValue('battle.player.party_position')
+    // setValue('player.party_position', getPlayerPartyPosition())
+    // if (gamestate === 'Battle') {
+    //     copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
+    //     copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
+    // } else {
+    //     setProperty('player.active_pokemon.modifiers.attack', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.defense', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.speed', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.special_attack', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.special_defense', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.accuracy', { address: null, value: 0 })
+    //     setProperty('player.active_pokemon.modifiers.evasion', { address: null, value: 0 })
         
-        copyProperties(`player.team.${party_position_overworld}`, 'player.active_pokemon')
-    }
+    //     copyProperties(`player.team.${party_position_overworld}`, 'player.active_pokemon')
+    // }
 
     // Loop through various party-structures to decrypt the Pokemon data
     const partyStructures = [
