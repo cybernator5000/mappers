@@ -12,7 +12,7 @@ export function getBits(a: number, b: number, d: number): number {
   return (a >> b) & ((1 << d) - 1);
 }
 
-function getMetaState(): string {
+function getGamestate(): string {
   // FSM FOR GAMESTATE TRACKING
   // MAIN GAMESTATE: This tracks the three basic states the game can be in.
   // 1. "No Pokemon": cartridge reset; player has not received a Pokemon
@@ -44,7 +44,7 @@ function getMetaState(): string {
 
 function getBattleOutcome(): string | null {
   const outcome_flags: number = getValue('battle.other.outcome_flags')
-  const state: string = getMetaState()
+  const state: string = getGamestate()
   switch (state) {
     case 'From Battle':
       switch (outcome_flags) {
@@ -62,7 +62,7 @@ function getBattleOutcome(): string | null {
 }
 
 function getPlayerPartyPosition(): number {
-  const state: string = getMetaState()
+  const state: string = getGamestate()
   switch (state) {
     case 'Battle':
       return getValue('battle.player.party_position')
@@ -81,7 +81,7 @@ function getPlayerPartyPosition(): number {
 }
 
 export function postprocessor() {
-  const gamestate = getMetaState()
+  const gamestate = getGamestate()
   setValue('meta.state', gamestate)
   setValue('battle.outcome', getBattleOutcome())
   setValue('player.party_position', getPlayerPartyPosition())

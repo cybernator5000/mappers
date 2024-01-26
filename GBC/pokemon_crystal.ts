@@ -17,14 +17,14 @@ export function getBits(a: number, b: number, d: number): number {
   return (a >> b) & ((1 << d) - 1);
 }
 
-export function getMetaState(): string {
+export function getGamestate(): string {
   const team_0_level: number = getValue('player.team.0.level')
   const outcome_flags: number = getValue('battle.other.outcome_flags')
   const battle_mode: string = getValue('battle.mode')
   const low_health_alarm: string = getValue('battle.other.low_health_alarm')
   const team_0_species: string = getValue('player.team.0.species')
   const player_battle_species: string = getValue('battle.player.active_pokemon.species')
-  const state: string = getValue('meta.state')
+  const gamestate: string = getValue('meta.state')
   if (team_0_level == 0) {
     return 'No Pokemon'
   }
@@ -37,7 +37,7 @@ export function getMetaState(): string {
   else if (team_0_species == player_battle_species) {
     return 'Battle'
   }
-  else if ((state == 'Overworld' || state == 'To Battle') && battle_mode != null) {
+  else if ((gamestate == 'Overworld' || gamestate == 'To Battle') && battle_mode != null) {
     return 'To Battle'
   }
   else {
@@ -69,8 +69,8 @@ export function getEncounterRate(): number {
 
 export function getBattleOutcome(): string | null {
   const outcome_flags: number = getValue('battle.other.outcome_flags')
-  const state: string = getMetaState()
-  switch (state) {
+  const gamestate: string = getGamestate()
+  switch (gamestate) {
     case 'From Battle':
       switch (outcome_flags) {
         case 0:
@@ -96,8 +96,8 @@ export function getBattleOutcome(): string | null {
 }
 
 function getPlayerPartyPosition(): number {
-  const state: string = getMetaState()
-  switch (state) {
+  const gamestate: string = getGamestate()
+  switch (gamestate) {
     case 'Battle':
       return getValue('battle.player.party_position')
     case 'From Battle':
@@ -115,8 +115,8 @@ function getPlayerPartyPosition(): number {
 }
 
 export function postprocessor() {
-  const state = getMetaState()
-  setValue("meta.state", state);
+  const gamestate = getGamestate()
+  setValue("meta.state", gamestate);
   setValue("overworld.encounter_rate", getEncounterRate());
   setValue("battle.outcome", getBattleOutcome());
   
@@ -124,7 +124,7 @@ export function postprocessor() {
   const party_position_overworld = getPlayerPartyPosition()
   const party_position_battle = getValue('battle.player.party_position')
   setValue('player.party_position', getPlayerPartyPosition())
-  if (state === 'Battle') {
+  if (gamestate === 'Battle') {
     copyProperties(`player.team.${party_position_battle}`, 'player.active_pokemon')
     copyProperties('battle.player.active_pokemon', 'player.active_pokemon')
   } else {

@@ -51,7 +51,7 @@ const shuffleOrders = {
     23: [3, 2, 1, 0]
 };
 
-// export function getMetaState(): string {
+// export function getGamestate(): string {
 //     // FSM FOR GAMESTATE TRACKING
 //     // MAIN GAMESTATE: This tracks the three basic states the game can be in.
 //     // 1. "No Pokemon": cartridge reset; player has not received a Pokemon
@@ -98,7 +98,7 @@ const shuffleOrders = {
 
 // export function getBattleOutcome(): string | null {
 //     const outcome_flags: number = getValue('battle.other.outcome_flags')
-//     const state: string = getMetaState()
+//     const state: string = getGamestate()
 //     switch (state) {
 //         case 'From Battle':
 //             switch (outcome_flags) {
@@ -123,7 +123,7 @@ export function getEncounterRate(): number {
 }
 
 // function getPlayerPartyPosition(): number {
-//     const state: string = getMetaState()
+//     const state: string = getGamestate()
 //     switch (state) {
 //         case 'Battle':
 //             return getValue('battle.player.party_position')
@@ -156,7 +156,7 @@ export function preprocessor() {
     const enemy_ptr = memory.defaultNamespace.get_uint32_le(base_ptr + 0x364C8) // Only needs to be calculated once per loop
 
     // // Set property values
-    // const metaState: string = getMetaState()
+    // const metaState: string = getGamestate()
     // const battle_outcomes: number = getValue<number>('battle.outcome')
     // const enemyBarSyncedHp: number = getValue<number>('battle.opponent.enemy_bar_synced_hp')
     // const opponentTrainer: string | null = getValue<string | null>('battle.opponent.trainer')

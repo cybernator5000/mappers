@@ -604,8 +604,8 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
 			<property name="gameName"   type="string" value="Emerald" />
 			<property name="gameType"   type="string" value="Third Version" />
 			<property name="mapperType" type="string" value="Deprecated" />
-			<!-- <property name="state" type="string" />
-			<property name="state_enemy" type="string" /> -->
+			<property name="state" type="string" />
+			<!-- <property name="state_enemy" type="string" /> -->
 		</meta>
   </properties>
 
