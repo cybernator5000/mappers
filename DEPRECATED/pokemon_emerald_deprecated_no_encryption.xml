@@ -84,7 +84,7 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <property name="partyPos" address="partyPosAddress" type="int" length="2" />
       <property name="nickname" address="address + 48" type="string" length="11" characterMap="defaultCharacterMap" />
       <property name="speciesArray" address="address" type="int" length="2" reference="pokemon" />
-      <property name="species" address="address" type="int" length="2" reference="pokemon" />
+      <property name="species" address="address" type="int" length="2" reference="pokemonSpecies" />
       <property name="level" address="address + 42" type="int" />
       <property name="expPoints" address="address + 68" type="uint" length="4" />
       <property name="friendship" address="address + 43" type="int" />
@@ -568,13 +568,13 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
         <property name="wallace" type="bit" position="7" address="dma_b + 9004" />
       </eliteFour>   
     </trainers>
+    <!-- TODO: THESE OPTIONS PROPERTIES SEEM TO BE WRONG-->
     <options>
-      <!-- <property name="textSpeed"   type="int" address="dma_a + 20", 2, 0)" after-read-value-expression="BitRange(x, 2, 0)" /> -->
+      <property name="textSpeed"   type="int" address="dma_b + 20" />
       <property name="battleAnim"  type="bit" address="dma_b + 21" position="2" />
       <property name="battleStyle" type="bit" address="dma_b + 21" position="1" />
       <property name="sound"       type="bit" address="dma_b + 21" position="0" />
       <property name="buttonMode"  type="int" address="dma_b + 19" />
-      <!-- <property name="windowFrame" type="int" address="dma_b + 20, 7, 3)" after-read-value-expression="BitRange(x, 2, 0)" /> -->
     </options>
     <gameTime>
       <property name="hours"   type="int" address="dma_b + 14" />
@@ -4448,5 +4448,10 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <entry key="0x0220" value="ROUTE 119 - HOUSE" />
       <entry key="0x0021" value="ROUTE 124 - DIVING_TREASURE_HUNTERS_HOUSE" />
     </mapName>
+    <palette>
+      <entry key="411332407" value="MAIN MENU" />
+      <entry key="1744306176" value="NEW GAME" />
+      <entry key="900344134" value="RESET" />
+    </palette>
   </references>
 </mapper>
