@@ -80,7 +80,7 @@ const shuffleOrders = {
     23: [3, 2, 1, 0]
 };
 
-export function getMetaState(): string {
+function getGamestate(): string {
     // FSM FOR GAMESTATE TRACKING
     // MAIN GAMESTATE: This tracks the three basic states the game can be in.
     // 1. "No Pokemon": cartridge reset; player has not received a Pokemon
@@ -111,9 +111,9 @@ export function getMetaState(): string {
     return "Error"
 }
 
-export function getBattleOutcome(): string | null {
+function getBattleOutcome(): string | null {
     const outcome_flags: string | null = getValue('battle.other.battle_outcomes')
-    const state: string = getMetaState()
+    const state: string = getGamestate()
     switch (state) {
         case 'From Battle':
             switch (outcome_flags) {
@@ -145,7 +145,7 @@ export function getBattleOutcome(): string | null {
 }
 
 function getPlayerPartyPosition(): number {
-    const state: string = getMetaState()
+    const state: string = getGamestate()
     switch (state) {
         case 'Battle':
             return getValue('battle.player.party_position')
@@ -164,7 +164,7 @@ function getPlayerPartyPosition(): number {
 }
 
 export function preprocessor() {
-    const gamestate = getMetaState()
+    const gamestate = getGamestate()
     variables.dma_a = memory.defaultNamespace.get_uint32_le(0x3005D8C);
     variables.dma_b = memory.defaultNamespace.get_uint32_le(0x3005D90);
     variables.dma_c = memory.defaultNamespace.get_uint32_le(0x3005D94);

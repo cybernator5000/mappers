@@ -670,8 +670,8 @@
         </pointers>
         <meta>
 			<property name="generation" type="int" value="3" />
-			<property name="game_name"  type="int" value="Emerald" />
-			<property name="game_type"  type="int" value="Third Version" />
+			<property name="game_name"  type="string" value="Emerald" />
+			<property name="game_type"  type="string" value="Third Version" />
 			<property name="state"      type="string" />
 			<!-- <property name="state_enemy" type="string" /> -->
 		</meta>

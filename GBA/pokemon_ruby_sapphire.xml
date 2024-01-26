@@ -291,7 +291,7 @@
         <battle>
             <property name="outcome" type="int" />
             <player>
-                <!-- <property name="party_position" type="int" length="2" address="0x02023BCE" /> -->
+                <property name="party_position" type="int" length="2" address="0x2024A6A" />
                 <!-- <property name="party_position_2" type="int" length="2" address="0x02023BD2" /> -->
                 <class name="active_pokemon" type="battle_structure" var:address="0x2024A80" var:party_position="0x02024A6A" length="2" />
                 <class name="active_pokemon_2" type="battle_structure" var:address="0x2024B30" var:party_position="0x2024A6E" length="2" />
@@ -439,8 +439,8 @@
         </pointers>
         <meta>
             <property name="generation" type="int" value="3" />
-			<property name="game_name"  type="int" value="Ruby and Sapphire" />
-            <property name="game_type"  type="int" value="Originals" />
+			<property name="game_name"  type="string" value="Ruby and Sapphire" />
+            <property name="game_type"  type="string" value="Originals" />
 			<property name="state"      type="string" />
 			<!-- <property name="state_enemy" type="string" /> -->
         </meta>

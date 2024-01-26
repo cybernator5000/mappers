@@ -1217,8 +1217,8 @@
         </input>
         <meta>
 			<property name="generation" type="int" value="1" />
-			<property name="game_name"  type="int" value="Red and Blue" />
-			<property name="game_type"  type="int" value="Originals" />
+			<property name="game_name"  type="string" value="Red and Blue" />
+			<property name="game_type"  type="string" value="Originals" />
 			<property name="state"      type="string" />
 			<!-- <property name="state_enemy" type="string" /> -->
 		</meta>

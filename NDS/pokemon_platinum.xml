@@ -72,8 +72,8 @@
 				<met_info>
 					<property name="date_egg_received" type="int" address="120" memoryContainer="memoryContainer" length="3" />
 					<property name="date_met"          type="int" address="123" memoryContainer="memoryContainer" length="3" />
-					<property name="dp_egg_location"   type="int" address="126" memoryContainer="memoryContainer" length="2" />
-					<property name="dp_met_location"   type="int" address="128" memoryContainer="memoryContainer" length="2" />
+					<property name="egg_location"      type="int" address="126" memoryContainer="memoryContainer" length="2" />
+					<property name="met_location"      type="int" address="128" memoryContainer="memoryContainer" length="2" />
 					<property name="pokeball"          type="int" address="131" memoryContainer="memoryContainer" />
 					<property name="met_level"         type="int" address="132" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 6, 0)" />
 					<property name="female_ot_gender"  type="bit" address="132" memoryContainer="memoryContainer" position="7" />
@@ -263,8 +263,10 @@
 
 		<wild_encounter>
 		    <property name="level"   type="int" address="address" />
-            <property name="species" type="int" address="address + 4" reference="species" />
-            <property name="dex_number" type="int" address="address + 4" reference="dex_numbers" />
+		    <property name="level_low"   type="int" address="address"/> <!-- this is the lowest/only level it can be -->
+		    <property name="level_high"   type="int" address="address + 1"/> <!-- This is the highest level it can be. pokemon by fishing or surfing are a range and the game uses rng to decide it -->
+            <property name="species" type="int" address="address + 4" length="4" reference="species" />
+            <property name="dex_number" type="int" address="address + 4" length="4" reference="dex_numbers" />
 		</wild_encounter>
 	</classes>
 
@@ -299,7 +301,7 @@
 		</player>
 		<bag>
             <property name="money" type="int" address="global_pointer + 0xD070" length="4" />
-            <property name="coins" type="int" address="global_pointer + 0xD07C" /> <!-- TODO: obtain address -->
+            <property name="coins" type="int" address="global_pointer + 0xD07C" length="4" />
 			<items>
 				<class name="0"  type="player_item" var:address="global_pointer + 0xD624" />
 				<class name="1"  type="player_item" var:address="global_pointer + 0xD624 + 4" />
@@ -569,17 +571,17 @@
 			</battle_items>
 			<mail>
 				<class name="0"  type="player_item" var:address="global_pointer + 0xDB10 + 0" />
-				<class name="1"  type="player_item" var:address="global_pointer + 0xD810 + 4" />
-				<class name="2"  type="player_item" var:address="global_pointer + 0xD810 + 8" />
-				<class name="3"  type="player_item" var:address="global_pointer + 0xD810 + 12" />
-				<class name="4"  type="player_item" var:address="global_pointer + 0xD810 + 16" />
-				<class name="5"  type="player_item" var:address="global_pointer + 0xD810 + 20" />
-				<class name="6"  type="player_item" var:address="global_pointer + 0xD810 + 24" />
-				<class name="7"  type="player_item" var:address="global_pointer + 0xD810 + 28" />
-				<class name="8"  type="player_item" var:address="global_pointer + 0xD810 + 32" />
-				<class name="9"  type="player_item" var:address="global_pointer + 0xD810 + 36" />
-				<class name="10" type="player_item" var:address="global_pointer + 0xD810 + 40" />
-				<class name="11" type="player_item" var:address="global_pointer + 0xD810 + 44" />
+				<class name="1"  type="player_item" var:address="global_pointer + 0xDB10 + 4" />
+				<class name="2"  type="player_item" var:address="global_pointer + 0xDB10 + 8" />
+				<class name="3"  type="player_item" var:address="global_pointer + 0xDB10 + 12" />
+				<class name="4"  type="player_item" var:address="global_pointer + 0xDB10 + 16" />
+				<class name="5"  type="player_item" var:address="global_pointer + 0xDB10 + 20" />
+				<class name="6"  type="player_item" var:address="global_pointer + 0xDB10 + 24" />
+				<class name="7"  type="player_item" var:address="global_pointer + 0xDB10 + 28" />
+				<class name="8"  type="player_item" var:address="global_pointer + 0xDB10 + 32" />
+				<class name="9"  type="player_item" var:address="global_pointer + 0xDB10 + 36" />
+				<class name="10" type="player_item" var:address="global_pointer + 0xDB10 + 40" />
+				<class name="11" type="player_item" var:address="global_pointer + 0xDB10 + 44" />
 			</mail>
 		</bag>
 		<overworld>
@@ -587,7 +589,6 @@
             <property name="map_index" type="int" length="2" address="global_pointer + 0xE274" />
 			<property name="x" type="int" length="4" address="global_pointer + 0xE27C" />
             <property name="y" type="int" length="4" address="global_pointer + 0xE280" />
-            <!-- <property name="z" type="int" length="4" address="global_pointer + 0xE458" /> TODO: find platinum offsets -->
 			<!-- REQUIRE ADDITIONAL PROPERTIES AND A FUNCTION TO CALCULATE THE CURRENT RATE 
 				Need to know the state of the player (Walking, surfing, fishing, etc.) and then
 				dynamically assign the encounter rate based on this
@@ -601,6 +602,32 @@
 				<property name="super_rod" type="int" length="4" address="global_pointer + 0x30540" />
 			</encounter_rates>
 			<encounter_table>
+			<!-- TODO: addresses -->
+				<!-- <walking>
+					<class name="0"  type="wild_encounter" address="global_pointer + 0x315c0 + 4"  reference="species" />
+					<class name="1"  type="wild_encounter" address="global_pointer + 0x315c0 + 12"  reference="species" />
+					<class name="2"  type="wild_encounter" address="global_pointer + 0x315c0 + 20"  reference="species" />
+					<class name="3"  type="wild_encounter" address="global_pointer + 0x315c0 + 28"  reference="species" />
+					<class name="4"  type="wild_encounter" address="global_pointer + 0x315c0 + 36"  reference="species" />
+					<class name="5"  type="wild_encounter" address="global_pointer + 0x315c0 + 44"  reference="species" />
+					<class name="6"  type="wild_encounter" address="global_pointer + 0x315c0 + 52"  reference="species" />
+					<class name="7"  type="wild_encounter" address="global_pointer + 0x315c0 + 60"  reference="species" />
+					<class name="8"  type="wild_encounter" address="global_pointer + 0x315c0 + 68"  reference="species" />
+					<class name="9"  type="wild_encounter" address="global_pointer + 0x315c0 + 74"  reference="species" />
+					<class name="10" type="wild_encounter" address="global_pointer + 0x315c0 + 82"  reference="species" />
+					<class name="11" type="wild_encounter" address="global_pointer + 0x315c0 + 90"  reference="species" />
+					<class name="12" type="wild_encounter" address="global_pointer + 0x315c0 + 98"  reference="species" />
+					<class name="13" type="wild_encounter" address="global_pointer + 0x315c0 + 106"  reference="species" />
+					<class name="14" type="wild_encounter" address="global_pointer + 0x315c0 + 114"  reference="species" />
+					<class name="15" type="wild_encounter" address="global_pointer + 0x315c0 + 122"  reference="species" />
+					<class name="16" type="wild_encounter" address="global_pointer + 0x315c0 + 130"  reference="species" />
+					<class name="17" type="wild_encounter" address="global_pointer + 0x315c0 + 138"  reference="species" />
+					<class name="18" type="wild_encounter" address="global_pointer + 0x315c0 + 146"  reference="species" />
+					<class name="19" type="wild_encounter" address="global_pointer + 0x315c0 + 154"  reference="species" />
+					<class name="20" type="wild_encounter" address="global_pointer + 0x315c0 + 160"  reference="species" />
+					<class name="21" type="wild_encounter" address="global_pointer + 0x315c0 + 168"  reference="species" />
+					<class name="22" type="wild_encounter" address="global_pointer + 0x315c0 + 176"  reference="species" />
+				</walking> -->
 				<surfing>
 					<class name="0" type="wild_encounter" address="global_pointer + 0x30490 + 4"  reference="species" />
 					<class name="1" type="wild_encounter" address="global_pointer + 0x30490 + 12" reference="species" />
@@ -784,6 +811,8 @@
 				<property name="name"    type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" />
 				<property name="trainer" type="int" address="global_pointer + 0x4E880" length="2" reference="trainers" />
 				<property name="id"      type="int" address="global_pointer + 0x4E880" length="2" />
+				<property name="enemy_bar_synced_hp" type="int" address="global_pointer + 0x54764" length="2" />
+				<property name="team_count"          type="int" address="dynamic_ally - 4" />
 				<property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3F8"/>
 				<class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 384" />
 				<team>
@@ -796,9 +825,9 @@
 				</team>
 			</ally>
 			<opponent>
-				<property name="name"    type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> <!-- May be best to filter this property so it is only the name. -->
-				<property name="trainer" type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" /> <!-- May be best to filter this property so it is only the name. -->
-				<property name="id"      type="int" address="global_pointer + 0x4E87E" length="2" /> <!-- Trainer ID contains Name, class, and ID unlike Gen1 & 2 -->
+				<property name="name"    type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" />
+				<property name="trainer" type="int" address="global_pointer + 0x4E87E" length="2" reference="trainers" />
+				<property name="id"      type="int" address="global_pointer + 0x4E87E" length="2" />
 				<property name="enemy_bar_synced_hp" type="int" address="global_pointer + 0x546A4" length="2" />
 				<property name="team_count"          type="int" address="global_pointer + 0x54598 + 0x48A0" />
 				<property name="party_position"      type="int" address="global_pointer + 0x54598 + 0x3F2"/>
@@ -815,6 +844,7 @@
 			<opponent_2>
 				<property name="trainer" type="int" address="global_pointer + 0x4E882" length="2" reference="trainers" />
 				<property name="party_position" type="int" address="global_pointer + 0x54598 + 0x3FE"/>
+				<property name="enemy_bar_synced_hp" type="int" address="global_pointer + 0x54764" length="2" />
 				<property name="team_count" type="int" address="global_pointer + 0x54598 + 0x4E50" />
 				<class name="active_pokemon" type="battle_structure" var:address="global_pointer + 0x54598 + 576" />
 				<team>
@@ -827,7 +857,7 @@
 				</team>
 			</opponent_2>
             <field>
-                <property name="weather" type="int" address="global_pointer + 0x519DC - 3" length="2" reference="weather" />
+                <property name="weather" type="int" address="global_pointer + 0x519DC - 4" length="2" reference="weather" />
                 <property name="weather_count" type="int" address="global_pointer + 0x519DC" />
             </field>
 			<other>
@@ -873,8 +903,8 @@
 		</game_time>
 		<meta>
 			<property name="generation"     type="int" value="4" />
-			<property name="game_name"      type="int" value="Platinum" />
-			<property name="game_type"      type="int" value="Third Version" />
+			<property name="game_name"      type="string" value="Platinum" />
+			<property name="game_type"      type="string" value="Third Version" />
 			<property name="state"          type="string" />
 			<property name="state_enemy"    type="string" />
 			<property name="global_pointer" type="int" address="0x2101D2C" length="4"/>
