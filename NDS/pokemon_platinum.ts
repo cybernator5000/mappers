@@ -141,10 +141,10 @@ function getPlayerPartyPosition(): number {
     }
 }
 
-// Preprocessor runs every loop (everytime gamehook updates)    22711EC
+// Preprocessor runs every loop (everytime gamehook updates)
 export function preprocessor() {
     // This is the same as the global_pointer, it is named "base_ptr" for consistency with the old C# code    
-    const base_ptr: number = memory.defaultNamespace.get_uint32_le(0x2101D2C) // Platinum pointer
+    const base_ptr: number = memory.defaultNamespace.get_uint32_le(0x2101D2C) // Platinum pointer (Test value: 22711B8)
 
     if (base_ptr === 0) {
         // Ends logic is the base_ptr is 0, this is to prevent errors during reset and getting on a bike.
@@ -153,6 +153,11 @@ export function preprocessor() {
     }
     
     variables.global_pointer = base_ptr // Variable used for mapper addresses, it is the same as "base_ptr"
+    variables.dynamic_player = base_ptr + 0x5888C
+    variables.dynamic_opponent = base_ptr +  0x58E3C
+    variables.dynamic_ally = base_ptr + 0x593EC 
+    variables.dynamic_opponent_2 = base_ptr + 0x5999C
+    variables.current_party_indexes = base_ptr + 0x54598 + 0x3EC
     const enemy_ptr = memory.defaultNamespace.get_uint32_le(base_ptr + 0x352F4) // Only needs to be calculated once per loop
 
     // Set property values
@@ -198,13 +203,11 @@ export function preprocessor() {
         // team_count is always offset from the start of the team structure by -0x04 and it's a 1-byte value
         const offsets = {
             player: 0xD094,
-            //static team structures
             static_player: 0x35514,
             static_wild: 0x35AC4,
             static_opponent: 0x7A0,
             static_ally: 0x7A0 + 0x5B0,
             static_opponent_2: 0x7A0 + 0xB60,
-            //dynamic team structures
             dynamic_player: 0x5888C,
             dynamic_opponent: 0x58E3C, 
             dynamic_ally: 0x593EC, // TODO: Requires testing
