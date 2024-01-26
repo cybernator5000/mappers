@@ -291,7 +291,7 @@
         <battle>
             <property name="outcome" type="int" />
             <player>
-                <!-- <property name="party_position" type="int" length="2" address="0x02023BCE" /> -->
+                <property name="party_position" type="int" length="2" address="0x2024A6A" />
                 <!-- <property name="party_position_2" type="int" length="2" address="0x02023BD2" /> -->
                 <class name="active_pokemon" type="battle_structure" var:address="0x2024A80" var:party_position="0x02024A6A" length="2" />
                 <class name="active_pokemon_2" type="battle_structure" var:address="0x2024B30" var:party_position="0x2024A6E" length="2" />
