@@ -791,8 +791,8 @@
 		</game_time>
 		<meta>
 			<property name="generation"     type="int" value="4" />
-			<property name="game_name"      type="int" value="HeartGold and SoulSilver" />
-			<property name="game_type"      type="int" value="Remakes" />
+			<property name="game_name"      type="string" value="HeartGold and SoulSilver" />
+			<property name="game_type"      type="string" value="Remakes" />
 			<property name="state"          type="string" />
 			<property name="state_enemy"    type="string" />
 			<property name="global_pointer" type="int" address="0x211186C" length="4"/>

@@ -439,8 +439,8 @@
         </pointers>
         <meta>
             <property name="generation" type="int" value="3" />
-			<property name="game_name"  type="int" value="Ruby and Sapphire" />
-            <property name="game_type"  type="int" value="Originals" />
+			<property name="game_name"  type="string" value="Ruby and Sapphire" />
+            <property name="game_type"  type="string" value="Originals" />
 			<property name="state"      type="string" />
 			<!-- <property name="state_enemy" type="string" /> -->
         </meta>

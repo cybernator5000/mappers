@@ -784,8 +784,8 @@
 		</game_time>
 		<meta>
 			<property name="generation"     type="int" value="4" />
-			<property name="game_name"      type="int" value="Diamond and Pearl" />
-			<property name="game_type"      type="int" value="Originals" />
+			<property name="game_name"      type="string" value="Diamond and Pearl" />
+			<property name="game_type"      type="string" value="Originals" />
 			<property name="state"          type="string" />
 			<property name="state_enemy"    type="string" />
 			<property name="global_pointer" type="int" address="0x2106FAC" length="4"/>

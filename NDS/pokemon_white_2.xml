@@ -778,8 +778,8 @@
 		</game_time>
 		<meta>
 			<property name="generation"     type="int" value="5" />
-			<property name="game_name"      type="int" value="White 2" />
-			<property name="game_type"      type="int" value="Sequel" />
+			<property name="game_name"      type="string" value="White 2" />
+			<property name="game_type"      type="string" value="Sequel" />
 			<property name="state"          type="string" /> <!-- TODO: setup ts logic once other properties are obtained -->
 			<property name="state_enemy"    type="string" /> <!-- TODO: setup ts logic once other properties are obtained -->
 			<!-- <property name="global_pointer" type="int" address="0x2101D2C" length="4"/> -->
