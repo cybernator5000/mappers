@@ -611,6 +611,10 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <property name="callback1" type="int" length="4" address="0x030022c0" reference="mainState" />
       <property name="callback2" type="int" length="4" address="0x030022c4" reference="subState" />
     </pointers>
+    <misc>
+      <property name="rngValue1" type="int" address="0x3005D80" length="4" />
+      <property name="palette5" type="int" address="0x2037724" length="4" reference="palette" />
+    </misc>
     <meta>
 			<property name="generation" type="int" value="3" />
 			<property name="gameName"   type="string" value="Emerald" />
@@ -640,7 +644,6 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <entry key="135134613" value="Black Transition #to mart" />
       <entry key="134766793" value="Black Transition #closing pc" />
       <entry key="134766541" value="Black Transition #door" />
-      <entry key="135134565" value="Mart Menu Opening" />
       <entry key="135134565" value="Mart Menu" />
       <entry key="134766589" value="Transition to Overworld" />
       <entry key="135416021" value="Fly Menu" />
