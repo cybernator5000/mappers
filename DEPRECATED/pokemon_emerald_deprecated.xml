@@ -4466,5 +4466,10 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <entry key="0x0220" value="ROUTE 119 - HOUSE" />
       <entry key="0x0021" value="ROUTE 124 - DIVING_TREASURE_HUNTERS_HOUSE" />
     </mapName>
+    <palette>
+      <entry key="411332407" value="MAIN MENU" />
+      <entry key="1744306176" value="NEW GAME" />
+      <entry key="900344134" value="RESET" />
+    </palette>
   </references>
 </mapper>
