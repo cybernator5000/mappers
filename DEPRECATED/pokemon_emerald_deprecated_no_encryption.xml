@@ -594,8 +594,8 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <property name="dma1" type="uint" length="4" address="0x3005D8C" />
       <property name="dma2" type="uint" length="4" address="0x3005D90" />
       <property name="dma3" type="uint" length="4" address="0x3005D94" />
-      <property name="callback1" type="int" length="4" address="0x030022c0" reference="mainState" />
-      <property name="callback2" type="int" length="4" address="0x030022c4" reference="subState" />
+      <property name="callback1" type="int" length="4" address="0x030022c0" />
+      <property name="callback2" type="int" length="4" address="0x030022c4" />
     </pointers>
     <misc>
       <property name="rngValue1" type="int" address="0x3005D80" length="4" />
