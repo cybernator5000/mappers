@@ -9,16 +9,16 @@ export { BitRange } from '../common';
 
 function getMetaState() {
     const team_0_level: number = getValue('player.team.0.level')
-    const callback1: string | null = getValue('pointers.callback1')
+    const callback1: number = getValue('pointers.callback1')
     // const callback2: string | null = getValue('pointers.callback1')
     const battleOutcome: string | null = getValue('battle.turnInfo.battleOutcome')
     const battleDialogue: string | null = getValue('battle.turnInfo.battleDialogue')
     const state: string = getValue('meta.state') ?? "Base Stats"
     if (team_0_level == 0) 
         return "Base Stats";
-    else if (callback1 == null)
+    else if (callback1 == 0)
         return "Base Stats";
-    else if (callback1 == "Overworld")
+    else if (callback1 == 134765285)
         return "Overworld";
     // else if (callback2 == "Battle Animation") {
     //     return "To Battle"
@@ -26,7 +26,7 @@ function getMetaState() {
     else if (battleDialogue == "Player Control" && state == "Overworld") {
         return "Battle"
     }
-    else if (battleOutcome !=  null && callback1 == "Battle") {
+    else if (battleOutcome !=  null && callback1 == 134455025) {
         return "From Battle";
     }
     else
