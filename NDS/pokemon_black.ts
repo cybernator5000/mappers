@@ -68,22 +68,22 @@ export function getGamestate(): string {
     // 4. "To Battle": not yet implemented //TODO: Implement the To Battle state, this requires a new property to accurately track it
     // 5. "From Battle": not yet implemented
     const team_count: number = getValue<number>('player.team_count')
-    const active_pokemonPv: number = getValue<number>('battle.player.active_pokemon.internals.personality_value')
-    const teamPokemonPv: number = getValue<number>('player.team.0.internals.personality_value')
-    const outcome_flags: number = getValue<number>('battle.other.outcome_flags')
+    const header: number = getValue<number>('battle_header_1_1')
+    // const active_pokemonPv: number = getValue<number>('battle.player.active_pokemon.internals.personality_value')
+    // const teamPokemonPv: number = getValue<number>('player.team.0.internals.personality_value')
+    // const outcome_flags: number = getValue<number>('battle.other.outcome_flags')
     if (team_count === 0) {
         return 'No Pokemon'
     }
-    else if (active_pokemonPv === teamPokemonPv && outcome_flags == 1) {
-        return 'From Battle'
-    }
-    else if (active_pokemonPv === teamPokemonPv) {
+    // else if (active_pokemonPv === teamPokemonPv && outcome_flags == 1) { // TODO: implement this state once an outcome flag is located
+    //     return 'From Battle'
+    // }
+    else if (header > 0) {
         return 'Battle'
     }
-    else if (active_pokemonPv !== teamPokemonPv) {
+    else {
         return 'Overworld'
     }
-    return 'No Pokemon'
 }
 
 export function getMetaEnemyState(state: string, battle_outcomes: number, enemyBarSyncedHp: number): string | null {
