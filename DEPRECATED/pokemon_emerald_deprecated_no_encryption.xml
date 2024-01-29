@@ -421,6 +421,11 @@ For all new software, please use the paths within 'pokemon_emerald.xml'
       <property name="walkRunState" type="int" address="0x2037078" reference="walkRunState"/>
       <property name="safariSteps"  type="int" address="0x2039996" />
       <property name="disabledEncounters"  type="int" address="0x02038c00" />
+      <encounter>
+        <property name="zigzagoon" type="bit" address="dma_a + 5008" posiition="0" />
+        <property name="marill"    type="bit" address="dma_a + 5008" posiition="1" />
+        <property name="taillow"   type="bit" address="dma_a + 5008" posiition="2" />
+      </encounter>
     </overworld>
     <battle>
       <property name="outcome" type="int" address="0x0202433a" reference="battleOutcome" />
