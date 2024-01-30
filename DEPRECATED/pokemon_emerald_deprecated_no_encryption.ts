@@ -5,8 +5,6 @@ import {
     getValue,
 } from "../common";
 
-export { BitRange } from '../common';
-
 function getMetaState() {
     const team_0_level: number = getValue('player.team.0.level')
     const callback1: number = getValue('pointers.callback1')
