@@ -6,6 +6,10 @@
 // 0x226D9B0 - opponent battle structure (around here)
 // 0x24400 - Box offset (likely not in primary RAM)
 
+// battle header: 0x226A200 (header)
+// battle static: 0x226A234
+// battle dynamic: 0x226A794
+
 import { 
     // variables, 
     memory, 

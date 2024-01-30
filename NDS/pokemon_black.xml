@@ -618,7 +618,7 @@
             <property name="mode"    type="string" />
             <property name="outcome" type="string" />
 			<player>
-				<!-- <property name="party_position"   type="int" address=""/> -->
+				<property name="party_position"   type="int" address="0x22717F0"/> <!-- Not the correct address, it seems to move -->
 				<!-- <property name="party_position_2" type="int" address=""/> -->
 				<property name="team_count"       type="int" address="0x22349B4 - 4" />
 				<class name="active_pokemon"      type="battle_structure" var:headerAddress="0x226D6B0" var:address="0x225B312" />
