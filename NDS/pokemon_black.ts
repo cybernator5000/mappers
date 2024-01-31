@@ -16,8 +16,8 @@ import {
     // console,
     // setValue, 
     getValue,
-    // copyProperties, 
-    // setProperty, 
+    copyProperties, 
+    setProperty, 
 } from "../common";
 
 export function getBits(a: number, b: number, d: number): number {
@@ -156,7 +156,7 @@ export function getEncounterRate(): number {
 // Preprocessor runs every loop (everytime gamehook updates)
 export function preprocessor() {
     // // Set property values
-    // const metaState: string = getGamestate()
+    const gamestate: string = getGamestate()
     // const battle_outcomes: number = getValue<number>('battle.outcome')
     // const enemyBarSyncedHp: number = getValue<number>('battle.opponent.enemy_bar_synced_hp')
     // const opponentTrainer: string | null = getValue<string | null>('battle.opponent.trainer')
@@ -183,6 +183,9 @@ export function preprocessor() {
         
     //     copyProperties(`player.team.${party_position_overworld}`, 'player.active_pokemon')
     // }
+
+    const party_position_battle = getValue('battle.player.party_position')
+    copyProperties(`battle.player.team.${party_position_battle}`, 'battle.player.active_pokemon')
 
     // Loop through various party-structures to decrypt the Pokemon data
     const partyStructures = [
