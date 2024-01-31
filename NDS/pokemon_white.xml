@@ -7,96 +7,96 @@
 
 	<classes>
 		<party_pokemon>
-			<property name="species"    type="int"    address="8"   memoryContainer="memoryContainer" length="2" reference="species" />
-			<property name="dex_number" type="int"    address="8"   memoryContainer="memoryContainer" length="2" />
-			<property name="nickname"   type="string" address="72"  memoryContainer="memoryContainer" length="22" size="2" />
-			<property name="level"      type="int"    address="140" memoryContainer="memoryContainer"  />
-			<property name="exp"        type="int"    address="16"  memoryContainer="memoryContainer" length="4" />
-			<property name="ot_name"    type="string" address="104" memoryContainer="memoryContainer" length="16" size="2" />
-			<property name="ot_id"      type="int"    address="12"  memoryContainer="memoryContainer" length="2" />
-			<property name="ability"    type="int"    address="21"  memoryContainer="memoryContainer" reference="abilities" />
-			<property name="nature"     type="uint"   address="65"  memoryContainer="memoryContainer" length="4" reference="natures" after-read-value-expression="x % 25" />
-			<property name="held_item"  type="int"    address="10"  memoryContainer="memoryContainer" length="2" reference="items" />
-			<property name="friendship" type="int"    address="20"  memoryContainer="memoryContainer"  />
-			<property name="pokerus"    type="int"    address="130" memoryContainer="memoryContainer"  />
-			<property name="gender"     type="bit"    address="64"  memoryContainer="memoryContainer" position="1" />
-			<property name="status_condition" type="int" address="136" memoryContainer="memoryContainer" reference="status_conditions" />
+			<property name="species"    type="int"    address="8"   memoryContainer="{memoryContainer}" length="2" reference="species" />
+			<property name="dex_number" type="int"    address="8"   memoryContainer="{memoryContainer}" length="2" />
+			<property name="nickname"   type="string" address="72"  memoryContainer="{memoryContainer}" length="22" size="2" />
+			<property name="level"      type="int"    address="140" memoryContainer="{memoryContainer}"  />
+			<property name="exp"        type="int"    address="16"  memoryContainer="{memoryContainer}" length="4" />
+			<property name="ot_name"    type="string" address="104" memoryContainer="{memoryContainer}" length="16" size="2" />
+			<property name="ot_id"      type="int"    address="12"  memoryContainer="{memoryContainer}" length="2" />
+			<property name="ability"    type="int"    address="21"  memoryContainer="{memoryContainer}" reference="abilities" />
+			<property name="nature"     type="uint"   address="65"  memoryContainer="{memoryContainer}" length="4" reference="natures" after-read-value-expression="x % 25" />
+			<property name="held_item"  type="int"    address="10"  memoryContainer="{memoryContainer}" length="2" reference="items" />
+			<property name="friendship" type="int"    address="20"  memoryContainer="{memoryContainer}"  />
+			<property name="pokerus"    type="int"    address="130" memoryContainer="{memoryContainer}"  />
+			<property name="gender"     type="bit"    address="64"  memoryContainer="{memoryContainer}" position="1" />
+			<property name="status_condition" type="int" address="136" memoryContainer="{memoryContainer}" reference="status_conditions" />
 			<moves>
-				<class name="0" type="pokemon_moves" var:moveNumberOffset="40" var:ppOffset="48" var:ppUpOffset="52" memoryContainer="memoryContainer" />
-				<class name="1" type="pokemon_moves" var:moveNumberOffset="42" var:ppOffset="49" var:ppUpOffset="53" memoryContainer="memoryContainer" />
-				<class name="2" type="pokemon_moves" var:moveNumberOffset="44" var:ppOffset="50" var:ppUpOffset="54" memoryContainer="memoryContainer" />
-				<class name="3" type="pokemon_moves" var:moveNumberOffset="46" var:ppOffset="51" var:ppUpOffset="55" memoryContainer="memoryContainer" />
+				<class name="0" type="pokemon_moves" var:moveNumberOffset="40" var:ppOffset="48" var:ppUpOffset="52" memoryContainer="{memoryContainer}" />
+				<class name="1" type="pokemon_moves" var:moveNumberOffset="42" var:ppOffset="49" var:ppUpOffset="53" memoryContainer="{memoryContainer}" />
+				<class name="2" type="pokemon_moves" var:moveNumberOffset="44" var:ppOffset="50" var:ppUpOffset="54" memoryContainer="{memoryContainer}" />
+				<class name="3" type="pokemon_moves" var:moveNumberOffset="46" var:ppOffset="51" var:ppUpOffset="55" memoryContainer="{memoryContainer}" />
 			</moves>
 			<stats>
-				<property name="hp"              type="int" address="142" length="2" memoryContainer="memoryContainer" />
-				<property name="hp_max"          type="int" address="144" length="2" memoryContainer="memoryContainer" />
-				<property name="attack"          type="int" address="146" length="2" memoryContainer="memoryContainer" />
-				<property name="defense"         type="int" address="148" length="2" memoryContainer="memoryContainer" />
-				<property name="speed"           type="int" address="150" length="2" memoryContainer="memoryContainer" />
-				<property name="special_attack"  type="int" address="152" length="2" memoryContainer="memoryContainer" />
-				<property name="special_defense" type="int" address="154" length="2" memoryContainer="memoryContainer" />
+				<property name="hp"              type="int" address="142" length="2" memoryContainer="{memoryContainer}" />
+				<property name="hp_max"          type="int" address="144" length="2" memoryContainer="{memoryContainer}" />
+				<property name="attack"          type="int" address="146" length="2" memoryContainer="{memoryContainer}" />
+				<property name="defense"         type="int" address="148" length="2" memoryContainer="{memoryContainer}" />
+				<property name="speed"           type="int" address="150" length="2" memoryContainer="{memoryContainer}" />
+				<property name="special_attack"  type="int" address="152" length="2" memoryContainer="{memoryContainer}" />
+				<property name="special_defense" type="int" address="154" length="2" memoryContainer="{memoryContainer}" />
 			</stats>
 			<ivs>
-				<property name="hp"              type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 0, 5)" />
-				<property name="attack"          type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 5, 5)" />
-				<property name="defense"         type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 10, 5)" />
-				<property name="speed"           type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 15, 5)" />
-				<property name="special_attack"  type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 20, 5)" />
-				<property name="special_defense" type="int" address="56" length="4" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 25, 5)" />
+				<property name="hp"              type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="0-4"   />
+				<property name="attack"          type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="5-9"   />
+				<property name="defense"         type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="10-14" />
+				<property name="speed"           type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="15-19" />
+				<property name="special_attack"  type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="20-24" />
+				<property name="special_defense" type="int" address="56" length="4" memoryContainer="{memoryContainer}" bits="25-29" />
 			</ivs>
 			<evs>
-				<property name="hp"              type="int" address="24" memoryContainer="memoryContainer" />
-				<property name="attack"          type="int" address="25" memoryContainer="memoryContainer" />
-				<property name="defense"         type="int" address="26" memoryContainer="memoryContainer" />
-				<property name="speed"           type="int" address="27" memoryContainer="memoryContainer" />
-				<property name="special_attack"  type="int" address="28" memoryContainer="memoryContainer" />
-				<property name="special_defense" type="int" address="29" memoryContainer="memoryContainer" />
+				<property name="hp"              type="int" address="24" memoryContainer="{memoryContainer}" />
+				<property name="attack"          type="int" address="25" memoryContainer="{memoryContainer}" />
+				<property name="defense"         type="int" address="26" memoryContainer="{memoryContainer}" />
+				<property name="speed"           type="int" address="27" memoryContainer="{memoryContainer}" />
+				<property name="special_attack"  type="int" address="28" memoryContainer="{memoryContainer}" />
+				<property name="special_defense" type="int" address="29" memoryContainer="{memoryContainer}" />
 			</evs>
 			<flags>
-				<property name="is_egg"              type="bit" address="56" memoryContainer="memoryContainer" length="4" position="30"/>
-				<property name="is_nicknamed"        type="bit" address="56" memoryContainer="memoryContainer" length="4" position="31"/>
-				<property name="skip_checksum"       type="int" address="4"  memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 0, 2)"/>
-				<property name="is_bad_egg"          type="bit" address="4"  memoryContainer="memoryContainer" position="2"/>
-				<property name="genderless"          type="bit" address="64"  memoryContainer="memoryContainer" position="1" />
-				<property name="alternate_form"      type="int" address="64" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 3, 7)" />
-				<property name="dream_world_ability" type="bit" address="66"  memoryContainer="memoryContainer" position="0" />
-				<property name="n_pokemon_flag"      type="bit" address="66"  memoryContainer="memoryContainer" position="1" />
+				<property name="is_egg"              type="bit" address="56" memoryContainer="{memoryContainer}" length="4" position="30"/>
+				<property name="is_nicknamed"        type="bit" address="56" memoryContainer="{memoryContainer}" length="4" position="31"/>
+				<property name="skip_checksum"       type="int" address="4"  memoryContainer="{memoryContainer}" bits="0-2"/>
+				<property name="is_bad_egg"          type="bit" address="4"  memoryContainer="{memoryContainer}" position="2"/>
+				<property name="genderless"          type="bit" address="64" memoryContainer="{memoryContainer}" position="1" />
+				<property name="alternate_form"      type="int" address="64" memoryContainer="{memoryContainer}" bits="3-7" />
+				<property name="dream_world_ability" type="bit" address="66" memoryContainer="{memoryContainer}" position="0" />
+				<property name="n_pokemon_flag"      type="bit" address="66" memoryContainer="{memoryContainer}" position="1" />
 			</flags>
 			<internals>
-				<property name="personality_value" type="uint" address="0"  memoryContainer="memoryContainer" length="4" />
-				<property name="checksum"          type="uint" address="6"  memoryContainer="memoryContainer" length="2" />
-				<property name="secret_id"         type="int"  address="14" memoryContainer="memoryContainer" length="2" />
-				<property name="language"          type="int"  address="23" memoryContainer="memoryContainer" reference="language" />
-				<property name="origin_game"       type="int"  address="95" memoryContainer="memoryContainer" /> <!-- TODO: create references -->
+				<property name="personality_value" type="uint" address="0"  memoryContainer="{memoryContainer}" length="4" />
+				<property name="checksum"          type="uint" address="6"  memoryContainer="{memoryContainer}" length="2" />
+				<property name="secret_id"         type="int"  address="14" memoryContainer="{memoryContainer}" length="2" />
+				<property name="language"          type="int"  address="23" memoryContainer="{memoryContainer}" reference="language" />
+				<property name="origin_game"       type="int"  address="95" memoryContainer="{memoryContainer}" /> <!-- TODO: create references -->
 			</internals>
 			<misc>
-				<property name="markings"    type="int" address="22"  memoryContainer="memoryContainer" />
-				<property name="sheen"       type="int" address="35"  memoryContainer="memoryContainer" />
-				<property name="hgss_ball"   type="int" address="134" memoryContainer="memoryContainer" />
-				<property name="performance" type="int" address="135" memoryContainer="memoryContainer" />
+				<property name="markings"    type="int" address="22"  memoryContainer="{memoryContainer}" />
+				<property name="sheen"       type="int" address="35"  memoryContainer="{memoryContainer}" />
+				<property name="hgss_ball"   type="int" address="134" memoryContainer="{memoryContainer}" />
+				<property name="performance" type="int" address="135" memoryContainer="{memoryContainer}" />
 				<met_info>
-					<property name="date_egg_received" type="int" address="120" memoryContainer="memoryContainer" length="3" />
-					<property name="date_met"          type="int" address="123" memoryContainer="memoryContainer" length="3" />
-					<property name="egg_location"      type="int" address="126" memoryContainer="memoryContainer" length="2" />
-					<property name="met_location"      type="int" address="128" memoryContainer="memoryContainer" length="2" />
-					<property name="pokeball"          type="int" address="131" memoryContainer="memoryContainer" />
-					<property name="met_level"         type="int" address="132" memoryContainer="memoryContainer" after-read-value-expression="getBits(x, 6, 0)" />
-					<property name="female_ot_gender"  type="bit" address="132" memoryContainer="memoryContainer" position="7" />
-					<property name="encounter_type"    type="int" address="133" memoryContainer="memoryContainer" />
-					<property name="fateful_encounter" type="bit" address="64"  memoryContainer="memoryContainer" position="0" />
+					<property name="date_egg_received" type="int" address="120" memoryContainer="{memoryContainer}" length="3" />
+					<property name="date_met"          type="int" address="123" memoryContainer="{memoryContainer}" length="3" />
+					<property name="egg_location"      type="int" address="126" memoryContainer="{memoryContainer}" length="2" />
+					<property name="met_location"      type="int" address="128" memoryContainer="{memoryContainer}" length="2" />
+					<property name="pokeball"          type="int" address="131" memoryContainer="{memoryContainer}" />
+					<property name="met_level"         type="int" address="132" memoryContainer="{memoryContainer}" bits="0-6" />
+					<property name="female_ot_gender"  type="bit" address="132" memoryContainer="{memoryContainer}" position="7" />
+					<property name="encounter_type"    type="int" address="133" memoryContainer="{memoryContainer}" />
+					<property name="fateful_encounter" type="bit" address="64"  memoryContainer="{memoryContainer}" position="0" />
 				</met_info>
 				<contest>
-					<property name="contest_cool"   type="int" address="30" memoryContainer="memoryContainer" />
-					<property name="contest_beauty" type="int" address="31" memoryContainer="memoryContainer" />
-					<property name="contest_cute"   type="int" address="32" memoryContainer="memoryContainer" />
-					<property name="contest_smart"  type="int" address="33" memoryContainer="memoryContainer" />
-					<property name="contest_tough"  type="int" address="34" memoryContainer="memoryContainer" />
+					<property name="contest_cool"   type="int" address="30" memoryContainer="{memoryContainer}" />
+					<property name="contest_beauty" type="int" address="31" memoryContainer="{memoryContainer}" />
+					<property name="contest_cute"   type="int" address="32" memoryContainer="{memoryContainer}" />
+					<property name="contest_smart"  type="int" address="33" memoryContainer="{memoryContainer}" />
+					<property name="contest_tough"  type="int" address="34" memoryContainer="{memoryContainer}" />
 				</contest>
 				<ribbons>
-					<property name="sinnoh_set_1" type="int" address="60" length="2" memoryContainer="memoryContainer" />
-					<property name="sinnoh_set_2" type="int" address="62" length="2" memoryContainer="memoryContainer" />
-					<property name="sinnoh_set_1" type="int" address="36" length="2" memoryContainer="memoryContainer" />
-					<property name="unova_set_1"  type="int" address="38" length="2" memoryContainer="memoryContainer" />
+					<property name="sinnoh_set_1" type="int" address="60" length="2" memoryContainer="{memoryContainer}" />
+					<property name="sinnoh_set_2" type="int" address="62" length="2" memoryContainer="{memoryContainer}" />
+					<property name="sinnoh_set_1" type="int" address="36" length="2" memoryContainer="{memoryContainer}" />
+					<property name="unova_set_1"  type="int" address="38" length="2" memoryContainer="{memoryContainer}" />
 				</ribbons>
 			</misc>
 		</party_pokemon>
@@ -211,14 +211,14 @@
         </active_pokemon_move>
 
 		<pokemon_moves>
-			<property name="move"  type="int" address="moveNumberOffset"  memoryContainer="memoryContainer" reference="moves" length="2" />
-			<property name="pp"    type="int" address="ppOffset" memoryContainer="memoryContainer" after-read-value-expression="x % 64" />
-			<property name="pp_up" type="int" address="ppUpOffset" memoryContainer="memoryContainer" after-read-value-expression="Math.floor(x / 64)" />
+			<property name="move"  type="int" address="{moveNumberOffset}"  memoryContainer="{memoryContainer}" reference="moves" length="2" />
+			<property name="pp"    type="int" address="{ppOffset}" memoryContainer="{memoryContainer}" after-read-value-expression="x % 64" />
+			<property name="pp_up" type="int" address="{ppUpOffset}" memoryContainer="{memoryContainer}" after-read-value-expression="Math.floor(x / 64)" />
 		</pokemon_moves>
 
 		<battle_move>
-			<property name="move"  type="int" address="address + moveNumberOffset"  reference="moves" length="2" />
-			<property name="pp"    type="int" address="address + ppOffset" after-read-value-expression="x % 64" />
+			<property name="move"  type="int" address="{address} + {moveNumberOffset}"  reference="moves" length="2" />
+			<property name="pp"    type="int" address="{address} + {ppOffset}" after-read-value-expression="x % 64" />
 			<property name="pp_up" type="int" value="null" />
 		</battle_move>
 
