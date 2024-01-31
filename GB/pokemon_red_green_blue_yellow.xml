@@ -1,172 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mapper id="e1396b30-2dc2-11ee-be56-0242ac120002" name="Pokemon Red and Blue" platform="GB"
+<mapper id="7ade791c-f841-404b-be15-873f88ade48a" name="Pokemon Red, Green, Blue and Yellow (JP)" platform="GB"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://schemas.gamehook.io/mapper https://schemas.gamehook.io/mapper.xsd"
     xmlns:var="https://schemas.gamehook.io/attributes/var">
     <macros>
         <pokemon>
-            <property name="species"    type="int" address="address" reference="species" />
-            <property name="dex_number" type="int" address="address" reference="dex_numbers" />
+            <property name="species"    type="int" address="{address}" reference="species" />
+            <property name="dex_number" type="int" address="{address}" reference="dex_numbers" />
         </pokemon>
     </macros>
 
     <classes>
         <party_pokemon>
             <macro type="pokemon" />
-            <property name="nickname"   type="string" address="nickname_address" length="6" />
-            <property name="level"      type="int" address="address + 33" />
-            <property name="exp"        type="int" address="address + 14" length="3" />
-            <property name="type_1"     type="int" address="address + 5"  reference="pokemon_types" />
-            <property name="type_2"     type="int" address="address + 6"  reference="pokemon_types" />
-            <property name="ot_id"      type="int" address="address + 12" length="2" />
-            <property name="catch_rate" type="int" address="address + 7"  description="Held item when traded to gen2" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
-            <property name="status_condition" type="int" address="address + 4"  reference="status_conditions" />
+            <property name="nickname"   type="string" address="{nicknameAddress}" length="6" />
+            <property name="level"      type="int" address="{address} + 33" />
+            <property name="exp"        type="int" address="{address} + 14" length="3" />
+            <property name="type_1"     type="int" address="{address} + 5"  reference="pokemon_types" />
+            <property name="type_2"     type="int" address="{address} + 6"  reference="pokemon_types" />
+            <property name="ot_id"      type="int" address="{address} + 12" length="2" />
+            <property name="catch_rate" type="int" address="{address} + 7"  description="Held item when traded to gen2" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="status_condition" type="int" address="{address} + 4"  reference="status_conditions" />
             <moves>
-                <class name="0" type="party_move" var:moveAddress="address + 8" />
-                <class name="1" type="party_move" var:moveAddress="address + 9" />
-                <class name="2" type="party_move" var:moveAddress="address + 10" />
-                <class name="3" type="party_move" var:moveAddress="address + 11" />
+                <class name="0" type="party_move" var:moveAddress="{address} + 8" />
+                <class name="1" type="party_move" var:moveAddress="{address} + 9" />
+                <class name="2" type="party_move" var:moveAddress="{address} + 10" />
+                <class name="3" type="party_move" var:moveAddress="{address} + 11" />
             </moves>
             <stats>
-                <property name="hp"      type="int" address="address + 1"  length="2" />
-                <property name="hp_max"  type="int" address="address + 34" length="2" />
-                <property name="attack"  type="int" address="address + 36" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
-                <property name="defense" type="int" address="address + 38" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
-                <property name="speed"   type="int" address="address + 40" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
-                <property name="special" type="int" address="address + 42" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
+                <property name="hp"      type="int" address="{address} + 1"  length="2" />
+                <property name="hp_max"  type="int" address="{address} + 34" length="2" />
+                <property name="attack"  type="int" address="{address} + 36" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
+                <property name="defense" type="int" address="{address} + 38" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
+                <property name="speed"   type="int" address="{address} + 40" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
+                <property name="special" type="int" address="{address} + 42" length="2" description="The Attack stat as it appears in the Pokemon's summary page in game" />
             </stats>
             <ivs>
                 <property name="hp"      type="int"    description="Calculated from the IVs; not actually stored in memory" />
-                <property name="attack"  type="nibble" address="address + 27" position="0" />
-                <property name="defense" type="nibble" address="address + 27" position="1" />
-                <property name="speed"   type="nibble" address="address + 28" position="0" />
-                <property name="special" type="nibble" address="address + 28" position="1" />
+                <property name="attack"  type="nibble" address="{address} + 27" position="0" />
+                <property name="defense" type="nibble" address="{address} + 27" position="1" />
+                <property name="speed"   type="nibble" address="{address} + 28" position="0" />
+                <property name="special" type="nibble" address="{address} + 28" position="1" />
             </ivs>
             <evs>
-                <property name="hp"      type="int" address="address + 17" length="2" description="HP EV (stat experience)" />
-                <property name="attack"  type="int" address="address + 19" length="2" description="Attack EV (stat experience)" />
-                <property name="defense" type="int" address="address + 21" length="2" description="Defense EV (stat experience)" />
-                <property name="speed"   type="int" address="address + 23" length="2" description="Speed EV (stat experience)" />
-                <property name="special" type="int" address="address + 25" length="2" description="Special EV (stat experience)" />
+                <property name="hp"      type="int" address="{address} + 17" length="2" description="HP EV (stat experience)" />
+                <property name="attack"  type="int" address="{address} + 19" length="2" description="Attack EV (stat experience)" />
+                <property name="defense" type="int" address="{address} + 21" length="2" description="Defense EV (stat experience)" />
+                <property name="speed"   type="int" address="{address} + 23" length="2" description="Speed EV (stat experience)" />
+                <property name="special" type="int" address="{address} + 25" length="2" description="Special EV (stat experience)" />
             </evs>
         </party_pokemon>
-
+        <player_active_pokemon>
+            <property name="species"    type="string" />
+            <property name="dex_number" type="int" />
+            <property name="nickname"   type="string" />
+            <property name="level"      type="int" />
+            <property name="exp"        type="int" />
+            <property name="type_1"     type="string" />
+            <property name="type_2"     type="string" />
+            <property name="ot_id"      type="int" />
+            <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="status_condition" type="string" />
+            <moves>
+                <class name="0" type="active_pokemon_move" />
+                <class name="1" type="active_pokemon_move" />
+                <class name="2" type="active_pokemon_move" />
+                <class name="3" type="active_pokemon_move" />
+            </moves>
+            <stats>
+                <property name="hp"      type="int" />
+                <property name="hp_max"  type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </stats>
+            <ivs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </ivs>
+            <evs>
+                <property name="hp"      type="int" />
+                <property name="attack"  type="int" />
+                <property name="defense" type="int" />
+                <property name="speed"   type="int" />
+                <property name="special" type="int" />
+            </evs>
+            <modifiers>
+                <property name="attack"   type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="defense"  type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="speed"    type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="special"  type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="accuracy" type="int" /> <!--same memory location across all Gen1 games-->
+                <property name="evasion"  type="int" /> <!--same memory location across all Gen1 games-->
+            </modifiers>
+            <volatile_status_conditions>
+                <property name="confusion"  type="bool" />     
+                <property name="toxic"      type="bool" />
+                <property name="leech_seed" type="bool" />
+            </volatile_status_conditions>
+            <effects>
+                <property name="bide"            type="bool" />
+                <property name="thrash"          type="bool" />
+                <property name="multi_hit"       type="bool" />
+                <property name="flinch"          type="bool" />
+                <property name="charging"        type="bool" />
+                <property name="multi_turn"      type="bool" />
+                <property name="invulnerable"    type="bool" />
+                <property name="bypass_accuracy" type="bool" />
+                <property name="mist"            type="bool" />
+                <property name="focus_energy"    type="bool" />
+                <property name="substitute"      type="bool" />
+                <property name="recharge"        type="bool" />
+                <property name="rage"            type="bool" />
+                <property name="lightscreen"     type="bool" />
+                <property name="reflect"         type="bool" />
+                <property name="transformed"     type="bool" />
+            </effects>
+            <counters>
+                <property name="multi_hit" type="bool" />
+                <property name="confusion" type="bool" />
+                <property name="toxic"     type="bool" />
+                <property name="disable"   type="bool" />
+            </counters>
+            <last_move>
+                <property name="move"     type="int" />
+                <property name="effect"   type="int" />
+                <property name="power"    type="int" />
+                <property name="type"     type="int" />
+                <property name="accuracy" type="int" />
+                <property name="pp_max"   type="int" />
+            </last_move>
+        </player_active_pokemon>
         <pc_pokemon>
             <macro type="pokemon" />
-            <property name="nickname" type="string" address="nickname_address" length="6" />
-            <property name="level"    type="int"    address="address + 3" />
-            <property name="exp"      type="int"    address="address + 14" length="3" />
-            <property name="type_1"   type="int"    address="address + 5"  reference="pokemon_types" />
-            <property name="type_2"   type="int"    address="address + 6"  reference="pokemon_types" />
-            <property name="ot_id"    type="int"    address="address + 12" length="2" />
-            <property name="status_condition" type="int"    address="address + 4"  reference="status_conditions" />
+            <property name="nickname" type="string" address="{nicknameAddress}" length="6" />
+            <property name="level"    type="int"    address="{address} + 3" />
+            <property name="exp"      type="int"    address="{address} + 14" length="3" />
+            <property name="type_1"   type="int"    address="{address} + 5"  reference="pokemon_types" />
+            <property name="type_2"   type="int"    address="{address} + 6"  reference="pokemon_types" />
+            <property name="ot_id"    type="int"    address="{address} + 12" length="2" />
+            <property name="status_condition" type="int"    address="{address} + 4"  reference="status_conditions" />
             <stats>
-                <property name="hp" type="int" address="address + 1" length="2" />
+                <property name="hp" type="int" address="{address} + 1" length="2" />
                 <!-- Other stats are not stored by the game to minimize filesize, they are recalculated when the Pokemon is withdrawn from the PC. -->
             </stats>
             <moves>
-                <class name="0" type="party_move" var:moveAddress="address + 2" />
-                <class name="1" type="party_move" var:moveAddress="address + 3" />
-                <class name="2" type="party_move" var:moveAddress="address + 4" />
-                <class name="3" type="party_move" var:moveAddress="address + 5" />
+                <class name="0" type="party_move" var:moveAddress="{address} + 2" />
+                <class name="1" type="party_move" var:moveAddress="{address} + 3" />
+                <class name="2" type="party_move" var:moveAddress="{address} + 4" />
+                <class name="3" type="party_move" var:moveAddress="{address} + 5" />
             </moves>
             <ivs>
-                <property name="attack"  type="nibble" address="address + 27" position="0" />
-                <property name="defense" type="nibble" address="address + 27" position="1" />
-                <property name="speed"   type="nibble" address="address + 28" position="0" />
-                <property name="special" type="nibble" address="address + 28" position="1" />
+                <property name="attack"  type="nibble" address="{address} + 27" position="0" />
+                <property name="defense" type="nibble" address="{address} + 27" position="1" />
+                <property name="speed"   type="nibble" address="{address} + 28" position="0" />
+                <property name="special" type="nibble" address="{address} + 28" position="1" />
             </ivs>
             <evs>
-                <property name="hp"      type="int" address="address + 17" length="2" description="HP EV (stat experience)" />
-                <property name="attack"  type="int" address="address + 19" length="2" description="Attack EV (stat experience)" />
-                <property name="defense" type="int" address="address + 21" length="2" description="Defense EV (stat experience)" />
-                <property name="speed"   type="int" address="address + 23" length="2" description="Speed EV (stat experience)" />
-                <property name="special" type="int" address="address + 25" length="2" description="Special EV (stat experience)" />
+                <property name="hp"      type="int" address="{address} + 17" length="2" description="HP EV (stat experience)" />
+                <property name="attack"  type="int" address="{address} + 19" length="2" description="Attack EV (stat experience)" />
+                <property name="defense" type="int" address="{address} + 21" length="2" description="Defense EV (stat experience)" />
+                <property name="speed"   type="int" address="{address} + 23" length="2" description="Speed EV (stat experience)" />
+                <property name="special" type="int" address="{address} + 25" length="2" description="Special EV (stat experience)" />
             </evs>
         </pc_pokemon>
 
+        <active_pokemon_move>
+            <property name="move"  type="int" />
+            <property name="pp"    type="int" />
+            <property name="pp_up" type="int" />
+        </active_pokemon_move>
+
         <party_move>
-            <property name="move"  type="int" address="moveAddress" reference="moves" />
-            <property name="pp"    type="int" address="moveAddress + 21" after-read-value-expression="x % 64" />
-            <property name="pp_up" type="int" address="moveAddress + 21" after-read-value-expression="Math.floor(x / 64)" />
+            <property name="move"  type="int" address="{moveAddress}" reference="moves" />
+            <property name="pp"    type="int" address="{moveAddress} + 21" after-read-value-expression="x % 64" />
+            <property name="pp_up" type="int" address="{moveAddress} + 21" after-read-value-expression="Math.floor(x / 64)" />
         </party_move>
 
         <battle_move>
-            <property name="move" type="int" address="moveAddress" reference="moves" />
-            <property name="pp"   type="int" address="moveAddress + 17" after-read-value-expression="x % 64" />
+            <property name="move" type="int" address="{moveAddress}" reference="moves" />
+            <property name="pp"   type="int" address="{moveAddress} + 17" after-read-value-expression="x % 64" />
         </battle_move>
 
         <opponent_battle_move>
-            <property name="move" type="int" address="moveAddress" reference="moves" />
+            <property name="move" type="int" address="{moveAddress}" reference="moves" />
         </opponent_battle_move>
 
         <player_item>
-            <property name="item"     type="int" address="address" reference="items" />
-            <property name="quantity" type="int" address="address + 1" />
+            <property name="item"     type="int" address="{address}" reference="items" />
+            <property name="quantity" type="int" address="{address} + 1" />
         </player_item>
 
         <encounter>
-            <property name="level"   type="int" address="address" />
-            <property name="species" type="int" address="address + 1" reference="species" />
-            <property name="dex_number" type="int" address="address + 1" reference="dex_numbers" />
+            <property name="level"   type="int" address="{address}" />
+            <property name="species" type="int" address="{address} + 1" reference="species" />
+            <property name="dex_number" type="int" address="{address} + 1" reference="dex_numbers" />
         </encounter>
     </classes>
 
     <properties>        
         <player>
-            <property name="name"       type="string" address="0xD11C" length="6" />
+            <property name="name"       type="string" address="0xD11D" length="6" />
             <property name="player_id"  type="int"    address="0xCF8B" length="2" />
             <property name="team_count" type="int"    address="0xD123" />
+            <property name="party_position" type="int" />
+            <class name="active_pokemon" type="player_active_pokemon" />
             <team>
-                <class name="0" type="party_pokemon" var:address="0xD12B" var:nickname_address="0xD257" />
-                <class name="1" type="party_pokemon" var:address="0xD157" var:nickname_address="0xD25D" />
-                <class name="2" type="party_pokemon" var:address="0xD183" var:nickname_address="0xD263" />
-                <class name="3" type="party_pokemon" var:address="0xD1AF" var:nickname_address="0xD269" />
-                <class name="4" type="party_pokemon" var:address="0xD2DB" var:nickname_address="0xD26F" />
-                <class name="5" type="party_pokemon" var:address="0xD207" var:nickname_address="0xD275" />
+                <class name="0" type="party_pokemon" var:address="0xD12B" var:nicknameAddress="0xD257" />
+                <class name="1" type="party_pokemon" var:address="0xD157" var:nicknameAddress="0xD25D" />
+                <class name="2" type="party_pokemon" var:address="0xD183" var:nicknameAddress="0xD263" />
+                <class name="3" type="party_pokemon" var:address="0xD1AF" var:nicknameAddress="0xD269" />
+                <class name="4" type="party_pokemon" var:address="0xD2DB" var:nicknameAddress="0xD26F" />
+                <class name="5" type="party_pokemon" var:address="0xD207" var:nicknameAddress="0xD275" />
             </team>
             <badges>
-                <property name="0" type="bit" address="0xD356" position="0" description="boulderbadge" />
-                <property name="1" type="bit" address="0xD356" position="1" description="cascadebadge" />
-                <property name="2" type="bit" address="0xD356" position="2" description="thunderbadge" />
-                <property name="3" type="bit" address="0xD356" position="3" description="rainbowbadge" />
-                <property name="4" type="bit" address="0xD356" position="4" description="soulbadge" />
-                <property name="5" type="bit" address="0xD356" position="5" description="marshbadge" />
-                <property name="6" type="bit" address="0xD356" position="6" description="volcanobadge" />
-                <property name="7" type="bit" address="0xD356" position="7" description="earthbadge" />
+                <property name="0" type="bit" address="0xD2D5" position="0" description="boulderbadge" />
+                <property name="1" type="bit" address="0xD2D5" position="1" description="cascadebadge" />
+                <property name="2" type="bit" address="0xD2D5" position="2" description="thunderbadge" />
+                <property name="3" type="bit" address="0xD2D5" position="3" description="rainbowbadge" />
+                <property name="4" type="bit" address="0xD2D5" position="4" description="soulbadge" />
+                <property name="5" type="bit" address="0xD2D5" position="5" description="marshbadge" />
+                <property name="6" type="bit" address="0xD2D5" position="6" description="volcanobadge" />
+                <property name="7" type="bit" address="0xD2D5" position="7" description="earthbadge" />
             </badges>
             <property name="pokedex_seen"      type="bitArray" address="0xD28E" length="19" />    
             <property name="pokedex_caught"    type="bitArray" address="0xD27B" length="19" />
             <property name="starter_pokemon"   type="int"      address="0xD696" reference="species" description="The starter Pokemon received from Oak." />
-            <property name="joypad_simulation" type="bool"     address="0xCD38" description="Setting this to true will disable collision for your character." />
-            <property name="joypad_ignore"     type="int"      address="0xCD6B" description="Setting this to true will disable collision for your character." />
+            <!-- <property name="joypad_simulation" type="bool"     address="0xCD38" description="Setting this to true will disable collision for your character." />
+            <property name="joypad_ignore"     type="int"      address="0xCD6B" description="Setting this to true will disable collision for your character." /> -->
         </player>
         <bag>
-            <property name="money" type="binaryCodedDecimal" address="0xD347" length="3" />
-            <property name="coins" type="binaryCodedDecimal" address="0xD5A4" length="2" />
-            <property name="item_count" type="int" address="0xD31D" />
+            <property name="money" type="binaryCodedDecimal" address="0xD2CB" length="3" />
+            <property name="coins" type="binaryCodedDecimal" address="0xD523" length="2" />
+            <property name="item_count" type="int" address="0xD2A1" />
             <items>
-                <class name="0"  type="player_item" var:address="0xD31E" />
-                <class name="1"  type="player_item" var:address="0xD320" />
-                <class name="2"  type="player_item" var:address="0xD322" />
-                <class name="3"  type="player_item" var:address="0xD324" />
-                <class name="4"  type="player_item" var:address="0xD326" />
-                <class name="5"  type="player_item" var:address="0xD328" />
-                <class name="6"  type="player_item" var:address="0xD32A" />
-                <class name="7"  type="player_item" var:address="0xD32C" />
-                <class name="8"  type="player_item" var:address="0xD32E" />
-                <class name="9"  type="player_item" var:address="0xD330" />
-                <class name="10" type="player_item" var:address="0xD332" />
-                <class name="11" type="player_item" var:address="0xD334" />
-                <class name="12" type="player_item" var:address="0xD336" />
-                <class name="13" type="player_item" var:address="0xD338" />
-                <class name="14" type="player_item" var:address="0xD33A" />
-                <class name="15" type="player_item" var:address="0xD33C" />
-                <class name="16" type="player_item" var:address="0xD33E" />
-                <class name="17" type="player_item" var:address="0xD340" />
-                <class name="18" type="player_item" var:address="0xD342" />
-                <class name="19" type="player_item" var:address="0xD344" />
+                <class name="0"  type="player_item" var:address="0xD2A2" />
+                <class name="1"  type="player_item" var:address="0xD2A4" />
+                <class name="2"  type="player_item" var:address="0xD2A6" />
+                <class name="3"  type="player_item" var:address="0xD2A8" />
+                <class name="4"  type="player_item" var:address="0xD2AA" />
+                <class name="5"  type="player_item" var:address="0xD2AC" />
+                <class name="6"  type="player_item" var:address="0xD2AE" />
+                <class name="7"  type="player_item" var:address="0xD2B0" />
+                <class name="8"  type="player_item" var:address="0xD2B2" />
+                <class name="9"  type="player_item" var:address="0xD2B4" />
+                <class name="10" type="player_item" var:address="0xD2B6" />
+                <class name="11" type="player_item" var:address="0xD2B8" />
+                <class name="12" type="player_item" var:address="0xD2BA" />
+                <class name="13" type="player_item" var:address="0xD2BC" />
+                <class name="14" type="player_item" var:address="0xD2BE" />
+                <class name="15" type="player_item" var:address="0xD2C0" />
+                <class name="16" type="player_item" var:address="0xD2C2" />
+                <class name="17" type="player_item" var:address="0xD2C4" />
+                <class name="18" type="player_item" var:address="0xD2C6" />
+                <class name="19" type="player_item" var:address="0xD2C8" />
             </items>
         </bag>
         <overworld>
@@ -174,6 +266,7 @@
             <property name="map_index" type="int" address="0xD35E" />
             <property name="y" type="int" address="0xD361" />
             <property name="x" type="int" address="0xD362" />
+                        <property name="movement_state" type="int" address="0xD700" reference="movement_states" />
             <property name="encounter_rate" type="int" address="0xD887" />
             <property name="repel_count" type="int" address="0xD0DB" />
             <encounter_rates>
@@ -251,7 +344,7 @@
                     <property name="type_2"     type="int" address="0xD001" reference="pokemon_types" />
                     <property name="level"      type="int" address="0xD009" />
                     <property name="catch_rate" type="int" address="0xD002" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
-                    <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" /> Yellow has 2 values, I only found 1
+                    <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" /> <!--Yellow has 2 values, I only found 1-->
                     <moves>
                         <class name="0" type="battle_move" var:moveAddress="0xD003" />
                         <class name="1" type="battle_move" var:moveAddress="0xD004" />
@@ -259,12 +352,12 @@
                         <class name="3" type="battle_move" var:moveAddress="0xD006" />
                     </moves>
                     <stats>
-                        <property name="hp"      type="int" address="0xCFFC" length="2" />
-                        <property name="hp_max"  type="int" address="0xD00A" length="2" />
-                        <property name="attack"  type="int" address="0xD00C" length="2" />
-                        <property name="defense" type="int" address="0xD00E" length="2" />
-                        <property name="speed"   type="int" address="0xD010" length="2" />
-                        <property name="special" type="int" address="0xD012" length="2" />
+                        <property name="hp"      type="int" address="0xCFFD" length="2" />
+                        <property name="hp_max"  type="int" address="0xD00B" length="2" />
+                        <property name="attack"  type="int" address="0xD00D" length="2" />
+                        <property name="defense" type="int" address="0xD00F" length="2" />
+                        <property name="speed"   type="int" address="0xD011" length="2" />
+                        <property name="special" type="int" address="0xD013" length="2" />
                     </stats>
                     <modifiers>
                         <property name="attack"   type="int" address="0xCD1A" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
@@ -275,31 +368,31 @@
                         <property name="evasion"  type="int" address="0xCD1F" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
                     </modifiers>
                     <volatile_status_conditions>
-                        <property name="confusion"  type="bit" address="0xD062" position="6" />     
+                        <property name="confusion"  type="bit" address="0xD03F" position="7" />     
                         <property name="toxic"      type="bit" address="0xD064" position="0" />
                         <property name="leech_seed" type="bit" address="0xD063" position="7" />
                     </volatile_status_conditions>
                     <effects>
-                        <property name="bide"            type="bit" address="0xD062" position="0" />
-                        <property name="thrash"          type="bit" address="0xD062" position="1" />
-                        <property name="multi_hit"       type="bit" address="0xD062" position="2" />
-                        <property name="flinch"          type="bit" address="0xD062" position="3" />
-                        <property name="charging"        type="bit" address="0xD062" position="4" />
-                        <property name="multi_turn"      type="bit" address="0xD062" position="5" />
-                        <property name="invulnerable"    type="bit" address="0xD062" position="6" />
-                        <property name="bypass_accuracy" type="bit" address="0xD063" position="0" />
-                        <property name="mist"            type="bit" address="0xD063" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xD063" position="2" />
-                        <property name="substitute"      type="bit" address="0xD063" position="4" />
-                        <property name="recharge"        type="bit" address="0xD063" position="5" />
-                        <property name="rage"            type="bit" address="0xD063" position="6" />
+                        <property name="bide"            type="bit" address="0xD03F" position="0" />
+                        <property name="thrash"          type="bit" address="0xD03F" position="1" />
+                        <property name="multi_hit"       type="bit" address="0xD03F" position="2" />
+                        <property name="flinch"          type="bit" address="0xD03F" position="3" />
+                        <property name="charging"        type="bit" address="0xD03F" position="4" />
+                        <property name="multi_turn"      type="bit" address="0xD03F" position="5" />
+                        <property name="invulnerable"    type="bit" address="0xD03F" position="6" />
+                        <property name="bypass_accuracy" type="bit" address="0xD040" position="0" />
+                        <property name="mist"            type="bit" address="0xD040" position="1" />
+                        <property name="focus_energy"    type="bit" address="0xD040" position="2" />
+                        <property name="substitute"      type="bit" address="0xD040" position="4" />
+                        <property name="recharge"        type="bit" address="0xD040" position="5" />
+                        <property name="rage"            type="bit" address="0xD040" position="6" />
                         <property name="lightscreen"     type="bit" address="0xD064" position="1" />
                         <property name="reflect"         type="bit" address="0xD064" position="2" />
                         <property name="transformed"     type="bit" address="0xD064" position="3" />
                     </effects>
                     <counters>
                         <property name="multi_hit" type="int" address="0xD06A" />
-                        <property name="confusion" type="int" address="0xD064" />
+                        <property name="confusion" type="int" address="0xD048" />
                         <property name="toxic"     type="int" address="0xD06B" />
                         <property name="disable"   type="int" address="0xD06D" length="2" />
                     </counters>
@@ -309,17 +402,16 @@
                         <property name="power"    type="int" address="0xCFD4" />
                         <property name="type"     type="int" address="0xCFD5" reference="pokemon_types" />
                         <property name="accuracy" type="int" address="0xCFD6" after-read-value-expression="Math.round(((x / 255) * 100), 2)" />
-                        <property name="pp_max"   type="int" address="0xCFD7" />
+                        <!-- <property name="pp_max"   type="int" address="0xCFD7" /> -->
                     </last_move>
                 </active_pokemon>
-                <!-- These are likely stored at another location, but for cross-gen mapper parallelism I have provided the same addreses as the party structure above. -->
                 <team>
-                    <class name="0" type="party_pokemon" var:address="0xD12B" var:nickname_address="0xD257" />
-                    <class name="1" type="party_pokemon" var:address="0xD157" var:nickname_address="0xD25D" />
-                    <class name="2" type="party_pokemon" var:address="0xD183" var:nickname_address="0xD263" />
-                    <class name="3" type="party_pokemon" var:address="0xD1AF" var:nickname_address="0xD269" />
-                    <class name="4" type="party_pokemon" var:address="0xD1DB" var:nickname_address="0xD26F" />
-                    <class name="5" type="party_pokemon" var:address="0xD207" var:nickname_address="0xD275" />
+                    <class name="0" type="party_pokemon" var:address="0xD12B" var:nicknameAddress="0xD257" />
+                    <class name="1" type="party_pokemon" var:address="0xD157" var:nicknameAddress="0xD25D" />
+                    <class name="2" type="party_pokemon" var:address="0xD183" var:nicknameAddress="0xD263" />
+                    <class name="3" type="party_pokemon" var:address="0xD1AF" var:nicknameAddress="0xD269" />
+                    <class name="4" type="party_pokemon" var:address="0xD1DB" var:nicknameAddress="0xD26F" />
+                    <class name="5" type="party_pokemon" var:address="0xD207" var:nicknameAddress="0xD275" />
                 </team>
             </player>
             <opponent>
@@ -337,10 +429,10 @@
                     <property name="type_2"           type="int" address="0xCFD2" reference="pokemon_types" />
                     <property name="status_condition" type="int" address="0xCFD0" reference="status_conditions" />
                     <moves>
-                        <class name="0" type="opponent_battle_move" var:moveAddress="0xCFED" />
-                        <class name="1" type="opponent_battle_move" var:moveAddress="0xCFEE" />
-                        <class name="2" type="opponent_battle_move" var:moveAddress="0xCFEF" />
-                        <class name="3" type="opponent_battle_move" var:moveAddress="0xCFF0" />
+                        <class name="0" type="opponent_battle_move" var:moveAddress="0xCFD4" />
+                        <class name="1" type="opponent_battle_move" var:moveAddress="0xCFD5" />
+                        <class name="2" type="opponent_battle_move" var:moveAddress="0xCFD6" />
+                        <class name="3" type="opponent_battle_move" var:moveAddress="0xCFD7" />
                     </moves>
                     <stats>
                         <property name="hp"      type="int" address="0xCFCE" length="2" />
@@ -373,25 +465,25 @@
                         <!-- <property name="exp"     type="int" address="0xD008" after-read-value-expression="x % 16" /> -->
                     </base_stats>
                     <effects>
-                        <property name="bide"            type="bit" address="0xD067" position="0" />
-                        <property name="thrash"          type="bit" address="0xD067" position="1" />
-                        <property name="multi_hit"       type="bit" address="0xD067" position="2" />
-                        <property name="flinch"          type="bit" address="0xD067" position="3" />
-                        <property name="charging"        type="bit" address="0xD067" position="4" />
-                        <property name="multi_turn"      type="bit" address="0xD067" position="5" />
-                        <property name="invulnerable"    type="bit" address="0xD067" position="6" />
-                        <property name="confusion"       type="bit" address="0xD067" position="6" />     
-                        <property name="bypass_accuracy" type="bit" address="0xD068" position="0" />
-                        <property name="mist"            type="bit" address="0xD068" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xD068" position="2" />
-                        <property name="substitute"      type="bit" address="0xD068" position="4" />
-                        <property name="recharge"        type="bit" address="0xD068" position="5" />
-                        <property name="rage"            type="bit" address="0xD068" position="6" />
-                        <property name="leech_seed"      type="bit" address="0xD068" position="7" />
-                        <property name="toxic"           type="bit" address="0xD069" position="0" />
-                        <property name="lightscreen"     type="bit" address="0xD069" position="1" />
-                        <property name="reflect"         type="bit" address="0xD069" position="2" />
-                        <property name="transformed"     type="bit" address="0xD069" position="3" />
+                        <property name="bide"            type="bit" address="0xD040" position="0" />
+                        <property name="thrash"          type="bit" address="0xD040" position="1" />
+                        <property name="multi_hit"       type="bit" address="0xD040" position="2" />
+                        <property name="flinch"          type="bit" address="0xD040" position="3" />
+                        <property name="charging"        type="bit" address="0xD040" position="4" />
+                        <property name="multi_turn"      type="bit" address="0xD040" position="5" />
+                        <property name="invulnerable"    type="bit" address="0xD040" position="6" />
+                        <property name="confusion"       type="bit" address="0xD040" position="7" />     
+                        <property name="bypass_accuracy" type="bit" address="0xD041" position="0" />
+                        <property name="mist"            type="bit" address="0xD041" position="1" />
+                        <property name="focus_energy"    type="bit" address="0xD041" position="2" />
+                        <property name="substitute"      type="bit" address="0xD041" position="4" />
+                        <property name="recharge"        type="bit" address="0xD041" position="5" />
+                        <property name="rage"            type="bit" address="0xD041" position="6" />
+                        <property name="leech_seed"      type="bit" address="0xD041" position="7" />
+                        <property name="toxic"           type="bit" address="0xD042" position="0" />
+                        <property name="lightscreen"     type="bit" address="0xD042" position="1" />
+                        <property name="reflect"         type="bit" address="0xD042" position="2" />
+                        <property name="transformed"     type="bit" address="0xD042" position="3" />
                     </effects>
                     <counters>
                         <property name="multi_hit" type="int" address="0xD06F" />
@@ -409,39 +501,38 @@
                     </last_move>
                 </active_pokemon>
                 <team>
-                    <class name="0" type="party_pokemon" var:address="0xD9EE" var:nickname_address="0xD8A4"/>
-                    <class name="1" type="party_pokemon" var:address="0xD9F9" var:nickname_address="0xD8D0"/>
-                    <class name="2" type="party_pokemon" var:address="0xDA04" var:nickname_address="0xD8FC"/>
-                    <class name="3" type="party_pokemon" var:address="0xDA0F" var:nickname_address="0xD928"/>
-                    <class name="4" type="party_pokemon" var:address="0xDA1A" var:nickname_address="0xD954"/>
-                    <class name="5" type="party_pokemon" var:address="0xDA25" var:nickname_address="0xD980"/>
+                    <class name="0" type="party_pokemon" var:address="0xD9EE" var:nicknameAddress="0xD8A4"/>
+                    <class name="1" type="party_pokemon" var:address="0xD9F9" var:nicknameAddress="0xD8D0"/>
+                    <class name="2" type="party_pokemon" var:address="0xDA04" var:nicknameAddress="0xD8FC"/>
+                    <class name="3" type="party_pokemon" var:address="0xDA0F" var:nicknameAddress="0xD928"/>
+                    <class name="4" type="party_pokemon" var:address="0xDA1A" var:nicknameAddress="0xD954"/>
+                    <class name="5" type="party_pokemon" var:address="0xDA25" var:nicknameAddress="0xD980"/>
                 </team>
             </opponent>
             <other>
                 <property name="battle_start"       type="int" address="0xCCF5" description="When 0 battle is starting, when >=1 battle has begun" />
-                <property name="next_attack_damage" type="int" address="0xD0D8" />
                 <property name="battle_result"      type="int" address="0xCCF6" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="outcome_flags"      type="int" address="0xcf0b" description="wBattleResult: win=0 lose=1 draw=2 (flee)" />
                 <property name="low_health_alarm"   type="int" address="0xCCF6" reference="low_health_alarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
                 <property name="animation_turn"     type="int" address="0xFFF4" reference="battle_turn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" />
-                <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> duplicate property
+                <property name="attack_damage"      type="int" address="0xD0D8" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." />
             </other>
         </battle>
 
         <pokemart>
-            <property name="item_count" type="int" address="0xCF7C" />
+            <property name="item_count" type="int" address="0xCF62" />
             <items>
-                <property name="0"  type="int" address="0xCF7C" reference="items" />
-                <property name="1"  type="int" address="0xCF7D" reference="items" />
-                <property name="2"  type="int" address="0xCF7E" reference="items" />
-                <property name="3"  type="int" address="0xCF7F" reference="items" />
-                <property name="4"  type="int" address="0xCF80" reference="items" />
-                <property name="5"  type="int" address="0xCF81" reference="items" />
-                <property name="6"  type="int" address="0xCF82" reference="items" />
-                <property name="7"  type="int" address="0xCF83" reference="items" />
-                <property name="8"  type="int" address="0xCF84" reference="items" />
-                <property name="9"  type="int" address="0xCF85" reference="items" />
-                <property name="10" type="int" address="0xCF86" reference="items" />
+                <property name="0"  type="int" address="0xCF63" reference="items" />
+                <property name="1"  type="int" address="0xCF64" reference="items" />
+                <property name="2"  type="int" address="0xCF65" reference="items" />
+                <property name="3"  type="int" address="0xCF66" reference="items" />
+                <property name="4"  type="int" address="0xCF67" reference="items" />
+                <property name="5"  type="int" address="0xCF68" reference="items" />
+                <property name="6"  type="int" address="0xCF69" reference="items" />
+                <property name="7"  type="int" address="0xCF6A" reference="items" />
+                <property name="8"  type="int" address="0xCF6B" reference="items" />
+                <property name="9"  type="int" address="0xCF6C" reference="items" />
+                <property name="10" type="int" address="0xCF6D" reference="items" />
             </items>
         </pokemart>
 
@@ -486,26 +577,26 @@
             <pokemon_storage>
                 <property name="current_box_count" type="int" address="0xDA80" />
                 <current_box>
-                    <class name="0"  type="pc_pokemon" var:address="0xDA96" var:nickname_address="0xDE06"/>
-                    <class name="1"  type="pc_pokemon" var:address="0xDAB7" var:nickname_address="0xDE11"/>
-                    <class name="2"  type="pc_pokemon" var:address="0xDAD8" var:nickname_address="0xDE1C"/>
-                    <class name="3"  type="pc_pokemon" var:address="0xDAF9" var:nickname_address="0xDE27"/>
-                    <class name="4"  type="pc_pokemon" var:address="0xDB1A" var:nickname_address="0xDE32"/>
-                    <class name="5"  type="pc_pokemon" var:address="0xDB3B" var:nickname_address="0xDE3D"/>
-                    <class name="6"  type="pc_pokemon" var:address="0xDB5C" var:nickname_address="0xDE48"/>
-                    <class name="7"  type="pc_pokemon" var:address="0xDB7D" var:nickname_address="0xDE53"/>
-                    <class name="8"  type="pc_pokemon" var:address="0xDB9E" var:nickname_address="0xDE5E"/>
-                    <class name="9"  type="pc_pokemon" var:address="0xDBBF" var:nickname_address="0xDE69"/>
-                    <class name="10" type="pc_pokemon" var:address="0xDBE0" var:nickname_address="0xDE74"/>
-                    <class name="11" type="pc_pokemon" var:address="0xDC01" var:nickname_address="0xDE7F"/>
-                    <class name="12" type="pc_pokemon" var:address="0xDC22" var:nickname_address="0xDE8A"/>
-                    <class name="13" type="pc_pokemon" var:address="0xDC43" var:nickname_address="0xDE95"/>
-                    <class name="14" type="pc_pokemon" var:address="0xDC64" var:nickname_address="0xDEA0"/>
-                    <class name="15" type="pc_pokemon" var:address="0xDC85" var:nickname_address="0xDEAB"/>
-                    <class name="16" type="pc_pokemon" var:address="0xDCA6" var:nickname_address="0xDEB6"/>
-                    <class name="17" type="pc_pokemon" var:address="0xDCC7" var:nickname_address="0xDEC1"/>
-                    <class name="18" type="pc_pokemon" var:address="0xDCE8" var:nickname_address="0xDECC"/>
-                    <class name="19" type="pc_pokemon" var:address="0xDD09" var:nickname_address="0xDED7"/>
+                    <class name="0"  type="pc_pokemon" var:address="0xDA96" var:nicknameAddress="0xDE06"/>
+                    <class name="1"  type="pc_pokemon" var:address="0xDAB7" var:nicknameAddress="0xDE11"/>
+                    <class name="2"  type="pc_pokemon" var:address="0xDAD8" var:nicknameAddress="0xDE1C"/>
+                    <class name="3"  type="pc_pokemon" var:address="0xDAF9" var:nicknameAddress="0xDE27"/>
+                    <class name="4"  type="pc_pokemon" var:address="0xDB1A" var:nicknameAddress="0xDE32"/>
+                    <class name="5"  type="pc_pokemon" var:address="0xDB3B" var:nicknameAddress="0xDE3D"/>
+                    <class name="6"  type="pc_pokemon" var:address="0xDB5C" var:nicknameAddress="0xDE48"/>
+                    <class name="7"  type="pc_pokemon" var:address="0xDB7D" var:nicknameAddress="0xDE53"/>
+                    <class name="8"  type="pc_pokemon" var:address="0xDB9E" var:nicknameAddress="0xDE5E"/>
+                    <class name="9"  type="pc_pokemon" var:address="0xDBBF" var:nicknameAddress="0xDE69"/>
+                    <class name="10" type="pc_pokemon" var:address="0xDBE0" var:nicknameAddress="0xDE74"/>
+                    <class name="11" type="pc_pokemon" var:address="0xDC01" var:nicknameAddress="0xDE7F"/>
+                    <class name="12" type="pc_pokemon" var:address="0xDC22" var:nicknameAddress="0xDE8A"/>
+                    <class name="13" type="pc_pokemon" var:address="0xDC43" var:nicknameAddress="0xDE95"/>
+                    <class name="14" type="pc_pokemon" var:address="0xDC64" var:nicknameAddress="0xDEA0"/>
+                    <class name="15" type="pc_pokemon" var:address="0xDC85" var:nicknameAddress="0xDEAB"/>
+                    <class name="16" type="pc_pokemon" var:address="0xDCA6" var:nicknameAddress="0xDEB6"/>
+                    <class name="17" type="pc_pokemon" var:address="0xDCC7" var:nicknameAddress="0xDEC1"/>
+                    <class name="18" type="pc_pokemon" var:address="0xDCE8" var:nicknameAddress="0xDECC"/>
+                    <class name="19" type="pc_pokemon" var:address="0xDD09" var:nicknameAddress="0xDED7"/>
                 </current_box>
             </pokemon_storage>
             <item_storage>
@@ -593,13 +684,11 @@
             </column_1>
         </screen>
         <options>
-            <property name="text_speed_1"      type="bit" address="0xD355" position="1" description="Fast text speed is set when both 1 and 2 are set to false" />
-            <property name="text_speed_2"      type="bit" address="0xD355" position="2" description="Fast text speed is set when both 1 and 2 are set to false" />
+            <property name="text_speed"        type="int" address="0xD354" after-read-value-expression="getBits(x, 0, 3)" reference="text_speeds"  />
             <property name="sound_1"           type="bit" address="0xD355" position="4" />
             <property name="sound_2"           type="bit" address="0xD355" position="5" />
             <property name="battle_style"      type="bit" address="0xD355" position="6" />
             <property name="battle_animations" type="bit" address="0xD355" position="7" />
-            <property name="solo_challenge"    type="int" address="0xD355" reference="options" />
         </options>
         <game_time>
             <property name="hours"   type="int" address="0xDA40" length="2" />
@@ -619,14 +708,20 @@
         </input>
         <meta>
 			<property name="generation" type="int" value="1" />
-			<property name="game_name"  type="int" value="Red and Blue" />
-			<property name="game_type"  type="int" value="Originals" />
+			<property name="game_name"  type="string" value="Red, Green, Blue and Yellow" />
+			<property name="game_type"  type="string" value="Originals" />
 			<property name="state"      type="string" />
 			<!-- <property name="state_enemy" type="string" /> -->
 		</meta>
     </properties>
 
     <references>
+        <text_speeds>
+            <entry key="0x00" value="Instant" />
+            <entry key="0x01" value="Fast" />
+            <entry key="0x03" value="Mid" />
+            <entry key="0x05" value="Slow" />
+        </text_speeds>
         <battle_modes>
             <entry key="0x00" />
             <entry key="0x01" value="Wild" />
@@ -647,6 +742,11 @@
             <entry key="0x00" value="Enabled" />
             <entry key="0x01" value="Disabled" />
         </low_health_alarm>
+                <movement_states>
+            <entry key="0x00" value="Walk" />
+            <entry key="0x01" value="Bike" />
+            <entry key="0x01" value="Surf" />
+        </movement_states>
         <pokemon_types>
             <entry key="0x00" value="Normal" />
             <entry key="0x01" value="Fighting" />
@@ -712,13 +812,8 @@
             <entry key="0x00" />
             <entry key="0x01" value="Badly Posioned" />
         </bad_poison>
-        <options>
-            <entry key="0xC1" value="Fast Text, No Animations, Battlestyle Set" />
-            <entry key="0x41" value="Champion Fight" />
-        </options>
         <final_team>
             <entry key="0x00" />
-            <!-- actually the indices for Charmander, Squirtle, and Bulbasaur, respectively, but set to final evolution to remain 1:1 with pokemon_yellow.xml -->
             <entry key="0xB0" value="Charizard" />
             <entry key="0xB1" value="Blastoise" />
             <entry key="0x99" value="Venusaur" />
@@ -776,130 +871,235 @@
         <defaultCharacterMap>
             <entry key="0x50" />
             <entry key="0x00" />
-            <entry key="0x01" />
-            <entry key="0x02" />
-            <entry key="0x03" />
-            <entry key="0x04" />
-            <entry key="0x05" />
-            <entry key="0x06" />
-            <entry key="0x07" />
-            <entry key="0x08" />
-            <entry key="0x09" />
-            <entry key="0x0A" />
-            <entry key="0x0B" />
-            <entry key="0x0C" />
-            <entry key="0x0D" />
-            <entry key="0x0E" />
-            <entry key="0x0F" />
-            <entry key="0x10" />
-            <entry key="0x11" />
-            <entry key="0x12" />
-            <entry key="0x13" />
-            <entry key="0x14" />
-            <entry key="0x15" />
-            <entry key="0x16" />
-            <entry key="0x17" />
-            <entry key="0x18" />
-            <entry key="0x19" />
-            <entry key="0x40" />
-            <entry key="0x41" />
-            <entry key="0x42" />
-            <entry key="0x43" />
-            <entry key="0x44" />
-            <entry key="0x45" />
-            <entry key="0x46" />
-            <entry key="0x47" />
-            <entry key="0x48" />
-            <entry key="0x49" />
+            <entry key="0x01" value="イ゙" />
+            <entry key="0x02" value="ヴ" />
+            <entry key="0x03" value="エ゙" />
+            <entry key="0x04" value="オ゙" />
+            <entry key="0x05" value="ガ" />
+            <entry key="0x06" value="ギ" />
+            <entry key="0x07" value="グ" />
+            <entry key="0x08" value="ゲ" />
+            <entry key="0x09" value="ゴ" />
+            <entry key="0x0A" value="ザ" />
+            <entry key="0x0B" value="ジ" />
+            <entry key="0x0C" value="ズ" />
+            <entry key="0x0D" value="ゼ" />
+            <entry key="0x0E" value="ゾ" />
+            <entry key="0x0F" value="ダ" />
+            <entry key="0x10" value="ヂ" />
+            <entry key="0x11" value="ヅ" />
+            <entry key="0x12" value="デ" />
+            <entry key="0x13" value="ド" />
+            <entry key="0x14" value="ナ゙" />
+            <entry key="0x15" value="ニ゙" />
+            <entry key="0x16" value="ヌ゙" />
+            <entry key="0x17" value="ネ゙" />
+            <entry key="0x18" value="ノ゙" />
+            <entry key="0x19" value="バ" />
+            <entry key="0x1A" value="ビ" />
+            <entry key="0x1B" value="ブ" />
+            <entry key="0x1C" value="ボ" />
+            <entry key="0x1D" value="マ゙" />
+            <entry key="0x1E" value="ミ゙" />
+            <entry key="0x1F" value="ム゙" />
+            <entry key="0x20" value="ィ゙" />
+            <entry key="0x21" value="あ゙" />
+            <entry key="0x22" value="い゙" />
+            <entry key="0x23" value="ゔ" />
+            <entry key="0x24" value="え゙" />
+            <entry key="0x25" value="お゙" />
+            <entry key="0x26" value="が" />
+            <entry key="0x27" value="ぎ" />
+            <entry key="0x28" value="ぐ" />
+            <entry key="0x29" value="げ" />
+            <entry key="0x2A" value="ご" />
+            <entry key="0x2B" value="ざ" />
+            <entry key="0x2C" value="じ" />
+            <entry key="0x2D" value="ず" />
+            <entry key="0x2E" value="ぜ" />
+            <entry key="0x2F" value="ぞ" />
+            <entry key="0x30" value="だ" />
+            <entry key="0x31" value="ぢ" />
+            <entry key="0x32" value="づ" />
+            <entry key="0x33" value="で" />
+            <entry key="0x34" value="ど" />
+            <entry key="0x35" value="な゙" />
+            <entry key="0x36" value="に゙" />
+            <entry key="0x37" value="ぬ゙" />
+            <entry key="0x38" value="ね゙" />
+            <entry key="0x39" value="の゙" />
+            <entry key="0x3A" value="ば" />
+            <entry key="0x3B" value="び" />
+            <entry key="0x3C" value="ぶ" />
+            <entry key="0x3D" value="べ" />
+            <entry key="0x3E" value="ぼ" />
+            <entry key="0x3F" value="ま゙" />
+            <entry key="0x40" value="パ" />
+            <entry key="0x41" value="ピ" />
+            <entry key="0x42" value="プ" />
+            <entry key="0x43" value="ポ" />
+            <entry key="0x44" value="ぱ" />
+            <entry key="0x45" value="ぴ" />
+            <entry key="0x46" value="ぷ" />
+            <entry key="0x47" value="ぺ" />
+            <entry key="0x48" value="ぽ" />
+            <entry key="0x49" value="ま゚" />
+            <entry key="0x4D" value="も゚" />
             <entry key="0x51" />
-            <entry key="0x54" value="#" />
+            <entry key="0x54" value="ポケモン"/>
+            <entry key="0x5B" value="パソコン"/>
+            <entry key="0x5C" value="わざマシン"/>
+            <entry key="0x5D" value="トレーナー"/>
+            <entry key="0x5E" value="ロケットだん"/>
+            <entry key="0x60" value="A"/>
+            <entry key="0x61" value="B"/>
+            <entry key="0x62" value="C"/>
+            <entry key="0x63" value="D"/>
+            <entry key="0x64" value="E"/>
+            <entry key="0x65" value="F"/>
+            <entry key="0x66" value="G"/>
+            <entry key="0x67" value="H"/>
+            <entry key="0x68" value="I"/>
+            <entry key="0x69" value="V"/>
+            <entry key="0x6A" value="S"/>
+            <entry key="0x6B" value="L"/>
+            <entry key="0x6C" value="M"/>
+            <entry key="0x6D" value=":"/>
+            <entry key="0x6E" value="ぃ"/>
+            <entry key="0x6F" value="ぅ"/>
+            <entry key="0x70" value="「"/>
+            <entry key="0x71" value="」"/>
+            <entry key="0x72" value="『"/>
+            <entry key="0x73" value="』"/>
+            <entry key="0x74" value="・"/>
             <entry key="0x75" value="…" />
-            <entry key="0x79" value="┌" />
-            <entry key="0x7A" value="─" />
-            <entry key="0x7B" value="┐" />
-            <entry key="0x7C" value="│" />
-            <entry key="0x7D" value="└" />
-            <entry key="0x7E" value="┘" />
-            <entry key="0x74" value="№" />
-            <entry key="0x7F" /> 
-            <entry key="0x80" value="A" />
-            <entry key="0x81" value="B" />
-            <entry key="0x82" value="C" />
-            <entry key="0x83" value="D" />
-            <entry key="0x84" value="E" />
-            <entry key="0x85" value="F" />
-            <entry key="0x86" value="G" />
-            <entry key="0x87" value="H" />
-            <entry key="0x88" value="I" />
-            <entry key="0x89" value="J" />
-            <entry key="0x8A" value="K" />
-            <entry key="0x8B" value="L" />
-            <entry key="0x8C" value="M" />
-            <entry key="0x8D" value="N" />
-            <entry key="0x8E" value="O" />
-            <entry key="0x8F" value="P" />
-            <entry key="0x90" value="Q" />
-            <entry key="0x91" value="R" />
-            <entry key="0x92" value="S" />
-            <entry key="0x93" value="T" />
-            <entry key="0x94" value="U" />
-            <entry key="0x95" value="V" />
-            <entry key="0x96" value="W" />
-            <entry key="0x97" value="X" />
-            <entry key="0x98" value="Y" />
-            <entry key="0x99" value="Z" />
-            <entry key="0x9A" value="(" />
-            <entry key="0x9B" />
-            <entry key="0x9C" value=":" />
-            <entry key="0x9D" value=";" />
-            <entry key="0x9E" value="[" />
-            <entry key="0x9F" value="]" />
-            <entry key="0xA0" value="a" />
-            <entry key="0xA1" value="b" />
-            <entry key="0xA2" value="c" />
-            <entry key="0xA3" value="d" />
-            <entry key="0xA4" value="e" />
-            <entry key="0xA5" value="f" />
-            <entry key="0xA6" value="g" />
-            <entry key="0xA7" value="h" />
-            <entry key="0xA8" value="i" />
-            <entry key="0xA9" value="j" />
-            <entry key="0xAA" value="k" />
-            <entry key="0xAB" value="l" />
-            <entry key="0xAC" value="m" />
-            <entry key="0xAD" value="n" />
-            <entry key="0xAE" value="o" />
-            <entry key="0xAF" value="p" />
-            <entry key="0xB0" value="q" />
-            <entry key="0xB1" value="r" />
-            <entry key="0xB2" value="s" />
-            <entry key="0xB3" value="t" />
-            <entry key="0xB4" value="u" />
-            <entry key="0xB5" value="v" />
-            <entry key="0xB6" value="w" />
-            <entry key="0xB7" value="x" />
-            <entry key="0xB8" value="y" />
-            <entry key="0xB9" value="z" />
-            <entry key="0xBA" value="é" />
-            <entry key="0xBB" value="d" />
-            <entry key="0xBC" value="l" />
-            <entry key="0xBD" value="s" />
-            <entry key="0xBE" value="t" />
-            <entry key="0xBF" value="v" />
-            <entry key="0xC7" />
-            <entry key="0xE0" /> 
-            <entry key="0xE3" value="-" />
-            <entry key="0xE4" value="r" />
-            <entry key="0xE5" value="m" />
-            <entry key="0xE6" value=" " />
+            <entry key="0x76" value="ぁ" />
+            <entry key="0x77" value="ぇ" />
+            <entry key="0x78" value="ぉ" />
+            <entry key="0x79" value="╔" />
+            <entry key="0x7A" value="═" />
+            <entry key="0x7B" value="╗" />
+            <entry key="0x7C" value="║" />
+            <entry key="0x7D" value="╚" />
+            <entry key="0x7E" value="╝" />
+            <entry key="0x7F" value=" "/> 
+            <entry key="0x80" value="ア" />
+            <entry key="0x81" value="イ" />
+            <entry key="0x82" value="ウ" />
+            <entry key="0x83" value="エ" />
+            <entry key="0x84" value="オ" />
+            <entry key="0x85" value="カ" />
+            <entry key="0x86" value="キ" />
+            <entry key="0x87" value="ク" />
+            <entry key="0x88" value="ケ" />
+            <entry key="0x89" value="コ" />
+            <entry key="0x8A" value="サ" />
+            <entry key="0x8B" value="シ" />
+            <entry key="0x8C" value="ス" />
+            <entry key="0x8D" value="セ" />
+            <entry key="0x8E" value="ソ" />
+            <entry key="0x8F" value="タ" />
+            <entry key="0x90" value="チ" />
+            <entry key="0x91" value="ツ" />
+            <entry key="0x92" value="テ" />
+            <entry key="0x93" value="ト" />
+            <entry key="0x94" value="ナ" />
+            <entry key="0x95" value="ニ" />
+            <entry key="0x96" value="ヌ" />
+            <entry key="0x97" value="ネ" />
+            <entry key="0x98" value="ノ" />
+            <entry key="0x99" value="ハ" />
+            <entry key="0x9A" value="ヒ" />
+            <entry key="0x9B" value="フ" />
+            <entry key="0x9C" value="ホ" />
+            <entry key="0x9D" value="マ" />
+            <entry key="0x9E" value="ミ" />
+            <entry key="0x9F" value="ム" />
+            <entry key="0xA0" value="メ" />
+            <entry key="0xA1" value="モ" />
+            <entry key="0xA2" value="ヤ" />
+            <entry key="0xA3" value="ユ" />
+            <entry key="0xA4" value="ヨ" />
+            <entry key="0xA5" value="ラ" />
+            <entry key="0xA6" value="ル" />
+            <entry key="0xA7" value="レ" />
+            <entry key="0xA8" value="ロ" />
+            <entry key="0xA9" value="ワ" />
+            <entry key="0xAA" value="ヲ" />
+            <entry key="0xAB" value="ン" />
+            <entry key="0xAC" value="ッ" />
+            <entry key="0xAD" value="ャ" />
+            <entry key="0xAE" value="ュ" />
+            <entry key="0xAF" value="ョ" />
+            <entry key="0xB0" value="ィ" />
+            <entry key="0xB1" value="あ" />
+            <entry key="0xB2" value="い" />
+            <entry key="0xB3" value="う" />
+            <entry key="0xB4" value="え" />
+            <entry key="0xB5" value="お" />
+            <entry key="0xB6" value="か" />
+            <entry key="0xB7" value="き" />
+            <entry key="0xB8" value="く" />
+            <entry key="0xB9" value="け" />
+            <entry key="0xBA" value="こ" />
+            <entry key="0xBB" value="さ" />
+            <entry key="0xBC" value="し" />
+            <entry key="0xBD" value="す" />
+            <entry key="0xBE" value="せ" />
+            <entry key="0xBF" value="そ" />
+  	        <entry key="0xC0" value="た" />
+            <entry key="0xC1" value="ち" />
+            <entry key="0xC2" value="つ" />
+            <entry key="0xC3" value="て" />
+            <entry key="0xC4" value="と" />
+            <entry key="0xC5" value="な" />
+            <entry key="0xC6" value="に" />
+            <entry key="0xC7" value="ぬ" />
+            <entry key="0xC8" value="ね" />
+            <entry key="0xC9" value="の" />
+            <entry key="0xCA" value="は" />
+            <entry key="0xCB" value="ひ" />
+            <entry key="0xCC" value="ふ" />
+            <entry key="0xCD" value="へ" />
+            <entry key="0xCE" value="ほ" />
+            <entry key="0xCF" value="ま" />
+            <entry key="0xD0" value="み" />
+            <entry key="0xD1" value="む" />
+            <entry key="0xD2" value="め" />
+            <entry key="0xD3" value="も" />
+            <entry key="0xD4" value="や" />
+            <entry key="0xD5" value="ゆ" />
+            <entry key="0xD6" value="よ" />
+            <entry key="0xD7" value="ら" />
+            <entry key="0xD8" value="り" />
+            <entry key="0xD9" value="る" />
+            <entry key="0xDA" value="れ" />
+            <entry key="0xDB" value="ろ" />
+            <entry key="0xDC" value="わ" />
+            <entry key="0xDD" value="を" />
+            <entry key="0xDE" value="ん" />
+            <entry key="0xDF" value="っ" />
+            <entry key="0xE0" value="ゃ" />
+            <entry key="0xE1" value="ゅ" /> 
+            <entry key="0xE2" value="ょ" />  
+            <entry key="0xE3" value="ー" />
+            <entry key="0xE4" value="゜" />
+            <entry key="0xE5" value="゛" />
+            <entry key="0xE6" value="?" />
             <entry key="0xE7" value="!" />
-            <entry key="0xE8" value="." />
+            <entry key="0xE8" value="。" />
+            <entry key="0xE9" value="ァ" /> 
+            <entry key="0xEA" value="ゥ" /> 
+            <entry key="0xEB" value="ェ" /> 
+            <entry key="0xEC" value="▷" /> 
             <entry key="0xED" value="▶" />
+            <entry key="0xEE" value="▼" /> 
             <entry key="0xEF" value="♂" />
-            <entry key="0xF0" value="¥"/>
+            <entry key="0xF0" value="円"/>
             <entry key="0xF1" value="×"/>
+            <entry key="0xF2" value="."/>
             <entry key="0xF3" value="/"/>
-            <entry key="0xF4" value=":"/>
+            <entry key="0xF4" value="ォ"/>
             <entry key="0xF5" value="♀" />
             <entry key="0xF6" value="0"/>
             <entry key="0xF7" value="1"/>
@@ -1420,7 +1620,7 @@
             <entry key="0x00" />
             <entry key="0xFF" />
             <entry key="0x01" value="Rhydon" />
-            <entry key="0x02" value="Kangaskhan" />
+            <entry key="0x02" value="ガルーラ" />
             <entry key="0x03" value="Nidoran-M" />
             <entry key="0x04" value="Clefairy" />
             <entry key="0x05" value="Spearow" />
@@ -1456,7 +1656,7 @@
             <entry key="0x23" value="Fearow" />
             <entry key="0x24" value="Pidgey" />
             <entry key="0x25" value="Slowpoke" />
-            <entry key="0x26" value="Kadabra" />
+            <entry key="0x26" value="ユンゲラー" />
             <entry key="0x27" value="Graveler" />
             <entry key="0x28" value="Chansey" />
             <entry key="0x29" value="Machoke" />
@@ -1473,7 +1673,7 @@
             <entry key="0x34" />
             <entry key="0x35" value="Electabuzz" />
             <entry key="0x36" value="Magneton" />
-            <entry key="0x37" value="Koffing" />
+            <entry key="0x37" value="ドガース" />
             <entry key="0x38" />
             <entry key="0x39" value="Mankey" />
             <entry key="0x3A" value="Seel" />
@@ -1494,36 +1694,36 @@
             <entry key="0x49" value="Moltres" />
             <entry key="0x4A" value="Articuno" />
             <entry key="0x4B" value="Zapdos" />
-            <entry key="0x4C" value="Ditto" />
-            <entry key="0x4D" value="Meowth" />
-            <entry key="0x4E" value="Krabby" />
+            <entry key="0x4C" value="メタモン" />
+            <entry key="0x4D" value="ニャース" />
+            <entry key="0x4E" value="クラブ" />
             <entry key="0x4F" />
             <entry key="0x50" />
             <entry key="0x51" />
-            <entry key="0x52" value="Vulpix" />
-            <entry key="0x53" value="Ninetales" />
-            <entry key="0x54" value="Pikachu" />
-            <entry key="0x55" value="Raichu" />
+            <entry key="0x52" value="ロコン" />
+            <entry key="0x53" value="キュウコン" />
+            <entry key="0x54" value="ピカチュウ" />
+            <entry key="0x55" value="ライチュウ" />
             <entry key="0x56" />
             <entry key="0x57" />
             <entry key="0x58" value="Dratini" />
             <entry key="0x59" value="Dragonair" />
-            <entry key="0x5A" value="Kabuto" />
-            <entry key="0x5B" value="Kabutops" />
+            <entry key="0x5A" value="カブト" />
+            <entry key="0x5B" value="カブトプス" />
             <entry key="0x5C" value="Horsea" />
             <entry key="0x5D" value="Seadra" />
             <entry key="0x5E" />
             <entry key="0x5F" />
-            <entry key="0x60" value="Sandshrew" />
-            <entry key="0x61" value="Sandslash" />
+            <entry key="0x60" value="サンド" />
+            <entry key="0x61" value="サンドパン" />
             <entry key="0x62" value="Omanyte" />
             <entry key="0x63" value="Omastar" />
             <entry key="0x64" value="Jigglypuff" />
             <entry key="0x65" value="Wigglytuff" />
-            <entry key="0x66" value="Eevee" />
-            <entry key="0x67" value="Flareon" />
-            <entry key="0x68" value="Jolteon" />
-            <entry key="0x69" value="Vaporeon" />
+            <entry key="0x66" value="イーブイ" />
+            <entry key="0x67" value="ブースター" />
+            <entry key="0x68" value="サンダーズ" />
+            <entry key="0x69" value="シャワーズ" />
             <entry key="0x6A" value="Machop" />
             <entry key="0x6B" value="Zubat" />
             <entry key="0x6C" value="Ekans" />
@@ -1531,7 +1731,7 @@
             <entry key="0x6E" value="Poliwhirl" />
             <entry key="0x6F" value="Poliwrath" />
             <entry key="0x70" value="Weedle" />
-            <entry key="0x71" value="Kakuna" />
+            <entry key="0x71" value="コクーン" />
             <entry key="0x72" value="Beedrill" />
             <entry key="0x73" />
             <entry key="0x74" value="Dodrio" />
@@ -1556,7 +1756,7 @@
             <entry key="0x87" />
             <entry key="0x88" value="Muk" />
             <entry key="0x89" />
-            <entry key="0x8A" value="Kingler" />
+            <entry key="0x8A" value="キングラー" />
             <entry key="0x8B" value="Cloyster" />
             <entry key="0x8C" />
             <entry key="0x8D" value="Electrode" />
@@ -1566,7 +1766,7 @@
             <entry key="0x91" value="Marowak" />
             <entry key="0x92" />
             <entry key="0x93" value="Haunter" />
-            <entry key="0x94" value="Abra" />
+            <entry key="0x94" value="ケーシィ" />
             <entry key="0x95" value="Alakazam" />
             <entry key="0x96" value="Pidgeotto" />
             <entry key="0x97" value="Pidgeot" />
@@ -1588,8 +1788,8 @@
             <entry key="0xA7" value="Nidorino" />
             <entry key="0xA8" value="Nidorina" />
             <entry key="0xA9" value="Geodude" />
-            <entry key="0xAA" value="Porygon" />
-            <entry key="0xAB" value="Aerodactyl" />
+            <entry key="0xAA" value="ポリゴン" />
+            <entry key="0xAB" value="プテラ" />
             <entry key="0xAC" />
             <entry key="0xAD" value="Magnemite" />
             <entry key="0xAE" />
