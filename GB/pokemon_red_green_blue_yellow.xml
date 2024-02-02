@@ -20,7 +20,7 @@
             <property name="type_1"     type="int" address="{address} + 5"  reference="pokemon_types" />
             <property name="type_2"     type="int" address="{address} + 6"  reference="pokemon_types" />
             <property name="ot_id"      type="int" address="{address} + 12" length="2" />
-            <property name="catch_rate" type="int" address="{address} + 7"  description="Held item when traded to gen2" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="catch_rate" type="int" address="{address} + 7"  description="Held item when traded to gen2" />
             <property name="status_condition" type="int" address="{address} + 4"  reference="status_conditions" />
             <moves>
                 <class name="0" type="party_move" var:moveAddress="{address} + 8" />
@@ -38,10 +38,10 @@
             </stats>
             <ivs>
                 <property name="hp"      type="int"    description="Calculated from the IVs; not actually stored in memory" />
-                <property name="attack"  type="nibble" address="{address} + 27" position="0" />
-                <property name="defense" type="nibble" address="{address} + 27" position="1" />
-                <property name="speed"   type="nibble" address="{address} + 28" position="0" />
-                <property name="special" type="nibble" address="{address} + 28" position="1" />
+                <property name="attack"  type="int" address="{address} + 27" bits="4-7" />
+                <property name="defense" type="int" address="{address} + 27" bits="0-3" />
+                <property name="speed"   type="int" address="{address} + 28" bits="4-7" />
+                <property name="special" type="int" address="{address} + 28" bits="0-3" />
             </ivs>
             <evs>
                 <property name="hp"      type="int" address="{address} + 17" length="2" description="HP EV (stat experience)" />
@@ -60,7 +60,7 @@
             <property name="type_1"     type="string" />
             <property name="type_2"     type="string" />
             <property name="ot_id"      type="int" />
-            <property name="catch_rate" type="int" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
+            <property name="catch_rate" type="int" />
             <property name="status_condition" type="string" />
             <moves>
                 <class name="0" type="active_pokemon_move" />
@@ -156,10 +156,10 @@
                 <class name="3" type="party_move" var:moveAddress="{address} + 5" />
             </moves>
             <ivs>
-                <property name="attack"  type="nibble" address="{address} + 27" position="0" />
-                <property name="defense" type="nibble" address="{address} + 27" position="1" />
-                <property name="speed"   type="nibble" address="{address} + 28" position="0" />
-                <property name="special" type="nibble" address="{address} + 28" position="1" />
+                <property name="attack"  type="int" address="{address} + 27" bits="4-7" />
+                <property name="defense" type="int" address="{address} + 27" bits="0-3" />
+                <property name="speed"   type="int" address="{address} + 28" bits="4-7" />
+                <property name="special" type="int" address="{address} + 28" bits="0-3" />
             </ivs>
             <evs>
                 <property name="hp"      type="int" address="{address} + 17" length="2" description="HP EV (stat experience)" />
@@ -219,14 +219,14 @@
                 <class name="5" type="party_pokemon" var:address="0xD207" var:nicknameAddress="0xD275" />
             </team>
             <badges>
-                <property name="0" type="bit" address="0xD2D5" position="0" description="boulderbadge" />
-                <property name="1" type="bit" address="0xD2D5" position="1" description="cascadebadge" />
-                <property name="2" type="bit" address="0xD2D5" position="2" description="thunderbadge" />
-                <property name="3" type="bit" address="0xD2D5" position="3" description="rainbowbadge" />
-                <property name="4" type="bit" address="0xD2D5" position="4" description="soulbadge" />
-                <property name="5" type="bit" address="0xD2D5" position="5" description="marshbadge" />
-                <property name="6" type="bit" address="0xD2D5" position="6" description="volcanobadge" />
-                <property name="7" type="bit" address="0xD2D5" position="7" description="earthbadge" />
+                <property name="0" type="bool" address="0xD2D5" bits="0" description="boulderbadge" />
+                <property name="1" type="bool" address="0xD2D5" bits="1" description="cascadebadge" />
+                <property name="2" type="bool" address="0xD2D5" bits="2" description="thunderbadge" />
+                <property name="3" type="bool" address="0xD2D5" bits="3" description="rainbowbadge" />
+                <property name="4" type="bool" address="0xD2D5" bits="4" description="soulbadge" />
+                <property name="5" type="bool" address="0xD2D5" bits="5" description="marshbadge" />
+                <property name="6" type="bool" address="0xD2D5" bits="6" description="volcanobadge" />
+                <property name="7" type="bool" address="0xD2D5" bits="7" description="earthbadge" />
             </badges>
             <property name="pokedex_seen"      type="bitArray" address="0xD28E" length="19" />    
             <property name="pokedex_caught"    type="bitArray" address="0xD27B" length="19" />
@@ -262,58 +262,58 @@
             </items>
         </bag>
         <overworld>
-            <property name="map_name"  type="int" address="0xD35E" reference="maps" />
-            <property name="map_index" type="int" address="0xD35E" />
-            <property name="y" type="int" address="0xD361" />
-            <property name="x" type="int" address="0xD362" />
-                        <property name="movement_state" type="int" address="0xD700" reference="movement_states" />
-            <property name="encounter_rate" type="int" address="0xD887" />
-            <property name="repel_count" type="int" address="0xD0DB" />
+            <property name="map_name"  type="int" address="0xD2DD" reference="maps" />
+            <property name="map_index" type="int" address="0xD2DD" />
+            <property name="y" type="int" address="0xD2E0" />
+            <property name="x" type="int" address="0xD2E1" />
+            <property name="movement_state" type="int" address="0xD67F" reference="movement_states" />
+            <property name="encounter_rate" type="int" address="0xD806" />
+            <property name="repel_count" type="int" address="0xD0B8" />
             <encounter_rates>
-				<property name="walking"   type="int" address="0xD887" />
-				<property name="surfing"   type="int" address="0xD887" />
-				<property name="old_rod"   type="int" address="0xD887" />
-				<property name="good_rod"  type="int" address="0xD887" />
-				<property name="super_rod" type="int" address="0xD887" />
+				<property name="walking"   type="int" address="0xD806" />
+				<property name="surfing"   type="int" address="0xD806" />
+				<property name="old_rod"   type="int" address="0xD806" />
+				<property name="good_rod"  type="int" address="0xD806" />
+				<property name="super_rod" type="int" address="0xD806" />
 			</encounter_rates>
             <encounter_table>
                 <common>
-                    <class name="0" type="encounter" var:address="0xD888" />
-                    <class name="1" type="encounter" var:address="0xD88A" />
-                    <class name="2" type="encounter" var:address="0xD88C" />
-                    <class name="3" type="encounter" var:address="0xD88E" />
-                    <class name="4" type="encounter" var:address="0xD890" />
+                    <class name="0" type="encounter" var:address="0xD807" />
+                    <class name="1" type="encounter" var:address="0xD809" />
+                    <class name="2" type="encounter" var:address="0xD80B" />
+                    <class name="3" type="encounter" var:address="0xD80D" />
                 </common>
                 <uncommon>
-                    <class name="0" type="encounter" var:address="0xD88A" />
-                    <class name="1" type="encounter" var:address="0xD892" />
-                    <class name="2" type="encounter" var:address="0xD894" />
-                    <class name="3" type="encounter" var:address="0xD896" />
+                    <class name="0" type="encounter" var:address="0xD80F" />
+                    <class name="1" type="encounter" var:address="0xD811" />
+                    <class name="2" type="encounter" var:address="0xD813" />
+                    <class name="3" type="encounter" var:address="0xD815" />
                 </uncommon>
                 <rare>
-                    <class name="0" type="encounter" var:address="0xD898" />
-                    <class name="1" type="encounter" var:address="0xD89A" />
+                    <class name="0" type="encounter" var:address="0xD817" />
+                    <class name="1" type="encounter" var:address="0xD819" />
                 </rare>
             </encounter_table>
             <safari_zone>
-                <property name="safari_time"  type="int" address="0xD70D" length="2" />
-                <property name="safari_balls" type="int" address="0xDA47" />
-                <property name="baiting_factor" type="int" address="0xCCE9" />
+                <property name="safari_time"  type="int" address="0xD68C" length="2" />
+                <property name="safari_balls" type="int" address="0xD983" />
+                <property name="rock_factor" type="int" address="0xCCE8" /> <!-- Same as English games -->
+                <property name="baiting_factor" type="int" address="0xCCE9" /> <!-- Same as English games -->
             </safari_zone>
             <map_data>
-                <property name="tileset"  type="int" address="0xD367" />
-                <property name="height"   type="int" address="0xD368" />
-                <property name="width"    type="int" address="0xD369" />
-                <property name="palette"  type="int" address="0xD35D" /><!-- 0:default, 6:dark cave -->
-                <property name="last_map" type="int" address="0xD364" reference="maps" /> <!-- This needs to update address dynamically -->
+                <property name="tileset"  type="int" address="0xD2E6" />
+                <property name="height"   type="int" address="0xD2E7" />
+                <property name="width"    type="int" address="0xD2E8" />
+                <property name="palette"  type="int" address="0xD3DC" /><!-- 0:default, 6:dark cave -->
+                <property name="last_map" type="int" address="0xD2E4" reference="maps" /> 
             </map_data>
         </overworld>
         <events>
-            <property name="trash_can_puzzle" type="bit" address="0xD773" position="0" description="Set value to 3 to solve the puzzle. Freezing this property breaks the gym trainers." />
+            <property name="trash_can_puzzle" type="bool" address="0xD6F2" bits="0" description="Set value to 3 to solve the puzzle. Freezing this property breaks the gym trainers." />
         </events>
         <flags>
-            <property name="count_play_time" type="bit" address="0xD732" position="0" description="play time being counted" />
-            <property name="debug_mode"      type="bit" address="0xD732" position="1" description="See mapper" />
+            <property name="count_play_time" type="bool" address="0xD732" bits="0" description="play time being counted" />
+            <property name="debug_mode"      type="bool" address="0xD732" bits="1" description="See mapper" />
                 <!-- "Only set by the debug build. If true:
                     * skips most of Prof. Oak's speech, and uses NINTEN as the player's name and SONY as the rival's name
                     * does not have the player start in floor two of the player's house (instead sending them to [wLastMap])
@@ -323,12 +323,521 @@
                     * skips the NPC who blocks Route 3 before beating Brock by holding down B
                     * skips Cerulean City rival battle by holding down B
                     * skips Pokémon Tower rival battle by holding down B" -->
-            <property name="fly_or_dungeon"          type="bit" address="0xD731" position="2" description="the target warp is a fly warp (bit 3 set or blacked out) or a dungeon warp (bit 4 set)" />
-            <property name="fly_warp"                type="bit" address="0xD731" position="3" /> 
-            <property name="dungeon_warp"            type="bit" address="0xD731" position="4" /> 
-            <property name="destination_is_blackout" type="bit" address="0xD731" position="6" />
-            <property name="beat_champion" type="bit" position="1" address="0xd867" />
+            <property name="fly_or_dungeon"          type="bool" address="0xD731" bits="2" description="the target warp is a fly warp (bit 3 set or blacked out) or a dungeon warp (bit 4 set)" />
+            <property name="fly_warp"                type="bool" address="0xD731" bits="3" /> 
+            <property name="dungeon_warp"            type="bool" address="0xD731" bits="4" /> 
+            <property name="destination_is_blackout" type="bool" address="0xD731" bits="6" />
+            <property name="beat_champion" type="bool" bits="1" address="0xD7E6" />
         </flags>
+                <event_flags> <!-- TODO: test to ensure these work (applied a -81 offset to English Red/Blue mapper values and needs testing) -->
+            <property name="followed_oak_into_lab" type="bool" address="0xD6C6" bits="0" />
+            <property name="hall_of_fame_dex_rating" type="bool" address="0xD6C6" bits="3" />
+            <property name="pallet_after_getting_pokeballs" type="bool" address="0xD6C6" bits="6" />
+            <property name="got_town_map" type="bool" address="0xD6C9" bits="0" />
+            <property name="entered_blues_house" type="bool" address="0xD6C9" bits="1" />
+            <property name="daisy_walking" type="bool" address="0xD6C9" bits="2" />
+            <property name="followed_oak_into_lab_2" type="bool" address="0xD6CA" bits="0" />
+            <property name="oak_asked_to_choose_mon" type="bool" address="0xD6CA" bits="1" />
+            <property name="got_starter" type="bool" address="0xD6CA" bits="2" />
+            <property name="battled_rival_in_oaks_lab" type="bool" address="0xD6CA" bits="3" />
+            <property name="got_pokeballs_from_oak" type="bool" address="0xD6CA" bits="4" />
+            <property name="got_pokedex" type="bool" address="0xD6CA" bits="5" />
+            <property name="pallet_after_getting_pokeballs_2" type="bool" address="0xD6CA" bits="6" />
+            <property name="oak_appeared_in_pallet" type="bool" address="0xD6CA" bits="7" />
+            <property name="viridian_gym_open" type="bool" address="0xD6CB" bits="0" />
+            <property name="got_tm42" type="bool" address="0xD6CB" bits="1" />
+            <property name="oak_got_parcel" type="bool" address="0xD6CD" bits="0" />
+            <property name="got_oaks_parcel" type="bool" address="0xD6CD" bits="1" />
+            <property name="got_tm27" type="bool" address="0xD6D0" bits="0" />
+            <property name="beat_viridian_gym_giovanni" type="bool" address="0xD6D0" bits="1" />
+            <property name="beat_viridian_gym_trainer_0" type="bool" address="0xD6D0" bits="2" />
+            <property name="beat_viridian_gym_trainer_1" type="bool" address="0xD6D0" bits="3" />
+            <property name="beat_viridian_gym_trainer_2" type="bool" address="0xD6D0" bits="4" />
+            <property name="beat_viridian_gym_trainer_3" type="bool" address="0xD6D0" bits="5" />
+            <property name="beat_viridian_gym_trainer_4" type="bool" address="0xD6D0" bits="6" />
+            <property name="beat_viridian_gym_trainer_5" type="bool" address="0xD6D0" bits="7" />
+            <property name="beat_viridian_gym_trainer_6" type="bool" address="0xD6D1" bits="0" />
+            <property name="beat_viridian_gym_trainer_7" type="bool" address="0xD6D1" bits="1" />
+            <property name="bought_museum_ticket" type="bool" address="0xD6D3" bits="0" />
+            <property name="got_old_amber" type="bool" address="0xD6D3" bits="1" />
+            <property name="beat_pewter_gym_trainer_0" type="bool" address="0xD6D4" bits="2" />
+            <property name="got_tm34" type="bool" address="0xD6D4" bits="6" />
+            <property name="beat_brock" type="bool" address="0xD6D4" bits="7" />
+            <property name="beat_cerulean_rival" type="bool" address="0xD6D9" bits="0" />
+            <property name="beat_cerulean_rocket_thief" type="bool" address="0xD6DA" bits="7" />
+            <property name="beat_cerulean_gym_trainer_0" type="bool" address="0xD6DD" bits="2" />
+            <property name="beat_cerulean_gym_trainer_1" type="bool" address="0xD6DD" bits="3" />
+            <property name="got_tm11" type="bool" address="0xD6DD" bits="6" />
+            <property name="beat_misty" type="bool" address="0xD6DD" bits="7" />
+            <property name="got_bicycle" type="bool" address="0xD6DE" bits="0" />
+            <property name="pokemon_tower_rival_on_left" type="bool" address="0xD6E4" bits="0" />
+            <property name="beat_pokemon_tower_rival" type="bool" address="0xD6E4" bits="1" />
+            <property name="beat_pokemontower_3_trainer_0" type="bool" address="0xD6E4" bits="3" />
+            <property name="beat_pokemontower_3_trainer_1" type="bool" address="0xD6E4" bits="4" />
+            <property name="beat_pokemontower_3_trainer_2" type="bool" address="0xD6E4" bits="5" />
+            <property name="beat_pokemontower_4_trainer_0" type="bool" address="0xD6E5" bits="3" />
+            <property name="beat_pokemontower_4_trainer_1" type="bool" address="0xD6E5" bits="4" />
+            <property name="beat_pokemontower_4_trainer_2" type="bool" address="0xD6E5" bits="5" />
+            <property name="beat_pokemontower_5_trainer_0" type="bool" address="0xD6E6" bits="4" />
+            <property name="beat_pokemontower_5_trainer_1" type="bool" address="0xD6E6" bits="5" />
+            <property name="beat_pokemontower_5_trainer_2" type="bool" address="0xD6E6" bits="6" />
+            <property name="beat_pokemontower_5_trainer_3" type="bool" address="0xD6E6" bits="7" />
+            <property name="in_purified_zone" type="bool" address="0xD6E7" bits="1" />
+            <property name="beat_pokemontower_6_trainer_0" type="bool" address="0xD6E7" bits="3" />
+            <property name="beat_pokemontower_6_trainer_1" type="bool" address="0xD6E7" bits="4" />
+            <property name="beat_pokemontower_6_trainer_2" type="bool" address="0xD6E7" bits="5" />
+            <property name="beat_ghost_marowak" type="bool" address="0xD6E8" bits="1" />
+            <property name="beat_pokemontower_7_trainer_0" type="bool" address="0xD6E8" bits="3" />
+            <property name="beat_pokemontower_7_trainer_1" type="bool" address="0xD6E8" bits="4" />
+            <property name="beat_pokemontower_7_trainer_2" type="bool" address="0xD6E8" bits="5" />
+            <property name="rescued_mr_fuji_2" type="bool" address="0xD6E9" bits="1" />
+            <property name="got_poke_flute" type="bool" address="0xD6EB" bits="2" />
+            <property name="got_bike_voucher" type="bool" address="0xD6F0" bits="1" />
+            <property name="seel_fan_boast" type="bool" address="0xD6F0" bits="6" />
+            <property name="pikachu_fan_boast" type="bool" address="0xD6F0" bits="7" />
+            <property name="2nd_lock_opened" type="bool" address="0xD6F2" bits="0" />
+            <property name="1st_lock_opened" type="bool" address="0xD6F2" bits="1" />
+            <property name="beat_vermilion_gym_trainer_0" type="bool" address="0xD6F2" bits="2" />
+            <property name="beat_vermilion_gym_trainer_1" type="bool" address="0xD6F2" bits="3" />
+            <property name="beat_vermilion_gym_trainer_2" type="bool" address="0xD6F2" bits="4" />
+            <property name="got_tm24" type="bool" address="0xD6F2" bits="6" />
+            <property name="beat_lt_surge" type="bool" address="0xD6F2" bits="7" />
+            <property name="got_tm41" type="bool" address="0xD6F6" bits="0" />
+            <property name="got_tm13" type="bool" address="0xD6F7" bits="4" />
+            <property name="got_tm48" type="bool" address="0xD6F7" bits="5" />
+            <property name="got_tm49" type="bool" address="0xD6F7" bits="6" />
+            <property name="got_tm18" type="bool" address="0xD6F7" bits="7" />
+            <property name="got_tm21" type="bool" address="0xD6FB" bits="0" />
+            <property name="beat_erika" type="bool" address="0xD6FB" bits="1" />
+            <property name="beat_celadon_gym_trainer_0" type="bool" address="0xD6FB" bits="2" />
+            <property name="beat_celadon_gym_trainer_1" type="bool" address="0xD6FB" bits="3" />
+            <property name="beat_celadon_gym_trainer_2" type="bool" address="0xD6FB" bits="4" />
+            <property name="beat_celadon_gym_trainer_3" type="bool" address="0xD6FB" bits="5" />
+            <property name="beat_celadon_gym_trainer_4" type="bool" address="0xD6FB" bits="6" />
+            <property name="beat_celadon_gym_trainer_5" type="bool" address="0xD6FB" bits="7" />
+            <property name="beat_celadon_gym_trainer_6" type="bool" address="0xD6FC" bits="0" />
+            <property name="1b8" type="bool" address="0xD6FD" bits="0" />
+            <property name="found_rocket_hideout" type="bool" address="0xD6FD" bits="1" />
+            <property name="got_10_coins" type="bool" address="0xD6FD" bits="2" />
+            <property name="got_20_coins" type="bool" address="0xD6FD" bits="3" />
+            <property name="got_20_coins_2" type="bool" address="0xD6FD" bits="4" />
+            <property name="1bf" type="bool" address="0xD6FD" bits="7" />
+            <property name="got_coin_case" type="bool" address="0xD702" bits="0" />
+            <property name="got_hm04" type="bool" address="0xD70D" bits="0" />
+            <property name="gave_gold_teeth" type="bool" address="0xD70D" bits="1" />
+            <property name="safari_game_over" type="bool" address="0xD70F" bits="6" />
+            <property name="in_safari_zone" type="bool" address="0xD70F" bits="7" />
+            <property name="got_tm06" type="bool" address="0xD711" bits="0" />
+            <property name="beat_koga" type="bool" address="0xD711" bits="1" />
+            <property name="beat_fuchsia_gym_trainer_0" type="bool" address="0xD711" bits="2" />
+            <property name="beat_fuchsia_gym_trainer_1" type="bool" address="0xD711" bits="3" />
+            <property name="beat_fuchsia_gym_trainer_2" type="bool" address="0xD711" bits="4" />
+            <property name="beat_fuchsia_gym_trainer_3" type="bool" address="0xD711" bits="5" />
+            <property name="beat_fuchsia_gym_trainer_4" type="bool" address="0xD711" bits="6" />
+            <property name="beat_fuchsia_gym_trainer_5" type="bool" address="0xD711" bits="7" />
+            <property name="mansion_switch_on" type="bool" address="0xD715" bits="0" />
+            <property name="beat_mansion_1_trainer_0" type="bool" address="0xD717" bits="1" />
+            <property name="got_tm38" type="bool" address="0xD719" bits="0" />
+            <property name="beat_blaine" type="bool" address="0xD719" bits="1" />
+            <property name="beat_cinnabar_gym_trainer_0" type="bool" address="0xD719" bits="2" />
+            <property name="beat_cinnabar_gym_trainer_1" type="bool" address="0xD719" bits="3" />
+            <property name="beat_cinnabar_gym_trainer_2" type="bool" address="0xD719" bits="4" />
+            <property name="beat_cinnabar_gym_trainer_3" type="bool" address="0xD719" bits="5" />
+            <property name="beat_cinnabar_gym_trainer_4" type="bool" address="0xD719" bits="6" />
+            <property name="beat_cinnabar_gym_trainer_5" type="bool" address="0xD719" bits="7" />
+            <property name="beat_cinnabar_gym_trainer_6" type="bool" address="0xD71A" bits="0" />
+            <property name="2a7" type="bool" address="0xD71A" bits="7" />
+            <property name="cinnabar_gym_gate0_unlocked" type="bool" address="0xD71B" bits="0" />
+            <property name="cinnabar_gym_gate1_unlocked" type="bool" address="0xD71B" bits="1" />
+            <property name="cinnabar_gym_gate2_unlocked" type="bool" address="0xD71B" bits="2" />
+            <property name="cinnabar_gym_gate3_unlocked" type="bool" address="0xD71B" bits="3" />
+            <property name="cinnabar_gym_gate4_unlocked" type="bool" address="0xD71B" bits="4" />
+            <property name="cinnabar_gym_gate5_unlocked" type="bool" address="0xD71B" bits="5" />
+            <property name="cinnabar_gym_gate6_unlocked" type="bool" address="0xD71B" bits="6" />
+            <property name="got_tm35" type="bool" address="0xD720" bits="7" />
+            <property name="gave_fossil_to_lab" type="bool" address="0xD722" bits="0" />
+            <property name="lab_still_reviving_fossil" type="bool" address="0xD722" bits="1" />
+            <property name="lab_handing_over_fossil_mon" type="bool" address="0xD722" bits="2" />
+            <property name="got_tm31" type="bool" address="0xD72E" bits="0" />
+            <property name="defeated_fighting_dojo" type="bool" address="0xD730" bits="0" />
+            <property name="beat_karate_master" type="bool" address="0xD730" bits="1" />
+            <property name="beat_fighting_dojo_trainer_0" type="bool" address="0xD730" bits="2" />
+            <property name="beat_fighting_dojo_trainer_1" type="bool" address="0xD730" bits="3" />
+            <property name="beat_fighting_dojo_trainer_2" type="bool" address="0xD730" bits="4" />
+            <property name="beat_fighting_dojo_trainer_3" type="bool" address="0xD730" bits="5" />
+            <property name="got_hitmonlee" type="bool" address="0xD730" bits="6" />
+            <property name="got_hitmonchan" type="bool" address="0xD730" bits="7" />
+            <property name="got_tm46" type="bool" address="0xD732" bits="0" />
+            <property name="beat_sabrina" type="bool" address="0xD732" bits="1" />
+            <property name="beat_saffron_gym_trainer_0" type="bool" address="0xD732" bits="2" />
+            <property name="beat_saffron_gym_trainer_1" type="bool" address="0xD732" bits="3" />
+            <property name="beat_saffron_gym_trainer_2" type="bool" address="0xD732" bits="4" />
+            <property name="beat_saffron_gym_trainer_3" type="bool" address="0xD732" bits="5" />
+            <property name="beat_saffron_gym_trainer_4" type="bool" address="0xD732" bits="6" />
+            <property name="beat_saffron_gym_trainer_5" type="bool" address="0xD732" bits="7" />
+            <property name="beat_saffron_gym_trainer_6" type="bool" address="0xD733" bits="0" />
+            <property name="silph_co_receptionist_at_desk" type="bool" address="0xD738" bits="7" />
+            <property name="got_tm29" type="bool" address="0xD73C" bits="0" />
+            <property name="got_potion_sample" type="bool" address="0xD73E" bits="0" />
+            <property name="got_hm05" type="bool" address="0xD741" bits="0" />
+            <property name="beat_route_3_trainer_0" type="bool" address="0xD742" bits="2" />
+            <property name="beat_route_3_trainer_1" type="bool" address="0xD742" bits="3" />
+            <property name="beat_route_3_trainer_2" type="bool" address="0xD742" bits="4" />
+            <property name="beat_route_3_trainer_3" type="bool" address="0xD742" bits="5" />
+            <property name="beat_route_3_trainer_4" type="bool" address="0xD742" bits="6" />
+            <property name="beat_route_3_trainer_5" type="bool" address="0xD742" bits="7" />
+            <property name="beat_route_3_trainer_6" type="bool" address="0xD743" bits="0" />
+            <property name="beat_route_3_trainer_7" type="bool" address="0xD743" bits="1" />
+            <property name="beat_route_4_trainer_0" type="bool" address="0xD744" bits="2" />
+            <property name="bought_magikarp" type="bool" address="0xD745" bits="7" />
+            <property name="beat_route_6_trainer_0" type="bool" address="0xD748" bits="1" />
+            <property name="beat_route_6_trainer_1" type="bool" address="0xD748" bits="2" />
+            <property name="beat_route_6_trainer_2" type="bool" address="0xD748" bits="3" />
+            <property name="beat_route_6_trainer_3" type="bool" address="0xD748" bits="4" />
+            <property name="beat_route_6_trainer_4" type="bool" address="0xD748" bits="5" />
+            <property name="beat_route_6_trainer_5" type="bool" address="0xD748" bits="6" />
+            <property name="beat_route_8_trainer_0" type="bool" address="0xD74C" bits="1" />
+            <property name="beat_route_8_trainer_1" type="bool" address="0xD74C" bits="2" />
+            <property name="beat_route_8_trainer_2" type="bool" address="0xD74C" bits="3" />
+            <property name="beat_route_8_trainer_3" type="bool" address="0xD74C" bits="4" />
+            <property name="beat_route_8_trainer_4" type="bool" address="0xD74C" bits="5" />
+            <property name="beat_route_8_trainer_5" type="bool" address="0xD74C" bits="6" />
+            <property name="beat_route_8_trainer_6" type="bool" address="0xD74C" bits="7" />
+            <property name="beat_route_8_trainer_7" type="bool" address="0xD74D" bits="0" />
+            <property name="beat_route_8_trainer_8" type="bool" address="0xD74D" bits="1" />
+            <property name="beat_route_9_trainer_0" type="bool" address="0xD74E" bits="1" />
+            <property name="beat_route_9_trainer_1" type="bool" address="0xD74E" bits="2" />
+            <property name="beat_route_9_trainer_2" type="bool" address="0xD74E" bits="3" />
+            <property name="beat_route_9_trainer_3" type="bool" address="0xD74E" bits="4" />
+            <property name="beat_route_9_trainer_4" type="bool" address="0xD74E" bits="5" />
+            <property name="beat_route_9_trainer_5" type="bool" address="0xD74E" bits="6" />
+            <property name="beat_route_9_trainer_6" type="bool" address="0xD74E" bits="7" />
+            <property name="beat_route_9_trainer_7" type="bool" address="0xD74F" bits="0" />
+            <property name="beat_route_9_trainer_8" type="bool" address="0xD74F" bits="1" />
+            <property name="beat_route_10_trainer_0" type="bool" address="0xD750" bits="1" />
+            <property name="beat_route_10_trainer_1" type="bool" address="0xD750" bits="2" />
+            <property name="beat_route_10_trainer_2" type="bool" address="0xD750" bits="3" />
+            <property name="beat_route_10_trainer_3" type="bool" address="0xD750" bits="4" />
+            <property name="beat_route_10_trainer_4" type="bool" address="0xD750" bits="5" />
+            <property name="beat_route_10_trainer_5" type="bool" address="0xD750" bits="6" />
+            <property name="beat_rock_tunnel_1_trainer_0" type="bool" address="0xD751" bits="1" />
+            <property name="beat_rock_tunnel_1_trainer_1" type="bool" address="0xD751" bits="2" />
+            <property name="beat_rock_tunnel_1_trainer_2" type="bool" address="0xD751" bits="3" />
+            <property name="beat_rock_tunnel_1_trainer_3" type="bool" address="0xD751" bits="4" />
+            <property name="beat_rock_tunnel_1_trainer_4" type="bool" address="0xD751" bits="5" />
+            <property name="beat_rock_tunnel_1_trainer_5" type="bool" address="0xD751" bits="6" />
+            <property name="beat_rock_tunnel_1_trainer_6" type="bool" address="0xD751" bits="7" />
+            <property name="beat_power_plant_voltorb_0" type="bool" address="0xD752" bits="1" />
+            <property name="beat_power_plant_voltorb_1" type="bool" address="0xD752" bits="2" />
+            <property name="beat_power_plant_voltorb_2" type="bool" address="0xD752" bits="3" />
+            <property name="beat_power_plant_voltorb_3" type="bool" address="0xD752" bits="4" />
+            <property name="beat_power_plant_voltorb_4" type="bool" address="0xD752" bits="5" />
+            <property name="beat_power_plant_voltorb_5" type="bool" address="0xD752" bits="6" />
+            <property name="beat_power_plant_voltorb_6" type="bool" address="0xD752" bits="7" />
+            <property name="beat_power_plant_voltorb_7" type="bool" address="0xD753" bits="0" />
+            <property name="beat_zapdos" type="bool" address="0xD753" bits="1" />
+            <property name="beat_route_11_trainer_0" type="bool" address="0xD754" bits="1" />
+            <property name="beat_route_11_trainer_1" type="bool" address="0xD754" bits="2" />
+            <property name="beat_route_11_trainer_2" type="bool" address="0xD754" bits="3" />
+            <property name="beat_route_11_trainer_3" type="bool" address="0xD754" bits="4" />
+            <property name="beat_route_11_trainer_4" type="bool" address="0xD754" bits="5" />
+            <property name="beat_route_11_trainer_5" type="bool" address="0xD754" bits="6" />
+            <property name="beat_route_11_trainer_6" type="bool" address="0xD754" bits="7" />
+            <property name="beat_route_11_trainer_7" type="bool" address="0xD755" bits="0" />
+            <property name="beat_route_11_trainer_8" type="bool" address="0xD755" bits="1" />
+            <property name="beat_route_11_trainer_9" type="bool" address="0xD755" bits="2" />
+            <property name="got_itemfinder" type="bool" address="0xD755" bits="7" />
+            <property name="got_tm39" type="bool" address="0xD756" bits="0" />
+            <property name="beat_route_12_trainer_0" type="bool" address="0xD756" bits="2" />
+            <property name="beat_route_12_trainer_1" type="bool" address="0xD756" bits="3" />
+            <property name="beat_route_12_trainer_2" type="bool" address="0xD756" bits="4" />
+            <property name="beat_route_12_trainer_3" type="bool" address="0xD756" bits="5" />
+            <property name="beat_route_12_trainer_4" type="bool" address="0xD756" bits="6" />
+            <property name="beat_route_12_trainer_5" type="bool" address="0xD756" bits="7" />
+            <property name="beat_route_12_trainer_6" type="bool" address="0xD757" bits="0" />
+            <property name="fight_route12_snorlax" type="bool" address="0xD757" bits="6" />
+            <property name="beat_route12_snorlax" type="bool" address="0xD757" bits="7" />
+            <property name="beat_route_13_trainer_0" type="bool" address="0xD758" bits="1" />
+            <property name="beat_route_13_trainer_1" type="bool" address="0xD758" bits="2" />
+            <property name="beat_route_13_trainer_2" type="bool" address="0xD758" bits="3" />
+            <property name="beat_route_13_trainer_3" type="bool" address="0xD758" bits="4" />
+            <property name="beat_route_13_trainer_4" type="bool" address="0xD758" bits="5" />
+            <property name="beat_route_13_trainer_5" type="bool" address="0xD758" bits="6" />
+            <property name="beat_route_13_trainer_6" type="bool" address="0xD758" bits="7" />
+            <property name="beat_route_13_trainer_7" type="bool" address="0xD759" bits="0" />
+            <property name="beat_route_13_trainer_8" type="bool" address="0xD759" bits="1" />
+            <property name="beat_route_13_trainer_9" type="bool" address="0xD759" bits="2" />
+            <property name="beat_route_14_trainer_0" type="bool" address="0xD75A" bits="1" />
+            <property name="beat_route_14_trainer_1" type="bool" address="0xD75A" bits="2" />
+            <property name="beat_route_14_trainer_2" type="bool" address="0xD75A" bits="3" />
+            <property name="beat_route_14_trainer_3" type="bool" address="0xD75A" bits="4" />
+            <property name="beat_route_14_trainer_4" type="bool" address="0xD75A" bits="5" />
+            <property name="beat_route_14_trainer_5" type="bool" address="0xD75A" bits="6" />
+            <property name="beat_route_14_trainer_6" type="bool" address="0xD75A" bits="7" />
+            <property name="beat_route_14_trainer_7" type="bool" address="0xD75B" bits="0" />
+            <property name="beat_route_14_trainer_8" type="bool" address="0xD75B" bits="1" />
+            <property name="beat_route_14_trainer_9" type="bool" address="0xD75B" bits="2" />
+            <property name="got_exp_all" type="bool" address="0xD75C" bits="0" />
+            <property name="beat_route_15_trainer_0" type="bool" address="0xD75C" bits="1" />
+            <property name="beat_route_15_trainer_1" type="bool" address="0xD75C" bits="2" />
+            <property name="beat_route_15_trainer_2" type="bool" address="0xD75C" bits="3" />
+            <property name="beat_route_15_trainer_3" type="bool" address="0xD75C" bits="4" />
+            <property name="beat_route_15_trainer_4" type="bool" address="0xD75C" bits="5" />
+            <property name="beat_route_15_trainer_5" type="bool" address="0xD75C" bits="6" />
+            <property name="beat_route_15_trainer_6" type="bool" address="0xD75C" bits="7" />
+            <property name="beat_route_15_trainer_7" type="bool" address="0xD75D" bits="0" />
+            <property name="beat_route_15_trainer_8" type="bool" address="0xD75D" bits="1" />
+            <property name="beat_route_15_trainer_9" type="bool" address="0xD75D" bits="2" />
+            <property name="beat_route_16_trainer_0" type="bool" address="0xD75E" bits="1" />
+            <property name="beat_route_16_trainer_1" type="bool" address="0xD75E" bits="2" />
+            <property name="beat_route_16_trainer_2" type="bool" address="0xD75E" bits="3" />
+            <property name="beat_route_16_trainer_3" type="bool" address="0xD75E" bits="4" />
+            <property name="beat_route_16_trainer_4" type="bool" address="0xD75E" bits="5" />
+            <property name="beat_route_16_trainer_5" type="bool" address="0xD75E" bits="6" />
+            <property name="fight_route16_snorlax" type="bool" address="0xD75F" bits="0" />
+            <property name="beat_route16_snorlax" type="bool" address="0xD75F" bits="1" />
+            <property name="got_hm02" type="bool" address="0xD75F" bits="6" />
+            <property name="rescued_mr_fuji" type="bool" address="0xD75F" bits="7" />
+            <property name="beat_route_17_trainer_0" type="bool" address="0xD760" bits="1" />
+            <property name="beat_route_17_trainer_1" type="bool" address="0xD760" bits="2" />
+            <property name="beat_route_17_trainer_2" type="bool" address="0xD760" bits="3" />
+            <property name="beat_route_17_trainer_3" type="bool" address="0xD760" bits="4" />
+            <property name="beat_route_17_trainer_4" type="bool" address="0xD760" bits="5" />
+            <property name="beat_route_17_trainer_5" type="bool" address="0xD760" bits="6" />
+            <property name="beat_route_17_trainer_6" type="bool" address="0xD760" bits="7" />
+            <property name="beat_route_17_trainer_7" type="bool" address="0xD761" bits="0" />
+            <property name="beat_route_17_trainer_8" type="bool" address="0xD761" bits="1" />
+            <property name="beat_route_17_trainer_9" type="bool" address="0xD761" bits="2" />
+            <property name="beat_route_18_trainer_0" type="bool" address="0xD762" bits="1" />
+            <property name="beat_route_18_trainer_1" type="bool" address="0xD762" bits="2" />
+            <property name="beat_route_18_trainer_2" type="bool" address="0xD762" bits="3" />
+            <property name="beat_route_19_trainer_0" type="bool" address="0xD764" bits="1" />
+            <property name="beat_route_19_trainer_1" type="bool" address="0xD764" bits="2" />
+            <property name="beat_route_19_trainer_2" type="bool" address="0xD764" bits="3" />
+            <property name="beat_route_19_trainer_3" type="bool" address="0xD764" bits="4" />
+            <property name="beat_route_19_trainer_4" type="bool" address="0xD764" bits="5" />
+            <property name="beat_route_19_trainer_5" type="bool" address="0xD764" bits="6" />
+            <property name="beat_route_19_trainer_6" type="bool" address="0xD764" bits="7" />
+            <property name="beat_route_19_trainer_7" type="bool" address="0xD765" bits="0" />
+            <property name="beat_route_19_trainer_8" type="bool" address="0xD765" bits="1" />
+            <property name="beat_route_19_trainer_9" type="bool" address="0xD765" bits="2" />
+            <property name="in_seafoam_islands" type="bool" address="0xD766" bits="0" />
+            <property name="beat_route_20_trainer_0" type="bool" address="0xD766" bits="1" />
+            <property name="beat_route_20_trainer_1" type="bool" address="0xD766" bits="2" />
+            <property name="beat_route_20_trainer_2" type="bool" address="0xD766" bits="3" />
+            <property name="beat_route_20_trainer_3" type="bool" address="0xD766" bits="4" />
+            <property name="beat_route_20_trainer_4" type="bool" address="0xD766" bits="5" />
+            <property name="beat_route_20_trainer_5" type="bool" address="0xD766" bits="6" />
+            <property name="beat_route_20_trainer_6" type="bool" address="0xD766" bits="7" />
+            <property name="beat_route_20_trainer_7" type="bool" address="0xD767" bits="0" />
+            <property name="beat_route_20_trainer_8" type="bool" address="0xD767" bits="1" />
+            <property name="beat_route_20_trainer_9" type="bool" address="0xD767" bits="2" />
+            <property name="seafoam1_boulder1_down_hole" type="bool" address="0xD767" bits="6" />
+            <property name="seafoam1_boulder2_down_hole" type="bool" address="0xD767" bits="7" />
+            <property name="beat_route_21_trainer_0" type="bool" address="0xD768" bits="1" />
+            <property name="beat_route_21_trainer_1" type="bool" address="0xD768" bits="2" />
+            <property name="beat_route_21_trainer_2" type="bool" address="0xD768" bits="3" />
+            <property name="beat_route_21_trainer_3" type="bool" address="0xD768" bits="4" />
+            <property name="beat_route_21_trainer_4" type="bool" address="0xD768" bits="5" />
+            <property name="beat_route_21_trainer_5" type="bool" address="0xD768" bits="6" />
+            <property name="beat_route_21_trainer_6" type="bool" address="0xD768" bits="7" />
+            <property name="beat_route_21_trainer_7" type="bool" address="0xD769" bits="0" />
+            <property name="beat_route_21_trainer_8" type="bool" address="0xD769" bits="1" />
+            <property name="1st_route22_rival_battle" type="bool" address="0xD76A" bits="0" />
+            <property name="2nd_route22_rival_battle" type="bool" address="0xD76A" bits="1" />
+            <property name="beat_route22_rival_1st_battle" type="bool" address="0xD76A" bits="5" />
+            <property name="beat_route22_rival_2nd_battle" type="bool" address="0xD76A" bits="6" />
+            <property name="route22_rival_wants_battle" type="bool" address="0xD76A" bits="7" />
+            <property name="passed_cascadebadge_check" type="bool" address="0xD76C" bits="0" />
+            <property name="passed_thunderbadge_check" type="bool" address="0xD76C" bits="1" />
+            <property name="passed_rainbowbadge_check" type="bool" address="0xD76C" bits="2" />
+            <property name="passed_soulbadge_check" type="bool" address="0xD76C" bits="3" />
+            <property name="passed_marshbadge_check" type="bool" address="0xD76C" bits="4" />
+            <property name="passed_volcanobadge_check" type="bool" address="0xD76C" bits="5" />
+            <property name="passed_earthbadge_check" type="bool" address="0xD76C" bits="6" />
+            <property name="victory_road_2_boulder_on_switch1" type="bool" address="0xD76D" bits="0" />
+            <property name="beat_victory_road_2_trainer_0" type="bool" address="0xD76D" bits="1" />
+            <property name="beat_victory_road_2_trainer_1" type="bool" address="0xD76D" bits="2" />
+            <property name="beat_victory_road_2_trainer_2" type="bool" address="0xD76D" bits="3" />
+            <property name="beat_victory_road_2_trainer_3" type="bool" address="0xD76D" bits="4" />
+            <property name="beat_victory_road_2_trainer_4" type="bool" address="0xD76D" bits="5" />
+            <property name="beat_moltres" type="bool" address="0xD76D" bits="6" />
+            <property name="victory_road_2_boulder_on_switch2" type="bool" address="0xD76D" bits="7" />
+            <property name="got_nugget" type="bool" address="0xD76E" bits="0" />
+            <property name="beat_route24_rocket" type="bool" address="0xD76E" bits="1" />
+            <property name="beat_route_24_trainer_0" type="bool" address="0xD76E" bits="2" />
+            <property name="beat_route_24_trainer_1" type="bool" address="0xD76E" bits="3" />
+            <property name="beat_route_24_trainer_2" type="bool" address="0xD76E" bits="4" />
+            <property name="beat_route_24_trainer_3" type="bool" address="0xD76E" bits="5" />
+            <property name="beat_route_24_trainer_4" type="bool" address="0xD76E" bits="6" />
+            <property name="beat_route_24_trainer_5" type="bool" address="0xD76E" bits="7" />
+            <property name="nugget_reward_available" type="bool" address="0xD76F" bits="1" />
+            <property name="met_bill" type="bool" address="0xD770" bits="0" />
+            <property name="beat_route_25_trainer_0" type="bool" address="0xD770" bits="1" />
+            <property name="beat_route_25_trainer_1" type="bool" address="0xD770" bits="2" />
+            <property name="beat_route_25_trainer_2" type="bool" address="0xD770" bits="3" />
+            <property name="beat_route_25_trainer_3" type="bool" address="0xD770" bits="4" />
+            <property name="beat_route_25_trainer_4" type="bool" address="0xD770" bits="5" />
+            <property name="beat_route_25_trainer_5" type="bool" address="0xD770" bits="6" />
+            <property name="beat_route_25_trainer_6" type="bool" address="0xD770" bits="7" />
+            <property name="beat_route_25_trainer_7" type="bool" address="0xD771" bits="0" />
+            <property name="beat_route_25_trainer_8" type="bool" address="0xD771" bits="1" />
+            <property name="used_cell_separator_on_bill" type="bool" address="0xD771" bits="3" />
+            <property name="got_ss_ticket" type="bool" address="0xD771" bits="4" />
+            <property name="met_bill_2" type="bool" address="0xD771" bits="5" />
+            <property name="bill_said_use_cell_separator" type="bool" address="0xD771" bits="6" />
+            <property name="left_bills_house_after_helping" type="bool" address="0xD771" bits="7" />
+            <property name="beat_viridian_forest_trainer_0" type="bool" address="0xD772" bits="2" />
+            <property name="beat_viridian_forest_trainer_1" type="bool" address="0xD772" bits="3" />
+            <property name="beat_viridian_forest_trainer_2" type="bool" address="0xD772" bits="4" />
+            <property name="beat_mt_moon_1_trainer_0" type="bool" address="0xD774" bits="1" />
+            <property name="beat_mt_moon_1_trainer_1" type="bool" address="0xD774" bits="2" />
+            <property name="beat_mt_moon_1_trainer_2" type="bool" address="0xD774" bits="3" />
+            <property name="beat_mt_moon_1_trainer_3" type="bool" address="0xD774" bits="4" />
+            <property name="beat_mt_moon_1_trainer_4" type="bool" address="0xD774" bits="5" />
+            <property name="beat_mt_moon_1_trainer_5" type="bool" address="0xD774" bits="6" />
+            <property name="beat_mt_moon_1_trainer_6" type="bool" address="0xD774" bits="7" />
+            <property name="beat_mt_moon_exit_super_nerd" type="bool" address="0xD775" bits="1" />
+            <property name="beat_mt_moon_3_trainer_0" type="bool" address="0xD775" bits="2" />
+            <property name="beat_mt_moon_3_trainer_1" type="bool" address="0xD775" bits="3" />
+            <property name="beat_mt_moon_3_trainer_2" type="bool" address="0xD775" bits="4" />
+            <property name="beat_mt_moon_3_trainer_3" type="bool" address="0xD775" bits="5" />
+            <property name="got_dome_fossil" type="bool" address="0xD775" bits="6" />
+            <property name="got_helix_fossil" type="bool" address="0xD775" bits="7" />
+            <property name="beat_ss_anne_5_trainer_0" type="bool" address="0xD77E" bits="4" />
+            <property name="beat_ss_anne_5_trainer_1" type="bool" address="0xD77E" bits="5" />
+            <property name="got_hm01" type="bool" address="0xD782" bits="0" />
+            <property name="rubbed_captains_back" type="bool" address="0xD782" bits="1" />
+            <property name="ss_anne_left" type="bool" address="0xD782" bits="2" />
+            <property name="walked_past_guard_after_ss_anne_left" type="bool" address="0xD782" bits="3" />
+            <property name="started_walking_out_of_dock" type="bool" address="0xD782" bits="4" />
+            <property name="walked_out_of_dock" type="bool" address="0xD782" bits="5" />
+            <property name="beat_ss_anne_8_trainer_0" type="bool" address="0xD784" bits="1" />
+            <property name="beat_ss_anne_8_trainer_1" type="bool" address="0xD784" bits="2" />
+            <property name="beat_ss_anne_8_trainer_2" type="bool" address="0xD784" bits="3" />
+            <property name="beat_ss_anne_8_trainer_3" type="bool" address="0xD784" bits="4" />
+            <property name="beat_ss_anne_9_trainer_0" type="bool" address="0xD786" bits="1" />
+            <property name="beat_ss_anne_9_trainer_1" type="bool" address="0xD786" bits="2" />
+            <property name="beat_ss_anne_9_trainer_2" type="bool" address="0xD786" bits="3" />
+            <property name="beat_ss_anne_9_trainer_3" type="bool" address="0xD786" bits="4" />
+            <property name="beat_ss_anne_10_trainer_0" type="bool" address="0xD788" bits="1" />
+            <property name="beat_ss_anne_10_trainer_1" type="bool" address="0xD788" bits="2" />
+            <property name="beat_ss_anne_10_trainer_2" type="bool" address="0xD788" bits="3" />
+            <property name="beat_ss_anne_10_trainer_3" type="bool" address="0xD788" bits="4" />
+            <property name="beat_ss_anne_10_trainer_4" type="bool" address="0xD788" bits="5" />
+            <property name="beat_ss_anne_10_trainer_5" type="bool" address="0xD788" bits="6" />
+            <property name="victory_road_3_boulder_on_switch1" type="bool" address="0xD792" bits="0" />
+            <property name="beat_victory_road_3_trainer_0" type="bool" address="0xD792" bits="1" />
+            <property name="beat_victory_road_3_trainer_1" type="bool" address="0xD792" bits="2" />
+            <property name="beat_victory_road_3_trainer_2" type="bool" address="0xD792" bits="3" />
+            <property name="beat_victory_road_3_trainer_3" type="bool" address="0xD792" bits="4" />
+            <property name="victory_road_3_boulder_on_switch2" type="bool" address="0xD792" bits="6" />
+            <property name="beat_rocket_hideout_1_trainer_0" type="bool" address="0xD794" bits="1" />
+            <property name="beat_rocket_hideout_1_trainer_1" type="bool" address="0xD794" bits="2" />
+            <property name="beat_rocket_hideout_1_trainer_2" type="bool" address="0xD794" bits="3" />
+            <property name="beat_rocket_hideout_1_trainer_3" type="bool" address="0xD794" bits="4" />
+            <property name="beat_rocket_hideout_1_trainer_4" type="bool" address="0xD794" bits="5" />
+            <property name="677" type="bool" address="0xD794" bits="7" />
+            <property name="67f" type="bool" address="0xD795" bits="7" />
+            <property name="beat_rocket_hideout_2_trainer_0" type="bool" address="0xD796" bits="1" />
+            <property name="beat_rocket_hideout_3_trainer_0" type="bool" address="0xD798" bits="1" />
+            <property name="beat_rocket_hideout_3_trainer_1" type="bool" address="0xD798" bits="2" />
+            <property name="beat_rocket_hideout_4_trainer_0" type="bool" address="0xD79A" bits="2" />
+            <property name="beat_rocket_hideout_4_trainer_1" type="bool" address="0xD79A" bits="3" />
+            <property name="beat_rocket_hideout_4_trainer_2" type="bool" address="0xD79A" bits="4" />
+            <property name="rocket_hideout_4_door_unlocked" type="bool" address="0xD79A" bits="5" />
+            <property name="rocket_dropped_lift_key" type="bool" address="0xD79A" bits="6" />
+            <property name="beat_rocket_hideout_giovanni" type="bool" address="0xD79A" bits="7" />
+            <property name="beat_silph_co_2f_trainer_0" type="bool" address="0xD7A4" bits="2" />
+            <property name="beat_silph_co_2f_trainer_1" type="bool" address="0xD7A4" bits="3" />
+            <property name="beat_silph_co_2f_trainer_2" type="bool" address="0xD7A4" bits="4" />
+            <property name="beat_silph_co_2f_trainer_3" type="bool" address="0xD7A4" bits="5" />
+            <property name="silph_co_2_unlocked_door1" type="bool" address="0xD7A5" bits="5" />
+            <property name="silph_co_2_unlocked_door2" type="bool" address="0xD7A5" bits="6" />
+            <property name="got_tm36" type="bool" address="0xD7A5" bits="7" />
+            <property name="beat_silph_co_3f_trainer_0" type="bool" address="0xD7A6" bits="2" />
+            <property name="beat_silph_co_3f_trainer_1" type="bool" address="0xD7A6" bits="3" />
+            <property name="silph_co_3_unlocked_door1" type="bool" address="0xD7A7" bits="0" />
+            <property name="silph_co_3_unlocked_door2" type="bool" address="0xD7A7" bits="1" />
+            <property name="beat_silph_co_4f_trainer_0" type="bool" address="0xD7A8" bits="2" />
+            <property name="beat_silph_co_4f_trainer_1" type="bool" address="0xD7A8" bits="3" />
+            <property name="beat_silph_co_4f_trainer_2" type="bool" address="0xD7A8" bits="4" />
+            <property name="silph_co_4_unlocked_door1" type="bool" address="0xD7A9" bits="0" />
+            <property name="silph_co_4_unlocked_door2" type="bool" address="0xD7A9" bits="1" />
+            <property name="beat_silph_co_5f_trainer_0" type="bool" address="0xD7AA" bits="2" />
+            <property name="beat_silph_co_5f_trainer_1" type="bool" address="0xD7AA" bits="3" />
+            <property name="beat_silph_co_5f_trainer_2" type="bool" address="0xD7AA" bits="4" />
+            <property name="beat_silph_co_5f_trainer_3" type="bool" address="0xD7AA" bits="5" />
+            <property name="silph_co_5_unlocked_door1" type="bool" address="0xD7AB" bits="0" />
+            <property name="silph_co_5_unlocked_door2" type="bool" address="0xD7AB" bits="1" />
+            <property name="silph_co_5_unlocked_door3" type="bool" address="0xD7AB" bits="2" />
+            <property name="beat_silph_co_6f_trainer_0" type="bool" address="0xD7AC" bits="6" />
+            <property name="beat_silph_co_6f_trainer_1" type="bool" address="0xD7AC" bits="7" />
+            <property name="beat_silph_co_6f_trainer_2" type="bool" address="0xD7AD" bits="0" />
+            <property name="silph_co_6_unlocked_door" type="bool" address="0xD7AD" bits="7" />
+            <property name="beat_silph_co_rival" type="bool" address="0xD7AE" bits="0" />
+            <property name="beat_silph_co_7f_trainer_0" type="bool" address="0xD7AE" bits="5" />
+            <property name="beat_silph_co_7f_trainer_1" type="bool" address="0xD7AE" bits="6" />
+            <property name="beat_silph_co_7f_trainer_2" type="bool" address="0xD7AE" bits="7" />
+            <property name="beat_silph_co_7f_trainer_3" type="bool" address="0xD7AF" bits="0" />
+            <property name="silph_co_7_unlocked_door1" type="bool" address="0xD7AF" bits="4" />
+            <property name="silph_co_7_unlocked_door2" type="bool" address="0xD7AF" bits="5" />
+            <property name="silph_co_7_unlocked_door3" type="bool" address="0xD7AF" bits="6" />
+            <property name="beat_silph_co_8f_trainer_0" type="bool" address="0xD7B0" bits="2" />
+            <property name="beat_silph_co_8f_trainer_1" type="bool" address="0xD7B0" bits="3" />
+            <property name="beat_silph_co_8f_trainer_2" type="bool" address="0xD7B0" bits="4" />
+            <property name="silph_co_8_unlocked_door" type="bool" address="0xD7B1" bits="0" />
+            <property name="beat_silph_co_9f_trainer_0" type="bool" address="0xD7B2" bits="2" />
+            <property name="beat_silph_co_9f_trainer_1" type="bool" address="0xD7B2" bits="3" />
+            <property name="beat_silph_co_9f_trainer_2" type="bool" address="0xD7B2" bits="4" />
+            <property name="silph_co_9_unlocked_door1" type="bool" address="0xD7B3" bits="0" />
+            <property name="silph_co_9_unlocked_door2" type="bool" address="0xD7B3" bits="1" />
+            <property name="silph_co_9_unlocked_door3" type="bool" address="0xD7B3" bits="2" />
+            <property name="silph_co_9_unlocked_door4" type="bool" address="0xD7B3" bits="3" />
+            <property name="beat_silph_co_10f_trainer_0" type="bool" address="0xD7B4" bits="1" />
+            <property name="beat_silph_co_10f_trainer_1" type="bool" address="0xD7B4" bits="2" />
+            <property name="silph_co_10_unlocked_door" type="bool" address="0xD7B5" bits="0" />
+            <property name="beat_silph_co_11f_trainer_0" type="bool" address="0xD7B6" bits="4" />
+            <property name="beat_silph_co_11f_trainer_1" type="bool" address="0xD7B6" bits="5" />
+            <property name="silph_co_11_unlocked_door" type="bool" address="0xD7B7" bits="0" />
+            <property name="got_master_ball" type="bool" address="0xD7B7" bits="5" />
+            <property name="beat_silph_co_giovanni" type="bool" address="0xD7B7" bits="7" />
+            <property name="beat_mansion_2_trainer_0" type="bool" address="0xD7C6" bits="1" />
+            <property name="beat_mansion_3_trainer_0" type="bool" address="0xD7C8" bits="1" />
+            <property name="beat_mansion_3_trainer_1" type="bool" address="0xD7C8" bits="2" />
+            <property name="beat_mansion_4_trainer_0" type="bool" address="0xD7CA" bits="1" />
+            <property name="beat_mansion_4_trainer_1" type="bool" address="0xD7CA" bits="2" />
+            <property name="got_hm03" type="bool" address="0xD7D6" bits="0" />
+            <property name="beat_mewtwo" type="bool" address="0xD7DE" bits="1" />
+            <property name="beat_loreleis_room_trainer_0" type="bool" address="0xD7E2" bits="1" />
+            <property name="autowalked_into_loreleis_room" type="bool" address="0xD7E2" bits="6" />
+            <property name="beat_brunos_room_trainer_0" type="bool" address="0xD7E3" bits="1" />
+            <property name="autowalked_into_brunos_room" type="bool" address="0xD7E3" bits="6" />
+            <property name="beat_agathas_room_trainer_0" type="bool" address="0xD7E4" bits="1" />
+            <property name="autowalked_into_agathas_room" type="bool" address="0xD7E4" bits="6" />
+            <property name="beat_lances_room_trainer_0" type="bool" address="0xD7E5" bits="1" />
+            <property name="beat_lance" type="bool" address="0xD7E5" bits="6" />
+            <property name="lances_room_lock_door" type="bool" address="0xD7E5" bits="7" />
+            <property name="beat_champion_rival" type="bool" address="0xD7E6" bits="1" />
+            <property name="beat_victory_road_1_trainer_0" type="bool" address="0xD7E8" bits="1" />
+            <property name="beat_victory_road_1_trainer_1" type="bool" address="0xD7E8" bits="2" />
+            <property name="victory_road_1_boulder_on_switch" type="bool" address="0xD7E8" bits="7" />
+            <property name="beat_rock_tunnel_2_trainer_0" type="bool" address="0xD7FC" bits="1" />
+            <property name="beat_rock_tunnel_2_trainer_1" type="bool" address="0xD7FC" bits="2" />
+            <property name="beat_rock_tunnel_2_trainer_2" type="bool" address="0xD7FC" bits="3" />
+            <property name="beat_rock_tunnel_2_trainer_3" type="bool" address="0xD7FC" bits="4" />
+            <property name="beat_rock_tunnel_2_trainer_4" type="bool" address="0xD7FC" bits="5" />
+            <property name="beat_rock_tunnel_2_trainer_5" type="bool" address="0xD7FC" bits="6" />
+            <property name="beat_rock_tunnel_2_trainer_6" type="bool" address="0xD7FC" bits="7" />
+            <property name="beat_rock_tunnel_2_trainer_7" type="bool" address="0xD7FD" bits="0" />
+            <property name="seafoam2_boulder1_down_hole" type="bool" address="0xD7FE" bits="0" />
+            <property name="seafoam2_boulder2_down_hole" type="bool" address="0xD7FE" bits="1" />
+            <property name="seafoam3_boulder1_down_hole" type="bool" address="0xD7FF" bits="0" />
+            <property name="seafoam3_boulder2_down_hole" type="bool" address="0xD7FF" bits="1" />
+            <property name="seafoam4_boulder1_down_hole" type="bool" address="0xD800" bits="0" />
+            <property name="seafoam4_boulder2_down_hole" type="bool" address="0xD800" bits="1" />
+            <property name="beat_articuno" type="bool" address="0xD801" bits="2" />
+        </event_flags>
         <battle>
             <property name="mode"    type="int" address="0xD034" reference="battle_modes" />
             <property name="type"    type="int" address="0xD037" reference="battle_types" />
@@ -343,8 +852,8 @@
                     <property name="type_1"     type="int" address="0xD000" reference="pokemon_types" />
                     <property name="type_2"     type="int" address="0xD001" reference="pokemon_types" />
                     <property name="level"      type="int" address="0xD009" />
-                    <property name="catch_rate" type="int" address="0xD002" /> <!-- this gives a bad value. For Squirtle, it says 8, but the offical number is 45 -->
-                    <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" /> <!--Yellow has 2 values, I only found 1-->
+                    <property name="catch_rate" type="int" address="0xD002" />
+                    <property name="status_condition" type="int" address="0xCFFF" reference="status_conditions" />
                     <moves>
                         <class name="0" type="battle_move" var:moveAddress="0xD003" />
                         <class name="1" type="battle_move" var:moveAddress="0xD004" />
@@ -360,35 +869,35 @@
                         <property name="special" type="int" address="0xD013" length="2" />
                     </stats>
                     <modifiers>
-                        <property name="attack"   type="int" address="0xCD1A" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
-                        <property name="defense"  type="int" address="0xCD1B" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
-                        <property name="speed"    type="int" address="0xCD1C" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
-                        <property name="special"  type="int" address="0xCD1D" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
-                        <property name="accuracy" type="int" address="0xCD1E" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
-                        <property name="evasion"  type="int" address="0xCD1F" reference="stage_modifiers" /> <!--same memory location across all Gen1 games-->
+                        <property name="attack"   type="int" address="0xCD1A" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
+                        <property name="defense"  type="int" address="0xCD1B" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
+                        <property name="speed"    type="int" address="0xCD1C" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
+                        <property name="special"  type="int" address="0xCD1D" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
+                        <property name="accuracy" type="int" address="0xCD1E" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
+                        <property name="evasion"  type="int" address="0xCD1F" reference="stage_modifiers" /> <!--same memory location across all language Gen1 games-->
                     </modifiers>
                     <volatile_status_conditions>
-                        <property name="confusion"  type="bit" address="0xD03F" position="7" />     
-                        <property name="toxic"      type="bit" address="0xD064" position="0" />
-                        <property name="leech_seed" type="bit" address="0xD063" position="7" />
+                        <property name="confusion"  type="bool" address="0xD03F" bits="6" />     
+                        <property name="toxic"      type="bool" address="0xD064" bits="0" />
+                        <property name="leech_seed" type="bool" address="0xD063" bits="7" />
                     </volatile_status_conditions>
                     <effects>
-                        <property name="bide"            type="bit" address="0xD03F" position="0" />
-                        <property name="thrash"          type="bit" address="0xD03F" position="1" />
-                        <property name="multi_hit"       type="bit" address="0xD03F" position="2" />
-                        <property name="flinch"          type="bit" address="0xD03F" position="3" />
-                        <property name="charging"        type="bit" address="0xD03F" position="4" />
-                        <property name="multi_turn"      type="bit" address="0xD03F" position="5" />
-                        <property name="invulnerable"    type="bit" address="0xD03F" position="6" />
-                        <property name="bypass_accuracy" type="bit" address="0xD040" position="0" />
-                        <property name="mist"            type="bit" address="0xD040" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xD040" position="2" />
-                        <property name="substitute"      type="bit" address="0xD040" position="4" />
-                        <property name="recharge"        type="bit" address="0xD040" position="5" />
-                        <property name="rage"            type="bit" address="0xD040" position="6" />
-                        <property name="lightscreen"     type="bit" address="0xD064" position="1" />
-                        <property name="reflect"         type="bit" address="0xD064" position="2" />
-                        <property name="transformed"     type="bit" address="0xD064" position="3" />
+                        <property name="bide"            type="bool" address="0xD03F" bits="0" />
+                        <property name="thrash"          type="bool" address="0xD03F" bits="1" />
+                        <property name="multi_hit"       type="bool" address="0xD03F" bits="2" />
+                        <property name="flinch"          type="bool" address="0xD03F" bits="3" />
+                        <property name="charging"        type="bool" address="0xD03F" bits="4" />
+                        <property name="multi_turn"      type="bool" address="0xD03F" bits="5" />
+                        <property name="invulnerable"    type="bool" address="0xD03F" bits="6" />
+                        <property name="bypass_accuracy" type="bool" address="0xD040" bits="0" />
+                        <property name="mist"            type="bool" address="0xD040" bits="1" />
+                        <property name="focus_energy"    type="bool" address="0xD040" bits="2" />
+                        <property name="substitute"      type="bool" address="0xD040" bits="4" />
+                        <property name="recharge"        type="bool" address="0xD040" bits="5" />
+                        <property name="rage"            type="bool" address="0xD040" bits="6" />
+                        <property name="lightscreen"     type="bool" address="0xD064" bits="1" />
+                        <property name="reflect"         type="bool" address="0xD064" bits="2" />
+                        <property name="transformed"     type="bool" address="0xD064" bits="3" />
                     </effects>
                     <counters>
                         <property name="multi_hit" type="int" address="0xD06A" />
@@ -402,7 +911,7 @@
                         <property name="power"    type="int" address="0xCFD4" />
                         <property name="type"     type="int" address="0xCFD5" reference="pokemon_types" />
                         <property name="accuracy" type="int" address="0xCFD6" after-read-value-expression="Math.round(((x / 255) * 100), 2)" />
-                        <!-- <property name="pp_max"   type="int" address="0xCFD7" /> -->
+                        <property name="pp_max"   type="int" address="0xCFD7" />
                     </last_move>
                 </active_pokemon>
                 <team>
@@ -451,10 +960,10 @@
                         <property name="evasion"  type="int" address="0xCD33" reference="stage_modifiers" />
                     </modifiers>
                     <ivs>
-                        <property name="attack"  type="nibble" address="0xCFD8" position="0" />
-                        <property name="defense" type="nibble" address="0xCFD8" position="1" />
-                        <property name="speed"   type="nibble" address="0xCFD9" position="0" />
-                        <property name="special" type="nibble" address="0xCFD9" position="1" />
+                        <property name="attack"  type="int" address="0xCFF1" bits="4-7" />
+                        <property name="defense" type="int" address="0xCFF1" bits="0-3" />
+                        <property name="speed"   type="int" address="0xCFF2" bits="4-7" />
+                        <property name="special" type="int" address="0xCFF2" bits="0-3" />
                     </ivs>
                     <base_stats>
                         <property name="hp"      type="int" address="0xD002" after-read-value-expression="x % 16" />
@@ -465,25 +974,25 @@
                         <!-- <property name="exp"     type="int" address="0xD008" after-read-value-expression="x % 16" /> -->
                     </base_stats>
                     <effects>
-                        <property name="bide"            type="bit" address="0xD040" position="0" />
-                        <property name="thrash"          type="bit" address="0xD040" position="1" />
-                        <property name="multi_hit"       type="bit" address="0xD040" position="2" />
-                        <property name="flinch"          type="bit" address="0xD040" position="3" />
-                        <property name="charging"        type="bit" address="0xD040" position="4" />
-                        <property name="multi_turn"      type="bit" address="0xD040" position="5" />
-                        <property name="invulnerable"    type="bit" address="0xD040" position="6" />
-                        <property name="confusion"       type="bit" address="0xD040" position="7" />     
-                        <property name="bypass_accuracy" type="bit" address="0xD041" position="0" />
-                        <property name="mist"            type="bit" address="0xD041" position="1" />
-                        <property name="focus_energy"    type="bit" address="0xD041" position="2" />
-                        <property name="substitute"      type="bit" address="0xD041" position="4" />
-                        <property name="recharge"        type="bit" address="0xD041" position="5" />
-                        <property name="rage"            type="bit" address="0xD041" position="6" />
-                        <property name="leech_seed"      type="bit" address="0xD041" position="7" />
-                        <property name="toxic"           type="bit" address="0xD042" position="0" />
-                        <property name="lightscreen"     type="bit" address="0xD042" position="1" />
-                        <property name="reflect"         type="bit" address="0xD042" position="2" />
-                        <property name="transformed"     type="bit" address="0xD042" position="3" />
+                        <property name="bide"            type="bool" address="0xD040" bits="0" />
+                        <property name="thrash"          type="bool" address="0xD040" bits="1" />
+                        <property name="multi_hit"       type="bool" address="0xD040" bits="2" />
+                        <property name="flinch"          type="bool" address="0xD040" bits="3" />
+                        <property name="charging"        type="bool" address="0xD040" bits="4" />
+                        <property name="multi_turn"      type="bool" address="0xD040" bits="5" />
+                        <property name="invulnerable"    type="bool" address="0xD040" bits="6" />
+                        <property name="confusion"       type="bool" address="0xD040" bits="6" />     
+                        <property name="bypass_accuracy" type="bool" address="0xD041" bits="0" />
+                        <property name="mist"            type="bool" address="0xD041" bits="1" />
+                        <property name="focus_energy"    type="bool" address="0xD041" bits="2" />
+                        <property name="substitute"      type="bool" address="0xD041" bits="4" />
+                        <property name="recharge"        type="bool" address="0xD041" bits="5" />
+                        <property name="rage"            type="bool" address="0xD041" bits="6" />
+                        <property name="leech_seed"      type="bool" address="0xD041" bits="7" />
+                        <property name="toxic"           type="bool" address="0xD042" bits="0" />
+                        <property name="lightscreen"     type="bool" address="0xD042" bits="1" />
+                        <property name="reflect"         type="bool" address="0xD042" bits="2" />
+                        <property name="transformed"     type="bool" address="0xD042" bits="3" />
                     </effects>
                     <counters>
                         <property name="multi_hit" type="int" address="0xD06F" />
@@ -684,27 +1193,27 @@
             </column_1>
         </screen>
         <options>
-            <property name="text_speed"        type="int" address="0xD354" after-read-value-expression="getBits(x, 0, 3)" reference="text_speeds"  />
-            <property name="sound_1"           type="bit" address="0xD355" position="4" />
-            <property name="sound_2"           type="bit" address="0xD355" position="5" />
-            <property name="battle_style"      type="bit" address="0xD355" position="6" />
-            <property name="battle_animations" type="bit" address="0xD355" position="7" />
+            <property name="text_speed"        type="int" address="0xD2D0" bits="0-2" reference="text_speeds"  />
+            <property name="sound_1"           type="bool" address="0xD2D0" bits="4" />
+            <property name="sound_2"           type="bool" address="0xD2D0" bits="5" />
+            <property name="battle_style"      type="bool" address="0xD2D0" bits="6" />
+            <property name="battle_animations" type="bool" address="0xD2D0" bits="7" />
         </options>
         <game_time>
-            <property name="hours"   type="int" address="0xDA40" length="2" />
-            <property name="minutes" type="int" address="0xDA42" length="2" />
-            <property name="seconds" type="int" address="0xDA44" />
-            <property name="frames"  type="int" address="0xDA45" />
+            <property name="hours"   type="int" address="0xD97C" length="2" />
+            <property name="minutes" type="int" address="0xD97E" length="2" />
+            <property name="seconds" type="int" address="0xD980" />
+            <property name="frames"  type="int" address="0xD981" />
         </game_time>
-        <input>
-            <property name="a" type="bit" address="0xffb1" position="0"/>
-            <property name="b" type="bit" address="0xffb1" position="1"/>
-            <property name="select" type="bit" address="0xffb1" position="2"/>
-            <property name="start" type="bit" address="0xffb1" position="3"/>
-            <property name="right" type="bit" address="0xffb1" position="4"/>
-            <property name="left" type="bit" address="0xffb1" position="5"/>
-            <property name="up" type="bit" address="0xffb1" position="6"/>
-            <property name="down" type="bit" address="0xffb1" position="7"/>
+        <input> <!--Same as English-->
+            <property name="a" type="bool" address="0xffb1" bits="0"/>
+            <property name="b" type="bool" address="0xffb1" bits="1"/>
+            <property name="select" type="bool" address="0xffb1" bits="2"/>
+            <property name="start" type="bool" address="0xffb1" bits="3"/>
+            <property name="right" type="bool" address="0xffb1" bits="4"/>
+            <property name="left" type="bool" address="0xffb1" bits="5"/>
+            <property name="up" type="bool" address="0xffb1" bits="6"/>
+            <property name="down" type="bool" address="0xffb1" bits="7"/>
         </input>
         <meta>
 			<property name="generation" type="int" value="1" />
@@ -745,7 +1254,7 @@
                 <movement_states>
             <entry key="0x00" value="Walk" />
             <entry key="0x01" value="Bike" />
-            <entry key="0x01" value="Surf" />
+            <entry key="0x02" value="Surf" />
         </movement_states>
         <pokemon_types>
             <entry key="0x00" value="Normal" />
@@ -814,59 +1323,59 @@
         </bad_poison>
         <final_team>
             <entry key="0x00" />
-            <entry key="0xB0" value="Charizard" />
-            <entry key="0xB1" value="Blastoise" />
-            <entry key="0x99" value="Venusaur" />
+            <entry key="0xB0" value="リザードン" />
+            <entry key="0xB1" value="カメックス" />
+            <entry key="0x99" value="フシギバナ" />
         </final_team>
         <trainer_classes>
             <entry key="0x00" />
-            <entry key="0x01" value="Youngster"/>
-            <entry key="0x02" value="BugCatcher"/>
-            <entry key="0x03" value="Lass"/>
-            <entry key="0x04" value="Sailor"/>
-            <entry key="0x05" value="Jr Trainer M"/>
-            <entry key="0x06" value="Jr Trainer F"/>
-            <entry key="0x07" value="Pokemaniac"/>
-            <entry key="0x08" value="SuperNerd"/>
-            <entry key="0x09" value="Hiker"/>
-            <entry key="0x0A" value="Biker"/>
-            <entry key="0x0B" value="Burglar"/>
-            <entry key="0x0C" value="Engineer"/>
-            <entry key="0x0D" value="Juggler"/>
-            <entry key="0x0E" value="Fisher"/>
-            <entry key="0x0F" value="Swimmer"/>
-            <entry key="0x10" value="Cue Ball"/>
-            <entry key="0x11" value="Gambler"/>
-            <entry key="0x12" value="Beauty"/>
-            <entry key="0x13" value="Psychic"/>
-            <entry key="0x14" value="Rocker"/>
-            <entry key="0x15" value="Juggler"/>
-            <entry key="0x16" value="Tamer"/>
-            <entry key="0x17" value="Bird Keeper"/>
-            <entry key="0x18" value="Blackbelt"/>
-            <entry key="0x19" value="Rival 1"/>
-            <entry key="0x1A" value="Prof Oak"/>
-            <entry key="0x1B" value="Chief"/>
-            <entry key="0x1C" value="Scientist"/>
-            <entry key="0x1D" value="Giovanni"/>
-            <entry key="0x1E" value="Rocket"/>
-            <entry key="0x1F" value="Cooltrainer M"/>
-            <entry key="0x20" value="Cooltrainer F"/>
-            <entry key="0x21" value="Bruno"/>
-            <entry key="0x22" value="Brock"/>
-            <entry key="0x23" value="Misty"/>
-            <entry key="0x24" value="Lt. Surge"/>
-            <entry key="0x25" value="Erika"/>
-            <entry key="0x26" value="Koga"/>
-            <entry key="0x27" value="Blaine"/>
-            <entry key="0x28" value="Sabrina"/>
-            <entry key="0x29" value="Gentleman"/>
-            <entry key="0x2A" value="Rival 2"/>
-            <entry key="0x2B" value="Rival 3"/>
-            <entry key="0x2C" value="Lorelei"/>
-            <entry key="0x2D" value="Channeler"/>
-            <entry key="0x2E" value="Agatha"/>
-            <entry key="0x2F" value="Lance"/> 
+            <entry key="0x01" value="たんパンこぞう"/>
+            <entry key="0x02" value="むしとりのしょうねん"/>
+            <entry key="0x03" value="ミニスカート"/>
+            <entry key="0x04" value="ふなのり"/>
+            <entry key="0x05" value="ボーイスカウト"/>
+            <entry key="0x06" value="ガールスカウト"/>
+            <entry key="0x07" value="かいじゅうマニア"/>
+            <entry key="0x08" value="りかけいのおとこ"/>
+            <entry key="0x09" value="やまおとこ"/>
+            <entry key="0x0A" value="ぼうそうぞく"/>
+            <entry key="0x0B" value="かじばどろぼう"/>
+            <entry key="0x0C" value="でんきやのオヤジ"/>
+            <entry key="0x0D" value="ジプシージャグラー"/>
+            <entry key="0x0E" value="つりびと"/>
+            <entry key="0x0F" value="かいパンやろう"/>
+            <entry key="0x10" value="スキンヘッズ"/>
+            <entry key="0x11" value="ギャンブラー"/>
+            <entry key="0x12" value="おとなのおねえさん"/>
+            <entry key="0x13" value="サイキッカー"/>
+            <entry key="0x14" value="でんきグループ"/>
+            <entry key="0x15" value="ジプシージャグラー"/>
+            <entry key="0x16" value="もうじゅうつかい"/>
+            <entry key="0x17" value="とりつかい"/>
+            <entry key="0x18" value="からておう"/>
+            <entry key="0x19" value="ライバル 1"/>
+            <entry key="0x1A" value="オーキドせんせい"/>
+            <entry key="0x1B" value="シルフのチーフ"/>
+            <entry key="0x1C" value="はぐれけんきゅういん"/>
+            <entry key="0x1D" value="サカキ"/>
+            <entry key="0x1E" value="ロケットだんいん"/>
+            <entry key="0x1F" value="エリートトレーナー"/>
+            <entry key="0x20" value="エリートトレーナー"/>
+            <entry key="0x21" value="シバ"/>
+            <entry key="0x22" value="タケシ"/>
+            <entry key="0x23" value="カスミ"/>
+            <entry key="0x24" value="マチス"/>
+            <entry key="0x25" value="エリカ"/>
+            <entry key="0x26" value="キョウ"/>
+            <entry key="0x27" value="カツラ"/>
+            <entry key="0x28" value="ナツメ"/>
+            <entry key="0x29" value="ジェントルマン"/>
+            <entry key="0x2A" value="ライバル 2"/>
+            <entry key="0x2B" value="ライバル 3"/>
+            <entry key="0x2C" value="カンナ"/>
+            <entry key="0x2D" value="きとうし"/>
+            <entry key="0x2E" value="キクコ"/>
+            <entry key="0x2F" value="ワタル"/> 
         </trainer_classes>
         <defaultCharacterMap>
             <entry key="0x50" />
@@ -1071,7 +1580,7 @@
             <entry key="0xD5" value="ゆ" />
             <entry key="0xD6" value="よ" />
             <entry key="0xD7" value="ら" />
-            <entry key="0xD8" value="り" />
+            <entry key="0xD8" value="リ" />
             <entry key="0xD9" value="る" />
             <entry key="0xDA" value="れ" />
             <entry key="0xDB" value="ろ" />
@@ -1114,312 +1623,312 @@
         </defaultCharacterMap>
         <moves>
             <entry key="0x00" />
-            <entry key="0x01" value="Pound" />
-            <entry key="0x02" value="Karate Chop" />
-            <entry key="0x03" value="DoubleSlap" />
-            <entry key="0x04" value="Comet Punch" />
-            <entry key="0x05" value="Mega Punch" />
-            <entry key="0x06" value="Pay Day" />
-            <entry key="0x07" value="Fire Punch" />
-            <entry key="0x08" value="Ice Punch" />
-            <entry key="0x09" value="ThunderPunch" />
-            <entry key="0x0A" value="Scratch" />
-            <entry key="0x0B" value="ViceGrip" />
-            <entry key="0x0C" value="Guillotine" />
-            <entry key="0x0D" value="Razor Wind" />
-            <entry key="0x0E" value="Swords Dance" />
-            <entry key="0x0F" value="Cut" />
-            <entry key="0x10" value="Gust" />
-            <entry key="0x11" value="Wing Attack" />
-            <entry key="0x12" value="Whirlwind" />
-            <entry key="0x13" value="Fly" />
-            <entry key="0x14" value="Bind" />
-            <entry key="0x15" value="Slam" />
-            <entry key="0x16" value="Vine Whip" />
-            <entry key="0x17" value="Stomp" />
-            <entry key="0x18" value="Double Kick" />
-            <entry key="0x19" value="Mega Kick" />
-            <entry key="0x1A" value="Jump Kick" />
-            <entry key="0x1B" value="Rolling Kick" />
-            <entry key="0x1C" value="Sand-Attack" />
-            <entry key="0x1D" value="Headbutt" />
-            <entry key="0x1E" value="Horn Attack" />
-            <entry key="0x1F" value="Fury Attack" />
-            <entry key="0x20" value="Horn Drill" />
-            <entry key="0x21" value="Tackle" />
-            <entry key="0x22" value="Body Slam" />
-            <entry key="0x23" value="Wrap" />
-            <entry key="0x24" value="Take Down" />
-            <entry key="0x25" value="Thrash" />
-            <entry key="0x26" value="Double-Edge" />
-            <entry key="0x27" value="Tail Whip" />
-            <entry key="0x28" value="Poison Sting" />
-            <entry key="0x29" value="Twineedle" />
-            <entry key="0x2A" value="Pin Missile" />
-            <entry key="0x2B" value="Leer" />
-            <entry key="0x2C" value="Bite" />
-            <entry key="0x2D" value="Growl" />
-            <entry key="0x2E" value="Roar" />
-            <entry key="0x2F" value="Sing" />
-            <entry key="0x30" value="Supersonic" />
-            <entry key="0x31" value="SonicBoom" />
-            <entry key="0x32" value="Disable" />
-            <entry key="0x33" value="Acid" />
-            <entry key="0x34" value="Ember" />
-            <entry key="0x35" value="Flamethrower" />
-            <entry key="0x36" value="Mist" />
-            <entry key="0x37" value="Water Gun" />
-            <entry key="0x38" value="Hydro Pump" />
-            <entry key="0x39" value="Surf" />
-            <entry key="0x3A" value="Ice Beam" />
-            <entry key="0x3B" value="Blizzard" />
-            <entry key="0x3C" value="Psybeam" />
-            <entry key="0x3D" value="BubbleBeam" />
-            <entry key="0x3E" value="Aurora Beam" />
-            <entry key="0x3F" value="Hyper Beam" />
-            <entry key="0x40" value="Peck" />
-            <entry key="0x41" value="Drill Peck" />
-            <entry key="0x42" value="Submission" />
-            <entry key="0x43" value="Low Kick" />
-            <entry key="0x44" value="Counter" />
-            <entry key="0x45" value="Seismic Toss" />
-            <entry key="0x46" value="Strength" />
-            <entry key="0x47" value="Absorb" />
-            <entry key="0x48" value="Mega Drain" />
-            <entry key="0x49" value="Leech Seed" />
-            <entry key="0x4A" value="Growth" />
-            <entry key="0x4B" value="Razor Leaf" />
-            <entry key="0x4C" value="SolarBeam" />
-            <entry key="0x4D" value="PoisonPowder" />
-            <entry key="0x4E" value="Stun Spore" />
-            <entry key="0x4F" value="Sleep Powder" />
-            <entry key="0x50" value="Petal Dance" />
-            <entry key="0x51" value="String Shot" />
-            <entry key="0x52" value="Dragon Rage" />
-            <entry key="0x53" value="Fire Spin" />
-            <entry key="0x54" value="ThunderShock" />
-            <entry key="0x55" value="Thunderbolt" />
-            <entry key="0x56" value="Thunder Wave" />
-            <entry key="0x57" value="Thunder" />
-            <entry key="0x58" value="Rock Throw" />
-            <entry key="0x59" value="Earthquake" />
-            <entry key="0x5A" value="Fissure" />
-            <entry key="0x5B" value="Dig" />
-            <entry key="0x5C" value="Toxic" />
-            <entry key="0x5D" value="Confusion" />
-            <entry key="0x5E" value="Psychic" />
-            <entry key="0x5F" value="Hypnosis" />
-            <entry key="0x60" value="Meditate" />
-            <entry key="0x61" value="Agility" />
-            <entry key="0x62" value="Quick Attack" />
-            <entry key="0x63" value="Rage" />
-            <entry key="0x64" value="Teleport" />
-            <entry key="0x65" value="Night Shade" />
-            <entry key="0x66" value="Mimic" />
-            <entry key="0x67" value="Screech" />
-            <entry key="0x68" value="Double Team" />
-            <entry key="0x69" value="Recover" />
-            <entry key="0x6A" value="Harden" />
-            <entry key="0x6B" value="Minimize" />
-            <entry key="0x6C" value="Smokescreen" />
-            <entry key="0x6D" value="Confuse Ray" />
-            <entry key="0x6E" value="Withdraw" />
-            <entry key="0x6F" value="Defense Curl" />
-            <entry key="0x70" value="Barrier" />
-            <entry key="0x71" value="Light Screen" />
-            <entry key="0x72" value="Haze" />
-            <entry key="0x73" value="Reflect" />
-            <entry key="0x74" value="Focus Energy" />
-            <entry key="0x75" value="Bide" />
-            <entry key="0x76" value="Metronome" />
-            <entry key="0x77" value="Mirror Move" />
-            <entry key="0x78" value="Selfdestruct" />
-            <entry key="0x79" value="Egg Bomb" />
-            <entry key="0x7A" value="Lick" />
-            <entry key="0x7B" value="Smog" />
-            <entry key="0x7C" value="Sludge" />
-            <entry key="0x7D" value="Bone Club" />
-            <entry key="0x7E" value="Fire Blast" />
-            <entry key="0x7F" value="Waterfall" />
-            <entry key="0x80" value="Clamp" />
-            <entry key="0x81" value="Swift" />
-            <entry key="0x82" value="Skull Bash" />
-            <entry key="0x83" value="Spike Cannon" />
-            <entry key="0x84" value="Constrict" />
-            <entry key="0x85" value="Amnesia" />
-            <entry key="0x86" value="Kinesis" />
-            <entry key="0x87" value="Softboiled" />
-            <entry key="0x88" value="Hi Jump Kick" />
-            <entry key="0x89" value="Glare" />
-            <entry key="0x8A" value="Dream Eater" />
-            <entry key="0x8B" value="Poison Gas" />
-            <entry key="0x8C" value="Barrage" />
-            <entry key="0x8D" value="Leech Life" />
-            <entry key="0x8E" value="Lovely Kiss" />
-            <entry key="0x8F" value="Sky Attack" />
-            <entry key="0x90" value="Transform" />
-            <entry key="0x91" value="Bubble" />
-            <entry key="0x92" value="Dizzy Punch" />
-            <entry key="0x93" value="Spore" />
-            <entry key="0x94" value="Flash" />
-            <entry key="0x95" value="Psywave" />
-            <entry key="0x96" value="Splash" />
-            <entry key="0x97" value="Acid Armor" />
-            <entry key="0x98" value="Crabhammer" />
-            <entry key="0x99" value="Explosion" />
-            <entry key="0x9A" value="Fury Swipes" />
-            <entry key="0x9B" value="Bonemerang" />
-            <entry key="0x9C" value="Rest" />
-            <entry key="0x9D" value="Rock Slide" />
-            <entry key="0x9E" value="Hyper Fang" />
-            <entry key="0x9F" value="Sharpen" />
-            <entry key="0xA0" value="Conversion" />
-            <entry key="0xA1" value="Tri Attack" />
-            <entry key="0xA2" value="Super Fang" />
-            <entry key="0xA3" value="Slash" />
-            <entry key="0xA4" value="Substitute" />
-            <entry key="0xA5" value="Struggle" />
+            <entry key="0x01" value="はたく" />
+            <entry key="0x02" value="からてチョップ" />
+            <entry key="0x03" value="おうふくビンタ" />
+            <entry key="0x04" value="れんぞくパンチ" />
+            <entry key="0x05" value="メガトンパンチ" />
+            <entry key="0x06" value="ネコにこばん" />
+            <entry key="0x07" value="ほのおのパンチ" />
+            <entry key="0x08" value="れいとうパンチ" />
+            <entry key="0x09" value="かみなりパンチ" />
+            <entry key="0x0A" value="ひっかく" />
+            <entry key="0x0B" value="はさむ" />
+            <entry key="0x0C" value="ハサミギロチン" />
+            <entry key="0x0D" value="かまいたち" />
+            <entry key="0x0E" value="つるぎのまい" />
+            <entry key="0x0F" value="いあいぎり" />
+            <entry key="0x10" value="かぜおこし" />
+            <entry key="0x11" value="つばさでうつ" />
+            <entry key="0x12" value="ふきとばし" />
+            <entry key="0x13" value="そらをとぶ" />
+            <entry key="0x14" value="しめつける" />
+            <entry key="0x15" value="たたきつける" />
+            <entry key="0x16" value="つるのムチ" />
+            <entry key="0x17" value="ふみつけ" />
+            <entry key="0x18" value="にどげり" />
+            <entry key="0x19" value="メガトンキック" />
+            <entry key="0x1A" value="とびげり" />
+            <entry key="0x1B" value="まわしげり" />
+            <entry key="0x1C" value="すなかけ" />
+            <entry key="0x1D" value="ずつき" />
+            <entry key="0x1E" value="つのでつく" />
+            <entry key="0x1F" value="みだれづき" />
+            <entry key="0x20" value="つのドリル" />
+            <entry key="0x21" value="たいあたり" />
+            <entry key="0x22" value="のしかかり" />
+            <entry key="0x23" value="まきつく" />
+            <entry key="0x24" value="とっしん" />
+            <entry key="0x25" value="あばれる" />
+            <entry key="0x26" value="すてみタックル" />
+            <entry key="0x27" value="しっぽをふる" />
+            <entry key="0x28" value="どくばり" />
+            <entry key="0x29" value="ダブルニードル" />
+            <entry key="0x2A" value="ミサイルばり" />
+            <entry key="0x2B" value="にらみつける" />
+            <entry key="0x2C" value="かみつく" />
+            <entry key="0x2D" value="なきごえ" />
+            <entry key="0x2E" value="ほえる" />
+            <entry key="0x2F" value="うたう" />
+            <entry key="0x30" value="ちょうおんぱ" />
+            <entry key="0x31" value="ソニックブーム" />
+            <entry key="0x32" value="かなしばり" />
+            <entry key="0x33" value="ようかいえき" />
+            <entry key="0x34" value="ひのこ" />
+            <entry key="0x35" value="かえんほうしゃ" />
+            <entry key="0x36" value="しろいきり" />
+            <entry key="0x37" value="みずでっぽう" />
+            <entry key="0x38" value="ハイドロポンプ" />
+            <entry key="0x39" value="なみのり" />
+            <entry key="0x3A" value="れいとうビーム" />
+            <entry key="0x3B" value="ふぶき" />
+            <entry key="0x3C" value="サイケこうせん" />
+            <entry key="0x3D" value="バブルこうせん" />
+            <entry key="0x3E" value="オーロラビーム" />
+            <entry key="0x3F" value="はかいこうせん" />
+            <entry key="0x40" value="つつく" />
+            <entry key="0x41" value="ドリルくちばし" />
+            <entry key="0x42" value="じごくぐるま" />
+            <entry key="0x43" value="けたぐり" />
+            <entry key="0x44" value="カウンター" />
+            <entry key="0x45" value="ちきゅうなげ" />
+            <entry key="0x46" value="かいりき" />
+            <entry key="0x47" value="すいとる" />
+            <entry key="0x48" value="メガドレイン" />
+            <entry key="0x49" value="やどりぎのタネ" />
+            <entry key="0x4A" value="せいちょう" />
+            <entry key="0x4B" value="はっぱカッター" />
+            <entry key="0x4C" value="ソーラービーム" />
+            <entry key="0x4D" value="どくのこな" />
+            <entry key="0x4E" value="しびれごな" />
+            <entry key="0x4F" value="ねむりごな" />
+            <entry key="0x50" value="はなびらのまい" />
+            <entry key="0x51" value="いとをはく" />
+            <entry key="0x52" value="りゅうのいかり" />
+            <entry key="0x53" value="ほのおのうず" />
+            <entry key="0x54" value="でんきショック" />
+            <entry key="0x55" value="１０まんボルト" />
+            <entry key="0x56" value="でんじは" />
+            <entry key="0x57" value="かみなり" />
+            <entry key="0x58" value="いわおとし" />
+            <entry key="0x59" value="じしん" />
+            <entry key="0x5A" value="じわれ" />
+            <entry key="0x5B" value="あなをほる" />
+            <entry key="0x5C" value="どくどく" />
+            <entry key="0x5D" value="ねんりき" />
+            <entry key="0x5E" value="サイコキネシス" />
+            <entry key="0x5F" value="さいみんじゅつ" />
+            <entry key="0x60" value="ヨガのポーズ" />
+            <entry key="0x61" value="こうそくいどう" />
+            <entry key="0x62" value="でんこうせっか" />
+            <entry key="0x63" value="いかり" />
+            <entry key="0x64" value="テレポート" />
+            <entry key="0x65" value="ナイトヘッド" />
+            <entry key="0x66" value="ものまね" />
+            <entry key="0x67" value="いやなおと" />
+            <entry key="0x68" value="かげぶんしん" />
+            <entry key="0x69" value="じこさいせい" />
+            <entry key="0x6A" value="かたくなる" />
+            <entry key="0x6B" value="ちいさくなる" />
+            <entry key="0x6C" value="えんまく" />
+            <entry key="0x6D" value="あやしいひかり" />
+            <entry key="0x6E" value="からにこもる" />
+            <entry key="0x6F" value="まるくなる" />
+            <entry key="0x70" value="バリアー" />
+            <entry key="0x71" value="ひかりのかべ" />
+            <entry key="0x72" value="くろいきり" />
+            <entry key="0x73" value="リフレクター" />
+            <entry key="0x74" value="きあいだめ" />
+            <entry key="0x75" value="がまん" />
+            <entry key="0x76" value="ゆびをふる" />
+            <entry key="0x77" value="オウムがえし" />
+            <entry key="0x78" value="じばく" />
+            <entry key="0x79" value="タマゴばくだん" />
+            <entry key="0x7A" value="したでなめる" />
+            <entry key="0x7B" value="スモッグ" />
+            <entry key="0x7C" value="ヘドロこうげき" />
+            <entry key="0x7D" value="ホネこんぼう" />
+            <entry key="0x7E" value="だいもんじ" />
+            <entry key="0x7F" value="たきのぼり" />
+            <entry key="0x80" value="からではさむ" />
+            <entry key="0x81" value="スピードスター" />
+            <entry key="0x82" value="ロケットずつき" />
+            <entry key="0x83" value="とげキャノン" />
+            <entry key="0x84" value="からみつく" />
+            <entry key="0x85" value="ドわすれ" />
+            <entry key="0x86" value="スプーンまげ" />
+            <entry key="0x87" value="タマゴうみ" />
+            <entry key="0x88" value="とびひざげり" />
+            <entry key="0x89" value="へびにらみ" />
+            <entry key="0x8A" value="ゆめくい" />
+            <entry key="0x8B" value="どくガス" />
+            <entry key="0x8C" value="たまなげ" />
+            <entry key="0x8D" value="きゅうけつ" />
+            <entry key="0x8E" value="あくまのキッス" />
+            <entry key="0x8F" value="ゴッドバード" />
+            <entry key="0x90" value="へんしん" />
+            <entry key="0x91" value="あわ" />
+            <entry key="0x92" value="ピヨピヨパンチ" />
+            <entry key="0x93" value="キノコのほうし" />
+            <entry key="0x94" value="フラッシュ" />
+            <entry key="0x95" value="サイコウェーブ" />
+            <entry key="0x96" value="はねる" />
+            <entry key="0x97" value="とける" />
+            <entry key="0x98" value="クラブハンマー" />
+            <entry key="0x99" value="だいばくはつ" />
+            <entry key="0x9A" value="みだれひっかき" />
+            <entry key="0x9B" value="ホネブーメラン" />
+            <entry key="0x9C" value="ねむる" />
+            <entry key="0x9D" value="いわなだれ" />
+            <entry key="0x9E" value="ひっさつまえば" />
+            <entry key="0x9F" value="かくばる" />
+            <entry key="0xA0" value="テクスチャー" />
+            <entry key="0xA1" value="トライアタック" />
+            <entry key="0xA2" value="いかりのまえば" />
+            <entry key="0xA3" value="きりさく" />
+            <entry key="0xA4" value="みがわり" />
+            <entry key="0xA5" value="わるあがき" />
         </moves>
         <items>
             <entry key="0x00" />
-            <entry key="0x01" value="MASTER BALL" />
-            <entry key="0x02" value="ULTRA BALL" />
-            <entry key="0x03" value="GREAT BALL" />
-            <entry key="0x04" value="POKé BALL" />
-            <entry key="0x05" value="TOWN MAP" />
-            <entry key="0x06" value="BICYCLE" />
+            <entry key="0x01" value="マスターボール" />
+            <entry key="0x02" value="ハイパーボール" />
+            <entry key="0x03" value="スーパーボール" />
+            <entry key="0x04" value="モンスターボール" />
+            <entry key="0x05" value="タウンマップ" />
+            <entry key="0x06" value="じてんしゃ" />
             <entry key="0x07" value="?????" />
-            <entry key="0x08" value="SAFARI BALL" />
-            <entry key="0x09" value="POKéDEX" />
-            <entry key="0x0A" value="MOON STONE" />
-            <entry key="0x0B" value="ANTIDOTE" />
-            <entry key="0x0C" value="BURN HEAL" />
-            <entry key="0x0D" value="ICE HEAL" />
-            <entry key="0x0E" value="AWAKENING" />
-            <entry key="0x0F" value="PARLYZ HEAL" />
-            <entry key="0x10" value="FULL RESTORE" />
-            <entry key="0x11" value="MAX POTION" />
-            <entry key="0x12" value="HYPER POTION" />
-            <entry key="0x13" value="SUPER POTION" />
-            <entry key="0x14" value="POTION" />
-            <entry key="0x15" value="BOULDERBADGE" />
-            <entry key="0x16" value="CASCADEBADGE" />
-            <entry key="0x17" value="THUNDERBADGE" />
-            <entry key="0x18" value="RAINBOWBADGE" />
-            <entry key="0x19" value="SOULBADGE" />
-            <entry key="0x1A" value="MARSHBADGE" />
-            <entry key="0x1B" value="VOLCANOBADGE" />
-            <entry key="0x1C" value="EARTHBADGE" />
-            <entry key="0x1D" value="ESCAPE ROPE" />
-            <entry key="0x1E" value="REPEL" />
-            <entry key="0x1F" value="OLD AMBER" />
-            <entry key="0x20" value="FIRE STONE" />
-            <entry key="0x21" value="THUNDERSTONE" />
-            <entry key="0x22" value="WATER STONE" />
-            <entry key="0x23" value="HP UP" />
-            <entry key="0x24" value="PROTEIN" />
-            <entry key="0x25" value="IRON" />
-            <entry key="0x26" value="CARBOS" />
-            <entry key="0x27" value="CALCIUM" />
-            <entry key="0x28" value="RARE CANDY" />
-            <entry key="0x29" value="DOME FOSSIL" />
-            <entry key="0x2A" value="HELIX FOSSIL" />
-            <entry key="0x2B" value="SECRET KEY" />
+            <entry key="0x08" value="サファリボール" />
+            <entry key="0x09" value="ずかん" />
+            <entry key="0x0A" value="つきのいし" />
+            <entry key="0x0B" value="どくけし " />
+            <entry key="0x0C" value="やけどなおし" />
+            <entry key="0x0D" value="こおりなおし" />
+            <entry key="0x0E" value="ねむけざまし" />
+            <entry key="0x0F" value="まひなおし" />
+            <entry key="0x10" value="かいふくのくすり" />
+            <entry key="0x11" value="まんたんのくすり" />
+            <entry key="0x12" value="すごいキズぐすり" />
+            <entry key="0x13" value="いいキズぐすり" />
+            <entry key="0x14" value="キズぐすり" />
+            <entry key="0x15" value="グレーバッジ" />
+            <entry key="0x16" value="ブルーバッジ" />
+            <entry key="0x17" value="オレンジバッジ" />
+            <entry key="0x18" value="レインボーバッジ" />
+            <entry key="0x19" value="ピンクバッジ" />
+            <entry key="0x1A" value="ゴールドバッジ" />
+            <entry key="0x1B" value="クリムゾンバッジ" />
+            <entry key="0x1C" value="グリーンバッジ" />
+            <entry key="0x1D" value="あなぬけのヒモ" />
+            <entry key="0x1E" value="むしよけスプレー" />
+            <entry key="0x1F" value="ひみつのコハク" />
+            <entry key="0x20" value="ほのおのいし" />
+            <entry key="0x21" value="かみなりのいし" />
+            <entry key="0x22" value="みずのいし" />
+            <entry key="0x23" value="マックスアップ" />
+            <entry key="0x24" value="タウリン" />
+            <entry key="0x25" value="ブロムヘキシン" />
+            <entry key="0x26" value="インドメタシン" />
+            <entry key="0x27" value="リゾチウム" />
+            <entry key="0x28" value="ふしぎなアメ" />
+            <entry key="0x29" value="こうらのカセキ" />
+            <entry key="0x2A" value="かいのカセキ" />
+            <entry key="0x2B" value="ひみつのカギ" />
             <entry key="0x2C" value="?????" />
-            <entry key="0x2D" value="BIKE VOUCHER" />
-            <entry key="0x2E" value="X ACCURACY" />
-            <entry key="0x2F" value="LEAF STONE" />
-            <entry key="0x30" value="CARD KEY" />
-            <entry key="0x31" value="NUGGET" />
-            <entry key="0x32" value="PP UP" />
-            <entry key="0x33" value="POKé DOLL" />
-            <entry key="0x34" value="FULL HEAL" />
-            <entry key="0x35" value="REVIVE" />
-            <entry key="0x36" value="MAX REVIVE" />
-            <entry key="0x37" value="GUARD SPEC." />
-            <entry key="0x38" value="SUPER REPEL" />
-            <entry key="0x39" value="MAX REPEL" />
-            <entry key="0x3A" value="DIRE HIT" />
-            <entry key="0x3B" value="COIN" />
-            <entry key="0x3C" value="FRESH WATER" />
-            <entry key="0x3D" value="SODA POP" />
-            <entry key="0x3E" value="LEMONADE" />
-            <entry key="0x3F" value="S.S.TICKET" />
-            <entry key="0x40" value="GOLD TEETH" />
-            <entry key="0x41" value="X ATTACK" />
-            <entry key="0x42" value="X DEFEND" />
-            <entry key="0x43" value="X SPEED" />
-            <entry key="0x44" value="X SPECIAL" />
-            <entry key="0x45" value="COIN CASE" />
-            <entry key="0x46" value="OAK's PARCEL" />
-            <entry key="0x47" value="ITEMFINDER" />
-            <entry key="0x48" value="SILPH SCOPE" />
-            <entry key="0x49" value="POKé FLUTE" />
-            <entry key="0x4A" value="LIFT KEY" />
-            <entry key="0x4B" value="EXP.ALL" />
-            <entry key="0x4C" value="OLD ROD" />
-            <entry key="0x4D" value="GOOD ROD" />
-            <entry key="0x4E" value="SUPER ROD" />
-            <entry key="0x4F" value="PP UP" />
-            <entry key="0x50" value="ETHER" />
-            <entry key="0x51" value="MAX ETHER" />
-            <entry key="0x52" value="ELIXER" />
-            <entry key="0x53" value="MAX ELIXER" />
-            <entry key="0xC4" value="HM01: Cut" />
-            <entry key="0xC5" value="HM02: Fly" />
-            <entry key="0xC6" value="HM03: Surf" />
-            <entry key="0xC7" value="HM04: Strength" />
-            <entry key="0xC8" value="HM05: Flash" />
-            <entry key="0xC9" value="TM01: Mega Punch" />
-            <entry key="0xCA" value="TM02: Razor Wind" />
-            <entry key="0xCB" value="TM03: Swords Dance" />
-            <entry key="0xCC" value="TM04: Whirlwind" />
-            <entry key="0xCD" value="TM05: Mega Kick" />
-            <entry key="0xCE" value="TM06: Toxic" />
-            <entry key="0xCF" value="TM07: Horn Drill" />
-            <entry key="0xD0" value="TM08: Body Slam" />
-            <entry key="0xD1" value="TM09: Take Down" />
-            <entry key="0xD2" value="TM10: Double-Edge" />
-            <entry key="0xD3" value="TM11: BubbleBeam" />
-            <entry key="0xD4" value="TM12: Water Gun" />
-            <entry key="0xD5" value="TM13: Ice Beam" />
-            <entry key="0xD6" value="TM14: Blizzard" />
-            <entry key="0xD7" value="TM15: Hyper Beam" />
-            <entry key="0xD8" value="TM16: Pay Day" />
-            <entry key="0xD9" value="TM17: Submission" />
-            <entry key="0xDA" value="TM18: Counter" />
-            <entry key="0xDB" value="TM19: Seismic Toss" />
-            <entry key="0xDC" value="TM20: Rage" />
-            <entry key="0xDD" value="TM21: Mega Drain" />
-            <entry key="0xDE" value="TM22: SolarBeam" />
-            <entry key="0xDF" value="TM23: Dragon Rage" />
-            <entry key="0xE0" value="TM24: Thunderbolt" />
-            <entry key="0xE1" value="TM25: Thunder" />
-            <entry key="0xE2" value="TM26: Earthquake" />
-            <entry key="0xE3" value="TM27: Fissure" />
-            <entry key="0xE4" value="TM28: Dig" />
-            <entry key="0xE5" value="TM29: Psychic" />
-            <entry key="0xE6" value="TM30: Teleport" />
-            <entry key="0xE7" value="TM31: Mimic" />
-            <entry key="0xE8" value="TM32: Double Team" />
-            <entry key="0xE9" value="TM33: Reflect" />
-            <entry key="0xEA" value="TM34: Bide" />
-            <entry key="0xEB" value="TM35: Metronome" />
-            <entry key="0xEC" value="TM36: Selfdestruct" />
-            <entry key="0xED" value="TM37: Egg Bomb" />
-            <entry key="0xEE" value="TM38: Fire Blast" />
-            <entry key="0xEF" value="TM39: Swift" />
-            <entry key="0xF0" value="TM40: Skull Bash" />
-            <entry key="0xF1" value="TM41: Softboiled" />
-            <entry key="0xF2" value="TM42: Dream Eater" />
-            <entry key="0xF3" value="TM43: Sky Attack" />
-            <entry key="0xF4" value="TM44: Rest" />
-            <entry key="0xF5" value="TM45: Thunder Wave" />
-            <entry key="0xF6" value="TM46: Psywave" />
-            <entry key="0xF7" value="TM47: Explosion" />
-            <entry key="0xF8" value="TM48: Rock Slide" />
-            <entry key="0xF9" value="TM49: Tri Attack" />
-            <entry key="0xFA" value="TM50: Substitute" />
+            <entry key="0x2D" value="ひきかえけん" />
+            <entry key="0x2E" value="ヨクアタール" />
+            <entry key="0x2F" value="リーフのいし" />
+            <entry key="0x30" value="カードキー" />
+            <entry key="0x31" value="きんのたま" />
+            <entry key="0x32" value="ポイントアップ" />
+            <entry key="0x33" value="ピッピにんぎょう" />
+            <entry key="0x34" value="なんでもなおし" />
+            <entry key="0x35" value="げんきのかけら" />
+            <entry key="0x36" value="げんきのかたまり" />
+            <entry key="0x37" value="エフェクトガード" />
+            <entry key="0x38" value="シルバースプレー" />
+            <entry key="0x39" value="ゴールドスプレー" />
+            <entry key="0x3A" value="クリティカッター" />
+            <entry key="0x3B" value="コイン" />
+            <entry key="0x3C" value="おいしいみず" />
+            <entry key="0x3D" value="サイコソーダ" />
+            <entry key="0x3E" value="ミックスオレ" />
+            <entry key="0x3F" value="ふねのチケット" />
+            <entry key="0x40" value="きんのいれば " />
+            <entry key="0x41" value="プラスパワー" />
+            <entry key="0x42" value="ディフェンダー" />
+            <entry key="0x43" value="スピーダー" />
+            <entry key="0x44" value="スペシャルアップ" />
+            <entry key="0x45" value="コインケース" />
+            <entry key="0x46" value="おとどけもの" />
+            <entry key="0x47" value="ダウジングマシン" />
+            <entry key="0x48" value="シルフスコープ" />
+            <entry key="0x49" value="ポケモンのふえ" />
+            <entry key="0x4A" value="エレベータのカギ" />
+            <entry key="0x4B" value="がくしゅうそうち" />
+            <entry key="0x4C" value="ボロのつりざお" />
+            <entry key="0x4D" value="いいつりざお" />
+            <entry key="0x4E" value="すごいつりざお" />
+            <entry key="0x4F" value="ポイントアップ" />
+            <entry key="0x50" value="ピーピーエイド" />
+            <entry key="0x51" value="ピーピーリカバー" />
+            <entry key="0x52" value="ピーピーエイダー" />
+            <entry key="0x53" value="ピーピーマックス" />
+            <entry key="0xC4" value="ひでんマシン01: いあいぎり" />
+            <entry key="0xC5" value="ひでんマシン02: そらをとぶ" />
+            <entry key="0xC6" value="ひでんマシン03: なみのり" />
+            <entry key="0xC7" value="ひでんマシン04: かいりき" />
+            <entry key="0xC8" value="ひでんマシン05: フラッシュ" />
+            <entry key="0xC9" value="わざマシン01: メガトンパンチ" />
+            <entry key="0xCA" value="わざマシン02: かまいたち" />
+            <entry key="0xCB" value="わざマシン03: つるぎのまい" />
+            <entry key="0xCC" value="わざマシン04: ふきとばし" />
+            <entry key="0xCD" value="わざマシン05: メガトンキック" />
+            <entry key="0xCE" value="わざマシン06: どくどく" />
+            <entry key="0xCF" value="わざマシン07: つのドリル" />
+            <entry key="0xD0" value="わざマシン08: のしかかり" />
+            <entry key="0xD1" value="わざマシン09: とっしん" />
+            <entry key="0xD2" value="わざマシン10: すてみタックル" />
+            <entry key="0xD3" value="わざマシン11: バブルこうせん" />
+            <entry key="0xD4" value="わざマシン12: みずでっぽう" />
+            <entry key="0xD5" value="わざマシン13: れいとうビーム" />
+            <entry key="0xD6" value="わざマシン14: ふぶき" />
+            <entry key="0xD7" value="わざマシン15: はかいこうせん" />
+            <entry key="0xD8" value="わざマシン16: ネコにこばん" />
+            <entry key="0xD9" value="わざマシン17: じごくぐるま" />
+            <entry key="0xDA" value="わざマシン18: カウンター" />
+            <entry key="0xDB" value="わざマシン19: ちきゅうなげ" />
+            <entry key="0xDC" value="わざマシン20: いかり" />
+            <entry key="0xDD" value="わざマシン21: メガドレイン" />
+            <entry key="0xDE" value="わざマシン22: ソーラービーム" />
+            <entry key="0xDF" value="わざマシン23: りゅうのいかり" />
+            <entry key="0xE0" value="わざマシン24: １０まんボルト" />
+            <entry key="0xE1" value="わざマシン25: かみなり" />
+            <entry key="0xE2" value="わざマシン26: じしん" />
+            <entry key="0xE3" value="わざマシン27: じわれ" />
+            <entry key="0xE4" value="わざマシン28: あなをほる" />
+            <entry key="0xE5" value="わざマシン29: サイコキネシス" />
+            <entry key="0xE6" value="わざマシン30: テレポート" />
+            <entry key="0xE7" value="わざマシン31: ものまね" />
+            <entry key="0xE8" value="わざマシン32: かげぶんしん" />
+            <entry key="0xE9" value="わざマシン33: リフレクター" />
+            <entry key="0xEA" value="わざマシン34: がまん" />
+            <entry key="0xEB" value="わざマシン35: ゆびをふる" />
+            <entry key="0xEC" value="わざマシン36: じばく" />
+            <entry key="0xED" value="わざマシン37: タマゴばくだん" />
+            <entry key="0xEE" value="わざマシン38: だいもんじ" />
+            <entry key="0xEF" value="わざマシン39: スピードスター" />
+            <entry key="0xF0" value="わざマシン40: ロケットずつき" />
+            <entry key="0xF1" value="わざマシン41: タマゴうみ" />
+            <entry key="0xF2" value="わざマシン42: ゆめくい" />
+            <entry key="0xF3" value="わざマシン43: ゴッドバード" />
+            <entry key="0xF4" value="わざマシン44: ねむる" />
+            <entry key="0xF5" value="わざマシン45: でんじは" />
+            <entry key="0xF6" value="わざマシン46: サイコウェーブ" />
+            <entry key="0xF7" value="わざマシン47: だいばくはつ" />
+            <entry key="0xF8" value="わざマシン48: いわなだれ" />
+            <entry key="0xF9" value="わざマシン49: トライアタック" />
+            <entry key="0xFA" value="わざマシン50: みがわり" />
             <entry key="0xFF" />
         </items>
         <dex_numbers type="number">
@@ -1619,81 +2128,81 @@
         <species>
             <entry key="0x00" />
             <entry key="0xFF" />
-            <entry key="0x01" value="Rhydon" />
+            <entry key="0x01" value="サイドン" />
             <entry key="0x02" value="ガルーラ" />
-            <entry key="0x03" value="Nidoran-M" />
-            <entry key="0x04" value="Clefairy" />
-            <entry key="0x05" value="Spearow" />
-            <entry key="0x06" value="Voltorb" />
-            <entry key="0x07" value="Nidoking" />
-            <entry key="0x08" value="Slowbro" />
-            <entry key="0x09" value="Ivysaur" />
-            <entry key="0x0A" value="Exeggutor" />
-            <entry key="0x0B" value="Lickitung" />
-            <entry key="0x0C" value="Exeggcute" />
-            <entry key="0x0D" value="Grimer" />
-            <entry key="0x0E" value="Gengar" />
-            <entry key="0x0F" value="Nidoran-F" />
-            <entry key="0x10" value="Nidoqueen" />
-            <entry key="0x11" value="Cubone" />
-            <entry key="0x12" value="Rhyhorn" />
-            <entry key="0x13" value="Lapras" />
-            <entry key="0x14" value="Arcanine" />
-            <entry key="0x15" value="Mew" />
-            <entry key="0x16" value="Gyarados" />
-            <entry key="0x17" value="Shellder" />
-            <entry key="0x18" value="Tentacool" />
-            <entry key="0x19" value="Gastly" />
-            <entry key="0x1A" value="Scyther" />
-            <entry key="0x1B" value="Staryu" />
-            <entry key="0x1C" value="Blastoise" />
-            <entry key="0x1D" value="Pinsir" />
-            <entry key="0x1E" value="Tangela" />
+            <entry key="0x03" value="ニドラン♂" />
+            <entry key="0x04" value="ピッピ" />
+            <entry key="0x05" value="オニスズメ" />
+            <entry key="0x06" value="ビリリダマ" />
+            <entry key="0x07" value="ニドキング" />
+            <entry key="0x08" value="ヤドラン" />
+            <entry key="0x09" value="フシギソウ" />
+            <entry key="0x0A" value="ナッシー" />
+            <entry key="0x0B" value="ベロリンガ" />
+            <entry key="0x0C" value="タマタマ" />
+            <entry key="0x0D" value="ベトベター" />
+            <entry key="0x0E" value="ゲンガー" />
+            <entry key="0x0F" value="ニドラン♀" />
+            <entry key="0x10" value="ニドクイン" />
+            <entry key="0x11" value="カラカラ" />
+            <entry key="0x12" value="サイホーン" />
+            <entry key="0x13" value="ラプラス" />
+            <entry key="0x14" value="ウインディ" />
+            <entry key="0x15" value="ミュウ" />
+            <entry key="0x16" value="ギャラドス" />
+            <entry key="0x17" value="シェルダー" />
+            <entry key="0x18" value="メノクラゲ" />
+            <entry key="0x19" value="ゴース" />
+            <entry key="0x1A" value="ストライク" />
+            <entry key="0x1B" value="ヒトデマン" />
+            <entry key="0x1C" value="カメックス" />
+            <entry key="0x1D" value="カイロス" />
+            <entry key="0x1E" value="モンジャラ" />
             <entry key="0x1F" />
             <entry key="0x20" />
-            <entry key="0x21" value="Growlithe" />
-            <entry key="0x22" value="Onix" />
-            <entry key="0x23" value="Fearow" />
-            <entry key="0x24" value="Pidgey" />
-            <entry key="0x25" value="Slowpoke" />
+            <entry key="0x21" value="ガーディ" />
+            <entry key="0x22" value="イワーク" />
+            <entry key="0x23" value="オニドリル" />
+            <entry key="0x24" value="ポッポ" />
+            <entry key="0x25" value="ヤドン" />
             <entry key="0x26" value="ユンゲラー" />
-            <entry key="0x27" value="Graveler" />
-            <entry key="0x28" value="Chansey" />
-            <entry key="0x29" value="Machoke" />
-            <entry key="0x2A" value="Mr. Mime" />
-            <entry key="0x2B" value="Hitmonlee" />
-            <entry key="0x2C" value="Hitmonchan" />
-            <entry key="0x2D" value="Arbok" />
-            <entry key="0x2E" value="Parasect" />
-            <entry key="0x2F" value="Psyduck" />
-            <entry key="0x30" value="Drowzee" />
-            <entry key="0x31" value="Golem" />
+            <entry key="0x27" value="ゴローン" />
+            <entry key="0x28" value="ラッキー" />
+            <entry key="0x29" value="ゴーリキー" />
+            <entry key="0x2A" value="バリヤード" />
+            <entry key="0x2B" value="サワムラー" />
+            <entry key="0x2C" value="エビワラー" />
+            <entry key="0x2D" value="アーボック" />
+            <entry key="0x2E" value="パラセクト" />
+            <entry key="0x2F" value="コダック" />
+            <entry key="0x30" value="スリープ" />
+            <entry key="0x31" value="ゴローニャ" />
             <entry key="0x32" />
-            <entry key="0x33" value="Magmar" />
+            <entry key="0x33" value="ブーバー" />
             <entry key="0x34" />
-            <entry key="0x35" value="Electabuzz" />
-            <entry key="0x36" value="Magneton" />
+            <entry key="0x35" value="エレブー" />
+            <entry key="0x36" value="レアコイル" />
             <entry key="0x37" value="ドガース" />
             <entry key="0x38" />
-            <entry key="0x39" value="Mankey" />
-            <entry key="0x3A" value="Seel" />
-            <entry key="0x3B" value="Diglett" />
-            <entry key="0x3C" value="Tauros" />
+            <entry key="0x39" value="マンキー" />
+            <entry key="0x3A" value="パウワウ" />
+            <entry key="0x3B" value="ディグダ" />
+            <entry key="0x3C" value="ケンタロス" />
             <entry key="0x3D" />
             <entry key="0x3E" />
             <entry key="0x3F" />
-            <entry key="0x40" value="Farfetch'd" />
-            <entry key="0x41" value="Venonat" />
-            <entry key="0x42" value="Dragonite" />
+            <entry key="0x40" value="カモネギ" />
+            <entry key="0x41" value="コンパン" />
+            <entry key="0x42" value="カイリュー" />
             <entry key="0x43" />
             <entry key="0x44" />
             <entry key="0x45" />
-            <entry key="0x46" value="Doduo" />
-            <entry key="0x47" value="Poliwag" />
-            <entry key="0x48" value="Jynx" />
-            <entry key="0x49" value="Moltres" />
-            <entry key="0x4A" value="Articuno" />
-            <entry key="0x4B" value="Zapdos" />
+            <entry key="0x46" value="ドードー" />
+            <entry key="0x47" value="ニョロモ" />
+            <entry key="0x48" value="ルージュラ" />
+            <entry key="0x49" value="ファイヤー" />
+            <entry key="0x4A" value="フリーザー" />
+            <entry key="0x4B" value="サンダー" />
             <entry key="0x4C" value="メタモン" />
             <entry key="0x4D" value="ニャース" />
             <entry key="0x4E" value="クラブ" />
@@ -1706,109 +2215,109 @@
             <entry key="0x55" value="ライチュウ" />
             <entry key="0x56" />
             <entry key="0x57" />
-            <entry key="0x58" value="Dratini" />
-            <entry key="0x59" value="Dragonair" />
+            <entry key="0x58" value="ミニリュウ" />
+            <entry key="0x59" value="ハクリュー" />
             <entry key="0x5A" value="カブト" />
             <entry key="0x5B" value="カブトプス" />
-            <entry key="0x5C" value="Horsea" />
-            <entry key="0x5D" value="Seadra" />
+            <entry key="0x5C" value="タッツー" />
+            <entry key="0x5D" value="シードラ" />
             <entry key="0x5E" />
             <entry key="0x5F" />
             <entry key="0x60" value="サンド" />
             <entry key="0x61" value="サンドパン" />
-            <entry key="0x62" value="Omanyte" />
-            <entry key="0x63" value="Omastar" />
-            <entry key="0x64" value="Jigglypuff" />
-            <entry key="0x65" value="Wigglytuff" />
+            <entry key="0x62" value="オムナイト" />
+            <entry key="0x63" value="オムスター" />
+            <entry key="0x64" value="プリン" />
+            <entry key="0x65" value="プクリン" />
             <entry key="0x66" value="イーブイ" />
             <entry key="0x67" value="ブースター" />
             <entry key="0x68" value="サンダーズ" />
             <entry key="0x69" value="シャワーズ" />
-            <entry key="0x6A" value="Machop" />
-            <entry key="0x6B" value="Zubat" />
-            <entry key="0x6C" value="Ekans" />
-            <entry key="0x6D" value="Paras" />
-            <entry key="0x6E" value="Poliwhirl" />
-            <entry key="0x6F" value="Poliwrath" />
-            <entry key="0x70" value="Weedle" />
+            <entry key="0x6A" value="ワンリキー" />
+            <entry key="0x6B" value="ズバット" />
+            <entry key="0x6C" value="アーボ" />
+            <entry key="0x6D" value="パラス" />
+            <entry key="0x6E" value="ニョロゾ" />
+            <entry key="0x6F" value="ニョロボン" />
+            <entry key="0x70" value="ビードル" />
             <entry key="0x71" value="コクーン" />
-            <entry key="0x72" value="Beedrill" />
+            <entry key="0x72" value="スピアー" />
             <entry key="0x73" />
-            <entry key="0x74" value="Dodrio" />
-            <entry key="0x75" value="Primeape" />
-            <entry key="0x76" value="Dugtrio" />
-            <entry key="0x77" value="Venomoth" />
-            <entry key="0x78" value="Dewgong" />
+            <entry key="0x74" value="ドードリオ" />
+            <entry key="0x75" value="オコリザル" />
+            <entry key="0x76" value="ダグトリオ" />
+            <entry key="0x77" value="モルフォン" />
+            <entry key="0x78" value="ジュゴン" />
             <entry key="0x79" />
             <entry key="0x7A" />
-            <entry key="0x7B" value="Caterpie" />
-            <entry key="0x7C" value="Metapod" />
-            <entry key="0x7D" value="Butterfree" />
-            <entry key="0x7E" value="Machamp" />
+            <entry key="0x7B" value="キャタピー" />
+            <entry key="0x7C" value="トランセル" />
+            <entry key="0x7D" value="バタフリー" />
+            <entry key="0x7E" value="カイリキー" />
             <entry key="0x7F" />
-            <entry key="0x80" value="Golduck" />
-            <entry key="0x81" value="Hypno" />
-            <entry key="0x82" value="Golbat" />
-            <entry key="0x83" value="Mewtwo" />
-            <entry key="0x84" value="Snorlax" />
-            <entry key="0x85" value="Magikarp" />
+            <entry key="0x80" value="ゴルダック" />
+            <entry key="0x81" value="スリーパー" />
+            <entry key="0x82" value="ゴルバット" />
+            <entry key="0x83" value="ミュウツー" />
+            <entry key="0x84" value="カビゴン" />
+            <entry key="0x85" value="コイキング" />
             <entry key="0x86" />
             <entry key="0x87" />
-            <entry key="0x88" value="Muk" />
+            <entry key="0x88" value="ベトベトン" />
             <entry key="0x89" />
             <entry key="0x8A" value="キングラー" />
-            <entry key="0x8B" value="Cloyster" />
+            <entry key="0x8B" value="パルシェン" />
             <entry key="0x8C" />
-            <entry key="0x8D" value="Electrode" />
-            <entry key="0x8E" value="Clefable" />
-            <entry key="0x8F" value="Weezing" />
-            <entry key="0x90" value="Persian" />
-            <entry key="0x91" value="Marowak" />
+            <entry key="0x8D" value="マルマイン" />
+            <entry key="0x8E" value="ピクシー" />
+            <entry key="0x8F" value="マタドガス" />
+            <entry key="0x90" value="ペルシアン" />
+            <entry key="0x91" value="ガラガラ" />
             <entry key="0x92" />
-            <entry key="0x93" value="Haunter" />
+            <entry key="0x93" value="ゴースト" />
             <entry key="0x94" value="ケーシィ" />
-            <entry key="0x95" value="Alakazam" />
-            <entry key="0x96" value="Pidgeotto" />
-            <entry key="0x97" value="Pidgeot" />
-            <entry key="0x98" value="Starmie" />
-            <entry key="0x99" value="Bulbasaur" />
-            <entry key="0x9A" value="Venusaur" />
-            <entry key="0x9B" value="Tentacruel" />
+            <entry key="0x95" value="フーディン" />
+            <entry key="0x96" value="ピジョン" />
+            <entry key="0x97" value="ピジョット" />
+            <entry key="0x98" value="スターミー" />
+            <entry key="0x99" value="フシギダネ" />
+            <entry key="0x9A" value="フシギバナ" />
+            <entry key="0x9B" value="ドククラゲ" />
             <entry key="0x9C" />
-            <entry key="0x9D" value="Goldeen" />
-            <entry key="0x9E" value="Seaking" />
+            <entry key="0x9D" value="トサキント" />
+            <entry key="0x9E" value="アズマオウ" />
             <entry key="0x9F" />
             <entry key="0xA0" />
             <entry key="0xA1" />
             <entry key="0xA2" />
-            <entry key="0xA3" value="Ponyta" />
-            <entry key="0xA4" value="Rapidash" />
-            <entry key="0xA5" value="Rattata" />
-            <entry key="0xA6" value="Raticate" />
-            <entry key="0xA7" value="Nidorino" />
-            <entry key="0xA8" value="Nidorina" />
-            <entry key="0xA9" value="Geodude" />
+            <entry key="0xA3" value="ポニータ" />
+            <entry key="0xA4" value="ギャロップ" />
+            <entry key="0xA5" value="コラッタ" />
+            <entry key="0xA6" value="ラッタ" />
+            <entry key="0xA7" value="ニドリーノ" />
+            <entry key="0xA8" value="ニドリーナ" />
+            <entry key="0xA9" value="イシツブテ" />
             <entry key="0xAA" value="ポリゴン" />
             <entry key="0xAB" value="プテラ" />
             <entry key="0xAC" />
-            <entry key="0xAD" value="Magnemite" />
+            <entry key="0xAD" value="コイル" />
             <entry key="0xAE" />
             <entry key="0xAF" />
-            <entry key="0xB0" value="Charmander" />
-            <entry key="0xB1" value="Squirtle" />
-            <entry key="0xB2" value="Charmeleon" />
-            <entry key="0xB3" value="Wartortle" />
-            <entry key="0xB4" value="Charizard" />
+            <entry key="0xB0" value="ヒトカゲ" />
+            <entry key="0xB1" value="ゼニガメ" />
+            <entry key="0xB2" value="リザード" />
+            <entry key="0xB3" value="カメール" />
+            <entry key="0xB4" value="リザードン" />
             <entry key="0xB5" />
             <entry key="0xB6" />
             <entry key="0xB7" />
             <entry key="0xB8" />
-            <entry key="0xB9" value="Oddish" />
-            <entry key="0xBA" value="Gloom" />
-            <entry key="0xBB" value="Vileplume" />
-            <entry key="0xBC" value="Bellsprout" />
-            <entry key="0xBD" value="Weepinbell" />
-            <entry key="0xBE" value="Victreebel" />
+            <entry key="0xB9" value="ナゾノクサ" />
+            <entry key="0xBA" value="クサイハナ" />
+            <entry key="0xBB" value="ラフレシア" />
+            <entry key="0xBC" value="マダツボミ" />
+            <entry key="0xBD" value="ウツドン" />
+            <entry key="0xBE" value="ウツボット" />
         </species>
         <audio_track>
             <entry key="0x00" />
