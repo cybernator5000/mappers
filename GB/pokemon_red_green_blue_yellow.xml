@@ -290,8 +290,8 @@
                     <class name="3" type="encounter" var:address="0xD815" />
                 </uncommon>
                 <rare>
-                    <class name="1" type="encounter" var:address="0xD817" />
-                    <class name="0" type="encounter" var:address="0xD819" />
+                    <class name="0" type="encounter" var:address="0xD817" />
+                    <class name="1" type="encounter" var:address="0xD819" />
                 </rare>
             </encounter_table>
             <safari_zone>
