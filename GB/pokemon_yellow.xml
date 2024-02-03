@@ -297,7 +297,8 @@
             <safari_zone>
                 <property name="safari_time"  type="int" address="0xD70C" length="2" />
                 <property name="safari_balls" type="int" address="0xDA46" />
-                <property name="baiting_factor" type="int" address="0xCCE8" />
+		<property name="rock_factor" type="int" address="0xCCE8" /> 
+                <property name="baiting_factor" type="int" address="0xCCE9" />
             </safari_zone>
             <map_data>
                 <property name="tileset"  type="int" address="0xD366" />
@@ -1269,7 +1270,7 @@
         <movement_states>
             <entry key="0x00" value="Walk" />
             <entry key="0x01" value="Bike" />
-            <entry key="0x01" value="Surf" />
+            <entry key="0x02" value="Surf" />
         </movement_states>
         <pokemon_types>
             <entry key="0x00" value="Normal" />
