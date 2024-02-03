@@ -5,7 +5,7 @@ import {
     getValue,
 } from "../common";
 
-function getMetaState() {
+function getGamestate() {
     const team_0_level: number = getValue('player.team.0.level')
     const callback1: number = getValue('pointers.callback1')
     // const callback2: string | null = getValue('pointers.callback1')
@@ -32,10 +32,11 @@ function getMetaState() {
 }
 
 export function preprocessor() {
+    const gamestate = getGamestate();
     variables.dma_a = memory.defaultNamespace.get_uint32_le(0x3005D8C)
     variables.dma_b = memory.defaultNamespace.get_uint32_le(0x3005D90)
     variables.dma_c = memory.defaultNamespace.get_uint32_le(0x3005D94)
     variables.callback1 = memory.defaultNamespace.get_uint32_le(0x30022C0)
     variables.callback2 = memory.defaultNamespace.get_uint32_le(0x30022C4)
-    setValue('meta.state', getMetaState())
+    setValue('meta.state', gamestate)
 }
